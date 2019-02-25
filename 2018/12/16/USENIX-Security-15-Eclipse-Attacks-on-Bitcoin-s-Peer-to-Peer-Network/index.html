@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>USENIX Security&#39;15 - Eclipse Attacks on Bitcoin&#39;s Peer-to-Peer Network | Runchao Han&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Info Title: Eclipse Attacks on Bitcoin&amp;#x2019;s Peer-to-Peer Network Conference: USENIX Security Year: 2015 URL: https://eprint.iacr.org/2015/263.pdf Source code: https://github.com/bitcoin/bitcoin/pu">
+<meta name="keywords" content="Attack,Bitcoin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="USENIX Security&#39;15 - Eclipse Attacks on Bitcoin&#39;s Peer-to-Peer Network">
+<meta property="og:url" content="http://SebastianElvis.github.io/2018/12/16/USENIX-Security-15-Eclipse-Attacks-on-Bitcoin-s-Peer-to-Peer-Network/index.html">
+<meta property="og:site_name" content="Runchao Han&#39;s Blog">
+<meta property="og:description" content="Info Title: Eclipse Attacks on Bitcoin&amp;#x2019;s Peer-to-Peer Network Conference: USENIX Security Year: 2015 URL: https://eprint.iacr.org/2015/263.pdf Source code: https://github.com/bitcoin/bitcoin/pu">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-02-25T03:06:18.589Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="USENIX Security&#39;15 - Eclipse Attacks on Bitcoin&#39;s Peer-to-Peer Network">
+<meta name="twitter:description" content="Info Title: Eclipse Attacks on Bitcoin&amp;#x2019;s Peer-to-Peer Network Conference: USENIX Security Year: 2015 URL: https://eprint.iacr.org/2015/263.pdf Source code: https://github.com/bitcoin/bitcoin/pu">
+  
+    <link rel="alternate" href="/atom.xml" title="Runchao Han&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Runchao Han&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://SebastianElvis.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-USENIX-Security-15-Eclipse-Attacks-on-Bitcoin-s-Peer-to-Peer-Network" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/16/USENIX-Security-15-Eclipse-Attacks-on-Bitcoin-s-Peer-to-Peer-Network/" class="article-date">
+  <time datetime="2018-12-16T01:24:30.000Z" itemprop="datePublished">2018-12-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/paper-reading/">paper reading</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      USENIX Security&#39;15 - Eclipse Attacks on Bitcoin&#39;s Peer-to-Peer Network
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Info"><a href="#Info" class="headerlink" title="Info"></a>Info</h1><ul>
+<li><strong>Title</strong>: Eclipse Attacks on Bitcoin&#x2019;s Peer-to-Peer Network</li>
+<li><strong>Conference</strong>: USENIX Security</li>
+<li><strong>Year</strong>: 2015</li>
+<li><strong>URL</strong>: <a href="https://eprint.iacr.org/2015/263.pdf" target="_blank" rel="noopener">https://eprint.iacr.org/2015/263.pdf</a></li>
+<li><strong>Source code</strong>: <a href="https://github.com/bitcoin/bitcoin/pull/9037" target="_blank" rel="noopener">https://github.com/bitcoin/bitcoin/pull/9037</a></li>
+</ul>
+<h1 id="Addressed-Problems"><a href="#Addressed-Problems" class="headerlink" title="Addressed Problems"></a>Addressed Problems</h1><ul>
+<li>Little attention has been paid to the P2P network security</li>
+<li>Cryptographic authentication between peers is not used, and nodes are identified by their IP addresses</li>
+<li>The P2P network is open, so adversaries are easy to get in</li>
+</ul>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ul>
+<li>We present and quantify the resources required for <strong>eclipse attacks</strong> on nodes with public IPs running bitcoind version 0.9.3</li>
+<li>The attacker monopolizes all of the victim&#x2019;s incoming and outgoing connections, thus <strong>isolating</strong> the victim from the rest of its peers in the network</li>
+<li>We present <strong>off-path attacks</strong>, where the attacker controls endhosts, but not key network infrastructure between the victim and the rest of the bitcoin network.</li>
+<li>We propose a set of countermeasures that preserve openness by allowing unsolicited incoming connections, while raising the bar for eclipse attacks.</li>
+</ul>
+<h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><h2 id="Implication-of-Eclipse-Attack"><a href="#Implication-of-Eclipse-Attack" class="headerlink" title="Implication of Eclipse Attack"></a>Implication of Eclipse Attack</h2><p>Attacks based on Eclipse Attack</p>
+<ul>
+<li>Engineering block races<ul>
+<li>Block race: Two miners discover blocks at the same time</li>
+<li>An attacker that eclipses many miners can engineer block races by hording blocks discovered by eclipsed miners, and releasing blocks to both the eclipsed and non-eclipsed miners once a competing block has been found</li>
+<li>Thus, the eclipsed miners waste effort on orphan blocks.</li>
+</ul>
+</li>
+<li>Splitting mining power</li>
+<li>Selfish mining<ul>
+<li>Attacker strategically withholds blocks to win more than its fair share of mining rewards</li>
+<li>If attacker&#x2019;s blockchain is longer, withhold</li>
+<li>If honest blockchain becomes longer, broadcast the attacker&#x2019;s blockchain and let them mine on the attacker&#x2019;s blockchain</li>
+<li>Decrease the waste of mining power</li>
+<li><a href="http://www.greywyvern.com/code/javascript/selfishmining" target="_blank" rel="noopener">http://www.greywyvern.com/code/javascript/selfishmining</a></li>
+</ul>
+</li>
+<li>0-confirmation double spend<ul>
+<li>Attacker eclipses the merchant&#x2019;s bitcoin node</li>
+</ul>
+</li>
+</ul>
+<h2 id="Bitcoin-P2P-Network"><a href="#Bitcoin-P2P-Network" class="headerlink" title="Bitcoin P2P Network"></a>Bitcoin P2P Network</h2><ul>
+<li>A node with a public IP can initiate up to 8 outgoing connections with other bitcoin nodes, and accept up to 117 incoming connections (<strong>Configurable</strong>).</li>
+<li>Propagating Network Info<ul>
+<li>DNS Seeders<ul>
+<li>A DNS seeder is a server that responds to DNS queries from bitcoin nodes with a (<strong>not</strong> cryptographically-authenticated) list of IP addresses for bitcoin nodes.</li>
+<li>The seeder obtains these addresses by periodically crawling the bitcoin network.</li>
+<li>The bitcoin network has 6 seeders which are queried in 2 cases only.<ol>
+<li>a new node joins the network for the first time<ul>
+<li>Query, if fail, then use a hardcoded list of 600 IP addresses</li>
+</ul>
+</li>
+<li>an existing node restarts and reconnects to new peers<ul>
+<li>only if 11 seconds have elapsed but the node has less than 2 outgoing connections</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>ADDR messages<ul>
+<li>containing up to 1000 IP address and their timestamps</li>
+<li>obtain network information from peers</li>
+<li>accept unsolicited ADDR messages <strong>only</strong> upon establishing a outgoing connection with a peer</li>
+<li>&lt;= 3 ADDR message each containing up to 1000 addresses randomly selected from its tables once</li>
+<li>2 cases<ol>
+<li>Each day, a node sends its own IP address in a ADDR message to each peer</li>
+<li>When a node receives an ADDR message with no more than 10 addresses, it forwards the ADDR message to two randomly-selected connected peers.</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Storing Network Info<ul>
+<li>Public IPs are stored in a node&#x2019;s <em>tried</em> and <em>new</em> tables.  </li>
+<li>Tables are stored on disk and persist when a node restarts.</li>
+<li><em>Tried</em> table<ul>
+<li>A <em>tried</em> table has 64 buckets</li>
+<li>each bucket can store up to 64 unique addresses for peers</li>
+<li>All stored peers have successfully established an incoming or outgoing connection</li>
+</ul>
+</li>
+<li><em>New</em> table<ul>
+<li>A <em>new</em> table has 256 buckets</li>
+<li>each bucket can store up to 64 unique addresses for peers</li>
+<li>All stored peers have not yet initiated a successful connection</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Eclipse-Attack"><a href="#Eclipse-Attack" class="headerlink" title="Eclipse Attack"></a>Eclipse Attack</h2><ul>
+<li>Populating <em>tried</em> and <em>new</em><ul>
+<li>exploits<ul>
+<li>the <em>bitcoin eviction</em> discipline<ul>
+<li>fresher addresses are likely to evict any older addresses</li>
+</ul>
+</li>
+<li>A node accepts unsolicited ADDR messages</li>
+<li>Nodes only rarely solicit network information from peers and DNS seeders</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Restarting the victim<ul>
+<li>Try everything to make it restart (by cheating, DDoS,&#x2026;)</li>
+</ul>
+</li>
+<li>Selecting outgoing connections<ul>
+<li>After restarting, the victim makes all its outgoing connections to attacker addresses</li>
+</ul>
+</li>
+<li>Monopolizing the eclipsed victim</li>
+</ul>
+<h2 id="Countermeasures"><a href="#Countermeasures" class="headerlink" title="Countermeasures"></a>Countermeasures</h2><ul>
+<li>Deterministic random eviction</li>
+<li>Random selection</li>
+<li>Test before evict</li>
+<li>Feeler Connections<ul>
+<li>Add an outgoing connection that establish short-lived test connections to randomly- selected addresses in <em>new</em></li>
+</ul>
+</li>
+<li>Anchor connections<ul>
+<li>add two connections that persist between restarts</li>
+</ul>
+</li>
+</ul>
+<p>Raise bar of attacks</p>
+<ul>
+<li>More buckets</li>
+<li>More outgoing connections</li>
+<li>Ban unsolicited ADDR messages</li>
+<li>Diversify incoming connections</li>
+<li>Anomaly detection</li>
+</ul>
+<h1 id="Relevance"><a href="#Relevance" class="headerlink" title="Relevance"></a>Relevance</h1><ul>
+<li>The P2P network security is a critical and low-level research topic in Blockchain </li>
+</ul>
+<h1 id="To-discuss-investigate"><a href="#To-discuss-investigate" class="headerlink" title="To discuss/investigate"></a>To discuss/investigate</h1><ul>
+<li>How to &#x2018;measure&#x2019; the P2P network</li>
+<li>The way of simulating the attack needs more conern</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://SebastianElvis.github.io/2018/12/16/USENIX-Security-15-Eclipse-Attacks-on-Bitcoin-s-Peer-to-Peer-Network/" data-id="cjsjrtohc0030w3jos8ypeskb" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Attack/">Attack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bitcoin/">Bitcoin</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/12/16/P2P-13-Information-Propagation-in-the-Bitcoin-Network/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          P2P&#39;13 - Information Propagation in the Bitcoin Network
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/12/15/CCS-16-Making-Smart-Contracts-Smarter/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">CCS&#39;16 - Making Smart Contracts Smarter</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/blockchain/">blockchain</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/blockchain/cross-chain/">cross-chain</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/blockchain/digital-signature/">digital signature</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/blockchain/privacy/">privacy</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/cryptography/">cryptography</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/cryptography/numerical-algorithms/">numerical algorithms</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cryptography/public-key-cryptography/">public-key cryptography</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cryptography/zero-knowledge/">zero knowledge</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/paper-reading/">paper reading</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/self/">self</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/self/research/">research</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Atomic-Multicast/">Atomic Multicast</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Atomic-Swap/">Atomic Swap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attack/">Attack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Authenticated-Data-Structure/">Authenticated Data Structure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BFT/">BFT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BGW-Protocol/">BGW Protocol</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BLS/">BLS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Barreto-Naehrig-Curve/">Barreto-Naehrig Curve</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bitcoin/">Bitcoin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blockchain/">Blockchain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CCS/">CCS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CRYPTO/">CRYPTO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Confidential-Transactions/">Confidential Transactions</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Consensus/">Consensus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Consistency/">Consistency</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CryptoNote/">CryptoNote</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cryptography/">Cryptography</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DAG/">DAG</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decentralization/">Decentralization</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Delegatable-Anonymous-Credentials/">Delegatable Anonymous Credentials</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Distributed-Randomness/">Distributed Randomness</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ECDSA/">ECDSA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Elliptic-Curve/">Elliptic Curve</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ethereum/">Ethereum</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FC/">FC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Factorization/">Factorization</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Garbled-Circuits/">Garbled Circuits</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTLC/">HTLC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Homomorphic-Encryption/">Homomorphic Encryption</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MPC/">MPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Measurement/">Measurement</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mining-Pool/">Mining Pool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MultiSig/">MultiSig</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NDSS/">NDSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Numerical-Algorithms/">Numerical Algorithms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Oblivious-Transfer/">Oblivious Transfer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/P2P-Mixing/">P2P Mixing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/P2P-Network/">P2P Network</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pairing/">Pairing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Payment-Channels/">Payment Channels</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PoS/">PoS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Privacy/">Privacy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Public-Blockchains/">Public Blockchains</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Public-Key-Cryptography/">Public-Key Cryptography</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SPDZ/">SPDZ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scalability/">Scalability</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Schnorr/">Schnorr</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Security/">Security</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Security-Privacy/">Security&Privacy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sharding/">Sharding</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Short-Signatures/">Short Signatures</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Signature-Aggregation/">Signature Aggregation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Smart-Contracts/">Smart Contracts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Solidity/">Solidity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Threshold-Encryption/">Threshold Encryption</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/USENIX-Security/">USENIX Security</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Universal-Composability/">Universal Composability</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unlinkable-Transactions/">Unlinkable Transactions</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VRF/">VRF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VSS/">VSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zcash/">Zcash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zero-Knowledge/">Zero Knowledge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zkSNARKs/">zkSNARKs</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Atomic-Multicast/" style="font-size: 10px;">Atomic Multicast</a> <a href="/tags/Atomic-Swap/" style="font-size: 10px;">Atomic Swap</a> <a href="/tags/Attack/" style="font-size: 11.67px;">Attack</a> <a href="/tags/Authenticated-Data-Structure/" style="font-size: 10px;">Authenticated Data Structure</a> <a href="/tags/BFT/" style="font-size: 10px;">BFT</a> <a href="/tags/BGW-Protocol/" style="font-size: 10px;">BGW Protocol</a> <a href="/tags/BLS/" style="font-size: 13.33px;">BLS</a> <a href="/tags/Barreto-Naehrig-Curve/" style="font-size: 10px;">Barreto-Naehrig Curve</a> <a href="/tags/Bitcoin/" style="font-size: 13.33px;">Bitcoin</a> <a href="/tags/Blockchain/" style="font-size: 20px;">Blockchain</a> <a href="/tags/CCS/" style="font-size: 16.67px;">CCS</a> <a href="/tags/CRYPTO/" style="font-size: 10px;">CRYPTO</a> <a href="/tags/Confidential-Transactions/" style="font-size: 13.33px;">Confidential Transactions</a> <a href="/tags/Consensus/" style="font-size: 16.67px;">Consensus</a> <a href="/tags/Consistency/" style="font-size: 10px;">Consistency</a> <a href="/tags/CryptoNote/" style="font-size: 10px;">CryptoNote</a> <a href="/tags/Cryptography/" style="font-size: 16.67px;">Cryptography</a> <a href="/tags/DAG/" style="font-size: 10px;">DAG</a> <a href="/tags/Decentralization/" style="font-size: 10px;">Decentralization</a> <a href="/tags/Delegatable-Anonymous-Credentials/" style="font-size: 10px;">Delegatable Anonymous Credentials</a> <a href="/tags/Distributed-Randomness/" style="font-size: 10px;">Distributed Randomness</a> <a href="/tags/ECDSA/" style="font-size: 10px;">ECDSA</a> <a href="/tags/Elliptic-Curve/" style="font-size: 13.33px;">Elliptic Curve</a> <a href="/tags/Ethereum/" style="font-size: 10px;">Ethereum</a> <a href="/tags/FC/" style="font-size: 10px;">FC</a> <a href="/tags/Factorization/" style="font-size: 10px;">Factorization</a> <a href="/tags/Garbled-Circuits/" style="font-size: 10px;">Garbled Circuits</a> <a href="/tags/HTLC/" style="font-size: 10px;">HTLC</a> <a href="/tags/Homomorphic-Encryption/" style="font-size: 10px;">Homomorphic Encryption</a> <a href="/tags/MPC/" style="font-size: 16.67px;">MPC</a> <a href="/tags/Measurement/" style="font-size: 10px;">Measurement</a> <a href="/tags/Mining-Pool/" style="font-size: 10px;">Mining Pool</a> <a href="/tags/MultiSig/" style="font-size: 13.33px;">MultiSig</a> <a href="/tags/NDSS/" style="font-size: 11.67px;">NDSS</a> <a href="/tags/Numerical-Algorithms/" style="font-size: 10px;">Numerical Algorithms</a> <a href="/tags/Oblivious-Transfer/" style="font-size: 10px;">Oblivious Transfer</a> <a href="/tags/P2P-Mixing/" style="font-size: 10px;">P2P Mixing</a> <a href="/tags/P2P-Network/" style="font-size: 10px;">P2P Network</a> <a href="/tags/Pairing/" style="font-size: 13.33px;">Pairing</a> <a href="/tags/Payment-Channels/" style="font-size: 10px;">Payment Channels</a> <a href="/tags/PoS/" style="font-size: 10px;">PoS</a> <a href="/tags/Privacy/" style="font-size: 10px;">Privacy</a> <a href="/tags/Public-Blockchains/" style="font-size: 10px;">Public Blockchains</a> <a href="/tags/Public-Key-Cryptography/" style="font-size: 10px;">Public-Key Cryptography</a> <a href="/tags/SPDZ/" style="font-size: 10px;">SPDZ</a> <a href="/tags/Scalability/" style="font-size: 18.33px;">Scalability</a> <a href="/tags/Schnorr/" style="font-size: 11.67px;">Schnorr</a> <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/Security-Privacy/" style="font-size: 10px;">Security&Privacy</a> <a href="/tags/Sharding/" style="font-size: 13.33px;">Sharding</a> <a href="/tags/Short-Signatures/" style="font-size: 10px;">Short Signatures</a> <a href="/tags/Signature-Aggregation/" style="font-size: 10px;">Signature Aggregation</a> <a href="/tags/Smart-Contracts/" style="font-size: 15px;">Smart Contracts</a> <a href="/tags/Solidity/" style="font-size: 10px;">Solidity</a> <a href="/tags/Threshold-Encryption/" style="font-size: 10px;">Threshold Encryption</a> <a href="/tags/USENIX-Security/" style="font-size: 15px;">USENIX Security</a> <a href="/tags/Universal-Composability/" style="font-size: 10px;">Universal Composability</a> <a href="/tags/Unlinkable-Transactions/" style="font-size: 10px;">Unlinkable Transactions</a> <a href="/tags/VRF/" style="font-size: 10px;">VRF</a> <a href="/tags/VSS/" style="font-size: 10px;">VSS</a> <a href="/tags/Zcash/" style="font-size: 10px;">Zcash</a> <a href="/tags/Zero-Knowledge/" style="font-size: 10px;">Zero Knowledge</a> <a href="/tags/zkSNARKs/" style="font-size: 10px;">zkSNARKs</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/01/13/CCS-16-The-Honey-Badger-of-BFT-Protocols/">CCS&#39;16 - The Honey Badger of BFT Protocols</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/13/SOSP-17-Algorand-Scaling-Byzantine-Agreements-for-Cryptocurrencies/">SOSP&#39;17 - Algorand: Scaling Byzantine Agreements for Cryptocurrencies</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/13/Preprint-Scaling-Nakamoto-Consensus-to-Thousands-of-Transactions-per-Second/">Preprint - Scaling Nakamoto Consensus to Thousands of Transactions per Second</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/12/Preprint-A-Web-of-Blocks/">Preprint - A Web of Blocks</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/04/Compact-Multi-Signatures-for-Smaller-Blockchains/">Compact Multi-Signatures for Smaller Blockchains</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Runchao Han<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

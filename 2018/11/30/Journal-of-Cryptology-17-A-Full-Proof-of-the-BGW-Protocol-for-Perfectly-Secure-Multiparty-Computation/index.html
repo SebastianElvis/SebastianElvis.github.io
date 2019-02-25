@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>Journal of Cryptology&#39;17 - A Full Proof of the BGW Protocol for Perfectly Secure Multiparty Computation | Runchao Han&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Info Title: A Full Proof of the BGW Protocol for Perfectly Secure Multiparty Computation Conference: Journal of Cryptology Year: 2017 Topic: Cryptography and Security (cs.CR) URL: https://eprint.iacr.">
+<meta name="keywords" content="MPC,VSS,BGW Protocol">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Journal of Cryptology&#39;17 - A Full Proof of the BGW Protocol for Perfectly Secure Multiparty Computation">
+<meta property="og:url" content="http://SebastianElvis.github.io/2018/11/30/Journal-of-Cryptology-17-A-Full-Proof-of-the-BGW-Protocol-for-Perfectly-Secure-Multiparty-Computation/index.html">
+<meta property="og:site_name" content="Runchao Han&#39;s Blog">
+<meta property="og:description" content="Info Title: A Full Proof of the BGW Protocol for Perfectly Secure Multiparty Computation Conference: Journal of Cryptology Year: 2017 Topic: Cryptography and Security (cs.CR) URL: https://eprint.iacr.">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-02-25T03:06:18.584Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Journal of Cryptology&#39;17 - A Full Proof of the BGW Protocol for Perfectly Secure Multiparty Computation">
+<meta name="twitter:description" content="Info Title: A Full Proof of the BGW Protocol for Perfectly Secure Multiparty Computation Conference: Journal of Cryptology Year: 2017 Topic: Cryptography and Security (cs.CR) URL: https://eprint.iacr.">
+  
+    <link rel="alternate" href="/atom.xml" title="Runchao Han&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Runchao Han&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://SebastianElvis.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Journal-of-Cryptology-17-A-Full-Proof-of-the-BGW-Protocol-for-Perfectly-Secure-Multiparty-Computation" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/30/Journal-of-Cryptology-17-A-Full-Proof-of-the-BGW-Protocol-for-Perfectly-Secure-Multiparty-Computation/" class="article-date">
+  <time datetime="2018-11-30T07:10:58.000Z" itemprop="datePublished">2018-11-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/paper-reading/">paper reading</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Journal of Cryptology&#39;17 - A Full Proof of the BGW Protocol for Perfectly Secure Multiparty Computation
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Info"><a href="#Info" class="headerlink" title="Info"></a>Info</h1><ul>
+<li><strong>Title</strong>: A Full Proof of the BGW Protocol for Perfectly Secure Multiparty Computation</li>
+<li><strong>Conference</strong>: Journal of Cryptology</li>
+<li><strong>Year</strong>: 2017</li>
+<li><strong>Topic</strong>: Cryptography and Security (cs.CR)</li>
+<li><strong>URL</strong>: <a href="https://eprint.iacr.org/2011/136.pdf" target="_blank" rel="noopener">https://eprint.iacr.org/2011/136.pdf</a></li>
+<li><strong>Source code</strong>: No</li>
+</ul>
+<h1 id="Addressed-Problems"><a href="#Addressed-Problems" class="headerlink" title="Addressed Problems"></a>Addressed Problems</h1><ul>
+<li>Ben-Or, Goldwasser and Wigderson (BGW) Protocol is one of the most fundamental results of MPC<ul>
+<li>Any n-party functionality can be computed with <em>perfect security</em>, in the <em>private channel model</em>.</li>
+<li>When the adversary is <em>semi-honest</em> this holds as long as t &lt; n/2 parties are corrupted</li>
+<li>When the adversary is malicious this holds as long as t &lt; n/3 parties are corrupted.</li>
+</ul>
+</li>
+<li>Unfortunately, a full proof of these results was never published.</li>
+</ul>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ul>
+<li>In this paper, we remedy this situation and provide a full proof of security of the BGW protocol.</li>
+</ul>
+<h1 id="Primitives"><a href="#Primitives" class="headerlink" title="Primitives"></a>Primitives</h1><h2 id="Shamir-Secret-Sharing"><a href="#Shamir-Secret-Sharing" class="headerlink" title="Shamir Secret Sharing"></a>Shamir Secret Sharing</h2><p>A <em>(t+1)-out-of-n</em> secret sharing scheme:</p>
+<ul>
+<li>Input: a secret $s$</li>
+<li>Outputs: $n$ shares<ul>
+<li>Can only reconstruct $s$ from every subset of $t+1$ shares</li>
+<li>$t$ is called the <strong>thereshold</strong> of the scheme</li>
+</ul>
+</li>
+</ul>
+<p>SSS consists of 2 algorithms:</p>
+<ul>
+<li>The <strong>sharing algorithm</strong></li>
+<li>The <strong>reconstruction algorithm</strong></li>
+</ul>
+<p>Process of SSS:</p>
+<ul>
+<li>Pre-defined stuff:<ul>
+<li>$\mathbb{F}$ a finite field of size greater than $n$, and let $s \in \mathbb{F}$ </li>
+</ul>
+</li>
+<li>Sharing<ul>
+<li>Defines a polynomial $q(x)$ in $\mathbb{F}[x]$<ul>
+<li>degree (highest degree of individual terms with non-zero coefficients) is $t$</li>
+<li>the constant term is $s$</li>
+<li>all other coefficients are selected uniformly, independently and randomly in $\mathbb{F}$</li>
+</ul>
+</li>
+<li>The shares are defined as $q(\alpha_{i})$ for every $i \in {1,&#x2026;,n}$<ul>
+<li>where $\alpha<em>{1},&#x2026;\alpha</em>{n}$ are any $n$ distinct non-zero predetermined values in $\mathbb{F}$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Reconstruction<ul>
+<li>Based on the fact that any $t+1$ points define exactly one polynomial of degree $t$</li>
+<li>Using interpolation can efficiently reconstruct $q(x)$ given any subsets of $t+1$ points $(\alpha<em>{i}, q(\alpha</em>{i})$</li>
+</ul>
+</li>
+</ul>
+<h2 id="Verifiable-Secret-Sharing-based-on-SSS"><a href="#Verifiable-Secret-Sharing-based-on-SSS" class="headerlink" title="Verifiable Secret Sharing based on SSS"></a>Verifiable Secret Sharing based on SSS</h2><ul>
+<li>The dealer inputs a polynomial $q(x)$ of degree $t$</li>
+<li>Each party $P<em>{i}$ receives its Shamir share $q(\alpha</em>{i})$ based on that polynomial.</li>
+<li>The &#x201C;verifiable&#x201D; part is that if $q$ is of degree greater than $t$, the parties reject the dealer&#x2019;s shares and output $\perp$</li>
+</ul>
+<h2 id="Securely-Computing-F-VSS"><a href="#Securely-Computing-F-VSS" class="headerlink" title="Securely Computing $F_{VSS}$"></a>Securely Computing $F_{VSS}$</h2><ul>
+<li>Input: The dealer $D = P<em>{1}$ holds a poly $q(x)$ of degree at most $t$. The other parties $P</em>{2},&#x2026;,P_{n}$ have not inputs</li>
+<li>Public values: The description of a field $\mathbb{F}$ and $n$ non-zero elements $\alpha<em>{1},&#x2026;,\alpha</em>{n} \in \mathbb{F}$</li>
+<li>The Protocol:<ol>
+<li><strong>Send Shares</strong> - The dealer $D$<br>1.1. $D$ selects a uniformly distributed bivariate polynomial $S(x,y) \in \mathcal{B}^{q(0),t}$, where $S(0,z) = q(z)$<br>1.2. For every $i \in {1,&#x2026;,n}$, $D$ defines<ul>
+<li>polynomial $f<em>{i}(x) \stackrel{def}{=} S(x,\alpha</em>{i})$</li>
+<li>polynomial $g<em>{i}(y) \stackrel{def}{=} S(\alpha</em>{i}, y)$<br>1.3. $D$ then sends to each party $P<em>{i}$ the poly $f</em>{i}(x)$ and $g_{i}(y)$</li>
+</ul>
+</li>
+<li><strong>Exchange Subshares</strong> - Each party $P<em>{i}$<br>2.1. $P</em>{i}$ stores the poly $f<em>{i}(x)$ and $g</em>{i}(y)$ received from $D$<ul>
+<li>If $f<em>{i}(x)$ or $g</em>{i}(y)$ is of degree greater than $t$ then truncate it to be of degree $t$.)<br>2.2. For every $j \in {1,&#x2026;,n}$, $P<em>{i}$ sends $f</em>{i}(\alpha<em>{j})$ and $g</em>{i}(\alpha<em>{j})$ to $P</em>{j}$</li>
+</ul>
+</li>
+<li><strong>Broadcast Compliants</strong> - Each party $P<em>{i}$<br>3.1. For every $j \in {1,&#x2026;,n}$, let $u</em>{j}, v<em>{j}$ denote the values received from player $P</em>{j}$ in Round 2<ul>
+<li>these are supposed to be $u<em>{j} = f</em>{j}(\alpha<em>{i})$ and $v</em>{j} = g<em>{j}(\alpha</em>{i})$</li>
+<li>If $u<em>{j} \neq f</em>{j}(\alpha<em>{i})$ or $v</em>{j} \neq g<em>{j}(\alpha</em>{i})$, broadcast complaint($i,j,f<em>{i}(\alpha</em>{j}, g<em>{i}(\alpha</em>{j}))$)</li>
+</ul>
+</li>
+<li><strong>Resolve Complaints</strong> - The dealer $D$: for every complaint message recevied, do:<br>4.1. Upon viewing a message complaint $(i,j,u,v)$ broadcast by $P<em>{i}$, check that $u = S(\alpha</em>{j},\alpha<em>{i})$ and $v = S(\alpha</em>{i},\alpha_{j})$.<ul>
+<li>Note that if the dealer and $P<em>{i}$ are honest, then it holds that $u = f</em>{i}(\alpha<em>{j})$ and $v = g</em>{i}(\alpha<em>{j})$<br>4.2. If the above condition holds, then do nothing. Otherwise, broadcast reveal($i,f</em>{i}(x), g_{i}(y)$)</li>
+</ul>
+</li>
+<li><strong>Evaluate Complaint Resolutions</strong> &#x2013; Each party $P_{i}$<ul>
+<li>Haven&#x2019;t understood yet&#x2026;</li>
+</ul>
+</li>
+<li><strong>Output Decision</strong> (if there were complaints) - Each party $P<em>{i}$<br>6.1. If at least $n&#x2212;t$ parties broadcast consistent, output $f</em>{i}(0)$. Otherwise, output $\perp$.</li>
+</ol>
+</li>
+</ul>
+<h1 id="Relevance"><a href="#Relevance" class="headerlink" title="Relevance"></a>Relevance</h1><ul>
+<li>VSS is a simple but powerful primitive, which may be very useful in Blockchain</li>
+<li>MPC is strongly related to the consensus problem</li>
+</ul>
+<h1 id="To-discuss-investigate"><a href="#To-discuss-investigate" class="headerlink" title="To discuss/investigate"></a>To discuss/investigate</h1><ul>
+<li>Is it worth a try to combine VSS or Threshold Encryption to the consensus?</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://SebastianElvis.github.io/2018/11/30/Journal-of-Cryptology-17-A-Full-Proof-of-the-BGW-Protocol-for-Perfectly-Secure-Multiparty-Computation/" data-id="cjsjrtogv001gw3jouwvy8r47" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BGW-Protocol/">BGW Protocol</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MPC/">MPC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VSS/">VSS</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/12/01/LATINCRYPT-15-The-Simplest-Protocol-for-Oblivious-Transfer/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          LATINCRYPT&#39;15 - The Simplest Protocol for Oblivious Transfer
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/11/21/FC-19-New-Empirical-Traceability-Analysis-of-CryptoNote-Style-Blockchains/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">FC&#39;19 - New Empirical Traceability Analysis of CryptoNote-Style Blockchains</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/blockchain/">blockchain</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/blockchain/cross-chain/">cross-chain</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/blockchain/digital-signature/">digital signature</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/blockchain/privacy/">privacy</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/cryptography/">cryptography</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/cryptography/numerical-algorithms/">numerical algorithms</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cryptography/public-key-cryptography/">public-key cryptography</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cryptography/zero-knowledge/">zero knowledge</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/paper-reading/">paper reading</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/self/">self</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/self/research/">research</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Atomic-Multicast/">Atomic Multicast</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Atomic-Swap/">Atomic Swap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attack/">Attack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Authenticated-Data-Structure/">Authenticated Data Structure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BFT/">BFT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BGW-Protocol/">BGW Protocol</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BLS/">BLS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Barreto-Naehrig-Curve/">Barreto-Naehrig Curve</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bitcoin/">Bitcoin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blockchain/">Blockchain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CCS/">CCS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CRYPTO/">CRYPTO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Confidential-Transactions/">Confidential Transactions</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Consensus/">Consensus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Consistency/">Consistency</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CryptoNote/">CryptoNote</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cryptography/">Cryptography</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DAG/">DAG</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decentralization/">Decentralization</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Delegatable-Anonymous-Credentials/">Delegatable Anonymous Credentials</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Distributed-Randomness/">Distributed Randomness</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ECDSA/">ECDSA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Elliptic-Curve/">Elliptic Curve</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ethereum/">Ethereum</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FC/">FC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Factorization/">Factorization</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Garbled-Circuits/">Garbled Circuits</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTLC/">HTLC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Homomorphic-Encryption/">Homomorphic Encryption</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MPC/">MPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Measurement/">Measurement</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mining-Pool/">Mining Pool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MultiSig/">MultiSig</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NDSS/">NDSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Numerical-Algorithms/">Numerical Algorithms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Oblivious-Transfer/">Oblivious Transfer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/P2P-Mixing/">P2P Mixing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/P2P-Network/">P2P Network</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pairing/">Pairing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Payment-Channels/">Payment Channels</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PoS/">PoS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Privacy/">Privacy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Public-Blockchains/">Public Blockchains</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Public-Key-Cryptography/">Public-Key Cryptography</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SPDZ/">SPDZ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scalability/">Scalability</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Schnorr/">Schnorr</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Security/">Security</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Security-Privacy/">Security&Privacy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sharding/">Sharding</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Short-Signatures/">Short Signatures</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Signature-Aggregation/">Signature Aggregation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Smart-Contracts/">Smart Contracts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Solidity/">Solidity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Threshold-Encryption/">Threshold Encryption</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/USENIX-Security/">USENIX Security</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Universal-Composability/">Universal Composability</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unlinkable-Transactions/">Unlinkable Transactions</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VRF/">VRF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VSS/">VSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zcash/">Zcash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zero-Knowledge/">Zero Knowledge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zkSNARKs/">zkSNARKs</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Atomic-Multicast/" style="font-size: 10px;">Atomic Multicast</a> <a href="/tags/Atomic-Swap/" style="font-size: 10px;">Atomic Swap</a> <a href="/tags/Attack/" style="font-size: 11.67px;">Attack</a> <a href="/tags/Authenticated-Data-Structure/" style="font-size: 10px;">Authenticated Data Structure</a> <a href="/tags/BFT/" style="font-size: 10px;">BFT</a> <a href="/tags/BGW-Protocol/" style="font-size: 10px;">BGW Protocol</a> <a href="/tags/BLS/" style="font-size: 13.33px;">BLS</a> <a href="/tags/Barreto-Naehrig-Curve/" style="font-size: 10px;">Barreto-Naehrig Curve</a> <a href="/tags/Bitcoin/" style="font-size: 13.33px;">Bitcoin</a> <a href="/tags/Blockchain/" style="font-size: 20px;">Blockchain</a> <a href="/tags/CCS/" style="font-size: 16.67px;">CCS</a> <a href="/tags/CRYPTO/" style="font-size: 10px;">CRYPTO</a> <a href="/tags/Confidential-Transactions/" style="font-size: 13.33px;">Confidential Transactions</a> <a href="/tags/Consensus/" style="font-size: 16.67px;">Consensus</a> <a href="/tags/Consistency/" style="font-size: 10px;">Consistency</a> <a href="/tags/CryptoNote/" style="font-size: 10px;">CryptoNote</a> <a href="/tags/Cryptography/" style="font-size: 16.67px;">Cryptography</a> <a href="/tags/DAG/" style="font-size: 10px;">DAG</a> <a href="/tags/Decentralization/" style="font-size: 10px;">Decentralization</a> <a href="/tags/Delegatable-Anonymous-Credentials/" style="font-size: 10px;">Delegatable Anonymous Credentials</a> <a href="/tags/Distributed-Randomness/" style="font-size: 10px;">Distributed Randomness</a> <a href="/tags/ECDSA/" style="font-size: 10px;">ECDSA</a> <a href="/tags/Elliptic-Curve/" style="font-size: 13.33px;">Elliptic Curve</a> <a href="/tags/Ethereum/" style="font-size: 10px;">Ethereum</a> <a href="/tags/FC/" style="font-size: 10px;">FC</a> <a href="/tags/Factorization/" style="font-size: 10px;">Factorization</a> <a href="/tags/Garbled-Circuits/" style="font-size: 10px;">Garbled Circuits</a> <a href="/tags/HTLC/" style="font-size: 10px;">HTLC</a> <a href="/tags/Homomorphic-Encryption/" style="font-size: 10px;">Homomorphic Encryption</a> <a href="/tags/MPC/" style="font-size: 16.67px;">MPC</a> <a href="/tags/Measurement/" style="font-size: 10px;">Measurement</a> <a href="/tags/Mining-Pool/" style="font-size: 10px;">Mining Pool</a> <a href="/tags/MultiSig/" style="font-size: 13.33px;">MultiSig</a> <a href="/tags/NDSS/" style="font-size: 11.67px;">NDSS</a> <a href="/tags/Numerical-Algorithms/" style="font-size: 10px;">Numerical Algorithms</a> <a href="/tags/Oblivious-Transfer/" style="font-size: 10px;">Oblivious Transfer</a> <a href="/tags/P2P-Mixing/" style="font-size: 10px;">P2P Mixing</a> <a href="/tags/P2P-Network/" style="font-size: 10px;">P2P Network</a> <a href="/tags/Pairing/" style="font-size: 13.33px;">Pairing</a> <a href="/tags/Payment-Channels/" style="font-size: 10px;">Payment Channels</a> <a href="/tags/PoS/" style="font-size: 10px;">PoS</a> <a href="/tags/Privacy/" style="font-size: 10px;">Privacy</a> <a href="/tags/Public-Blockchains/" style="font-size: 10px;">Public Blockchains</a> <a href="/tags/Public-Key-Cryptography/" style="font-size: 10px;">Public-Key Cryptography</a> <a href="/tags/SPDZ/" style="font-size: 10px;">SPDZ</a> <a href="/tags/Scalability/" style="font-size: 18.33px;">Scalability</a> <a href="/tags/Schnorr/" style="font-size: 11.67px;">Schnorr</a> <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/Security-Privacy/" style="font-size: 10px;">Security&Privacy</a> <a href="/tags/Sharding/" style="font-size: 13.33px;">Sharding</a> <a href="/tags/Short-Signatures/" style="font-size: 10px;">Short Signatures</a> <a href="/tags/Signature-Aggregation/" style="font-size: 10px;">Signature Aggregation</a> <a href="/tags/Smart-Contracts/" style="font-size: 15px;">Smart Contracts</a> <a href="/tags/Solidity/" style="font-size: 10px;">Solidity</a> <a href="/tags/Threshold-Encryption/" style="font-size: 10px;">Threshold Encryption</a> <a href="/tags/USENIX-Security/" style="font-size: 15px;">USENIX Security</a> <a href="/tags/Universal-Composability/" style="font-size: 10px;">Universal Composability</a> <a href="/tags/Unlinkable-Transactions/" style="font-size: 10px;">Unlinkable Transactions</a> <a href="/tags/VRF/" style="font-size: 10px;">VRF</a> <a href="/tags/VSS/" style="font-size: 10px;">VSS</a> <a href="/tags/Zcash/" style="font-size: 10px;">Zcash</a> <a href="/tags/Zero-Knowledge/" style="font-size: 10px;">Zero Knowledge</a> <a href="/tags/zkSNARKs/" style="font-size: 10px;">zkSNARKs</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/01/13/CCS-16-The-Honey-Badger-of-BFT-Protocols/">CCS&#39;16 - The Honey Badger of BFT Protocols</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/13/SOSP-17-Algorand-Scaling-Byzantine-Agreements-for-Cryptocurrencies/">SOSP&#39;17 - Algorand: Scaling Byzantine Agreements for Cryptocurrencies</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/13/Preprint-Scaling-Nakamoto-Consensus-to-Thousands-of-Transactions-per-Second/">Preprint - Scaling Nakamoto Consensus to Thousands of Transactions per Second</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/12/Preprint-A-Web-of-Blocks/">Preprint - A Web of Blocks</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/04/Compact-Multi-Signatures-for-Smaller-Blockchains/">Compact Multi-Signatures for Smaller Blockchains</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Runchao Han<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
