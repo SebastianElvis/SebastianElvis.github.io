@@ -164,7 +164,7 @@
 <ul>
 <li>given a signature $s$ on height $h$, it may be possible for a forger to create a signature $s&#x2019;$ on height $h&#x2019;$ with the same $pk$ and $h&#x2019; \leq h$, thus <strong>decreasing the height</strong> of the signature.</li>
 </ul>
-<p>We say a sinking signature is <strong>aggregatable</strong> or <strong>summable</strong> if given a a linear combination $pk$ of $pk<em>{i}$ values computed from Setup$(1^{\lambda})$, the same linear combination of $s</em>{i} \leftarrow Sign(sk_{i},h)$ (for fixed $h$) it is possible to compute a signature s such that $Verify(pk,h,s)$ accepts.<br>(similar to the batch verification)</p>
+<p>We say a sinking signature is <strong>aggregatable</strong> or <strong>summable</strong> if given a a linear combination $pk$ of $pk_{i}$ values computed from Setup$(1^{\lambda})$, the same linear combination of $s_{i} \leftarrow Sign(sk_{i},h)$ (for fixed $h$) it is possible to compute a signature s such that $Verify(pk,h,s)$ accepts.<br>(similar to the batch verification)</p>
 <h2 id="MimbleWimble-Primitives"><a href="#MimbleWimble-Primitives" class="headerlink" title="MimbleWimble Primitives"></a>MimbleWimble Primitives</h2><h3 id="Transaction"><a href="#Transaction" class="headerlink" title="Transaction"></a>Transaction</h3><p>A MimbleWimble TX contains the following data:</p>
 <ul>
 <li>A list of Homomorphic Commitments termed the <strong>inputs</strong>, with attached rangeproofs.</li>
@@ -193,7 +193,8 @@
 <li>If $m = n$, $R$ negates the sum of this TX and adds it to the excess of the TX, so that the total sum is now zero</li>
 <li>Otherwise, the TX now has sum committing to $m-n$, so $R$ adds a uniformly random value to excess, updates the signature, and gives the opening info of the new sum to another recipient who can take the remaining value.</li>
 </ol>
-<h1 id="TODO"><a href="#TODO" class="headerlink" title="TODO!!!"></a>TODO!!!</h1><h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ol>
+<p>#TODO!!!</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ol>
 <li><a href="https://download.wpsoftware.net/bitcoin/wizardry/mimblewimble.pdf" target="_blank" rel="noopener">https://download.wpsoftware.net/bitcoin/wizardry/mimblewimble.pdf</a></li>
 <li><a href="https://download.wpsoftware.net/bitcoin/wizardry/mimblewimble.txt" target="_blank" rel="noopener">https://download.wpsoftware.net/bitcoin/wizardry/mimblewimble.txt</a></li>
 </ol>
@@ -201,7 +202,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2019/01/01/MimbleWimble-Explained/" data-id="cjsjrtogy001rw3jop1u8he1l" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2019/01/01/MimbleWimble-Explained/" data-id="cjsjrzt5e001mgojoxa2kd0o4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Confidential-Transactions/">Confidential Transactions</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cryptography/">Cryptography</a></li></ul>
@@ -356,6 +357,23 @@
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 </body>
 </html>

@@ -141,12 +141,13 @@
 <li>a prime $q$ with $2^{b-4} \leq q \leq 2^{b-3}$</li>
 </ul>
 <p>The Elliptic Curve $E$ is:</p>
-<script type="math/tex; mode=display">E = \{ (x,y) \in \mathbb{F}_{p} \times \mathbb{F}_{p}: -x^{2} + y^{2} = 1 + dx^{2}y^{2} \}</script><p>Process:</p>
+<p>$$E = { (x,y) \in \mathbb{F}<em>{p} \times \mathbb{F}</em>{p}: -x^{2} + y^{2} = 1 + dx^{2}y^{2} }$$</p>
+<p>Process:</p>
 <ul>
 <li><strong>GEN</strong>:<ul>
 <li>private key $p$ with $b$ bits</li>
-<li>$ H(p) = (h<em>{0}, \dots , h</em>{2b-1}) $</li>
-<li>$ a = 2^{b-2} + \sum<em>{3 \leq i \leq b-2}2^{i}h</em>{i} $</li>
+<li>$ H(p) = (h_{0}, \dots , h_{2b-1}) $</li>
+<li>$ a = 2^{b-2} + \sum_{3 \leq i \leq b-2}2^{i}h_{i} $</li>
 <li>public key $P = aG$</li>
 </ul>
 </li>
@@ -197,14 +198,15 @@
 </ul>
 <p><img src="schnorr.png" alt=""></p>
 <h2 id="Applications"><a href="#Applications" class="headerlink" title="Applications"></a>Applications</h2><h3 id="Batch-Validation"><a href="#Batch-Validation" class="headerlink" title="Batch Validation"></a>Batch Validation</h3><ul>
-<li>With Schnorr we can add up all signature verification equations and verify only once<script type="math/tex; mode=display">(s_{1} + \dots + s_{1000})G = (R_{1}+ \dots +R_{1000}) + (H(P_{1},R_{1},m_{1})P_{1} + \dots + H(P_{1000},R_{1000},m_{1000})P_{1000})</script></li>
+<li>With Schnorr we can add up all signature verification equations and verify only once<br>$$ (s_{1} + \dots + s_{1000})G = (R_{1}+ \dots +R_{1000}) + (H(P_{1},R_{1},m_{1})P_{1} + \dots + H(P_{1000},R_{1000},m_{1000})P_{1000}) $$</li>
 </ul>
 <p><img src="batch-validation.png" alt=""></p>
-<h3 id="Key-Aggregation"><a href="#Key-Aggregation" class="headerlink" title="Key Aggregation"></a>Key Aggregation</h3><ul>
+<p>###Key Aggregation</p>
+<ul>
 <li>Generate a shared public key with a pair of private keys</li>
-<li>$ P = P<em>{1} + P</em>{2} = p<em>{1}G + p</em>{2}G $</li>
+<li>$ P = P_{1} + P_{2} = p_{1}G + p_{2}G $</li>
 <li>&#x2026;</li>
-<li>Signature $ \sigma = (R<em>{1}+R</em>{2}, s<em>{1}+s</em>{2}) $</li>
+<li>Signature $ \sigma = (R_{1}+R_{2}, s_{1}+s_{2}) $</li>
 </ul>
 <h3 id="MuSig"><a href="#MuSig" class="headerlink" title="MuSig"></a>MuSig</h3><ul>
 <li><a href="https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html" target="_blank" rel="noopener">https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html</a></li>
@@ -214,7 +216,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/12/25/Digital-Signatures-in-Blockchains/" data-id="cjsjrtogp000ww3jo1oq3gpwq" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/12/25/Digital-Signatures-in-Blockchains/" data-id="cjsjrzt55000ygojooc5j0wb4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BLS/">BLS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ECDSA/">ECDSA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MultiSig/">MultiSig</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Schnorr/">Schnorr</a></li></ul>
@@ -369,6 +371,23 @@
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 </body>
 </html>

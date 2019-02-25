@@ -125,16 +125,16 @@
 <ul>
 <li>$\mathbb{G}<em>{1}, \mathbb{G}</em>{2}, \mathbb{G}_{t}$ are groups of prime order $q$</li>
 <li>$e$ is an efficient, non-degenerating bilinear map $e (\mathbb{G}<em>{1} \times \mathbb{G}</em>{2}) \rightarrow \mathbb{G}_{t}$</li>
-<li>$g<em>{1}, g</em>{2}$ are generators of groups $\mathbb{G}<em>{1}, \mathbb{G}</em>{2}$ respectively</li>
+<li>$g_{1}, g_{2}$ are generators of groups $\mathbb{G}<em>{1}, \mathbb{G}</em>{2}$ respectively</li>
 <li>We denote $ \Lambda^{*} = (q, \mathbb{G}<em>{1}, \mathbb{G}</em>{2}, \mathbb{G}_{t}, e) $ as $ \Lambda $ without group generators</li>
 </ul>
 <h2 id="Zero-Knowledge-Proofs"><a href="#Zero-Knowledge-Proofs" class="headerlink" title="Zero-Knowledge Proofs"></a>Zero-Knowledge Proofs</h2><p><em>Prover</em> proves he knows $(a,b,c)$ to the <em>verifier</em> without leaking $(a,b,c)$.</p>
-<p>$ PK{ (a,b,c) : Y = g<em>{1}^{a} \wedge \tilde{Y} = \tilde{g</em>{1}}^{a}\tilde{H}^{c} } $ denotes a</p>
+<p>$ PK{ (a,b,c) : Y = g_{1}^{a} \wedge \tilde{Y} = \tilde{g_{1}}^{a}\tilde{H}^{c} } $ denotes a</p>
 <ul>
 <li><em>zero-knowledge <strong>Proof of Knowledge</strong> of integers $a,b,c$ </em> s.t. <ul>
-<li>$Y = g<em>{1}^{a}H^{b}$ and $ \tilde{Y} = \tilde{g</em>{1}}^{a}\tilde{H}^{c} $</li>
+<li>$Y = g_{1}^{a}H^{b}$ and $ \tilde{Y} = \tilde{g_{1}}^{a}\tilde{H}^{c} $</li>
 <li>where $y, g, h$ are elements of some groups $G = \langle g_{1} \rangle = \langle H \rangle$</li>
-<li>where $\tilde{Y}, \tilde{g<em>{1}}, \tilde{H}$ are elements of some groups $\tilde{G} = \langle \tilde{g</em>{1}} \rangle = \langle \tilde{H} \rangle$</li>
+<li>where $\tilde{Y}, \tilde{g_{1}}, \tilde{H}$ are elements of some groups $\tilde{G} = \langle \tilde{g_{1}} \rangle = \langle \tilde{H} \rangle$</li>
 </ul>
 </li>
 <li>$(a,b,c)$ denote the knowledge, while all other values are known to the verifier</li>
@@ -147,17 +147,17 @@
 <p>We use $NIZK{w, s(w)}$ to denote a generic non-interactive zero-knowledge (NIZK) proof proving knowledge of witness $w$ such that statement $s(w)$ is true.</p>
 <h2 id="Signature-Schemes"><a href="#Signature-Schemes" class="headerlink" title="Signature Schemes"></a>Signature Schemes</h2><p>A digital signature scheme $Sig$ is a set of PPT algorithms $Sig = (Setup, Gen, Sign, Verify)$:</p>
 <ul>
-<li>$Sig.Setup(1^{K}) \stackrel{$}{\rightarrow} sp$: The setup algorithm $Sig.Setup$ takes a security parameter $1^{K}$ and outputs public system parameters $sp$ that also specify a message space $\mathcal{M}$.</li>
-<li>$Sig.Gen(sp) \stackrel{$}{\rightarrow} (sk,vk) $: The key generation algorithm $Sig.Gen(sp)$ the input system parameter $sp$ and outputs a verification key $vk$ and a corresponding secret key $sk$.</li>
-<li>$Sig.Sign(sk,m) \stackrel{$}{\rightarrow} \sigma $: The signing algorithm $Sig.Sign$ takes a private key $sk$ and a message $m \in \mathcal{M}$ and outputs a signature $\sigma$.</li>
+<li>$Sig.Setup(1^{K}) \stackrel{\$}{\rightarrow} sp$: The setup algorithm $Sig.Setup$ takes a security parameter $1^{K}$ and outputs public system parameters $sp$ that also specify a message space $\mathcal{M}$.</li>
+<li>$Sig.Gen(sp) \stackrel{\$}{\rightarrow} (sk,vk) $: The key generation algorithm $Sig.Gen(sp)$ the input system parameter $sp$ and outputs a verification key $vk$ and a corresponding secret key $sk$.</li>
+<li>$Sig.Sign(sk,m) \stackrel{\$}{\rightarrow} \sigma $: The signing algorithm $Sig.Sign$ takes a private key $sk$ and a message $m \in \mathcal{M}$ and outputs a signature $\sigma$.</li>
 <li>$Sig.Verify(vk,m,\sigma) \rightarrow 1/0$: The verification algorithm $Sig.Verify$ takes a public verification key $vk$, a messagem $m$ and a signature $\sigma$ and outputs 1 for acceptance or 0 for rejection</li>
 </ul>
 <h2 id="Sibling-Signatures"><a href="#Sibling-Signatures" class="headerlink" title="Sibling Signatures"></a>Sibling Signatures</h2><p>Sibling Signature allows a signer with one key pair to use two different signing algorithms, each with a dedicated verification algorithm.<br>A sibling signature scheme consists of algorithms $(Setup, Gen, Sign1, Sign2, Verify1, Verify2)$.</p>
 <ul>
-<li>$Sib.Setup(1^{K}) \stackrel{$}{\rightarrow} sp$: The setup algorithm $Sib.Setup$ takes a security parameter $1^{K}$ and outputs public system parameters $sp$ that also specify two message spaces $\mathcal{M}<em>{1}, \mathcal{M}</em>{2}$.</li>
-<li>$Sib.Gen(sp) \stackrel{$}{\rightarrow} (sk, vk)$ : The key generation algorithm takes public system parameters $sp$ and outputs a verification key $vk$ and a corresponding secret key $sk$.</li>
-<li>$Sib.Sign1(sk,m) \stackrel{$}{\rightarrow} \sigma$ : The signing algorithm $Sib.Sign1(sk,m)$ takes as input a private key $sk$ and a message $m \in \mathcal{M}$ and outputs a signature $\sigma$.</li>
-<li>$Sib.Sign2(sk,m) \stackrel{$}{\rightarrow} \sigma$ : The signing algorithm $Sib.Sign2(sk,m)$ takes as input a private key $sk$ and a message $m \in \mathcal{M}$ and outputs a signature $\sigma$.</li>
+<li>$Sib.Setup(1^{K}) \stackrel{\$}{\rightarrow} sp$: The setup algorithm $Sib.Setup$ takes a security parameter $1^{K}$ and outputs public system parameters $sp$ that also specify two message spaces $\mathcal{M}<em>{1}, \mathcal{M}</em>{2}$.</li>
+<li>$Sib.Gen(sp) \stackrel{\$}{\rightarrow} (sk, vk)$ : The key generation algorithm takes public system parameters $sp$ and outputs a verification key $vk$ and a corresponding secret key $sk$.</li>
+<li>$Sib.Sign1(sk,m) \stackrel{\$}{\rightarrow} \sigma$ : The signing algorithm $Sib.Sign1(sk,m)$ takes as input a private key $sk$ and a message $m \in \mathcal{M}$ and outputs a signature $\sigma$.</li>
+<li>$Sib.Sign2(sk,m) \stackrel{\$}{\rightarrow} \sigma$ : The signing algorithm $Sib.Sign2(sk,m)$ takes as input a private key $sk$ and a message $m \in \mathcal{M}$ and outputs a signature $\sigma$.</li>
 <li>$Sib.Verify1(vk,m,\sigma) \rightarrow 1/0$: The verification algorithm $Sib.Verify1$ takes as input a public verification key $vk$, a message $m$ and a signature $\sigma$ and outputs 1 for acceptance or 0 for rejection.</li>
 <li>$Sib.Verify2(vk,m,\sigma) \rightarrow 1/0$: The verification algorithm $Sib.Verify2$ takes as input a public verification key $vk$, a message $m$ and a signature $\sigma$ and outputs 1 for acceptance or 0 for rejection.</li>
 </ul>
@@ -192,7 +192,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/11/20/CCS-17-Practical-UC-Secure-Delegatable-Credentials-with-Attributes-and-Their-Application-to-Blockchain/" data-id="cjsjrtoik008kw3jo23yyhs1y" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/11/20/CCS-17-Practical-UC-Secure-Delegatable-Credentials-with-Attributes-and-Their-Application-to-Blockchain/" data-id="cjsjrzt6z008kgojo2mq1xzun" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CCS/">CCS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Delegatable-Anonymous-Credentials/">Delegatable Anonymous Credentials</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Universal-Composability/">Universal Composability</a></li></ul>
@@ -347,6 +347,23 @@
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 </body>
 </html>

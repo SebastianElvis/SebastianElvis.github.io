@@ -104,7 +104,7 @@
 <li>Multi-signature protocols allow a group of signers (each possessing its own private/public key pair) to produce a single signature $\sigma$ on a message $m$.</li>
 <li>However, the size of the multi-signature in that case grows linearly with the number of signers.</li>
 <li>A serious concern when dealing with multi-signature schemes are <strong>rogue-key attacks</strong><ul>
-<li>where a subset of $t$ corrupted signers, 1 &#x2264; t &lt; n, use public keys $pk&#x2019;<em>{n&#x2212;t+1}, \dots , pk&#x2019;</em>{n}$ computed as functions of public keys of honest users $pk<em>{1}, \dots , pk</em>{n&#x2212;t}$, allowing them to easily produce forgeries for the set of public keys ${pk<em>{1}, \dots , pk</em>{n&#x2212;t}, pk&#x2019;<em>{n&#x2212;t+1}, \dots , pk&#x2019;</em>{n}}$ (even though they may not know the secret keys associated with $pk&#x2019;<em>{n&#x2212;t+1}, . \dots , pk&#x2019;</em>{n}$).</li>
+<li>where a subset of $t$ corrupted signers, 1 &#x2264; t &lt; n, use public keys $pk&#x2019;<em>{n&#x2212;t+1}, \dots , pk&#x2019;</em>{n}$ computed as functions of public keys of honest users $pk_{1}, \dots , pk_{n&#x2212;t}$, allowing them to easily produce forgeries for the set of public keys ${pk_{1}, \dots , pk_{n&#x2212;t}, pk&#x2019;<em>{n&#x2212;t+1}, \dots , pk&#x2019;</em>{n}}$ (even though they may not know the secret keys associated with $pk&#x2019;<em>{n&#x2212;t+1}, . \dots , pk&#x2019;</em>{n}$).</li>
 </ul>
 </li>
 <li>One way to generically prevent rogue-key attacks is to require that users prove knowledge (or possession [RY07]) of the secret key during public key registration with a certification authority, a setting known as the <strong>knowledge of secret key (KOSK) assumption</strong>.</li>
@@ -113,21 +113,21 @@
 <h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ul>
 <li>We propose a new Schnorr-based multi-signature scheme which can be seen as a variant of the BN scheme allowing key aggregation in the plain public-key model.</li>
 </ul>
-<h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><h2 id="Original-Bellare-Neven-MultiSig"><a href="#Original-Bellare-Neven-MultiSig" class="headerlink" title="Original Bellare-Neven MultiSig"></a>Original Bellare-Neven MultiSig</h2><p>Private keys: $x<em>{1}, \dots , x</em>{n}$<br>Public keys: $X<em>{i} = x</em>{i}G$</p>
+<h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><h2 id="Original-Bellare-Neven-MultiSig"><a href="#Original-Bellare-Neven-MultiSig" class="headerlink" title="Original Bellare-Neven MultiSig"></a>Original Bellare-Neven MultiSig</h2><p>Private keys: $x_{1}, \dots , x_{n}$<br>Public keys: $X_{i} = x_{i}G$</p>
 <ol>
-<li>$L = H(X<em>{1}, \dots , X</em>{n})$</li>
-<li>Each signer chooses a random nonce $r<em>{i}$, and shares $R</em>{i} = r_{i}G$ with other signers</li>
+<li>$L = H(X_{1}, \dots , X_{n})$</li>
+<li>Each signer chooses a random nonce $r_{i}$, and shares $R_{i} = r_{i}G$ with other signers</li>
 <li>$R = \sum R_{i}$</li>
-<li>Each signer computes $s<em>{i} = r</em>{i} + H(L, X<em>{i}, R, m)x</em>{i}$, and $s = \sum s_{i}$</li>
+<li>Each signer computes $s_{i} = r_{i} + H(L, X_{i}, R, m)x_{i}$, and $s = \sum s_{i}$</li>
 <li>The final signature $\sigma = (R, s)$ </li>
-<li>Verification requires $sG \stackrel{?}{=} R + \sum H(L, X<em>{i}, R, m)X</em>{i}$</li>
+<li>Verification requires $sG \stackrel{?}{=} R + \sum H(L, X_{i}, R, m)X_{i}$</li>
 </ol>
 <h2 id="Our-approach-MuSig"><a href="#Our-approach-MuSig" class="headerlink" title="Our approach MuSig"></a>Our approach MuSig</h2><p>MuSig enables key aggregation property without losing security</p>
 <ol>
-<li>$L = H(X<em>{1}, \dots , X</em>{n})$, $X = \sum H(L, X<em>{i})X</em>{i}$</li>
-<li>Each signer chooses a random nonce $r<em>{i}$, and shares $R</em>{i} = r_{i}G$ with other signers</li>
+<li>$L = H(X_{1}, \dots , X_{n})$, $X = \sum H(L, X_{i})X_{i}$</li>
+<li>Each signer chooses a random nonce $r_{i}$, and shares $R_{i} = r_{i}G$ with other signers</li>
 <li>$R = \sum R_{i}$</li>
-<li>Each signer computes $s<em>{i} = r</em>{i} + H(X, R, m)H(L, X<em>{i})x</em>{i}$, $s = \sum s_{i}$</li>
+<li>Each signer computes $s_{i} = r_{i} + H(X, R, m)H(L, X_{i})x_{i}$, $s = \sum s_{i}$</li>
 <li>The final signature $\sigma = (R, s)$</li>
 <li>Verification requires $sG \stackrel{?}{=} R + H(X, R, m)X$</li>
 </ol>
@@ -146,7 +146,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2019/01/04/Simple-Schnorr-Multi-Signatures-with-Applications-to-Bitcoin/" data-id="cjsjrtohb002xw3jomw81zs1o" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2019/01/04/Simple-Schnorr-Multi-Signatures-with-Applications-to-Bitcoin/" data-id="cjsjrzt5q002ogojowad0lf9t" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MultiSig/">MultiSig</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Schnorr/">Schnorr</a></li></ul>
@@ -301,6 +301,23 @@
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 </body>
 </html>

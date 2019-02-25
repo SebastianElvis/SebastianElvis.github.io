@@ -172,7 +172,7 @@
 <ol>
 <li>$(hash, \pi) \leftarrow VRF_{sk}(seed|role) $</li>
 <li>$p \leftarrow \frac{\tau}{W}$, $j = 0$</li>
-<li>While $ \frac{hash}{s^{hashlen}} \notin [ \sum<em>{k=0}^{j} B(k;w,p), \sum</em>{k=0}^{j+1} B(k;w,p) ) $ do<br>3.1. $j++$</li>
+<li>While $ \frac{hash}{s^{hashlen}} \notin [ \sum_{k=0}^{j} B(k;w,p), \sum_{k=0}^{j+1} B(k;w,p) ) $ do<br>3.1. $j++$</li>
 <li>return $(hash, \pi, j)$ </li>
 </ol>
 <p>Description:</p>
@@ -193,7 +193,7 @@
 </ul>
 </li>
 <li>Splitting the $[0,1)$ to consecutive $j$ intervals:<ul>
-<li>$I^{j} = [ \sum<em>{k=0}^{j} B(k;w,p), \sum</em>{k=0}^{j+1} B(k;w,p) ) $ for $ j \in {0,1, \dots ,w}$.</li>
+<li>$I^{j} = [ \sum_{k=0}^{j} B(k;w,p), \sum_{k=0}^{j+1} B(k;w,p) ) $ for $ j \in {0,1, \dots ,w}$.</li>
 <li>join all $I^{j}$ $\Rightarrow$ $[0, 1)$</li>
 <li>$I^{j} \Rightarrow$ [ P($\leq j$), P($\leq j+1$) )</li>
 </ul>
@@ -201,7 +201,7 @@
 <li>User selection<ul>
 <li>To select users in proportion to their money, we consider each unit of Algorand currency as a different &#x201C;sub-user&#x201D;</li>
 <li>Being chosen $j$ times means that the user gets to participate as $j$ different &#x201C;sub-users&#x201D;</li>
-<li>If user $i$ owns $w<em>{i}$ (integral) units of Algorand, then simulated user $(i, j)$ with $j \in {1, \dots ,w</em>{i} }$ represents the j-th unit of currency $i$ owns</li>
+<li>If user $i$ owns $w_{i}$ (integral) units of Algorand, then simulated user $(i, j)$ with $j \in {1, \dots ,w_{i} }$ represents the j-th unit of currency $i$ owns</li>
 <li>If $\frac{hash}{2^{hashlen}}$ (where hashlen is the bit-length of hash) falls in the interval $I^{j}$ , then the user has exactly $j$ selected sub-users (coins).</li>
 <li>The number of selected sub-users is publicly verifiable using the proof $\pi$ (from the VRF output).</li>
 </ul>
@@ -228,7 +228,7 @@
 <h3 id="Choosing-Seed-for-Each-Round"><a href="#Choosing-Seed-for-Each-Round" class="headerlink" title="Choosing Seed for Each Round"></a>Choosing Seed for Each Round</h3><p>In each round of Algorand a new seed is published.</p>
 <ul>
 <li>For Round $r$, the seed is determined by the previous-round seed</li>
-<li>$&#x27E8;seed<em>{r} ,\pi&#x27E9; \leftarrow VRF</em>{sk<em>{u}} (seed</em>{r&#x2212;1} || r)$</li>
+<li>$&#x27E8;seed_{r} ,\pi&#x27E9; \leftarrow VRF_{sk_{u}} (seed_{r&#x2212;1} || r)$</li>
 </ul>
 <p>where $u$ proposer of the last block. (TODO: need more details)</p>
 <h2 id="block-Proposal"><a href="#block-Proposal" class="headerlink" title="block Proposal"></a>block Proposal</h2><ul>
@@ -249,7 +249,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2019/01/13/SOSP-17-Algorand-Scaling-Byzantine-Agreements-for-Cryptocurrencies/" data-id="cjsjrtoha002vw3joeyc91ql6" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2019/01/13/SOSP-17-Algorand-Scaling-Byzantine-Agreements-for-Cryptocurrencies/" data-id="cjsjrzt5s002sgojopqvcbdfi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Consensus/">Consensus</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scalability/">Scalability</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VRF/">VRF</a></li></ul>
@@ -404,6 +404,23 @@
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 </body>
 </html>

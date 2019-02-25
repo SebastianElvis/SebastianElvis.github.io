@@ -115,11 +115,11 @@
 </ul>
 <h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><h2 id="System-Model"><a href="#System-Model" class="headerlink" title="System Model"></a>System Model</h2><ul>
 <li>Processes, Groups and Communication<ul>
-<li>An unbounded set of client processes $ \mathcal{C} = {c<em>{1}, c</em>{2},&#x2026;}$</li>
-<li>A bounded set of server processes $ \mathcal{S} = {p<em>{1},p</em>{2},&#x2026;} $</li>
+<li>An unbounded set of client processes $ \mathcal{C} = {c_{1}, c_{2},&#x2026;}$</li>
+<li>A bounded set of server processes $ \mathcal{S} = {p_{1},p_{2},&#x2026;} $</li>
 <li>Clients and servers are disjoint</li>
 <li>Client and server processes can be <em>correct</em> or <em>faulty</em>.</li>
-<li>We define $ \Gamma = {g<em>{1}, &#x2026;, g</em>{m}}$ as the set of server process groups in the system. </li>
+<li>We define $ \Gamma = {g_{1}, &#x2026;, g_{m}}$ as the set of server process groups in the system. </li>
 <li>Groups are disjoint, non-empty, and satisfy $\cup_{g \in \Gamma} g = \mathcal{S}$.</li>
 <li>Each group contains $3f+1$ processes, where $f$ is the maximum number of faulty server processes per group.</li>
 </ul>
@@ -135,7 +135,8 @@
 </ul>
 </li>
 </ul>
-<h1 id="TODO&#x2026;"><a href="#TODO&#x2026;" class="headerlink" title="TODO&#x2026;"></a>TODO&#x2026;</h1><h1 id="Relevance"><a href="#Relevance" class="headerlink" title="Relevance"></a>Relevance</h1><ul>
+<p>#TODO&#x2026;</p>
+<h1 id="Relevance"><a href="#Relevance" class="headerlink" title="Relevance"></a>Relevance</h1><ul>
 <li>Atomic multicast is useful for information propagation in Blockchain</li>
 </ul>
 <h1 id="To-discuss-investigate"><a href="#To-discuss-investigate" class="headerlink" title="To discuss/investigate"></a>To discuss/investigate</h1><ul>
@@ -145,7 +146,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/12/05/DSN-18-Byzantine-Fault-Tolerant-Atomic-Multicast/" data-id="cjsjrtogq000zw3jo8jlaudip" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/12/05/DSN-18-Byzantine-Fault-Tolerant-Atomic-Multicast/" data-id="cjsjrzt53000tgojo26cph6w1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Atomic-Multicast/">Atomic Multicast</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BFT/">BFT</a></li></ul>
@@ -300,6 +301,23 @@
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 </body>
 </html>

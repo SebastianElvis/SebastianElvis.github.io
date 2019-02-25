@@ -7,18 +7,18 @@
   
   <title>Bilinear Pairing Explained | Runchao Han&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Definition Here are 3 multiplicative cyclic group: $G{1}$, $G{2}$ and $G_{T}$. Define a mapping $ e: G{1} \times G{2} \rightarrow G_{T}$ If the function $e$ satisfies:   Bilinearity: $\forall g{1} \in">
+  <meta name="description" content="Definition Here are 3 multiplicative cyclic group: $G_{1}$, $G_{2}$ and $G_{T}$. Define a mapping $ e: G_{1} \times G_{2} \rightarrow G_{T}$ If the function $e$ satisfies:   Bilinearity: $\forall g_{1">
 <meta name="keywords" content="Elliptic Curve,Cryptography,Public-Key Cryptography">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bilinear Pairing Explained">
 <meta property="og:url" content="http://SebastianElvis.github.io/2018/11/11/Bilinear-Pairing-Explained/index.html">
 <meta property="og:site_name" content="Runchao Han&#39;s Blog">
-<meta property="og:description" content="Definition Here are 3 multiplicative cyclic group: $G{1}$, $G{2}$ and $G_{T}$. Define a mapping $ e: G{1} \times G{2} \rightarrow G_{T}$ If the function $e$ satisfies:   Bilinearity: $\forall g{1} \in">
+<meta property="og:description" content="Definition Here are 3 multiplicative cyclic group: $G_{1}$, $G_{2}$ and $G_{T}$. Define a mapping $ e: G_{1} \times G_{2} \rightarrow G_{T}$ If the function $e$ satisfies:   Bilinearity: $\forall g_{1">
 <meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2019-02-25T03:06:18.577Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bilinear Pairing Explained">
-<meta name="twitter:description" content="Definition Here are 3 multiplicative cyclic group: $G{1}$, $G{2}$ and $G_{T}$. Define a mapping $ e: G{1} \times G{2} \rightarrow G_{T}$ If the function $e$ satisfies:   Bilinearity: $\forall g{1} \in">
+<meta name="twitter:description" content="Definition Here are 3 multiplicative cyclic group: $G_{1}$, $G_{2}$ and $G_{T}$. Define a mapping $ e: G_{1} \times G_{2} \rightarrow G_{T}$ If the function $e$ satisfies:   Bilinearity: $\forall g_{1">
   
     <link rel="alternate" href="/atom.xml" title="Runchao Han&#39;s Blog" type="application/atom+xml">
   
@@ -94,25 +94,25 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h1><ul>
-<li>Here are 3 multiplicative cyclic group: $G<em>{1}$, $G</em>{2}$ and $G_{T}$.</li>
-<li>Define a mapping $ e: G<em>{1} \times G</em>{2} \rightarrow G_{T}$</li>
+<li>Here are 3 multiplicative cyclic group: $G_{1}$, $G_{2}$ and $G_{T}$.</li>
+<li>Define a mapping $ e: G_{1} \times G_{2} \rightarrow G_{T}$</li>
 <li>If the function $e$ satisfies:</li>
 </ul>
 <ol>
-<li><strong>Bilinearity</strong>: $\forall g<em>{1} \in G</em>{1}, g<em>{2} \in G</em>{2}, a, b \in Z<em>{p}$, we have $e(g</em>{1}^{a}, g<em>{2}^{b}) = e(g</em>{1}, g_{2})^{ab}$</li>
-<li><strong>Non-degeneracy</strong>: $\exists g<em>{1} \in G</em>{1}, g<em>{2} \in G</em>{2}$, we have $e(g<em>{1}, g</em>{2}) \neq 1<em>{G</em>{T}}$</li>
+<li><strong>Bilinearity</strong>: $\forall g_{1} \in G_{1}, g_{2} \in G_{2}, a, b \in Z_{p}$, we have $e(g_{1}^{a}, g_{2}^{b}) = e(g_{1}, g_{2})^{ab}$</li>
+<li><strong>Non-degeneracy</strong>: $\exists g_{1} \in G_{1}, g_{2} \in G_{2}$, we have $e(g_{1}, g_{2}) \neq 1_{G_{T}}$</li>
 <li><strong>Computability</strong>: $e$ can be efficiently computed</li>
 </ol>
-<p>We say $e$ is a bilinear pairing on ($G<em>{1}, G</em>{2}$)</p>
-<h1 id="Classification"><a href="#Classification" class="headerlink" title="Classification"></a>Classification</h1><p>If the same group is used for the first two groups (i.e. $G<em>{1}=G</em>{2}$), the pairing is called <strong>symmetric</strong> and is a mapping from two elements of one group to an element from a second group (i.e. $G<em>{1} \times G</em>{1} \rightarrow G_{T}$).</p>
+<p>We say $e$ is a bilinear pairing on ($G_{1}, G_{2}$)</p>
+<h1 id="Classification"><a href="#Classification" class="headerlink" title="Classification"></a>Classification</h1><p>If the same group is used for the first two groups (i.e. $G_{1}=G_{2}$), the pairing is called <strong>symmetric</strong> and is a mapping from two elements of one group to an element from a second group (i.e. $G_{1} \times G_{1} \rightarrow G_{T}$).</p>
 <p>Some researchers classify pairing instantiations into three (or more) basic types:</p>
 <ul>
-<li>$G<em>{1}=G</em>{2}$</li>
-<li>$G<em>{1}\neq G</em>{2}$ but there is an efficiently computable <a href="https://en.wikipedia.org/wiki/Homomorphism" target="_blank" rel="noopener">homomorphism</a> $ \phi :G<em>{2} \to G</em>{1}$</li>
-<li>$G<em>{1}\neq G</em>{2}$ and there are no efficiently computable homomorphisms between $G<em>{1}$ and $G</em>{2}$</li>
+<li>$G_{1}=G_{2}$</li>
+<li>$G_{1}\neq G_{2}$ but there is an efficiently computable <a href="https://en.wikipedia.org/wiki/Homomorphism" target="_blank" rel="noopener">homomorphism</a> $ \phi :G_{2} \to G_{1}$</li>
+<li>$G_{1}\neq G_{2}$ and there are no efficiently computable homomorphisms between $G_{1}$ and $G_{2}$</li>
 </ul>
 <h1 id="DDH-CDH-BDDH-BCDH"><a href="#DDH-CDH-BDDH-BCDH" class="headerlink" title="DDH, CDH, BDDH, BCDH"></a>DDH, CDH, BDDH, BCDH</h1><h2 id="DDH-CDH"><a href="#DDH-CDH" class="headerlink" title="DDH, CDH"></a>DDH, CDH</h2><ul>
-<li><p><strong>DDH (Decisional Diffie-Hellman Problem)</strong>: For aribitrary $a, b, c \in Z<em>{q}$ and $g$ as the generator in $Z</em>{q}$, given $g, g^{a}, g^{b}, g^{c}$, decide $c \stackrel{?}{=} ab $ </p>
+<li><p><strong>DDH (Decisional Diffie-Hellman Problem)</strong>: For aribitrary $a, b, c \in Z_{q}$ and $g$ as the generator in $Z_{q}$, given $g, g^{a}, g^{b}, g^{c}$, decide $c \stackrel{?}{=} ab $ </p>
 </li>
 <li><p><strong>CDH (Computational Diffie-Hellman Problem)</strong>: Given $ g, g^{x}, g^{y}$, compute $g^{xy} $</p>
 </li>
@@ -132,7 +132,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/11/11/Bilinear-Pairing-Explained/" data-id="cjsjrtogd0007w3joweiv96zn" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/11/11/Bilinear-Pairing-Explained/" data-id="cjsjrzt4q0005gojovw7h5ij6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cryptography/">Cryptography</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Elliptic-Curve/">Elliptic Curve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Public-Key-Cryptography/">Public-Key Cryptography</a></li></ul>
@@ -287,6 +287,23 @@
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 </body>
 </html>

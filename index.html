@@ -135,7 +135,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2019/01/13/CCS-16-The-Honey-Badger-of-BFT-Protocols/" data-id="cjsjrtogc0006w3jo747fag3p" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2019/01/13/CCS-16-The-Honey-Badger-of-BFT-Protocols/" data-id="cjsjrzt4t0007gojosuhc5qql" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Consensus/">Consensus</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scalability/">Scalability</a></li></ul>
@@ -252,7 +252,7 @@
 <ol>
 <li>$(hash, \pi) \leftarrow VRF_{sk}(seed|role) $</li>
 <li>$p \leftarrow \frac{\tau}{W}$, $j = 0$</li>
-<li>While $ \frac{hash}{s^{hashlen}} \notin [ \sum<em>{k=0}^{j} B(k;w,p), \sum</em>{k=0}^{j+1} B(k;w,p) ) $ do<br>3.1. $j++$</li>
+<li>While $ \frac{hash}{s^{hashlen}} \notin [ \sum_{k=0}^{j} B(k;w,p), \sum_{k=0}^{j+1} B(k;w,p) ) $ do<br>3.1. $j++$</li>
 <li>return $(hash, \pi, j)$ </li>
 </ol>
 <p>Description:</p>
@@ -273,7 +273,7 @@
 </ul>
 </li>
 <li>Splitting the $[0,1)$ to consecutive $j$ intervals:<ul>
-<li>$I^{j} = [ \sum<em>{k=0}^{j} B(k;w,p), \sum</em>{k=0}^{j+1} B(k;w,p) ) $ for $ j \in {0,1, \dots ,w}$.</li>
+<li>$I^{j} = [ \sum_{k=0}^{j} B(k;w,p), \sum_{k=0}^{j+1} B(k;w,p) ) $ for $ j \in {0,1, \dots ,w}$.</li>
 <li>join all $I^{j}$ $\Rightarrow$ $[0, 1)$</li>
 <li>$I^{j} \Rightarrow$ [ P($\leq j$), P($\leq j+1$) )</li>
 </ul>
@@ -281,7 +281,7 @@
 <li>User selection<ul>
 <li>To select users in proportion to their money, we consider each unit of Algorand currency as a different &#x201C;sub-user&#x201D;</li>
 <li>Being chosen $j$ times means that the user gets to participate as $j$ different &#x201C;sub-users&#x201D;</li>
-<li>If user $i$ owns $w<em>{i}$ (integral) units of Algorand, then simulated user $(i, j)$ with $j \in {1, \dots ,w</em>{i} }$ represents the j-th unit of currency $i$ owns</li>
+<li>If user $i$ owns $w_{i}$ (integral) units of Algorand, then simulated user $(i, j)$ with $j \in {1, \dots ,w_{i} }$ represents the j-th unit of currency $i$ owns</li>
 <li>If $\frac{hash}{2^{hashlen}}$ (where hashlen is the bit-length of hash) falls in the interval $I^{j}$ , then the user has exactly $j$ selected sub-users (coins).</li>
 <li>The number of selected sub-users is publicly verifiable using the proof $\pi$ (from the VRF output).</li>
 </ul>
@@ -308,7 +308,7 @@
 <h3 id="Choosing-Seed-for-Each-Round"><a href="#Choosing-Seed-for-Each-Round" class="headerlink" title="Choosing Seed for Each Round"></a>Choosing Seed for Each Round</h3><p>In each round of Algorand a new seed is published.</p>
 <ul>
 <li>For Round $r$, the seed is determined by the previous-round seed</li>
-<li>$&#x27E8;seed<em>{r} ,\pi&#x27E9; \leftarrow VRF</em>{sk<em>{u}} (seed</em>{r&#x2212;1} || r)$</li>
+<li>$&#x27E8;seed_{r} ,\pi&#x27E9; \leftarrow VRF_{sk_{u}} (seed_{r&#x2212;1} || r)$</li>
 </ul>
 <p>where $u$ proposer of the last block. (TODO: need more details)</p>
 <h2 id="block-Proposal"><a href="#block-Proposal" class="headerlink" title="block Proposal"></a>block Proposal</h2><ul>
@@ -329,7 +329,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2019/01/13/SOSP-17-Algorand-Scaling-Byzantine-Agreements-for-Cryptocurrencies/" data-id="cjsjrtoha002vw3joeyc91ql6" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2019/01/13/SOSP-17-Algorand-Scaling-Byzantine-Agreements-for-Cryptocurrencies/" data-id="cjsjrzt5s002sgojopqvcbdfi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Consensus/">Consensus</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scalability/">Scalability</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VRF/">VRF</a></li></ul>
@@ -447,7 +447,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2019/01/13/Preprint-Scaling-Nakamoto-Consensus-to-Thousands-of-Transactions-per-Second/" data-id="cjsjrtoh8002pw3jodyqjs6ln" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2019/01/13/Preprint-Scaling-Nakamoto-Consensus-to-Thousands-of-Transactions-per-Second/" data-id="cjsjrzt5q002mgojoobv1ybx1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DAG/">DAG</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scalability/">Scalability</a></li></ul>
@@ -546,7 +546,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2019/01/12/Preprint-A-Web-of-Blocks/" data-id="cjsjrtoh5002gw3jo8kpq52g1" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2019/01/12/Preprint-A-Web-of-Blocks/" data-id="cjsjrzt5o002ggojoed3u7dtf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Authenticated-Data-Structure/">Authenticated Data Structure</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scalability/">Scalability</a></li></ul>
@@ -656,7 +656,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2019/01/04/Compact-Multi-Signatures-for-Smaller-Blockchains/" data-id="cjsjrtogo000tw3jo9xdp8s3r" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2019/01/04/Compact-Multi-Signatures-for-Smaller-Blockchains/" data-id="cjsjrzt54000vgojofe9912cb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BLS/">BLS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MultiSig/">MultiSig</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pairing/">Pairing</a></li></ul>
@@ -705,7 +705,7 @@
 <li>Multi-signature protocols allow a group of signers (each possessing its own private/public key pair) to produce a single signature $\sigma$ on a message $m$.</li>
 <li>However, the size of the multi-signature in that case grows linearly with the number of signers.</li>
 <li>A serious concern when dealing with multi-signature schemes are <strong>rogue-key attacks</strong><ul>
-<li>where a subset of $t$ corrupted signers, 1 &#x2264; t &lt; n, use public keys $pk&#x2019;<em>{n&#x2212;t+1}, \dots , pk&#x2019;</em>{n}$ computed as functions of public keys of honest users $pk<em>{1}, \dots , pk</em>{n&#x2212;t}$, allowing them to easily produce forgeries for the set of public keys ${pk<em>{1}, \dots , pk</em>{n&#x2212;t}, pk&#x2019;<em>{n&#x2212;t+1}, \dots , pk&#x2019;</em>{n}}$ (even though they may not know the secret keys associated with $pk&#x2019;<em>{n&#x2212;t+1}, . \dots , pk&#x2019;</em>{n}$).</li>
+<li>where a subset of $t$ corrupted signers, 1 &#x2264; t &lt; n, use public keys $pk&#x2019;<em>{n&#x2212;t+1}, \dots , pk&#x2019;</em>{n}$ computed as functions of public keys of honest users $pk_{1}, \dots , pk_{n&#x2212;t}$, allowing them to easily produce forgeries for the set of public keys ${pk_{1}, \dots , pk_{n&#x2212;t}, pk&#x2019;<em>{n&#x2212;t+1}, \dots , pk&#x2019;</em>{n}}$ (even though they may not know the secret keys associated with $pk&#x2019;<em>{n&#x2212;t+1}, . \dots , pk&#x2019;</em>{n}$).</li>
 </ul>
 </li>
 <li>One way to generically prevent rogue-key attacks is to require that users prove knowledge (or possession [RY07]) of the secret key during public key registration with a certification authority, a setting known as the <strong>knowledge of secret key (KOSK) assumption</strong>.</li>
@@ -714,21 +714,21 @@
 <h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ul>
 <li>We propose a new Schnorr-based multi-signature scheme which can be seen as a variant of the BN scheme allowing key aggregation in the plain public-key model.</li>
 </ul>
-<h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><h2 id="Original-Bellare-Neven-MultiSig"><a href="#Original-Bellare-Neven-MultiSig" class="headerlink" title="Original Bellare-Neven MultiSig"></a>Original Bellare-Neven MultiSig</h2><p>Private keys: $x<em>{1}, \dots , x</em>{n}$<br>Public keys: $X<em>{i} = x</em>{i}G$</p>
+<h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><h2 id="Original-Bellare-Neven-MultiSig"><a href="#Original-Bellare-Neven-MultiSig" class="headerlink" title="Original Bellare-Neven MultiSig"></a>Original Bellare-Neven MultiSig</h2><p>Private keys: $x_{1}, \dots , x_{n}$<br>Public keys: $X_{i} = x_{i}G$</p>
 <ol>
-<li>$L = H(X<em>{1}, \dots , X</em>{n})$</li>
-<li>Each signer chooses a random nonce $r<em>{i}$, and shares $R</em>{i} = r_{i}G$ with other signers</li>
+<li>$L = H(X_{1}, \dots , X_{n})$</li>
+<li>Each signer chooses a random nonce $r_{i}$, and shares $R_{i} = r_{i}G$ with other signers</li>
 <li>$R = \sum R_{i}$</li>
-<li>Each signer computes $s<em>{i} = r</em>{i} + H(L, X<em>{i}, R, m)x</em>{i}$, and $s = \sum s_{i}$</li>
+<li>Each signer computes $s_{i} = r_{i} + H(L, X_{i}, R, m)x_{i}$, and $s = \sum s_{i}$</li>
 <li>The final signature $\sigma = (R, s)$ </li>
-<li>Verification requires $sG \stackrel{?}{=} R + \sum H(L, X<em>{i}, R, m)X</em>{i}$</li>
+<li>Verification requires $sG \stackrel{?}{=} R + \sum H(L, X_{i}, R, m)X_{i}$</li>
 </ol>
 <h2 id="Our-approach-MuSig"><a href="#Our-approach-MuSig" class="headerlink" title="Our approach MuSig"></a>Our approach MuSig</h2><p>MuSig enables key aggregation property without losing security</p>
 <ol>
-<li>$L = H(X<em>{1}, \dots , X</em>{n})$, $X = \sum H(L, X<em>{i})X</em>{i}$</li>
-<li>Each signer chooses a random nonce $r<em>{i}$, and shares $R</em>{i} = r_{i}G$ with other signers</li>
+<li>$L = H(X_{1}, \dots , X_{n})$, $X = \sum H(L, X_{i})X_{i}$</li>
+<li>Each signer chooses a random nonce $r_{i}$, and shares $R_{i} = r_{i}G$ with other signers</li>
 <li>$R = \sum R_{i}$</li>
-<li>Each signer computes $s<em>{i} = r</em>{i} + H(X, R, m)H(L, X<em>{i})x</em>{i}$, $s = \sum s_{i}$</li>
+<li>Each signer computes $s_{i} = r_{i} + H(X, R, m)H(L, X_{i})x_{i}$, $s = \sum s_{i}$</li>
 <li>The final signature $\sigma = (R, s)$</li>
 <li>Verification requires $sG \stackrel{?}{=} R + H(X, R, m)X$</li>
 </ol>
@@ -747,7 +747,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2019/01/04/Simple-Schnorr-Multi-Signatures-with-Applications-to-Bitcoin/" data-id="cjsjrtohb002xw3jomw81zs1o" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2019/01/04/Simple-Schnorr-Multi-Signatures-with-Applications-to-Bitcoin/" data-id="cjsjrzt5q002ogojowad0lf9t" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MultiSig/">MultiSig</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Schnorr/">Schnorr</a></li></ul>
@@ -818,7 +818,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2019/01/03/CVCBT-18-A-Scale-Out-Blockchain-for-Value-Transfer-with-Spontaneous-Sharding/" data-id="cjsjrtogm000nw3joofab29fe" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2019/01/03/CVCBT-18-A-Scale-Out-Blockchain-for-Value-Transfer-with-Spontaneous-Sharding/" data-id="cjsjrzt53000rgojon99jz7lz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scalability/">Scalability</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sharding/">Sharding</a></li></ul>
@@ -919,7 +919,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2019/01/03/NDSS-18-ZEUS-Analyzing-Safety-of-Smart-Contracts/" data-id="cjsjrtogz001vw3jozcgvye6s" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2019/01/03/NDSS-18-ZEUS-Analyzing-Safety-of-Smart-Contracts/" data-id="cjsjrzt5g001qgojofply2tfh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Smart-Contracts/">Smart Contracts</a></li></ul>
@@ -1024,7 +1024,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2019/01/03/Oakland-17-Hijacking-Bitcoin-Routing-Attacks-on-Cryptocurrencies/" data-id="cjsjrtogx001nw3jopg0j9imi" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2019/01/03/Oakland-17-Hijacking-Bitcoin-Routing-Attacks-on-Cryptocurrencies/" data-id="cjsjrzt5i001ygojojvykbybv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Attack/">Attack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bitcoin/">Bitcoin</a></li></ul>
@@ -1133,7 +1133,7 @@
 <ul>
 <li>given a signature $s$ on height $h$, it may be possible for a forger to create a signature $s&#x2019;$ on height $h&#x2019;$ with the same $pk$ and $h&#x2019; \leq h$, thus <strong>decreasing the height</strong> of the signature.</li>
 </ul>
-<p>We say a sinking signature is <strong>aggregatable</strong> or <strong>summable</strong> if given a a linear combination $pk$ of $pk<em>{i}$ values computed from Setup$(1^{\lambda})$, the same linear combination of $s</em>{i} \leftarrow Sign(sk_{i},h)$ (for fixed $h$) it is possible to compute a signature s such that $Verify(pk,h,s)$ accepts.<br>(similar to the batch verification)</p>
+<p>We say a sinking signature is <strong>aggregatable</strong> or <strong>summable</strong> if given a a linear combination $pk$ of $pk_{i}$ values computed from Setup$(1^{\lambda})$, the same linear combination of $s_{i} \leftarrow Sign(sk_{i},h)$ (for fixed $h$) it is possible to compute a signature s such that $Verify(pk,h,s)$ accepts.<br>(similar to the batch verification)</p>
 <h2 id="MimbleWimble-Primitives"><a href="#MimbleWimble-Primitives" class="headerlink" title="MimbleWimble Primitives"></a>MimbleWimble Primitives</h2><h3 id="Transaction"><a href="#Transaction" class="headerlink" title="Transaction"></a>Transaction</h3><p>A MimbleWimble TX contains the following data:</p>
 <ul>
 <li>A list of Homomorphic Commitments termed the <strong>inputs</strong>, with attached rangeproofs.</li>
@@ -1162,7 +1162,8 @@
 <li>If $m = n$, $R$ negates the sum of this TX and adds it to the excess of the TX, so that the total sum is now zero</li>
 <li>Otherwise, the TX now has sum committing to $m-n$, so $R$ adds a uniformly random value to excess, updates the signature, and gives the opening info of the new sum to another recipient who can take the remaining value.</li>
 </ol>
-<h1 id="TODO"><a href="#TODO" class="headerlink" title="TODO!!!"></a>TODO!!!</h1><h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ol>
+<p>#TODO!!!</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ol>
 <li><a href="https://download.wpsoftware.net/bitcoin/wizardry/mimblewimble.pdf" target="_blank" rel="noopener">https://download.wpsoftware.net/bitcoin/wizardry/mimblewimble.pdf</a></li>
 <li><a href="https://download.wpsoftware.net/bitcoin/wizardry/mimblewimble.txt" target="_blank" rel="noopener">https://download.wpsoftware.net/bitcoin/wizardry/mimblewimble.txt</a></li>
 </ol>
@@ -1170,7 +1171,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2019/01/01/MimbleWimble-Explained/" data-id="cjsjrtogy001rw3jop1u8he1l" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2019/01/01/MimbleWimble-Explained/" data-id="cjsjrzt5e001mgojoxa2kd0o4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Confidential-Transactions/">Confidential Transactions</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cryptography/">Cryptography</a></li></ul>
@@ -1313,6 +1314,23 @@
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 </body>
 </html>

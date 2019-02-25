@@ -141,49 +141,49 @@
 </ul>
 </li>
 <li>The shares are defined as $q(\alpha_{i})$ for every $i \in {1,&#x2026;,n}$<ul>
-<li>where $\alpha<em>{1},&#x2026;\alpha</em>{n}$ are any $n$ distinct non-zero predetermined values in $\mathbb{F}$</li>
+<li>where $\alpha_{1},&#x2026;\alpha_{n}$ are any $n$ distinct non-zero predetermined values in $\mathbb{F}$</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>Reconstruction<ul>
 <li>Based on the fact that any $t+1$ points define exactly one polynomial of degree $t$</li>
-<li>Using interpolation can efficiently reconstruct $q(x)$ given any subsets of $t+1$ points $(\alpha<em>{i}, q(\alpha</em>{i})$</li>
+<li>Using interpolation can efficiently reconstruct $q(x)$ given any subsets of $t+1$ points $(\alpha_{i}, q(\alpha_{i})$</li>
 </ul>
 </li>
 </ul>
 <h2 id="Verifiable-Secret-Sharing-based-on-SSS"><a href="#Verifiable-Secret-Sharing-based-on-SSS" class="headerlink" title="Verifiable Secret Sharing based on SSS"></a>Verifiable Secret Sharing based on SSS</h2><ul>
 <li>The dealer inputs a polynomial $q(x)$ of degree $t$</li>
-<li>Each party $P<em>{i}$ receives its Shamir share $q(\alpha</em>{i})$ based on that polynomial.</li>
+<li>Each party $P_{i}$ receives its Shamir share $q(\alpha_{i})$ based on that polynomial.</li>
 <li>The &#x201C;verifiable&#x201D; part is that if $q$ is of degree greater than $t$, the parties reject the dealer&#x2019;s shares and output $\perp$</li>
 </ul>
 <h2 id="Securely-Computing-F-VSS"><a href="#Securely-Computing-F-VSS" class="headerlink" title="Securely Computing $F_{VSS}$"></a>Securely Computing $F_{VSS}$</h2><ul>
-<li>Input: The dealer $D = P<em>{1}$ holds a poly $q(x)$ of degree at most $t$. The other parties $P</em>{2},&#x2026;,P_{n}$ have not inputs</li>
-<li>Public values: The description of a field $\mathbb{F}$ and $n$ non-zero elements $\alpha<em>{1},&#x2026;,\alpha</em>{n} \in \mathbb{F}$</li>
+<li>Input: The dealer $D = P_{1}$ holds a poly $q(x)$ of degree at most $t$. The other parties $P_{2},&#x2026;,P_{n}$ have not inputs</li>
+<li>Public values: The description of a field $\mathbb{F}$ and $n$ non-zero elements $\alpha_{1},&#x2026;,\alpha_{n} \in \mathbb{F}$</li>
 <li>The Protocol:<ol>
 <li><strong>Send Shares</strong> - The dealer $D$<br>1.1. $D$ selects a uniformly distributed bivariate polynomial $S(x,y) \in \mathcal{B}^{q(0),t}$, where $S(0,z) = q(z)$<br>1.2. For every $i \in {1,&#x2026;,n}$, $D$ defines<ul>
-<li>polynomial $f<em>{i}(x) \stackrel{def}{=} S(x,\alpha</em>{i})$</li>
-<li>polynomial $g<em>{i}(y) \stackrel{def}{=} S(\alpha</em>{i}, y)$<br>1.3. $D$ then sends to each party $P<em>{i}$ the poly $f</em>{i}(x)$ and $g_{i}(y)$</li>
+<li>polynomial $f_{i}(x) \stackrel{def}{=} S(x,\alpha_{i})$</li>
+<li>polynomial $g_{i}(y) \stackrel{def}{=} S(\alpha_{i}, y)$<br>1.3. $D$ then sends to each party $P_{i}$ the poly $f_{i}(x)$ and $g_{i}(y)$</li>
 </ul>
 </li>
-<li><strong>Exchange Subshares</strong> - Each party $P<em>{i}$<br>2.1. $P</em>{i}$ stores the poly $f<em>{i}(x)$ and $g</em>{i}(y)$ received from $D$<ul>
-<li>If $f<em>{i}(x)$ or $g</em>{i}(y)$ is of degree greater than $t$ then truncate it to be of degree $t$.)<br>2.2. For every $j \in {1,&#x2026;,n}$, $P<em>{i}$ sends $f</em>{i}(\alpha<em>{j})$ and $g</em>{i}(\alpha<em>{j})$ to $P</em>{j}$</li>
+<li><strong>Exchange Subshares</strong> - Each party $P_{i}$<br>2.1. $P_{i}$ stores the poly $f_{i}(x)$ and $g_{i}(y)$ received from $D$<ul>
+<li>If $f_{i}(x)$ or $g_{i}(y)$ is of degree greater than $t$ then truncate it to be of degree $t$.)<br>2.2. For every $j \in {1,&#x2026;,n}$, $P_{i}$ sends $f_{i}(\alpha_{j})$ and $g_{i}(\alpha_{j})$ to $P_{j}$</li>
 </ul>
 </li>
-<li><strong>Broadcast Compliants</strong> - Each party $P<em>{i}$<br>3.1. For every $j \in {1,&#x2026;,n}$, let $u</em>{j}, v<em>{j}$ denote the values received from player $P</em>{j}$ in Round 2<ul>
-<li>these are supposed to be $u<em>{j} = f</em>{j}(\alpha<em>{i})$ and $v</em>{j} = g<em>{j}(\alpha</em>{i})$</li>
-<li>If $u<em>{j} \neq f</em>{j}(\alpha<em>{i})$ or $v</em>{j} \neq g<em>{j}(\alpha</em>{i})$, broadcast complaint($i,j,f<em>{i}(\alpha</em>{j}, g<em>{i}(\alpha</em>{j}))$)</li>
+<li><strong>Broadcast Compliants</strong> - Each party $P_{i}$<br>3.1. For every $j \in {1,&#x2026;,n}$, let $u_{j}, v_{j}$ denote the values received from player $P_{j}$ in Round 2<ul>
+<li>these are supposed to be $u_{j} = f_{j}(\alpha_{i})$ and $v_{j} = g_{j}(\alpha_{i})$</li>
+<li>If $u_{j} \neq f_{j}(\alpha_{i})$ or $v_{j} \neq g_{j}(\alpha_{i})$, broadcast complaint($i,j,f_{i}(\alpha_{j}, g_{i}(\alpha_{j}))$)</li>
 </ul>
 </li>
-<li><strong>Resolve Complaints</strong> - The dealer $D$: for every complaint message recevied, do:<br>4.1. Upon viewing a message complaint $(i,j,u,v)$ broadcast by $P<em>{i}$, check that $u = S(\alpha</em>{j},\alpha<em>{i})$ and $v = S(\alpha</em>{i},\alpha_{j})$.<ul>
-<li>Note that if the dealer and $P<em>{i}$ are honest, then it holds that $u = f</em>{i}(\alpha<em>{j})$ and $v = g</em>{i}(\alpha<em>{j})$<br>4.2. If the above condition holds, then do nothing. Otherwise, broadcast reveal($i,f</em>{i}(x), g_{i}(y)$)</li>
+<li><strong>Resolve Complaints</strong> - The dealer $D$: for every complaint message recevied, do:<br>4.1. Upon viewing a message complaint $(i,j,u,v)$ broadcast by $P_{i}$, check that $u = S(\alpha_{j},\alpha_{i})$ and $v = S(\alpha_{i},\alpha_{j})$.<ul>
+<li>Note that if the dealer and $P_{i}$ are honest, then it holds that $u = f_{i}(\alpha_{j})$ and $v = g_{i}(\alpha_{j})$<br>4.2. If the above condition holds, then do nothing. Otherwise, broadcast reveal($i,f_{i}(x), g_{i}(y)$)</li>
 </ul>
 </li>
 <li><strong>Evaluate Complaint Resolutions</strong> &#x2013; Each party $P_{i}$<ul>
 <li>Haven&#x2019;t understood yet&#x2026;</li>
 </ul>
 </li>
-<li><strong>Output Decision</strong> (if there were complaints) - Each party $P<em>{i}$<br>6.1. If at least $n&#x2212;t$ parties broadcast consistent, output $f</em>{i}(0)$. Otherwise, output $\perp$.</li>
+<li><strong>Output Decision</strong> (if there were complaints) - Each party $P_{i}$<br>6.1. If at least $n&#x2212;t$ parties broadcast consistent, output $f_{i}(0)$. Otherwise, output $\perp$.</li>
 </ol>
 </li>
 </ul>
@@ -198,7 +198,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/11/30/Journal-of-Cryptology-17-A-Full-Proof-of-the-BGW-Protocol-for-Perfectly-Secure-Multiparty-Computation/" data-id="cjsjrtogv001gw3jouwvy8r47" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/11/30/Journal-of-Cryptology-17-A-Full-Proof-of-the-BGW-Protocol-for-Perfectly-Secure-Multiparty-Computation/" data-id="cjsjrzt5c001fgojou8vnmizq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BGW-Protocol/">BGW Protocol</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MPC/">MPC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VSS/">VSS</a></li></ul>
@@ -353,6 +353,23 @@
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 </body>
 </html>

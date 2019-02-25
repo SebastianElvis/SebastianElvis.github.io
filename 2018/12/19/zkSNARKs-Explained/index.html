@@ -162,7 +162,7 @@
 </ul>
 <p>Formally, a QSP over a field $F$ for inputs of length $n$ consists of:</p>
 <ul>
-<li>Polynomials $v<em>{0},&#x2026;,v</em>{m}$, $w<em>{0},&#x2026;,w</em>{m}$ over the field $F$</li>
+<li>Polynomials $v_{0},&#x2026;,v_{m}$, $w_{0},&#x2026;,w_{m}$ over the field $F$</li>
 <li>A polynomial $t$ over $F$ (the target polynomial)</li>
 <li>An injective function $f: { (i,j) | 1 \leq i \leq n, j \in {0,1} \rightarrow {1,&#x2026;,m} }$</li>
 </ul>
@@ -177,17 +177,17 @@
 </ul>
 </li>
 </ul>
-<p>Formally, an input $u$ is <em>accepted</em> (verified) iff there are tuples $a = (a<em>{1},&#x2026;,a</em>{n})$, $b = (b<em>{1},&#x2026;,b</em>{n})$ from $F$ s.t.</p>
+<p>Formally, an input $u$ is <em>accepted</em> (verified) iff there are tuples $a = (a_{1},&#x2026;,a_{n})$, $b = (b_{1},&#x2026;,b_{n})$ from $F$ s.t.</p>
 <ul>
-<li>$a<em>{k}, b</em>{k} = 1$ if $k = f(i, u[i])$ for some $i$, ($u[i]$ is the $i$th bit of $u$)</li>
-<li>$a<em>{k}, b</em>{k} = 0$ if $k = f(i, 1-u[i])$ for some $i$</li>
+<li>$a_{k}, b_{k} = 1$ if $k = f(i, u[i])$ for some $i$, ($u[i]$ is the $i$th bit of $u$)</li>
+<li>$a_{k}, b_{k} = 0$ if $k = f(i, 1-u[i])$ for some $i$</li>
 <li>$t \mod VW = 0$ where<ul>
-<li>$V = v<em>{0} + a</em>{1}v<em>{1} + &#x2026; + a</em>{m}v_{m}$</li>
-<li>$W = w<em>{0} + b</em>{1}w<em>{1} + &#x2026; + b</em>{m}w_{m}$</li>
+<li>$V = v_{0} + a_{1}v_{1} + &#x2026; + a_{m}v_{m}$</li>
+<li>$W = w_{0} + b_{1}w_{1} + &#x2026; + b_{m}w_{m}$</li>
 </ul>
 </li>
 </ul>
-<p>Note that the verifer can choose a secret random point $s$ to compute $t(s), v<em>{k}(s), w</em>{k}(s),&#x2026;$, then only checks those scalars</p>
+<p>Note that the verifer can choose a secret random point $s$ to compute $t(s), v_{k}(s), w_{k}(s),&#x2026;$, then only checks those scalars</p>
 <ul>
 <li>After used, the point $s$ is part of the &#x201C;toxic waste&#x201D; of zCash</li>
 </ul>
@@ -201,11 +201,11 @@
 </ul>
 </li>
 <li>Verifier chooses a random field element $s$</li>
-<li>Verifier publishes $E(v<em>{k}(s)), E(w</em>{k}(s))$<ul>
+<li>Verifier publishes $E(v_{k}(s)), E(w_{k}(s))$<ul>
 <li>Part of the Common Reference String (CRS)</li>
 </ul>
 </li>
-<li>Prover computes $E(v(s)), E(w(s))$ without knowing $v<em>{k}(s), w</em>{k}(s)$</li>
+<li>Prover computes $E(v(s)), E(w(s))$ without knowing $v_{k}(s), w_{k}(s)$</li>
 </ul>
 <h2 id="The-Base-Protocol"><a href="#The-Base-Protocol" class="headerlink" title="The Base Protocol"></a>The Base Protocol</h2><p>Based on <strong>Knowledge of Exponent (KEA1) Assumption</strong>.</p>
 <ol>
@@ -250,36 +250,36 @@
 </ol>
 <h2 id="A-SNARK-for-QSP"><a href="#A-SNARK-for-QSP" class="headerlink" title="A SNARK for QSP"></a>A SNARK for QSP</h2><p>We have the following public variables:</p>
 <ul>
-<li>Polynomials $v<em>{0},&#x2026;,v</em>{m},w<em>{0},&#x2026;,w</em>{m}$</li>
+<li>Polynomials $v_{0},&#x2026;,v_{m},w_{0},&#x2026;,w_{m}$</li>
 <li>A target polynomial $t$ of degree at most $d$</li>
 <li>An injective function $f: { (i,j) | 1 \leq i \leq n, j \in {0,1} \rightarrow {1,&#x2026;,m} }$</li>
 <li>A binary input string $u$</li>
 </ul>
 <p>Prover should find </p>
 <ul>
-<li>$a<em>{1},&#x2026;,a</em>{m},b<em>{1},&#x2026;,b</em>{m}$ <ul>
+<li>$a_{1},&#x2026;,a_{m},b_{1},&#x2026;,b_{m}$ <ul>
 <li>(restricted by an injective function $f$ depending on $u$)</li>
 </ul>
 </li>
 <li>A polynomial $h$</li>
 </ul>
 <p>such that</p>
-<p>$th = (v<em>{0}+a</em>{1}v<em>{1}+&#x2026;+a</em>{m}v<em>{m}) (w</em>{0}+b<em>{1}w</em>{1}+&#x2026;+b<em>{m}w</em>{m})$</p>
+<p>$th = (v_{0}+a_{1}v_{1}+&#x2026;+a_{m}v_{m}) (w_{0}+b_{1}w_{1}+&#x2026;+b_{m}w_{m})$</p>
 <p>The process is as follows</p>
 <ol>
 <li>Verifier chooses secret numbers $s$ and $a$, then publishes CRS consisting of<ul>
 <li>$E(s^{0})$, &#x2026;, $E(s^{d})$ and $E( \alpha s^{0})$, &#x2026;, $E( \alpha s^{d})$</li>
 <li>Encrypted $t$ values on point $s$<ul>
 <li>$E(t(s))$ and $E( \alpha t(s))$</li>
-<li>$E(v<em>{0}(s))$, &#x2026;, $E(v</em>{m}(s))$ and $E( \alpha v<em>{0}(s))$, &#x2026;, $E( \alpha v</em>{m}(s))$</li>
-<li>$E(w<em>{0}(s))$, &#x2026;, $E(w</em>{m}(s))$ and $E( \alpha w<em>{0}(s))$, &#x2026;, $E( \alpha w</em>{m}(s))$</li>
+<li>$E(v_{0}(s))$, &#x2026;, $E(v_{m}(s))$ and $E( \alpha v_{0}(s))$, &#x2026;, $E( \alpha v_{m}(s))$</li>
+<li>$E(w_{0}(s))$, &#x2026;, $E(w_{m}(s))$ and $E( \alpha w_{0}(s))$, &#x2026;, $E( \alpha w_{m}(s))$</li>
 </ul>
 </li>
-<li>Verifier further chooses secret numbers $\beta<em>{v}$, $\beta</em>{w}$, $\gamma$ used for verify that those polynomials were evaluated and not some arbitrary polynomials (formally, <strong>Commitment</strong>)<ul>
-<li>$E( \gamma)$, $E( \beta<em>{v} \gamma)$, $E( \beta</em>{w}\gamma)$</li>
-<li>$E( \beta<em>{v} v</em>{1}(s))$, &#x2026;, $E( \beta<em>{v}v</em>{m}(s))$</li>
-<li>$E( \beta<em>{w} w</em>{1}(s))$, &#x2026;, $E( \beta<em>{w}w</em>{m}(s))$</li>
-<li>$E( \beta<em>{v}t(s))$, $E( \beta</em>{w}t(s))$</li>
+<li>Verifier further chooses secret numbers $\beta_{v}$, $\beta_{w}$, $\gamma$ used for verify that those polynomials were evaluated and not some arbitrary polynomials (formally, <strong>Commitment</strong>)<ul>
+<li>$E( \gamma)$, $E( \beta_{v} \gamma)$, $E( \beta_{w}\gamma)$</li>
+<li>$E( \beta_{v} v_{1}(s))$, &#x2026;, $E( \beta_{v}v_{m}(s))$</li>
+<li>$E( \beta_{w} w_{1}(s))$, &#x2026;, $E( \beta_{w}w_{m}(s))$</li>
+<li>$E( \beta_{v}t(s))$, $E( \beta_{w}t(s))$</li>
 </ul>
 </li>
 </ul>
@@ -288,21 +288,21 @@
 <li>Recall $f: { (i,j) | 1 \leq i \leq n, j \in {0,1} \rightarrow {1,&#x2026;,m} }$, where $m$ is relatively large</li>
 <li>$f$ cannot cover all values over $1,&#x2026;,m$</li>
 <li>We call values $f$ does not cover $I_{free}$</li>
-<li>We define $v<em>{free}(x) = \sum{a</em>{k}v<em>{k}(x)}$ where $k$ ranges over all $I</em>{free}$</li>
+<li>We define $v_{free}(x) = \sum{a_{k}v_{k}(x)}$ where $k$ ranges over all $I_{free}$</li>
 <li>The <em>proof</em> consists of <ul>
-<li>$V<em>{free} = E(v</em>{free}(s))$, $W = E(w(s))$, $H = E(h(s))$</li>
+<li>$V_{free} = E(v_{free}(s))$, $W = E(w(s))$, $H = E(h(s))$</li>
 <li>${V&#x2019;}<em>{free} = E( \alpha v</em>{free}(s))$, $W&#x2019; = E( \alpha w(s))$, $H&#x2019; = E( \alpha h(s))$</li>
-<li>$Y = E( \beta<em>{v}v</em>{free}(s) + \beta_{w}w(s))$</li>
+<li>$Y = E( \beta_{v}v_{free}(s) + \beta_{w}w(s))$</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>Verifier verifies <em>proof</em><ul>
-<li>Verifier computes $E(v<em>{in}(s)) = E( \sum a</em>{k}v<em>{k}(s))$, where $v</em>{in}$ of Verifier should $= v_{free}$ of Prover</li>
+<li>Verifier computes $E(v_{in}(s)) = E( \sum a_{k}v_{k}(s))$, where $v_{in}$ of Verifier should $= v_{free}$ of Prover</li>
 <li>Verifier verifies the following equalities using the Pairing function $e$<ul>
 <li>$e( {V&#x2019;}<em>{free}, g) = e( V</em>{free}, g^{\alpha})$, $e(W&#x2019;, E(1)) = e(W, E( \alpha))$, $e(H&#x2019;, E(1)) = e(H, E( \alpha))$</li>
-<li>$e(E( \gamma), Y) = e(E( \beta<em>{v}\gamma), V</em>{free})e(E( \beta_{w}\gamma), W)$</li>
-<li>$e( E(v<em>{0}(s))E(v</em>{in}(s))V<em>{free}, E(w</em>{0}(s))W ) = e(H, E(t(s)))$</li>
+<li>$e(E( \gamma), Y) = e(E( \beta_{v}\gamma), V_{free})e(E( \beta_{w}\gamma), W)$</li>
+<li>$e( E(v_{0}(s))E(v_{in}(s))V_{free}, E(w_{0}(s))W ) = e(H, E(t(s)))$</li>
 </ul>
 </li>
 <li>Insight: Pairing allows us to do some limited computation on encrypted values - <strong>arbitrary additions but just a single multiplication</strong><ul>
@@ -321,7 +321,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/12/19/zkSNARKs-Explained/" data-id="cjsjrtoin008lw3joaun7jsbc" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/12/19/zkSNARKs-Explained/" data-id="cjsjrzt72008lgojoau38axc2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cryptography/">Cryptography</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Zero-Knowledge/">Zero Knowledge</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/zkSNARKs/">zkSNARKs</a></li></ul>
@@ -476,6 +476,23 @@
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 </body>
 </html>

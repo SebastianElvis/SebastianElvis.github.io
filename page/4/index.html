@@ -139,7 +139,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/11/21/FC-19-New-Empirical-Traceability-Analysis-of-CryptoNote-Style-Blockchains/" data-id="cjsjrtogt0018w3jo5nsxqbm3" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/11/21/FC-19-New-Empirical-Traceability-Analysis-of-CryptoNote-Style-Blockchains/" data-id="cjsjrzt5a0017gojo8vskjqz4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Confidential-Transactions/">Confidential Transactions</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CryptoNote/">CryptoNote</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FC/">FC</a></li></ul>
@@ -209,16 +209,16 @@
 <ul>
 <li>$\mathbb{G}<em>{1}, \mathbb{G}</em>{2}, \mathbb{G}_{t}$ are groups of prime order $q$</li>
 <li>$e$ is an efficient, non-degenerating bilinear map $e (\mathbb{G}<em>{1} \times \mathbb{G}</em>{2}) \rightarrow \mathbb{G}_{t}$</li>
-<li>$g<em>{1}, g</em>{2}$ are generators of groups $\mathbb{G}<em>{1}, \mathbb{G}</em>{2}$ respectively</li>
+<li>$g_{1}, g_{2}$ are generators of groups $\mathbb{G}<em>{1}, \mathbb{G}</em>{2}$ respectively</li>
 <li>We denote $ \Lambda^{*} = (q, \mathbb{G}<em>{1}, \mathbb{G}</em>{2}, \mathbb{G}_{t}, e) $ as $ \Lambda $ without group generators</li>
 </ul>
 <h2 id="Zero-Knowledge-Proofs"><a href="#Zero-Knowledge-Proofs" class="headerlink" title="Zero-Knowledge Proofs"></a>Zero-Knowledge Proofs</h2><p><em>Prover</em> proves he knows $(a,b,c)$ to the <em>verifier</em> without leaking $(a,b,c)$.</p>
-<p>$ PK{ (a,b,c) : Y = g<em>{1}^{a} \wedge \tilde{Y} = \tilde{g</em>{1}}^{a}\tilde{H}^{c} } $ denotes a</p>
+<p>$ PK{ (a,b,c) : Y = g_{1}^{a} \wedge \tilde{Y} = \tilde{g_{1}}^{a}\tilde{H}^{c} } $ denotes a</p>
 <ul>
 <li><em>zero-knowledge <strong>Proof of Knowledge</strong> of integers $a,b,c$ </em> s.t. <ul>
-<li>$Y = g<em>{1}^{a}H^{b}$ and $ \tilde{Y} = \tilde{g</em>{1}}^{a}\tilde{H}^{c} $</li>
+<li>$Y = g_{1}^{a}H^{b}$ and $ \tilde{Y} = \tilde{g_{1}}^{a}\tilde{H}^{c} $</li>
 <li>where $y, g, h$ are elements of some groups $G = \langle g_{1} \rangle = \langle H \rangle$</li>
-<li>where $\tilde{Y}, \tilde{g<em>{1}}, \tilde{H}$ are elements of some groups $\tilde{G} = \langle \tilde{g</em>{1}} \rangle = \langle \tilde{H} \rangle$</li>
+<li>where $\tilde{Y}, \tilde{g_{1}}, \tilde{H}$ are elements of some groups $\tilde{G} = \langle \tilde{g_{1}} \rangle = \langle \tilde{H} \rangle$</li>
 </ul>
 </li>
 <li>$(a,b,c)$ denote the knowledge, while all other values are known to the verifier</li>
@@ -231,17 +231,17 @@
 <p>We use $NIZK{w, s(w)}$ to denote a generic non-interactive zero-knowledge (NIZK) proof proving knowledge of witness $w$ such that statement $s(w)$ is true.</p>
 <h2 id="Signature-Schemes"><a href="#Signature-Schemes" class="headerlink" title="Signature Schemes"></a>Signature Schemes</h2><p>A digital signature scheme $Sig$ is a set of PPT algorithms $Sig = (Setup, Gen, Sign, Verify)$:</p>
 <ul>
-<li>$Sig.Setup(1^{K}) \stackrel{$}{\rightarrow} sp$: The setup algorithm $Sig.Setup$ takes a security parameter $1^{K}$ and outputs public system parameters $sp$ that also specify a message space $\mathcal{M}$.</li>
-<li>$Sig.Gen(sp) \stackrel{$}{\rightarrow} (sk,vk) $: The key generation algorithm $Sig.Gen(sp)$ the input system parameter $sp$ and outputs a verification key $vk$ and a corresponding secret key $sk$.</li>
-<li>$Sig.Sign(sk,m) \stackrel{$}{\rightarrow} \sigma $: The signing algorithm $Sig.Sign$ takes a private key $sk$ and a message $m \in \mathcal{M}$ and outputs a signature $\sigma$.</li>
+<li>$Sig.Setup(1^{K}) \stackrel{\$}{\rightarrow} sp$: The setup algorithm $Sig.Setup$ takes a security parameter $1^{K}$ and outputs public system parameters $sp$ that also specify a message space $\mathcal{M}$.</li>
+<li>$Sig.Gen(sp) \stackrel{\$}{\rightarrow} (sk,vk) $: The key generation algorithm $Sig.Gen(sp)$ the input system parameter $sp$ and outputs a verification key $vk$ and a corresponding secret key $sk$.</li>
+<li>$Sig.Sign(sk,m) \stackrel{\$}{\rightarrow} \sigma $: The signing algorithm $Sig.Sign$ takes a private key $sk$ and a message $m \in \mathcal{M}$ and outputs a signature $\sigma$.</li>
 <li>$Sig.Verify(vk,m,\sigma) \rightarrow 1/0$: The verification algorithm $Sig.Verify$ takes a public verification key $vk$, a messagem $m$ and a signature $\sigma$ and outputs 1 for acceptance or 0 for rejection</li>
 </ul>
 <h2 id="Sibling-Signatures"><a href="#Sibling-Signatures" class="headerlink" title="Sibling Signatures"></a>Sibling Signatures</h2><p>Sibling Signature allows a signer with one key pair to use two different signing algorithms, each with a dedicated verification algorithm.<br>A sibling signature scheme consists of algorithms $(Setup, Gen, Sign1, Sign2, Verify1, Verify2)$.</p>
 <ul>
-<li>$Sib.Setup(1^{K}) \stackrel{$}{\rightarrow} sp$: The setup algorithm $Sib.Setup$ takes a security parameter $1^{K}$ and outputs public system parameters $sp$ that also specify two message spaces $\mathcal{M}<em>{1}, \mathcal{M}</em>{2}$.</li>
-<li>$Sib.Gen(sp) \stackrel{$}{\rightarrow} (sk, vk)$ : The key generation algorithm takes public system parameters $sp$ and outputs a verification key $vk$ and a corresponding secret key $sk$.</li>
-<li>$Sib.Sign1(sk,m) \stackrel{$}{\rightarrow} \sigma$ : The signing algorithm $Sib.Sign1(sk,m)$ takes as input a private key $sk$ and a message $m \in \mathcal{M}$ and outputs a signature $\sigma$.</li>
-<li>$Sib.Sign2(sk,m) \stackrel{$}{\rightarrow} \sigma$ : The signing algorithm $Sib.Sign2(sk,m)$ takes as input a private key $sk$ and a message $m \in \mathcal{M}$ and outputs a signature $\sigma$.</li>
+<li>$Sib.Setup(1^{K}) \stackrel{\$}{\rightarrow} sp$: The setup algorithm $Sib.Setup$ takes a security parameter $1^{K}$ and outputs public system parameters $sp$ that also specify two message spaces $\mathcal{M}<em>{1}, \mathcal{M}</em>{2}$.</li>
+<li>$Sib.Gen(sp) \stackrel{\$}{\rightarrow} (sk, vk)$ : The key generation algorithm takes public system parameters $sp$ and outputs a verification key $vk$ and a corresponding secret key $sk$.</li>
+<li>$Sib.Sign1(sk,m) \stackrel{\$}{\rightarrow} \sigma$ : The signing algorithm $Sib.Sign1(sk,m)$ takes as input a private key $sk$ and a message $m \in \mathcal{M}$ and outputs a signature $\sigma$.</li>
+<li>$Sib.Sign2(sk,m) \stackrel{\$}{\rightarrow} \sigma$ : The signing algorithm $Sib.Sign2(sk,m)$ takes as input a private key $sk$ and a message $m \in \mathcal{M}$ and outputs a signature $\sigma$.</li>
 <li>$Sib.Verify1(vk,m,\sigma) \rightarrow 1/0$: The verification algorithm $Sib.Verify1$ takes as input a public verification key $vk$, a message $m$ and a signature $\sigma$ and outputs 1 for acceptance or 0 for rejection.</li>
 <li>$Sib.Verify2(vk,m,\sigma) \rightarrow 1/0$: The verification algorithm $Sib.Verify2$ takes as input a public verification key $vk$, a message $m$ and a signature $\sigma$ and outputs 1 for acceptance or 0 for rejection.</li>
 </ul>
@@ -276,7 +276,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/11/20/CCS-17-Practical-UC-Secure-Delegatable-Credentials-with-Attributes-and-Their-Application-to-Blockchain/" data-id="cjsjrtoik008kw3jo23yyhs1y" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/11/20/CCS-17-Practical-UC-Secure-Delegatable-Credentials-with-Attributes-and-Their-Application-to-Blockchain/" data-id="cjsjrzt6z008kgojo2mq1xzun" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CCS/">CCS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Delegatable-Anonymous-Credentials/">Delegatable Anonymous Credentials</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Universal-Composability/">Universal Composability</a></li></ul>
@@ -376,7 +376,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/11/18/NDSS-17-TumbleBit-An-Untrusted-Bitcoin-Compatible-Anonymous-Payment-Hub/" data-id="cjsjrtogz001yw3jo83uaznat" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/11/18/NDSS-17-TumbleBit-An-Untrusted-Bitcoin-Compatible-Anonymous-Payment-Hub/" data-id="cjsjrzt5h001ugojou7gshe7e" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blockchain/">Blockchain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Confidential-Transactions/">Confidential Transactions</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NDSS/">NDSS</a></li></ul>
@@ -522,7 +522,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/11/17/USENIX-Security-17-SmartPool-Practical-Decentralized-Pooled-Mining/" data-id="cjsjrtohe0037w3jobp7rmgx4" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/11/17/USENIX-Security-17-SmartPool-Practical-Decentralized-Pooled-Mining/" data-id="cjsjrzt5v0034gojo0f25cp62" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blockchain/">Blockchain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mining-Pool/">Mining Pool</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/USENIX-Security/">USENIX Security</a></li></ul>
@@ -637,7 +637,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/11/17/CCS-17-Revive-Rebalancing-Off-Blockchain-Payment-Networks/" data-id="cjsjrtogg000bw3jomfbjmk4d" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/11/17/CCS-17-Revive-Rebalancing-Off-Blockchain-Payment-Networks/" data-id="cjsjrzt4v000agojo6hej58u1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blockchain/">Blockchain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CCS/">CCS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Payment-Channels/">Payment Channels</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Smart-Contracts/">Smart Contracts</a></li></ul>
@@ -766,7 +766,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/11/17/CCS-18-RapidChain-Scaling-Blockchain-via-Full-Sharding/" data-id="cjsjrtogk000hw3jozomkx98q" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/11/17/CCS-18-RapidChain-Scaling-Blockchain-via-Full-Sharding/" data-id="cjsjrzt51000lgojonafjindu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blockchain/">Blockchain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CCS/">CCS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scalability/">Scalability</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sharding/">Sharding</a></li></ul>
@@ -805,25 +805,25 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h1><ul>
-<li>Here are 3 multiplicative cyclic group: $G<em>{1}$, $G</em>{2}$ and $G_{T}$.</li>
-<li>Define a mapping $ e: G<em>{1} \times G</em>{2} \rightarrow G_{T}$</li>
+<li>Here are 3 multiplicative cyclic group: $G_{1}$, $G_{2}$ and $G_{T}$.</li>
+<li>Define a mapping $ e: G_{1} \times G_{2} \rightarrow G_{T}$</li>
 <li>If the function $e$ satisfies:</li>
 </ul>
 <ol>
-<li><strong>Bilinearity</strong>: $\forall g<em>{1} \in G</em>{1}, g<em>{2} \in G</em>{2}, a, b \in Z<em>{p}$, we have $e(g</em>{1}^{a}, g<em>{2}^{b}) = e(g</em>{1}, g_{2})^{ab}$</li>
-<li><strong>Non-degeneracy</strong>: $\exists g<em>{1} \in G</em>{1}, g<em>{2} \in G</em>{2}$, we have $e(g<em>{1}, g</em>{2}) \neq 1<em>{G</em>{T}}$</li>
+<li><strong>Bilinearity</strong>: $\forall g_{1} \in G_{1}, g_{2} \in G_{2}, a, b \in Z_{p}$, we have $e(g_{1}^{a}, g_{2}^{b}) = e(g_{1}, g_{2})^{ab}$</li>
+<li><strong>Non-degeneracy</strong>: $\exists g_{1} \in G_{1}, g_{2} \in G_{2}$, we have $e(g_{1}, g_{2}) \neq 1_{G_{T}}$</li>
 <li><strong>Computability</strong>: $e$ can be efficiently computed</li>
 </ol>
-<p>We say $e$ is a bilinear pairing on ($G<em>{1}, G</em>{2}$)</p>
-<h1 id="Classification"><a href="#Classification" class="headerlink" title="Classification"></a>Classification</h1><p>If the same group is used for the first two groups (i.e. $G<em>{1}=G</em>{2}$), the pairing is called <strong>symmetric</strong> and is a mapping from two elements of one group to an element from a second group (i.e. $G<em>{1} \times G</em>{1} \rightarrow G_{T}$).</p>
+<p>We say $e$ is a bilinear pairing on ($G_{1}, G_{2}$)</p>
+<h1 id="Classification"><a href="#Classification" class="headerlink" title="Classification"></a>Classification</h1><p>If the same group is used for the first two groups (i.e. $G_{1}=G_{2}$), the pairing is called <strong>symmetric</strong> and is a mapping from two elements of one group to an element from a second group (i.e. $G_{1} \times G_{1} \rightarrow G_{T}$).</p>
 <p>Some researchers classify pairing instantiations into three (or more) basic types:</p>
 <ul>
-<li>$G<em>{1}=G</em>{2}$</li>
-<li>$G<em>{1}\neq G</em>{2}$ but there is an efficiently computable <a href="https://en.wikipedia.org/wiki/Homomorphism" target="_blank" rel="noopener">homomorphism</a> $ \phi :G<em>{2} \to G</em>{1}$</li>
-<li>$G<em>{1}\neq G</em>{2}$ and there are no efficiently computable homomorphisms between $G<em>{1}$ and $G</em>{2}$</li>
+<li>$G_{1}=G_{2}$</li>
+<li>$G_{1}\neq G_{2}$ but there is an efficiently computable <a href="https://en.wikipedia.org/wiki/Homomorphism" target="_blank" rel="noopener">homomorphism</a> $ \phi :G_{2} \to G_{1}$</li>
+<li>$G_{1}\neq G_{2}$ and there are no efficiently computable homomorphisms between $G_{1}$ and $G_{2}$</li>
 </ul>
 <h1 id="DDH-CDH-BDDH-BCDH"><a href="#DDH-CDH-BDDH-BCDH" class="headerlink" title="DDH, CDH, BDDH, BCDH"></a>DDH, CDH, BDDH, BCDH</h1><h2 id="DDH-CDH"><a href="#DDH-CDH" class="headerlink" title="DDH, CDH"></a>DDH, CDH</h2><ul>
-<li><p><strong>DDH (Decisional Diffie-Hellman Problem)</strong>: For aribitrary $a, b, c \in Z<em>{q}$ and $g$ as the generator in $Z</em>{q}$, given $g, g^{a}, g^{b}, g^{c}$, decide $c \stackrel{?}{=} ab $ </p>
+<li><p><strong>DDH (Decisional Diffie-Hellman Problem)</strong>: For aribitrary $a, b, c \in Z_{q}$ and $g$ as the generator in $Z_{q}$, given $g, g^{a}, g^{b}, g^{c}$, decide $c \stackrel{?}{=} ab $ </p>
 </li>
 <li><p><strong>CDH (Computational Diffie-Hellman Problem)</strong>: Given $ g, g^{x}, g^{y}$, compute $g^{xy} $</p>
 </li>
@@ -843,7 +843,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/11/11/Bilinear-Pairing-Explained/" data-id="cjsjrtogd0007w3joweiv96zn" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/11/11/Bilinear-Pairing-Explained/" data-id="cjsjrzt4q0005gojovw7h5ij6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cryptography/">Cryptography</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Elliptic-Curve/">Elliptic Curve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Public-Key-Cryptography/">Public-Key Cryptography</a></li></ul>
@@ -903,7 +903,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/11/11/Polland-Rho-Algorithm/" data-id="cjsjrtoh20025w3jo2ndio5o7" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/11/11/Polland-Rho-Algorithm/" data-id="cjsjrzt5m0029gojoe9bdf4w7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cryptography/">Cryptography</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Factorization/">Factorization</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Numerical-Algorithms/">Numerical Algorithms</a></li></ul>
@@ -1004,7 +1004,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/11/11/NDSS-17-P2P-Mixing-and-Unlinkable-Bitcoin-Transactions/" data-id="cjsjrtogw001kw3joqyehn64e" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/11/11/NDSS-17-P2P-Mixing-and-Unlinkable-Bitcoin-Transactions/" data-id="cjsjrzt5d001jgojoccx0vdit" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blockchain/">Blockchain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NDSS/">NDSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/P2P-Mixing/">P2P Mixing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Privacy/">Privacy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unlinkable-Transactions/">Unlinkable Transactions</a></li></ul>
@@ -1108,7 +1108,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/11/09/CCS-18-A-Better-Method-to-Analyze-Blockchain-Consistency/" data-id="cjsjrtogj000fw3joovf647bk" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/11/09/CCS-18-A-Better-Method-to-Analyze-Blockchain-Consistency/" data-id="cjsjrzt4w000bgojoojzajjlp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blockchain/">Blockchain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CCS/">CCS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Consensus/">Consensus</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Consistency/">Consistency</a></li></ul>
@@ -1251,6 +1251,23 @@
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 </body>
 </html>

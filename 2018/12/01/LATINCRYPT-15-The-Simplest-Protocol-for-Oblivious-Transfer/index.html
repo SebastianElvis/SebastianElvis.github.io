@@ -118,7 +118,7 @@
 </ul>
 <h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><h2 id="Twisted-Edwards-Curve"><a href="#Twisted-Edwards-Curve" class="headerlink" title="Twisted Edwards Curve"></a>Twisted Edwards Curve</h2><h3 id="The-Group-mathbb-F"><a href="#The-Group-mathbb-F" class="headerlink" title="The Group $\mathbb{F}$"></a>The Group $\mathbb{F}$</h3><p>The Twisted Edwards Curve: is defined as<br>[ {(x,y) \in \mathbb{F}<em>{2^{255}-19} \times \mathbb{F}</em>{2^{255}-19} : -x^{2} + y^{2} = 1 + dx^{2}y^{2} } ]</p>
 <p>The Twisted Edwards Addition Law is</p>
-<p>[ (x<em>{1},y</em>{1}) + (x<em>{2},y</em>{2}) = (\frac{x<em>{1}y</em>{2}+x<em>{2}y</em>{1}}{1+dx<em>{1}x</em>{2}y<em>{1}y</em>{2}}, \frac{y<em>{1}y</em>{2}+x<em>{1}x</em>{2}}{1-dx<em>{1}x</em>{2}y<em>{1}y</em>{2}}) ]</p>
+<p>[ (x_{1},y_{1}) + (x_{2},y_{2}) = (\frac{x_{1}y_{2}+x_{2}y_{1}}{1+dx_{1}x_{2}y_{1}y_{2}}, \frac{y_{1}y_{2}+x_{1}x_{2}}{1-dx_{1}x_{2}y_{1}y_{2}}) ]</p>
 <h3 id="Encoding-mathcal-E-of-group-elements"><a href="#Encoding-mathcal-E-of-group-elements" class="headerlink" title="Encoding $\mathcal{E}$ of group elements"></a>Encoding $\mathcal{E}$ of group elements</h3><ul>
 <li>An encoding $\mathcal{E}$ for a group $\mathbb{G}_{0}$ is a way of representing group elements as fixed-length bitstrings.</li>
 <li>We write $\mathcal{E}(P)$ for a bitstring which represents $P \in \mathbb{G}_{0}$.</li>
@@ -145,7 +145,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/12/01/LATINCRYPT-15-The-Simplest-Protocol-for-Oblivious-Transfer/" data-id="cjsjrtogu001dw3joum2ev7z8" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/12/01/LATINCRYPT-15-The-Simplest-Protocol-for-Oblivious-Transfer/" data-id="cjsjrzt5b001bgojoay2isawp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MPC/">MPC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oblivious-Transfer/">Oblivious Transfer</a></li></ul>
@@ -300,6 +300,23 @@
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 </body>
 </html>
