@@ -5,15 +5,20 @@
   
 
   
-  <title>Tag: Security | Runchao Han&#39;s Blog</title>
+  <title>Merkle Puzzles | Runchao Han&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Runchao Han&#39;s Blog">
-<meta property="og:url" content="http://SebastianElvis.github.io/tags/Security/index.html">
+  <meta name="description" content="Merkle Puzzles in a NutshellCommon Knowledges:  $n$: the security parameter.  $H: {0, 1}^{l} \to {0, 1}^{l}$ is a hash function, where $l \gg \log{n}$  The protocol operates as follows:  Alice chooses">
+<meta name="keywords" content="Merkle Puzzles">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Merkle Puzzles">
+<meta property="og:url" content="http://SebastianElvis.github.io/2019/02/26/Merkle-Puzzles/index.html">
 <meta property="og:site_name" content="Runchao Han&#39;s Blog">
+<meta property="og:description" content="Merkle Puzzles in a NutshellCommon Knowledges:  $n$: the security parameter.  $H: {0, 1}^{l} \to {0, 1}^{l}$ is a hash function, where $l \gg \log{n}$  The protocol operates as follows:  Alice chooses">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-02-26T01:32:39.252Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Runchao Han&#39;s Blog">
+<meta name="twitter:title" content="Merkle Puzzles">
+<meta name="twitter:description" content="Merkle Puzzles in a NutshellCommon Knowledges:  $n$: the security parameter.  $H: {0, 1}^{l} \to {0, 1}^{l}$ is a hash function, where $l \gg \log{n}$  The protocol operates as follows:  Alice chooses">
   
     <link rel="alternate" href="/atom.xml" title="Runchao Han&#39;s Blog" type="application/atom+xml">
   
@@ -62,40 +67,74 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/11/08/USENIX-Security-18-TEETHER-Gnawing-at-Ethereum-to-Automatically-Exploit-Smart-Contracts/" class="archive-article-date">
-  <time datetime="2018-11-08T08:56:39.000Z" itemprop="datePublished">Nov 8</time>
+        <section id="main"><article id="post-Merkle-Puzzles" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/26/Merkle-Puzzles/" class="article-date">
+  <time datetime="2019-02-26T01:17:48.000Z" itemprop="datePublished">2019-02-26</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/cryptography/">cryptography</a>►<a class="article-category-link" href="/categories/cryptography/public-key-cryptography/">public-key cryptography</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/08/USENIX-Security-18-TEETHER-Gnawing-at-Ethereum-to-Automatically-Exploit-Smart-Contracts/">USENIX Security&#39;18 - TEETHER: Gnawing at Ethereum to Automatically Exploit Smart Contracts</a>
+    <h1 class="article-title" itemprop="name">
+      Merkle Puzzles
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Merkle-Puzzles-in-a-Nutshell"><a href="#Merkle-Puzzles-in-a-Nutshell" class="headerlink" title="Merkle Puzzles in a Nutshell"></a>Merkle Puzzles in a Nutshell</h1><p>Common Knowledges:</p>
+<ul>
+<li>$n$: the security parameter. </li>
+<li>$H: {0, 1}^{l} \to {0, 1}^{l}$ is a hash function, where $l \gg \log{n}$</li>
+</ul>
+<p>The protocol operates as follows:</p>
+<ol>
+<li>Alice chooses $n$ random numbers $(x_{1}, \dots, x_{n})$ in $[n^{2}]$</li>
+<li>Alice sends $(a_{1}, \dots, a_{n})$ to Bob where $a_{i} = H(x_{i})$ for $i \in [1, n]$</li>
+<li>Bob chooses $n$ random numbers $(y_{1}, \dots, y_{n})$ in $[n^{2}]$</li>
+<li>Bob sends $(b_{1}, \dots, b_{n})$ to Alice where $b_{i} = H(y_{i})$ for $i \in [1, n]$</li>
+<li>With at least 0.9 probability, there will be at least one <strong>collision</strong> between Alice&#x2019;s and Bob&#x2019;s messages: a pair $(i, j)$ s.t. $a_{i} = b_{j}$. Alice and Bob choose the lexicographically first such pair as their secrets<ul>
+<li>Alice sets $s_{a} = x_{i}$ as her secret, and Bob sets $s_{b} = y_{j}$ as his secret</li>
+<li>If no collision, no secret</li>
+</ul>
+</li>
+</ol>
 
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://SebastianElvis.github.io/2019/02/26/Merkle-Puzzles/" data-id="cjsl3k07a001ii8jo7sn9nj0w" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Merkle-Puzzles/">Merkle Puzzles</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/02/25/Lightning-Network-In-Detail/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Lightning Network In Detail</div>
+    </a>
+  
+</nav>
+
+  
+</article>
 
 </section>
         

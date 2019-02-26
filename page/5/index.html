@@ -64,6 +64,107 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-NDSS-17-P2P-Mixing-and-Unlinkable-Bitcoin-Transactions" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/11/NDSS-17-P2P-Mixing-and-Unlinkable-Bitcoin-Transactions/" class="article-date">
+  <time datetime="2018-11-11T00:56:28.000Z" itemprop="datePublished">2018-11-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/paper-reading/">paper reading</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/11/NDSS-17-P2P-Mixing-and-Unlinkable-Bitcoin-Transactions/">NDSS&#39;17 - P2P Mixing and Unlinkable Bitcoin Transactions</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Info"><a href="#Info" class="headerlink" title="Info"></a>Info</h1><ul>
+<li><strong>Title</strong>: P2P Mixing and Unlinkable Bitcoin Transactions</li>
+<li><strong>Conference</strong>: USENIX NDSS</li>
+<li><strong>Year</strong>: 2017</li>
+<li><strong>Topic</strong>: Cryptography and Security (cs.CR)</li>
+<li><strong>URL</strong>: <a href="https://eprint.iacr.org/2016/824.pdf" target="_blank" rel="noopener">https://eprint.iacr.org/2016/824.pdf</a></li>
+<li><strong>Source code</strong>: No</li>
+</ul>
+<h1 id="Background-Dining-Cryptographers-Network-DC-nets"><a href="#Background-Dining-Cryptographers-Network-DC-nets" class="headerlink" title="Background: Dining Cryptographers Network (DC-nets)"></a>Background: Dining Cryptographers Network (DC-nets)</h1><h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2><ul>
+<li>The <strong>Dining Cryptographers Problem</strong> studies how to perform a secure multi-party computation of the boolean-OR function. </li>
+<li>David Chaum first proposed this problem in the early 1980s and used it as an illustrative example to show that it was possible to send anonymous messages with unconditional sender and recipient untraceability. </li>
+<li>Anonymous communication networks based on this problem are often referred to as <strong>DC-nets</strong> (where DC stands for &#x201C;dining cryptographers&#x201D;).</li>
+<li>The Dining Cryptographers Problem is unrelated to the Dining Philosophers Problem.</li>
+</ul>
+<h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><ul>
+<li>Three cryptographers gather around a table for dinner. - The waiter informs them that the meal has been paid for by someone, who could be one of the cryptographers or the National Security Agency (NSA).</li>
+<li>The cryptographers respect each other&#x2019;s right to make an anonymous payment, but want to find out whether the NSA paid. </li>
+<li>So they decide to execute a two-stage protocol.</li>
+</ul>
+<h2 id="Solution-of-David-Chaum"><a href="#Solution-of-David-Chaum" class="headerlink" title="Solution of David Chaum"></a>Solution of David Chaum</h2><ol>
+<li>Each cryptographer flips an unbiased coin (in secret)</li>
+<li>Each shows the result to the person on the right</li>
+<li>Each cryptographer states whether the two coins he can see are the same or different<ul>
+<li>If one of the cryptographers is the payer he says the opposite of what he sees</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>An odd number of differences means that a cryptographer has paid </li>
+<li>Otherwise the NSA paid</li>
+</ul>
+<p><strong>The algorithm is extensible to any number of diners</strong></p>
+<h1 id="Addressed-Problems"><a href="#Addressed-Problems" class="headerlink" title="Addressed Problems"></a>Addressed Problems</h1><ol>
+<li>The original DC-net protocol is prone to disruption by a single malicious peer who sends invalid protocol messages entirely.</li>
+<li>The original DC-net protocol protects the anonymity of the involved malicious peers, making it impossible for honest peers to detect and exclude the malicious peer.</li>
+<li>Successors of the DC-net protocols are still not ideal: with communication rounds quadratic in the worst case with many malicious peers, these current pure P2P solutions [22], [52], [55] <strong>do not scale</strong> as the number of participating peers grows.</li>
+</ol>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><p>In this paper, it is our goal to bring P2P anonymous communication from the realm of feasibility to the realm of <strong>practicality</strong>.</p>
+<ul>
+<li>We conceptualize P2P mixing as a natural generalization of DC-nets [17].</li>
+<li>We present the new P2P mixing protocol <em>DiceMix</em>, which builds on the original DC-net protocol. <em>DiceMix</em> requires only <strong>4+2f</strong> rounds (worst) in the presence of <strong>f</strong> malicious peers, i.e., only four rounds if every peer behaves honestly.</li>
+<li>We apply <em>DiceMix</em> to Bitcoin. Building on the <em>CoinJoin</em> paradigm [43] and <em>DiceMix</em>, we present <em>CoinShuffle++</em>, a practical decentralized mixing protocol for Bitcoin users. <ul>
+<li><em>CoinShuffle++</em> considerably simpler and thus easier to implement than its predecessor CoinShuffle [52]</li>
+<li><em>CoinShuffle++</em> inherits the efficiency of DiceMix and thus outperforms CoinShuffle significantly.</li>
+</ul>
+</li>
+<li>We present a deanonymization attack on existing P2P mixing protocols that guarantee termination in the presence of disruptive peers.<ul>
+<li>We discuss how <em>DiceMix</em> resists this attack by requiring fresh input messages (e.g., cryptographic keys never used before), and we discuss why this is not a problem for applications such as coin mixing.</li>
+</ul>
+</li>
+</ul>
+<h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><h1 id="Relevance"><a href="#Relevance" class="headerlink" title="Relevance"></a>Relevance</h1><ul>
+<li>Confidential transaction is one of our research topics.</li>
+<li>The underlying DC-nets protocol is highly related to the consensus problem. </li>
+</ul>
+<h1 id="To-discuss-investigate"><a href="#To-discuss-investigate" class="headerlink" title="To discuss/investigate"></a>To discuss/investigate</h1><ul>
+<li>It should be interesting to implement an open-source version and evaluate it.</li>
+<li>We can utilize this technique to other applications, like distributed storage and outsourced computing.</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://SebastianElvis.github.io/2018/11/11/NDSS-17-P2P-Mixing-and-Unlinkable-Bitcoin-Transactions/" data-id="cjsl3k07g001ti8joodl2k0n5" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blockchain/">Blockchain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NDSS/">NDSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/P2P-Mixing/">P2P Mixing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Privacy/">Privacy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unlinkable-Transactions/">Unlinkable Transactions</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-CCS-18-A-Better-Method-to-Analyze-Blockchain-Consistency" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/11/09/CCS-18-A-Better-Method-to-Analyze-Blockchain-Consistency/" class="article-date">
@@ -156,7 +257,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/11/09/CCS-18-A-Better-Method-to-Analyze-Blockchain-Consistency/" data-id="cjsl2zrnm000p83josdrds5hj" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/11/09/CCS-18-A-Better-Method-to-Analyze-Blockchain-Consistency/" data-id="cjsl3k06y000fi8jo6xon9qh0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blockchain/">Blockchain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CCS/">CCS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Consensus/">Consensus</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Consistency/">Consistency</a></li></ul>
@@ -261,7 +362,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/11/08/USENIX-Security-18-TEETHER-Gnawing-at-Ethereum-to-Automatically-Exploit-Smart-Contracts/" data-id="cjsl2zroq003l83jo6rzbpk56" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/11/08/USENIX-Security-18-TEETHER-Gnawing-at-Ethereum-to-Automatically-Exploit-Smart-Contracts/" data-id="cjsl3k082003gi8jo5tcn74vz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blockchain/">Blockchain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Security/">Security</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Smart-Contracts/">Smart Contracts</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/USENIX-Security/">USENIX Security</a></li></ul>
@@ -334,7 +435,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/11/08/CCS-18-Ouroboros-Genesis-Composable-Proof-of-Stake-Blockchains-with-Dynamic-Availability/" data-id="cjsl2zrnp000v83jomb99knri" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/11/08/CCS-18-Ouroboros-Genesis-Composable-Proof-of-Stake-Blockchains-with-Dynamic-Availability/" data-id="cjsl3k06x000bi8jowsnnw90g" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blockchain/">Blockchain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CCS/">CCS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Consensus/">Consensus</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cryptography/">Cryptography</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PoS/">PoS</a></li></ul>
@@ -428,7 +529,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/11/08/USENIX-Security-18-An-Empirimal-Analysis-of-Anonymity-in-Zcash/" data-id="cjsl2zros003n83jo9lnckff8" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/11/08/USENIX-Security-18-An-Empirimal-Analysis-of-Anonymity-in-Zcash/" data-id="cjsl3k081003ei8jo10vdabod" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blockchain/">Blockchain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Security-Privacy/">Security&Privacy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/USENIX-Security/">USENIX Security</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Zcash/">Zcash</a></li></ul>
@@ -465,7 +566,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Atomic-Multicast/">Atomic Multicast</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Atomic-Swap/">Atomic Swap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attack/">Attack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Authenticated-Data-Structure/">Authenticated Data Structure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BFT/">BFT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BGW-Protocol/">BGW Protocol</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BLS/">BLS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Barreto-Naehrig-Curve/">Barreto-Naehrig Curve</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bitcoin/">Bitcoin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blockchain/">Blockchain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CCS/">CCS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CRYPTO/">CRYPTO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Confidential-Transactions/">Confidential Transactions</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Consensus/">Consensus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Consistency/">Consistency</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CryptoNote/">CryptoNote</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cryptography/">Cryptography</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DAG/">DAG</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decentralization/">Decentralization</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Delegatable-Anonymous-Credentials/">Delegatable Anonymous Credentials</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Distributed-Randomness/">Distributed Randomness</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ECDSA/">ECDSA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Elliptic-Curve/">Elliptic Curve</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ethereum/">Ethereum</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FC/">FC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Factorization/">Factorization</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Garbled-Circuits/">Garbled Circuits</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTLC/">HTLC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Homomorphic-Encryption/">Homomorphic Encryption</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MPC/">MPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Measurement/">Measurement</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mining-Pool/">Mining Pool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MultiSig/">MultiSig</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NDSS/">NDSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Numerical-Algorithms/">Numerical Algorithms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Oblivious-Transfer/">Oblivious Transfer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Off-chain-Payment/">Off-chain Payment</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/P2P-Mixing/">P2P Mixing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/P2P-Network/">P2P Network</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pairing/">Pairing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Payment-Channel/">Payment Channel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Payment-Channels/">Payment Channels</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PoS/">PoS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Privacy/">Privacy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Public-Blockchains/">Public Blockchains</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Public-Key-Cryptography/">Public-Key Cryptography</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RSMC/">RSMC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SPDZ/">SPDZ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scalability/">Scalability</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Schnorr/">Schnorr</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Security/">Security</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Security-Privacy/">Security&Privacy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sharding/">Sharding</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Short-Signatures/">Short Signatures</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Signature-Aggregation/">Signature Aggregation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Smart-Contracts/">Smart Contracts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Solidity/">Solidity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Threshold-Encryption/">Threshold Encryption</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/USENIX-Security/">USENIX Security</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Universal-Composability/">Universal Composability</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unlinkable-Transactions/">Unlinkable Transactions</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VRF/">VRF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VSS/">VSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zcash/">Zcash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zero-Knowledge/">Zero Knowledge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zkSNARKs/">zkSNARKs</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Atomic-Multicast/">Atomic Multicast</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Atomic-Swap/">Atomic Swap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attack/">Attack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Authenticated-Data-Structure/">Authenticated Data Structure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BFT/">BFT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BGW-Protocol/">BGW Protocol</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BLS/">BLS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Barreto-Naehrig-Curve/">Barreto-Naehrig Curve</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bitcoin/">Bitcoin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blockchain/">Blockchain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CCS/">CCS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CRYPTO/">CRYPTO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Confidential-Transactions/">Confidential Transactions</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Consensus/">Consensus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Consistency/">Consistency</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CryptoNote/">CryptoNote</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cryptography/">Cryptography</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DAG/">DAG</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decentralization/">Decentralization</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Delegatable-Anonymous-Credentials/">Delegatable Anonymous Credentials</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Distributed-Randomness/">Distributed Randomness</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ECDSA/">ECDSA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Elliptic-Curve/">Elliptic Curve</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ethereum/">Ethereum</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FC/">FC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Factorization/">Factorization</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Garbled-Circuits/">Garbled Circuits</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTLC/">HTLC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Homomorphic-Encryption/">Homomorphic Encryption</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MPC/">MPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Measurement/">Measurement</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Merkle-Puzzles/">Merkle Puzzles</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mining-Pool/">Mining Pool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MultiSig/">MultiSig</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NDSS/">NDSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Numerical-Algorithms/">Numerical Algorithms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Oblivious-Transfer/">Oblivious Transfer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Off-chain-Payment/">Off-chain Payment</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/P2P-Mixing/">P2P Mixing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/P2P-Network/">P2P Network</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pairing/">Pairing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Payment-Channel/">Payment Channel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Payment-Channels/">Payment Channels</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PoS/">PoS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Privacy/">Privacy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Public-Blockchains/">Public Blockchains</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Public-Key-Cryptography/">Public-Key Cryptography</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RSMC/">RSMC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SPDZ/">SPDZ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scalability/">Scalability</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Schnorr/">Schnorr</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Security/">Security</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Security-Privacy/">Security&Privacy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sharding/">Sharding</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Short-Signatures/">Short Signatures</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Signature-Aggregation/">Signature Aggregation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Smart-Contracts/">Smart Contracts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Solidity/">Solidity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Threshold-Encryption/">Threshold Encryption</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/USENIX-Security/">USENIX Security</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Universal-Composability/">Universal Composability</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unlinkable-Transactions/">Unlinkable Transactions</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VRF/">VRF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VSS/">VSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zcash/">Zcash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zero-Knowledge/">Zero Knowledge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zkSNARKs/">zkSNARKs</a></li></ul>
     </div>
   </div>
 
@@ -475,7 +576,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Atomic-Multicast/" style="font-size: 10px;">Atomic Multicast</a> <a href="/tags/Atomic-Swap/" style="font-size: 10px;">Atomic Swap</a> <a href="/tags/Attack/" style="font-size: 11.67px;">Attack</a> <a href="/tags/Authenticated-Data-Structure/" style="font-size: 10px;">Authenticated Data Structure</a> <a href="/tags/BFT/" style="font-size: 10px;">BFT</a> <a href="/tags/BGW-Protocol/" style="font-size: 10px;">BGW Protocol</a> <a href="/tags/BLS/" style="font-size: 13.33px;">BLS</a> <a href="/tags/Barreto-Naehrig-Curve/" style="font-size: 10px;">Barreto-Naehrig Curve</a> <a href="/tags/Bitcoin/" style="font-size: 13.33px;">Bitcoin</a> <a href="/tags/Blockchain/" style="font-size: 20px;">Blockchain</a> <a href="/tags/CCS/" style="font-size: 16.67px;">CCS</a> <a href="/tags/CRYPTO/" style="font-size: 10px;">CRYPTO</a> <a href="/tags/Confidential-Transactions/" style="font-size: 13.33px;">Confidential Transactions</a> <a href="/tags/Consensus/" style="font-size: 16.67px;">Consensus</a> <a href="/tags/Consistency/" style="font-size: 10px;">Consistency</a> <a href="/tags/CryptoNote/" style="font-size: 10px;">CryptoNote</a> <a href="/tags/Cryptography/" style="font-size: 16.67px;">Cryptography</a> <a href="/tags/DAG/" style="font-size: 10px;">DAG</a> <a href="/tags/Decentralization/" style="font-size: 10px;">Decentralization</a> <a href="/tags/Delegatable-Anonymous-Credentials/" style="font-size: 10px;">Delegatable Anonymous Credentials</a> <a href="/tags/Distributed-Randomness/" style="font-size: 10px;">Distributed Randomness</a> <a href="/tags/ECDSA/" style="font-size: 10px;">ECDSA</a> <a href="/tags/Elliptic-Curve/" style="font-size: 13.33px;">Elliptic Curve</a> <a href="/tags/Ethereum/" style="font-size: 10px;">Ethereum</a> <a href="/tags/FC/" style="font-size: 10px;">FC</a> <a href="/tags/Factorization/" style="font-size: 10px;">Factorization</a> <a href="/tags/Garbled-Circuits/" style="font-size: 10px;">Garbled Circuits</a> <a href="/tags/HTLC/" style="font-size: 11.67px;">HTLC</a> <a href="/tags/Homomorphic-Encryption/" style="font-size: 10px;">Homomorphic Encryption</a> <a href="/tags/MPC/" style="font-size: 16.67px;">MPC</a> <a href="/tags/Measurement/" style="font-size: 10px;">Measurement</a> <a href="/tags/Mining-Pool/" style="font-size: 10px;">Mining Pool</a> <a href="/tags/MultiSig/" style="font-size: 13.33px;">MultiSig</a> <a href="/tags/NDSS/" style="font-size: 11.67px;">NDSS</a> <a href="/tags/Numerical-Algorithms/" style="font-size: 10px;">Numerical Algorithms</a> <a href="/tags/Oblivious-Transfer/" style="font-size: 10px;">Oblivious Transfer</a> <a href="/tags/Off-chain-Payment/" style="font-size: 10px;">Off-chain Payment</a> <a href="/tags/P2P-Mixing/" style="font-size: 10px;">P2P Mixing</a> <a href="/tags/P2P-Network/" style="font-size: 10px;">P2P Network</a> <a href="/tags/Pairing/" style="font-size: 13.33px;">Pairing</a> <a href="/tags/Payment-Channel/" style="font-size: 10px;">Payment Channel</a> <a href="/tags/Payment-Channels/" style="font-size: 10px;">Payment Channels</a> <a href="/tags/PoS/" style="font-size: 10px;">PoS</a> <a href="/tags/Privacy/" style="font-size: 10px;">Privacy</a> <a href="/tags/Public-Blockchains/" style="font-size: 10px;">Public Blockchains</a> <a href="/tags/Public-Key-Cryptography/" style="font-size: 10px;">Public-Key Cryptography</a> <a href="/tags/RSMC/" style="font-size: 10px;">RSMC</a> <a href="/tags/SPDZ/" style="font-size: 10px;">SPDZ</a> <a href="/tags/Scalability/" style="font-size: 18.33px;">Scalability</a> <a href="/tags/Schnorr/" style="font-size: 11.67px;">Schnorr</a> <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/Security-Privacy/" style="font-size: 10px;">Security&Privacy</a> <a href="/tags/Sharding/" style="font-size: 13.33px;">Sharding</a> <a href="/tags/Short-Signatures/" style="font-size: 10px;">Short Signatures</a> <a href="/tags/Signature-Aggregation/" style="font-size: 10px;">Signature Aggregation</a> <a href="/tags/Smart-Contracts/" style="font-size: 15px;">Smart Contracts</a> <a href="/tags/Solidity/" style="font-size: 10px;">Solidity</a> <a href="/tags/Threshold-Encryption/" style="font-size: 10px;">Threshold Encryption</a> <a href="/tags/USENIX-Security/" style="font-size: 15px;">USENIX Security</a> <a href="/tags/Universal-Composability/" style="font-size: 10px;">Universal Composability</a> <a href="/tags/Unlinkable-Transactions/" style="font-size: 10px;">Unlinkable Transactions</a> <a href="/tags/VRF/" style="font-size: 10px;">VRF</a> <a href="/tags/VSS/" style="font-size: 10px;">VSS</a> <a href="/tags/Zcash/" style="font-size: 10px;">Zcash</a> <a href="/tags/Zero-Knowledge/" style="font-size: 10px;">Zero Knowledge</a> <a href="/tags/zkSNARKs/" style="font-size: 10px;">zkSNARKs</a>
+      <a href="/tags/Atomic-Multicast/" style="font-size: 10px;">Atomic Multicast</a> <a href="/tags/Atomic-Swap/" style="font-size: 10px;">Atomic Swap</a> <a href="/tags/Attack/" style="font-size: 11.67px;">Attack</a> <a href="/tags/Authenticated-Data-Structure/" style="font-size: 10px;">Authenticated Data Structure</a> <a href="/tags/BFT/" style="font-size: 10px;">BFT</a> <a href="/tags/BGW-Protocol/" style="font-size: 10px;">BGW Protocol</a> <a href="/tags/BLS/" style="font-size: 13.33px;">BLS</a> <a href="/tags/Barreto-Naehrig-Curve/" style="font-size: 10px;">Barreto-Naehrig Curve</a> <a href="/tags/Bitcoin/" style="font-size: 13.33px;">Bitcoin</a> <a href="/tags/Blockchain/" style="font-size: 20px;">Blockchain</a> <a href="/tags/CCS/" style="font-size: 16.67px;">CCS</a> <a href="/tags/CRYPTO/" style="font-size: 10px;">CRYPTO</a> <a href="/tags/Confidential-Transactions/" style="font-size: 13.33px;">Confidential Transactions</a> <a href="/tags/Consensus/" style="font-size: 16.67px;">Consensus</a> <a href="/tags/Consistency/" style="font-size: 10px;">Consistency</a> <a href="/tags/CryptoNote/" style="font-size: 10px;">CryptoNote</a> <a href="/tags/Cryptography/" style="font-size: 16.67px;">Cryptography</a> <a href="/tags/DAG/" style="font-size: 10px;">DAG</a> <a href="/tags/Decentralization/" style="font-size: 10px;">Decentralization</a> <a href="/tags/Delegatable-Anonymous-Credentials/" style="font-size: 10px;">Delegatable Anonymous Credentials</a> <a href="/tags/Distributed-Randomness/" style="font-size: 10px;">Distributed Randomness</a> <a href="/tags/ECDSA/" style="font-size: 10px;">ECDSA</a> <a href="/tags/Elliptic-Curve/" style="font-size: 13.33px;">Elliptic Curve</a> <a href="/tags/Ethereum/" style="font-size: 10px;">Ethereum</a> <a href="/tags/FC/" style="font-size: 10px;">FC</a> <a href="/tags/Factorization/" style="font-size: 10px;">Factorization</a> <a href="/tags/Garbled-Circuits/" style="font-size: 10px;">Garbled Circuits</a> <a href="/tags/HTLC/" style="font-size: 11.67px;">HTLC</a> <a href="/tags/Homomorphic-Encryption/" style="font-size: 10px;">Homomorphic Encryption</a> <a href="/tags/MPC/" style="font-size: 16.67px;">MPC</a> <a href="/tags/Measurement/" style="font-size: 10px;">Measurement</a> <a href="/tags/Merkle-Puzzles/" style="font-size: 10px;">Merkle Puzzles</a> <a href="/tags/Mining-Pool/" style="font-size: 10px;">Mining Pool</a> <a href="/tags/MultiSig/" style="font-size: 13.33px;">MultiSig</a> <a href="/tags/NDSS/" style="font-size: 11.67px;">NDSS</a> <a href="/tags/Numerical-Algorithms/" style="font-size: 10px;">Numerical Algorithms</a> <a href="/tags/Oblivious-Transfer/" style="font-size: 10px;">Oblivious Transfer</a> <a href="/tags/Off-chain-Payment/" style="font-size: 10px;">Off-chain Payment</a> <a href="/tags/P2P-Mixing/" style="font-size: 10px;">P2P Mixing</a> <a href="/tags/P2P-Network/" style="font-size: 10px;">P2P Network</a> <a href="/tags/Pairing/" style="font-size: 13.33px;">Pairing</a> <a href="/tags/Payment-Channel/" style="font-size: 10px;">Payment Channel</a> <a href="/tags/Payment-Channels/" style="font-size: 10px;">Payment Channels</a> <a href="/tags/PoS/" style="font-size: 10px;">PoS</a> <a href="/tags/Privacy/" style="font-size: 10px;">Privacy</a> <a href="/tags/Public-Blockchains/" style="font-size: 10px;">Public Blockchains</a> <a href="/tags/Public-Key-Cryptography/" style="font-size: 10px;">Public-Key Cryptography</a> <a href="/tags/RSMC/" style="font-size: 10px;">RSMC</a> <a href="/tags/SPDZ/" style="font-size: 10px;">SPDZ</a> <a href="/tags/Scalability/" style="font-size: 18.33px;">Scalability</a> <a href="/tags/Schnorr/" style="font-size: 11.67px;">Schnorr</a> <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/Security-Privacy/" style="font-size: 10px;">Security&Privacy</a> <a href="/tags/Sharding/" style="font-size: 13.33px;">Sharding</a> <a href="/tags/Short-Signatures/" style="font-size: 10px;">Short Signatures</a> <a href="/tags/Signature-Aggregation/" style="font-size: 10px;">Signature Aggregation</a> <a href="/tags/Smart-Contracts/" style="font-size: 15px;">Smart Contracts</a> <a href="/tags/Solidity/" style="font-size: 10px;">Solidity</a> <a href="/tags/Threshold-Encryption/" style="font-size: 10px;">Threshold Encryption</a> <a href="/tags/USENIX-Security/" style="font-size: 15px;">USENIX Security</a> <a href="/tags/Universal-Composability/" style="font-size: 10px;">Universal Composability</a> <a href="/tags/Unlinkable-Transactions/" style="font-size: 10px;">Unlinkable Transactions</a> <a href="/tags/VRF/" style="font-size: 10px;">VRF</a> <a href="/tags/VSS/" style="font-size: 10px;">VSS</a> <a href="/tags/Zcash/" style="font-size: 10px;">Zcash</a> <a href="/tags/Zero-Knowledge/" style="font-size: 10px;">Zero Knowledge</a> <a href="/tags/zkSNARKs/" style="font-size: 10px;">zkSNARKs</a>
     </div>
   </div>
 
@@ -497,6 +598,10 @@
       <ul>
         
           <li>
+            <a href="/2019/02/26/Merkle-Puzzles/">Merkle Puzzles</a>
+          </li>
+        
+          <li>
             <a href="/2019/02/25/Lightning-Network-In-Detail/">Lightning Network In Detail</a>
           </li>
         
@@ -510,10 +615,6 @@
         
           <li>
             <a href="/2019/01/13/Preprint-Scaling-Nakamoto-Consensus-to-Thousands-of-Transactions-per-Second/">Preprint - Scaling Nakamoto Consensus to Thousands of Transactions per Second</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/12/Preprint-A-Web-of-Blocks/">Preprint - A Web of Blocks</a>
           </li>
         
       </ul>
