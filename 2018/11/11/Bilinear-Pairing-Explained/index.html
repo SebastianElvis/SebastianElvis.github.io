@@ -8,7 +8,7 @@
   <title>Bilinear Pairing Explained | Runchao Han&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Definition Here are 3 multiplicative cyclic group: $G_{1}$, $G_{2}$ and $G_{T}$. Define a mapping $ e: G_{1} \times G_{2} \rightarrow G_{T}$ If the function $e$ satisfies:   Bilinearity: $\forall g_{1">
-<meta name="keywords" content="Cryptography,Public-Key Cryptography,Elliptic Curve">
+<meta name="keywords" content="Elliptic Curve,Cryptography,Public-Key Cryptography">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bilinear Pairing Explained">
 <meta property="og:url" content="http://SebastianElvis.github.io/2018/11/11/Bilinear-Pairing-Explained/index.html">
@@ -132,7 +132,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/11/11/Bilinear-Pairing-Explained/" data-id="cjt9aheqq0002idjoyebnhc8q" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/11/11/Bilinear-Pairing-Explained/" data-id="cjt9am98n0005vejow4dg0kue" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cryptography/">Cryptography</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Elliptic-Curve/">Elliptic Curve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Public-Key-Cryptography/">Public-Key Cryptography</a></li></ul>
@@ -272,7 +272,22 @@
 
 
 
-  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>
