@@ -64,6 +64,88 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Fiat-Shamir-Heuristic" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/15/Fiat-Shamir-Heuristic/" class="article-date">
+  <time datetime="2019-03-14T23:26:18.000Z" itemprop="datePublished">2019-03-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/cryptography/">cryptography</a>►<a class="article-category-link" href="/categories/cryptography/zero-knowledge/">zero knowledge</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/15/Fiat-Shamir-Heuristic/">Fiat-Shamir Heuristic</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h1><p>The Fiat&#x2013;Shamir Heuristic[] is a cryptographic technique to create a digital signature of an Interactive Proof of Knowledge and make it publicly verifiable.</p>
+<p>This can be used for converting an Interactive Proof of Knowledge to a Non-Interactive Proof of Knowledge.</p>
+<h1 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h1><h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><p>Here is an example of the Proof of Knowledge (PoK) problem.</p>
+<ul>
+<li>Participants<ul>
+<li>Peggy: the Prover (female)</li>
+<li>Victor: the Verifier (male)</li>
+</ul>
+</li>
+<li>Problem<ul>
+<li>Knowledge: Peggy knows $x: y = g^{x}$ where $x \in \mathbb{Z}^{*}_{q}$ (a finite field with the prime degree $q$ and a generator $g$)</li>
+<li>Problem: Peggy wants to prove she knows $x$ to Victor without revealing $x$</li>
+</ul>
+</li>
+</ul>
+<h2 id="Solution-1-An-Interactive-Protocol"><a href="#Solution-1-An-Interactive-Protocol" class="headerlink" title="Solution 1: An Interactive Protocol"></a>Solution 1: An Interactive Protocol</h2><ol>
+<li>Peggy picks a random $x \in \mathbb{Z}^{*}_{q}$, then computes $t = g^{v}$, then sends $t$ to Victor</li>
+<li>Victor picks a random $c \in \mathbb{Z}^{*}_{q}$, then sends it to Peggy</li>
+<li>Peggy computes $r = v - cx$, then returns $t$ to Victor</li>
+<li>Victor can check $t \stackrel{?}{=} g^{r} y^{c}$<ul>
+<li>Proof: $g^{x} y^{c} = g^{v-cx} g^{xc} = g^v = t$</li>
+</ul>
+</li>
+</ol>
+<p>Only Victor can verify this, as $c$ is chosen by Victor and others may not trust Victor.</p>
+<h2 id="Solution-2-A-Non-Interactive-and-Publicly-Verifiable-Protocol"><a href="#Solution-2-A-Non-Interactive-and-Publicly-Verifiable-Protocol" class="headerlink" title="Solution 2: A Non-Interactive and Publicly Verifiable Protocol"></a>Solution 2: A Non-Interactive and Publicly Verifiable Protocol</h2><ol>
+<li>Peggy picks a random $x \in \mathbb{Z}^{*}_{q}$, then computes $t = g^{v}$</li>
+<li>Peggy computes $c = H(g, y, t)$, where $H()$ is an ideal Random Oracle</li>
+<li>Peggy computes $r = v-cx$, and the resulting Proof of Knowledge is $\pi = (t ,r)$, then she publishes $\pi$</li>
+<li>$\pi$ can be verifiable by anyone, by checking $t \stackrel{?}{=} g^{r} y^{c}$ ($c$ can be computed from $g, y, t$ by anyone)</li>
+</ol>
+<p>Theory:</p>
+<ul>
+<li>$x$ is an entropy source</li>
+<li>$H()$ makes $c$ unpredictable and publicly computable</li>
+<li>$\pi$ can be treated as a digital signature of the Interactive Proof of Knowledge, equivalent to a Non-Interactive proof of Knowledge</li>
+</ul>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li>[FS86] <a href="https://www.math.uni-frankfurt.de/~dmst/teaching/SS2012/Vorlesung/Fiat.Shamir.pdf" target="_blank" rel="noopener">Amos Fiat and Adi Shamir: How to Prove Yourself: Practical Solutions to Identification and Signature Problems. CRYPTO 1986.</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://SebastianElvis.github.io/2019/03/15/Fiat-Shamir-Heuristic/" data-id="cjt9aher9000yidjofoolijk2" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Zero-Knowledge/">Zero Knowledge</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Merkle-Puzzles" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/02/26/Merkle-Puzzles/" class="article-date">
@@ -90,16 +172,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Merkle-Puzzles-in-a-Nutshell"><a href="#Merkle-Puzzles-in-a-Nutshell" class="headerlink" title="Merkle Puzzles in a Nutshell"></a>Merkle Puzzles in a Nutshell</h1><p>Common Knowledges:</p>
+        <h1 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h1><p>Merkle Puzzles allow two parties to agree on a shared secret by exchanging messages, even if they have no secrets in common beforehand (similar to Diffie-Hellman Key Exchange).</p>
+<h1 id="Construction"><a href="#Construction" class="headerlink" title="Construction"></a>Construction</h1><p>Common Knowledges:</p>
 <ul>
-<li>$n$: the security parameter. </li>
+<li>$n$: the security parameter</li>
 <li>$H: {0, 1}^{l} \to {0, 1}^{l}$ is a hash function, where $l \gg \log{n}$</li>
 </ul>
 <p>The protocol operates as follows:</p>
 <ol>
-<li>Alice chooses $n$ random numbers $(x_{1}, \dots, x_{n})$ in $[n^{2}]$</li>
+<li>Alice chooses $n$ random numbers $(x_{1}, \dots, x_{n}) \in [n^{2}]$</li>
 <li>Alice sends $(a_{1}, \dots, a_{n})$ to Bob where $a_{i} = H(x_{i})$ for $i \in [1, n]$</li>
-<li>Bob chooses $n$ random numbers $(y_{1}, \dots, y_{n})$ in $[n^{2}]$</li>
+<li>Bob chooses $n$ random numbers $(y_{1}, \dots, y_{n}) \in [n^{2}]$</li>
 <li>Bob sends $(b_{1}, \dots, b_{n})$ to Alice where $b_{i} = H(y_{i})$ for $i \in [1, n]$</li>
 <li>With at least 0.9 probability, there will be at least one <strong>collision</strong> between Alice&#x2019;s and Bob&#x2019;s messages: a pair $(i, j)$ s.t. $a_{i} = b_{j}$. Alice and Bob choose the lexicographically first such pair as their secrets<ul>
 <li>Alice sets $s_{a} = x_{i}$ as her secret, and Bob sets $s_{b} = y_{j}$ as his secret</li>
@@ -107,11 +190,14 @@
 </ul>
 </li>
 </ol>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li>[Mer75] <a href="http://www.merkle.com/1974/Puzzles1975.12.07.pdf" target="_blank" rel="noopener">Ralph Merkle. Secure Communication Over Insecure Channels.</a></li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2019/02/26/Merkle-Puzzles/" data-id="cjsl3k07a001ii8jo7sn9nj0w" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2019/02/26/Merkle-Puzzles/" data-id="cjt9aherl001oidjo55sfl3cy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Merkle-Puzzles/">Merkle Puzzles</a></li></ul>
@@ -226,7 +312,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2019/02/25/Lightning-Network-In-Detail/" data-id="cjsl3k07c001mi8joz8tfdu0m" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2019/02/25/Lightning-Network-In-Detail/" data-id="cjt9aherj001iidjopwbiuu13" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTLC/">HTLC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Off-chain-Payment/">Off-chain Payment</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Payment-Channel/">Payment Channel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RSMC/">RSMC</a></li></ul>
@@ -309,7 +395,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2019/01/13/CCS-16-The-Honey-Badger-of-BFT-Protocols/" data-id="cjsl3k06u0007i8jomknzprl4" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2019/01/13/CCS-16-The-Honey-Badger-of-BFT-Protocols/" data-id="cjt9aheqv0006idjoz6gnaphj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Consensus/">Consensus</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scalability/">Scalability</a></li></ul>
@@ -503,7 +589,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2019/01/13/SOSP-17-Algorand-Scaling-Byzantine-Agreements-for-Cryptocurrencies/" data-id="cjsl3k07x0032i8joy0jcmpcp" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2019/01/13/SOSP-17-Algorand-Scaling-Byzantine-Agreements-for-Cryptocurrencies/" data-id="cjt9ahes20038idjo6a6mebsz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Consensus/">Consensus</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scalability/">Scalability</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VRF/">VRF</a></li></ul>
@@ -621,7 +707,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2019/01/13/Preprint-Scaling-Nakamoto-Consensus-to-Thousands-of-Transactions-per-Second/" data-id="cjsl3k07r002oi8jopqyp5bzz" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2019/01/13/Preprint-Scaling-Nakamoto-Consensus-to-Thousands-of-Transactions-per-Second/" data-id="cjt9aherw002pidjo1caxgmgv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DAG/">DAG</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scalability/">Scalability</a></li></ul>
@@ -720,7 +806,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2019/01/12/Preprint-A-Web-of-Blocks/" data-id="cjsl3k07q002ki8jola6jwuyg" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2019/01/12/Preprint-A-Web-of-Blocks/" data-id="cjt9aherv002lidjo4p3xqxxr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Authenticated-Data-Structure/">Authenticated Data Structure</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scalability/">Scalability</a></li></ul>
@@ -830,7 +916,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2019/01/04/Compact-Multi-Signatures-for-Smaller-Blockchains/" data-id="cjsl3k074000vi8jocgwd4xwb" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2019/01/04/Compact-Multi-Signatures-for-Smaller-Blockchains/" data-id="cjt9aher8000uidjo9rg8nmrs" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BLS/">BLS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MultiSig/">MultiSig</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pairing/">Pairing</a></li></ul>
@@ -921,7 +1007,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2019/01/04/Simple-Schnorr-Multi-Signatures-with-Applications-to-Bitcoin/" data-id="cjsl3k07u002wi8jo77zv6aen" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2019/01/04/Simple-Schnorr-Multi-Signatures-with-Applications-to-Bitcoin/" data-id="cjt9ahes10035idjo3mir0hbn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MultiSig/">MultiSig</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Schnorr/">Schnorr</a></li></ul>
@@ -992,111 +1078,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2019/01/03/CVCBT-18-A-Scale-Out-Blockchain-for-Value-Transfer-with-Spontaneous-Sharding/" data-id="cjsl3k073000ti8jozfzyn5c2" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2019/01/03/CVCBT-18-A-Scale-Out-Blockchain-for-Value-Transfer-with-Spontaneous-Sharding/" data-id="cjt9aher6000pidjoigyr6m8c" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scalability/">Scalability</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sharding/">Sharding</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-NDSS-18-ZEUS-Analyzing-Safety-of-Smart-Contracts" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/03/NDSS-18-ZEUS-Analyzing-Safety-of-Smart-Contracts/" class="article-date">
-  <time datetime="2019-01-03T08:56:32.000Z" itemprop="datePublished">2019-01-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/paper-reading/">paper reading</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/03/NDSS-18-ZEUS-Analyzing-Safety-of-Smart-Contracts/">NDSS&#39;18 - ZEUS: Analyzing Safety of Smart Contracts</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Info"><a href="#Info" class="headerlink" title="Info"></a>Info</h1><ul>
-<li><strong>Title</strong>: ZEUS: Analyzing Safety of Smart Contracts</li>
-<li><strong>Conference</strong>: NDSS</li>
-<li><strong>Year</strong>: 2018</li>
-<li><strong>URL</strong>: <a href="http://wp.internetsociety.org/ndss/wp-content/uploads/sites/25/2018/02/ndss2018_09-1_Kalra_paper.pdf" target="_blank" rel="noopener">http://wp.internetsociety.org/ndss/wp-content/uploads/sites/25/2018/02/ndss2018_09-1_Kalra_paper.pdf</a></li>
-<li><strong>Source code</strong>: <a href="https://seahorn.github.io/" target="_blank" rel="noopener">https://seahorn.github.io/</a></li>
-</ul>
-<h1 id="Addressed-Problems"><a href="#Addressed-Problems" class="headerlink" title="Addressed Problems"></a>Addressed Problems</h1><ul>
-<li>A smart contract is hard to patch for bugs once it is<br>deployed, irrespective of the money it holds.<br>A recent bug caused losses worth around $50 million of cryptocurrency.</li>
-</ul>
-<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ul>
-<li>We classify several new and previously known issues but unstudied in the context of smart contracts and show that they can potentially lead to loss of money.</li>
-<li>We present a formal abstraction of Solidity&#x2019;s execution semantics for verifying smart contracts using a combination<br>of abstract interpretation and symbolic model checking.</li>
-<li>We present the design and implementation of ZEUS, a symbolic model checking framework for verification of correctness and fairness policies.</li>
-<li>We present the first large scale source code analysis of<br>Solidity-based smart contracts.</li>
-<li>ZEUS is sound (with zero false negatives) and outperforms Oyente for contracts in our data set</li>
-<li>We show ZEUS&#x2019;s generic applicability by leveraging it to verify smart contracts for the Fabric blockchain.</li>
-</ul>
-<h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><h2 id="Taxonomy"><a href="#Taxonomy" class="headerlink" title="Taxonomy"></a>Taxonomy</h2><ul>
-<li>Incorrect Contracts<ul>
-<li>REENTRANCY<ul>
-<li>A function is reentrant if it can be interrupted while in the midst of its execution, and safely re-invoked even before its previous invocations complete execution.</li>
-</ul>
-</li>
-<li>UNCHECKED SEND<ul>
-<li>Since Solidity allows only 2300 gas upon a send call, a computation-heavy fallback function at the receiving contract will cause the invoking send to fail.</li>
-</ul>
-</li>
-<li>FAILED SEND<ul>
-<li>executing a throw upon a failed send, in order to revert the transaction. However, this paradigm can also put contracts at risk.</li>
-</ul>
-</li>
-<li>INTEGER OVERFLOW/UNDERFLOW<ul>
-<li>all arithmetic operations to be susceptible to overflow/underflow</li>
-</ul>
-</li>
-<li>TRANSACTION STATE DEPENDENCE</li>
-</ul>
-</li>
-<li>Unfair Contracts<ul>
-<li>ABSENCE OF LOGIC</li>
-<li>INCORRECT LOGIC</li>
-<li>LOGICALLY CORRECT BUT UNFAIR</li>
-</ul>
-</li>
-</ul>
-<h2 id="ZEUS"><a href="#ZEUS" class="headerlink" title="ZEUS"></a>ZEUS</h2><ul>
-<li>Formalizing Solidity Semantics</li>
-<li>Formalizing the Policy Language</li>
-<li>The proof for soundness</li>
-<li>Symbolic Model Checking via CHCs</li>
-</ul>
-<h1 id="Relevance"><a href="#Relevance" class="headerlink" title="Relevance"></a>Relevance</h1><ul>
-<li>Smart Contract Security</li>
-</ul>
-<h1 id="To-discuss-investigate"><a href="#To-discuss-investigate" class="headerlink" title="To discuss/investigate"></a>To discuss/investigate</h1><ul>
-<li>This project seems not fully open-source</li>
-<li>LLVM based compiler seems to be promising</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2019/01/03/NDSS-18-ZEUS-Analyzing-Safety-of-Smart-Contracts/" data-id="cjsl3k07j0020i8jof3c8fcay" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Smart-Contracts/">Smart Contracts</a></li></ul>
 
     </footer>
   </div>
@@ -1140,7 +1125,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Atomic-Multicast/" style="font-size: 10px;">Atomic Multicast</a> <a href="/tags/Atomic-Swap/" style="font-size: 10px;">Atomic Swap</a> <a href="/tags/Attack/" style="font-size: 11.67px;">Attack</a> <a href="/tags/Authenticated-Data-Structure/" style="font-size: 10px;">Authenticated Data Structure</a> <a href="/tags/BFT/" style="font-size: 10px;">BFT</a> <a href="/tags/BGW-Protocol/" style="font-size: 10px;">BGW Protocol</a> <a href="/tags/BLS/" style="font-size: 13.33px;">BLS</a> <a href="/tags/Barreto-Naehrig-Curve/" style="font-size: 10px;">Barreto-Naehrig Curve</a> <a href="/tags/Bitcoin/" style="font-size: 13.33px;">Bitcoin</a> <a href="/tags/Blockchain/" style="font-size: 20px;">Blockchain</a> <a href="/tags/CCS/" style="font-size: 16.67px;">CCS</a> <a href="/tags/CRYPTO/" style="font-size: 10px;">CRYPTO</a> <a href="/tags/Confidential-Transactions/" style="font-size: 13.33px;">Confidential Transactions</a> <a href="/tags/Consensus/" style="font-size: 16.67px;">Consensus</a> <a href="/tags/Consistency/" style="font-size: 10px;">Consistency</a> <a href="/tags/CryptoNote/" style="font-size: 10px;">CryptoNote</a> <a href="/tags/Cryptography/" style="font-size: 16.67px;">Cryptography</a> <a href="/tags/DAG/" style="font-size: 10px;">DAG</a> <a href="/tags/Decentralization/" style="font-size: 10px;">Decentralization</a> <a href="/tags/Delegatable-Anonymous-Credentials/" style="font-size: 10px;">Delegatable Anonymous Credentials</a> <a href="/tags/Distributed-Randomness/" style="font-size: 10px;">Distributed Randomness</a> <a href="/tags/ECDSA/" style="font-size: 10px;">ECDSA</a> <a href="/tags/Elliptic-Curve/" style="font-size: 13.33px;">Elliptic Curve</a> <a href="/tags/Ethereum/" style="font-size: 10px;">Ethereum</a> <a href="/tags/FC/" style="font-size: 10px;">FC</a> <a href="/tags/Factorization/" style="font-size: 10px;">Factorization</a> <a href="/tags/Garbled-Circuits/" style="font-size: 10px;">Garbled Circuits</a> <a href="/tags/HTLC/" style="font-size: 11.67px;">HTLC</a> <a href="/tags/Homomorphic-Encryption/" style="font-size: 10px;">Homomorphic Encryption</a> <a href="/tags/MPC/" style="font-size: 16.67px;">MPC</a> <a href="/tags/Measurement/" style="font-size: 10px;">Measurement</a> <a href="/tags/Merkle-Puzzles/" style="font-size: 10px;">Merkle Puzzles</a> <a href="/tags/Mining-Pool/" style="font-size: 10px;">Mining Pool</a> <a href="/tags/MultiSig/" style="font-size: 13.33px;">MultiSig</a> <a href="/tags/NDSS/" style="font-size: 11.67px;">NDSS</a> <a href="/tags/Numerical-Algorithms/" style="font-size: 10px;">Numerical Algorithms</a> <a href="/tags/Oblivious-Transfer/" style="font-size: 10px;">Oblivious Transfer</a> <a href="/tags/Off-chain-Payment/" style="font-size: 10px;">Off-chain Payment</a> <a href="/tags/P2P-Mixing/" style="font-size: 10px;">P2P Mixing</a> <a href="/tags/P2P-Network/" style="font-size: 10px;">P2P Network</a> <a href="/tags/Pairing/" style="font-size: 13.33px;">Pairing</a> <a href="/tags/Payment-Channel/" style="font-size: 10px;">Payment Channel</a> <a href="/tags/Payment-Channels/" style="font-size: 10px;">Payment Channels</a> <a href="/tags/PoS/" style="font-size: 10px;">PoS</a> <a href="/tags/Privacy/" style="font-size: 10px;">Privacy</a> <a href="/tags/Public-Blockchains/" style="font-size: 10px;">Public Blockchains</a> <a href="/tags/Public-Key-Cryptography/" style="font-size: 10px;">Public-Key Cryptography</a> <a href="/tags/RSMC/" style="font-size: 10px;">RSMC</a> <a href="/tags/SPDZ/" style="font-size: 10px;">SPDZ</a> <a href="/tags/Scalability/" style="font-size: 18.33px;">Scalability</a> <a href="/tags/Schnorr/" style="font-size: 11.67px;">Schnorr</a> <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/Security-Privacy/" style="font-size: 10px;">Security&Privacy</a> <a href="/tags/Sharding/" style="font-size: 13.33px;">Sharding</a> <a href="/tags/Short-Signatures/" style="font-size: 10px;">Short Signatures</a> <a href="/tags/Signature-Aggregation/" style="font-size: 10px;">Signature Aggregation</a> <a href="/tags/Smart-Contracts/" style="font-size: 15px;">Smart Contracts</a> <a href="/tags/Solidity/" style="font-size: 10px;">Solidity</a> <a href="/tags/Threshold-Encryption/" style="font-size: 10px;">Threshold Encryption</a> <a href="/tags/USENIX-Security/" style="font-size: 15px;">USENIX Security</a> <a href="/tags/Universal-Composability/" style="font-size: 10px;">Universal Composability</a> <a href="/tags/Unlinkable-Transactions/" style="font-size: 10px;">Unlinkable Transactions</a> <a href="/tags/VRF/" style="font-size: 10px;">VRF</a> <a href="/tags/VSS/" style="font-size: 10px;">VSS</a> <a href="/tags/Zcash/" style="font-size: 10px;">Zcash</a> <a href="/tags/Zero-Knowledge/" style="font-size: 10px;">Zero Knowledge</a> <a href="/tags/zkSNARKs/" style="font-size: 10px;">zkSNARKs</a>
+      <a href="/tags/Atomic-Multicast/" style="font-size: 10px;">Atomic Multicast</a> <a href="/tags/Atomic-Swap/" style="font-size: 10px;">Atomic Swap</a> <a href="/tags/Attack/" style="font-size: 11.67px;">Attack</a> <a href="/tags/Authenticated-Data-Structure/" style="font-size: 10px;">Authenticated Data Structure</a> <a href="/tags/BFT/" style="font-size: 10px;">BFT</a> <a href="/tags/BGW-Protocol/" style="font-size: 10px;">BGW Protocol</a> <a href="/tags/BLS/" style="font-size: 13.33px;">BLS</a> <a href="/tags/Barreto-Naehrig-Curve/" style="font-size: 10px;">Barreto-Naehrig Curve</a> <a href="/tags/Bitcoin/" style="font-size: 13.33px;">Bitcoin</a> <a href="/tags/Blockchain/" style="font-size: 20px;">Blockchain</a> <a href="/tags/CCS/" style="font-size: 16.67px;">CCS</a> <a href="/tags/CRYPTO/" style="font-size: 10px;">CRYPTO</a> <a href="/tags/Confidential-Transactions/" style="font-size: 13.33px;">Confidential Transactions</a> <a href="/tags/Consensus/" style="font-size: 16.67px;">Consensus</a> <a href="/tags/Consistency/" style="font-size: 10px;">Consistency</a> <a href="/tags/CryptoNote/" style="font-size: 10px;">CryptoNote</a> <a href="/tags/Cryptography/" style="font-size: 16.67px;">Cryptography</a> <a href="/tags/DAG/" style="font-size: 10px;">DAG</a> <a href="/tags/Decentralization/" style="font-size: 10px;">Decentralization</a> <a href="/tags/Delegatable-Anonymous-Credentials/" style="font-size: 10px;">Delegatable Anonymous Credentials</a> <a href="/tags/Distributed-Randomness/" style="font-size: 10px;">Distributed Randomness</a> <a href="/tags/ECDSA/" style="font-size: 10px;">ECDSA</a> <a href="/tags/Elliptic-Curve/" style="font-size: 13.33px;">Elliptic Curve</a> <a href="/tags/Ethereum/" style="font-size: 10px;">Ethereum</a> <a href="/tags/FC/" style="font-size: 10px;">FC</a> <a href="/tags/Factorization/" style="font-size: 10px;">Factorization</a> <a href="/tags/Garbled-Circuits/" style="font-size: 10px;">Garbled Circuits</a> <a href="/tags/HTLC/" style="font-size: 11.67px;">HTLC</a> <a href="/tags/Homomorphic-Encryption/" style="font-size: 10px;">Homomorphic Encryption</a> <a href="/tags/MPC/" style="font-size: 16.67px;">MPC</a> <a href="/tags/Measurement/" style="font-size: 10px;">Measurement</a> <a href="/tags/Merkle-Puzzles/" style="font-size: 10px;">Merkle Puzzles</a> <a href="/tags/Mining-Pool/" style="font-size: 10px;">Mining Pool</a> <a href="/tags/MultiSig/" style="font-size: 13.33px;">MultiSig</a> <a href="/tags/NDSS/" style="font-size: 11.67px;">NDSS</a> <a href="/tags/Numerical-Algorithms/" style="font-size: 10px;">Numerical Algorithms</a> <a href="/tags/Oblivious-Transfer/" style="font-size: 10px;">Oblivious Transfer</a> <a href="/tags/Off-chain-Payment/" style="font-size: 10px;">Off-chain Payment</a> <a href="/tags/P2P-Mixing/" style="font-size: 10px;">P2P Mixing</a> <a href="/tags/P2P-Network/" style="font-size: 10px;">P2P Network</a> <a href="/tags/Pairing/" style="font-size: 13.33px;">Pairing</a> <a href="/tags/Payment-Channel/" style="font-size: 10px;">Payment Channel</a> <a href="/tags/Payment-Channels/" style="font-size: 10px;">Payment Channels</a> <a href="/tags/PoS/" style="font-size: 10px;">PoS</a> <a href="/tags/Privacy/" style="font-size: 10px;">Privacy</a> <a href="/tags/Public-Blockchains/" style="font-size: 10px;">Public Blockchains</a> <a href="/tags/Public-Key-Cryptography/" style="font-size: 10px;">Public-Key Cryptography</a> <a href="/tags/RSMC/" style="font-size: 10px;">RSMC</a> <a href="/tags/SPDZ/" style="font-size: 10px;">SPDZ</a> <a href="/tags/Scalability/" style="font-size: 18.33px;">Scalability</a> <a href="/tags/Schnorr/" style="font-size: 11.67px;">Schnorr</a> <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/Security-Privacy/" style="font-size: 10px;">Security&Privacy</a> <a href="/tags/Sharding/" style="font-size: 13.33px;">Sharding</a> <a href="/tags/Short-Signatures/" style="font-size: 10px;">Short Signatures</a> <a href="/tags/Signature-Aggregation/" style="font-size: 10px;">Signature Aggregation</a> <a href="/tags/Smart-Contracts/" style="font-size: 15px;">Smart Contracts</a> <a href="/tags/Solidity/" style="font-size: 10px;">Solidity</a> <a href="/tags/Threshold-Encryption/" style="font-size: 10px;">Threshold Encryption</a> <a href="/tags/USENIX-Security/" style="font-size: 15px;">USENIX Security</a> <a href="/tags/Universal-Composability/" style="font-size: 10px;">Universal Composability</a> <a href="/tags/Unlinkable-Transactions/" style="font-size: 10px;">Unlinkable Transactions</a> <a href="/tags/VRF/" style="font-size: 10px;">VRF</a> <a href="/tags/VSS/" style="font-size: 10px;">VSS</a> <a href="/tags/Zcash/" style="font-size: 10px;">Zcash</a> <a href="/tags/Zero-Knowledge/" style="font-size: 11.67px;">Zero Knowledge</a> <a href="/tags/zkSNARKs/" style="font-size: 10px;">zkSNARKs</a>
     </div>
   </div>
 
@@ -1149,7 +1134,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
     </div>
   </div>
 
@@ -1160,6 +1145,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/03/15/Fiat-Shamir-Heuristic/">Fiat-Shamir Heuristic</a>
+          </li>
         
           <li>
             <a href="/2019/02/26/Merkle-Puzzles/">Merkle Puzzles</a>
@@ -1175,10 +1164,6 @@
         
           <li>
             <a href="/2019/01/13/SOSP-17-Algorand-Scaling-Byzantine-Agreements-for-Cryptocurrencies/">SOSP&#39;17 - Algorand: Scaling Byzantine Agreements for Cryptocurrencies</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/13/Preprint-Scaling-Nakamoto-Consensus-to-Thousands-of-Transactions-per-Second/">Preprint - Scaling Nakamoto Consensus to Thousands of Transactions per Second</a>
           </li>
         
       </ul>
@@ -1221,22 +1206,7 @@
 
 
 
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>

@@ -5,20 +5,15 @@
   
 
   
-  <title>USENIX Security&#39;17 - SmartPool: Practical Decentralized Pooled Mining | Runchao Han&#39;s Blog</title>
+  <title>Archives: 2019/3 | Runchao Han&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Info Title: SmartPool: Practical Decentralized Pooled Mining Conference: USENIX Security Year: 2017 Topic: Cryptography and Security (cs.CR) URL: https://eprint.iacr.org/2017/019.pdf Source code: http">
-<meta name="keywords" content="Blockchain,USENIX Security,Mining Pool">
-<meta property="og:type" content="article">
-<meta property="og:title" content="USENIX Security&#39;17 - SmartPool: Practical Decentralized Pooled Mining">
-<meta property="og:url" content="http://SebastianElvis.github.io/2018/11/17/USENIX-Security-17-SmartPool-Practical-Decentralized-Pooled-Mining/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Runchao Han&#39;s Blog">
+<meta property="og:url" content="http://SebastianElvis.github.io/archives/2019/03/index.html">
 <meta property="og:site_name" content="Runchao Han&#39;s Blog">
-<meta property="og:description" content="Info Title: SmartPool: Practical Decentralized Pooled Mining Conference: USENIX Security Year: 2017 Topic: Cryptography and Security (cs.CR) URL: https://eprint.iacr.org/2017/019.pdf Source code: http">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-25T03:06:18.589Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="USENIX Security&#39;17 - SmartPool: Practical Decentralized Pooled Mining">
-<meta name="twitter:description" content="Info Title: SmartPool: Practical Decentralized Pooled Mining Conference: USENIX Security Year: 2017 Topic: Cryptography and Security (cs.CR) URL: https://eprint.iacr.org/2017/019.pdf Source code: http">
+<meta name="twitter:title" content="Runchao Han&#39;s Blog">
   
     <link rel="alternate" href="/atom.xml" title="Runchao Han&#39;s Blog" type="application/atom+xml">
   
@@ -67,170 +62,40 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-USENIX-Security-17-SmartPool-Practical-Decentralized-Pooled-Mining" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/11/17/USENIX-Security-17-SmartPool-Practical-Decentralized-Pooled-Mining/" class="article-date">
-  <time datetime="2018-11-17T06:32:17.000Z" itemprop="datePublished">2018-11-17</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/paper-reading/">paper reading</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
   
-    <h1 class="article-title" itemprop="name">
-      USENIX Security&#39;17 - SmartPool: Practical Decentralized Pooled Mining
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2019/03/15/Fiat-Shamir-Heuristic/" class="archive-article-date">
+  <time datetime="2019-03-14T23:26:18.000Z" itemprop="datePublished">Mar 15</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2019/03/15/Fiat-Shamir-Heuristic/">Fiat-Shamir Heuristic</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Info"><a href="#Info" class="headerlink" title="Info"></a>Info</h1><ul>
-<li><strong>Title</strong>: SmartPool: Practical Decentralized Pooled Mining</li>
-<li><strong>Conference</strong>: USENIX Security</li>
-<li><strong>Year</strong>: 2017</li>
-<li><strong>Topic</strong>: Cryptography and Security (cs.CR)</li>
-<li><strong>URL</strong>: <a href="https://eprint.iacr.org/2017/019.pdf" target="_blank" rel="noopener">https://eprint.iacr.org/2017/019.pdf</a></li>
-<li><strong>Source code</strong>: <a href="https://github.com/SmartPool" target="_blank" rel="noopener">https://github.com/SmartPool</a></li>
-</ul>
-<h1 id="Addressed-Problems"><a href="#Addressed-Problems" class="headerlink" title="Addressed Problems"></a>Addressed Problems</h1><ul>
-<li>Centralized pool operators direct the massive computational power of their pools&#x2019; participants<ul>
-<li>Bitcoin derives at least 95% of its mining power from only 10 mining pools</li>
-<li>Ethereum network has 80% of its mining power emanating from 6 pools</li>
-</ul>
-</li>
-<li>Recent work by Apostolaki et al. has demonstrated large-scale network attacks on cryptocurrencies<ul>
-<li>e.g. double spending and network partitioning</li>
-</ul>
-</li>
-<li>Pools currently dictate which transactions get included in the blockchain, thus increasing the threat of transaction censorship significantly</li>
-<li>Existing decentralized mining pools are not widely applied, as technical challenges have hindered widespread adoption.<ul>
-<li>Scalable participation under P2POOL&#x2019;s current design would require the system to check a massive number of sub-puzzles</li>
-<li>P2POOL only works for Bitcoin; we are not aware of any decentralized mining approach for Ethereum.</li>
-</ul>
-</li>
-</ul>
-<h1 id="Challenges"><a href="#Challenges" class="headerlink" title="Challenges"></a>Challenges</h1><ul>
-<li>Decentralization</li>
-<li>Efficiency</li>
-<li>Security</li>
-<li>Fairness</li>
-</ul>
-<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ul>
-<li>we observe that it is possible to run a decentralized pool mining protocol as a smart contract on the Ethereum cryptocurrency<ul>
-<li>Our solution layers its security on the existing mining network of a large and widely deployed cryp-tocurrency network, thereby mitigating the difficulty of bootstrapping a new mining network from scratch.</li>
-</ul>
-</li>
-<li>we propose a design that is efficient and scales to a large number of participants.<ul>
-<li>Our design uses a simple yet powerful probabilistic verification technique which guarantees the fairness of the payoff.</li>
-<li>We also introduce a new data structure, the augmented Merkle tree, for secure and efficient verification.</li>
-<li>SMARTPOOL allows miners to freely select which transaction set they want to include in a block.</li>
-<li>SMARTPOOL does not charge any fees, unlike centralized pools, and disburses all block rewards to pool participants entirely.</li>
-</ul>
-</li>
-<li>We demonstrate the standard pay-per-share (or PPS) scheme in our implementation. <ul>
-<li>Supporting other standard schemes like pay-per-last-n-shares (PPLNS) and schemes that disincentivize against block withholding attacks [9&#x2013;11] is left for future work.</li>
-</ul>
-</li>
-<li>We implemented SMARTPOOL and deployed real mining pools on <strong>Ethereum and Ethereum Classic</strong>. The pools have so far mined 105 real blocks and have handled significant hashrates while deferring only 0.6% of block rewards to transaction fee costs.</li>
-</ul>
-<h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><ul>
-<li>SMARTPOOL is a smart contract which implements a decentralized mining pool for Ethereum and runs on the Ethereum network.<ul>
-<li>SMARTPOOL maintains two main lists in its contract state<ul>
-<li><em>claimList</em><ul>
-<li>When a miner submits a set of shares as claim for the current Ethereum block, it is added to the claimList</li>
-<li>Each claim allows miners to submit a batch of (say, 1 million) shares.</li>
-<li>acts as a cryptographic commitment to the set of shares claimed to be found by the miner</li>
-<li>Each claim specifies <strong>the number of shares</strong> the miner claims to have found, and it has a particular structure that aids verification in a subsequent step</li>
-</ul>
-</li>
-<li><em>verClaimList</em><ul>
-<li>SMARTPOOL then proceeds to verify the validity of the claim</li>
-<li>once verified, it moves it to the <em>verClaimList</em></li>
-<li>Claim verification and payments for verified claims happen <strong>atomically</strong> in a <strong>single Ethereum transaction</strong>.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Chaim submissions<ul>
-<li>SMARTPOOL defines a <em>Claim</em> structure which consists of a few pieces of data</li>
-<li>The miner cryptographically commits to the set of shares he is claiming.<ul>
-<li>The cryptographic commitment goes via a specific data structure we call an <strong>augmented Merkle tree</strong>, as discussed in Section 3.5.</li>
-</ul>
-</li>
-<li><strong>Probabilistic verification</strong><ul>
-<li>Searching for existing shares</li>
-<li>Checking validity of shares</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Augmented Merkle Tree<ul>
-<li>Each share is mapped to an integer</li>
-<li>Each node has the form {$mix(x)$, $hash(x)$, $max(x)$}</li>
-<li>$mix(x)$/$max(x)$ is the minimum/maximum of x&#x2019;s children</li>
-<li>An augmented Merkle tree is called <em>sorted</em> if all of its leaves occur in strictly increasing order from left to right with respect to its counter function</li>
-<li><em>Batch submission</em> with <em>Augmented Merkle Tree</em></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h1 id="Relevance"><a href="#Relevance" class="headerlink" title="Relevance"></a>Relevance</h1><ul>
-<li>I&#x2019;m a core developer of <a href="matpool.io">MATPool</a>, which is the mining pool for <a href="bytom.io">Bytom</a></li>
-<li>Decentralize the mining pool is critical for the cryptocurrency ecosystem, in order to circumvent the censorship</li>
-</ul>
-<h1 id="To-discuss-investigate"><a href="#To-discuss-investigate" class="headerlink" title="To discuss/investigate"></a>To discuss/investigate</h1><ul>
-<li>I don&#x2019;t think overlaying the mining pool upon the Ethereum smart contracts can achieve acceptable efficiency<ul>
-<li>Mining pool&#x2019;s reward highly relies on the network latency, and the smart contract&#x2019;s efficiency will make the mining reward dropping radically</li>
-</ul>
-</li>
-<li>What if we keep using the centralized mining pool, but leave the disputes to smart contracts?</li>
-<li>It is not necessary to decentralize the mining pool by the smart contracts, but we can utilize existing P2P systems like Kademlia</li>
-<li>What if we develop a hierarchical mining pool which can overlay each other?</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/11/17/USENIX-Security-17-SmartPool-Practical-Decentralized-Pooled-Mining/" data-id="cjt9ahetf008midjoblqwawj4" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blockchain/">Blockchain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mining-Pool/">Mining Pool</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/USENIX-Security/">USENIX Security</a></li></ul>
-
-    </footer>
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2018/11/18/NDSS-17-TumbleBit-An-Untrusted-Bitcoin-Compatible-Anonymous-Payment-Hub/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          NDSS&#39;17 - TumbleBit: An Untrusted Bitcoin-Compatible Anonymous Payment Hub
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2018/11/17/CCS-17-Revive-Rebalancing-Off-Blockchain-Payment-Networks/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">CCS&#39;17 - Revive: Rebalancing Off-Blockchain Payment Networks</div>
-    </a>
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
+
 
 </section>
         
@@ -341,23 +206,6 @@
 
 
 
-  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

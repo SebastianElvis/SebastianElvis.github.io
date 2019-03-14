@@ -64,6 +64,83 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-CRYPTO-12-Multiparty-Computation-from-Somewhat-Homomorphic-Encryption" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/02/CRYPTO-12-Multiparty-Computation-from-Somewhat-Homomorphic-Encryption/" class="article-date">
+  <time datetime="2018-12-02T03:09:14.000Z" itemprop="datePublished">2018-12-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/paper-reading/">paper reading</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/02/CRYPTO-12-Multiparty-Computation-from-Somewhat-Homomorphic-Encryption/">CRYPTO&#39;12 - Multiparty Computation from Somewhat Homomorphic Encryption</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Info"><a href="#Info" class="headerlink" title="Info"></a>Info</h1><ul>
+<li><strong>Title</strong>: Multiparty Computation from Somewhat Homomorphic Encryption</li>
+<li><strong>Conference</strong>: CRYPTO</li>
+<li><strong>Year</strong>: 2012</li>
+<li><strong>Topic</strong>: Cryptography and Security (cs.CR)</li>
+<li><strong>URL</strong>: <a href="https://eprint.iacr.org/2011/535.pdf" target="_blank" rel="noopener">https://eprint.iacr.org/2011/535.pdf</a></li>
+<li><strong>Source code</strong>: <a href="https://github.com/bristolcrypto/SPDZ-2" target="_blank" rel="noopener">https://github.com/bristolcrypto/SPDZ-2</a></li>
+</ul>
+<h1 id="Addressed-Problems"><a href="#Addressed-Problems" class="headerlink" title="Addressed Problems"></a>Addressed Problems</h1><ul>
+<li>Recently, a new approach has been proposed making such protocols more practical. This approach works as follows: one first designs a general MPC protocol in the preprocessing model, where access to a &#x201C;trusted dealer&#x201D; is assumed.<ul>
+<li>The dealer does not need to know the function to be computed, nor the inputs, he just supplies raw material for the computation before it starts. </li>
+<li>This allows the &#x201C;online&#x201D; protocol to use only cheap information theoretic primitives and hence be efficient. F</li>
+<li>One implements the trusted dealer by a secure protocol using public-key techniques, this protocol can then be run in a preprocessing phase.</li>
+</ul>
+</li>
+<li>Recently, another approach has become possible with the advent of Fully Homomorphic Encryption (FHE) by Gentry [15]. <ul>
+<li>The advantage of the FHE-based approach is that interaction is only needed to supply inputs and get output. </li>
+<li>However, However, the low bandwidth consumption comes at a price; current FHE schemes are very slow and can only evaluate small circuits, i.e., they actually only provide what is known as somewhat homomorphic encryption (SHE).</li>
+</ul>
+</li>
+</ul>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ul>
+<li>We propose an MPC protocol in the preprocessing model that computes securely an arithmetic circuit C over any finite field $\mathcal{F}_{p^{k}}$.<ul>
+<li>The protocol is statistically UC-secure against active and adaptive corruption of up to n&#x2212;1 of the n players</li>
+<li>We assume synchronous communication and secure point-to-point channels.</li>
+</ul>
+</li>
+<li>As a conceptual contribution we propose what we believe is <strong>the right way</strong> to use FHE/SHE for computationally efficient MPC, namely to use it for <strong>implementing a preprocessing phase</strong>.</li>
+<li>We obtain a constant-round preprocessing protocol that is UC-secure against active and static corruption of $n&#x2212;1$ players assuming the underlying cryptosystem is semantically secure, which follows from the polynomial (PLWE) assumption.</li>
+<li>Both the preprocessing and online phase have been implemented and tested for 3 players on up-to-date machines connected on a LAN.</li>
+</ul>
+<h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><h1 id="Relevance"><a href="#Relevance" class="headerlink" title="Relevance"></a>Relevance</h1><ul>
+<li>FHE may have potential to construct consensus scheme</li>
+<li>However, currently too complex and inefficient&#x2026;</li>
+</ul>
+<h1 id="To-discuss-investigate"><a href="#To-discuss-investigate" class="headerlink" title="To discuss/investigate"></a>To discuss/investigate</h1>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://SebastianElvis.github.io/2018/12/02/CRYPTO-12-Multiparty-Computation-from-Somewhat-Homomorphic-Encryption/" data-id="cjt9aher1000gidjohntf4wiy" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CRYPTO/">CRYPTO</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Homomorphic-Encryption/">Homomorphic Encryption</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MPC/">MPC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SPDZ/">SPDZ</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-LATINCRYPT-15-The-Simplest-Protocol-for-Oblivious-Transfer" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/12/01/LATINCRYPT-15-The-Simplest-Protocol-for-Oblivious-Transfer/" class="article-date">
@@ -139,7 +216,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/12/01/LATINCRYPT-15-The-Simplest-Protocol-for-Oblivious-Transfer/" data-id="cjsl3k078001bi8jouqlkdwd1" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/12/01/LATINCRYPT-15-The-Simplest-Protocol-for-Oblivious-Transfer/" data-id="cjt9aheri001eidjoqbdidlay" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MPC/">MPC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oblivious-Transfer/">Oblivious Transfer</a></li></ul>
@@ -282,7 +359,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/11/30/Journal-of-Cryptology-17-A-Full-Proof-of-the-BGW-Protocol-for-Perfectly-Secure-Multiparty-Computation/" data-id="cjsl3k0770014i8jo8rikhy73" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/11/30/Journal-of-Cryptology-17-A-Full-Proof-of-the-BGW-Protocol-for-Perfectly-Secure-Multiparty-Computation/" data-id="cjt9aherk001kidjooad4bck6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BGW-Protocol/">BGW Protocol</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MPC/">MPC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VSS/">VSS</a></li></ul>
@@ -369,7 +446,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/11/21/FC-19-New-Empirical-Traceability-Analysis-of-CryptoNote-Style-Blockchains/" data-id="cjsl3k0770017i8jokw4bbhcq" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/11/21/FC-19-New-Empirical-Traceability-Analysis-of-CryptoNote-Style-Blockchains/" data-id="cjt9aherh001cidjo4sk12lm3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Confidential-Transactions/">Confidential Transactions</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CryptoNote/">CryptoNote</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FC/">FC</a></li></ul>
@@ -506,7 +583,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/11/20/CCS-17-Practical-UC-Secure-Delegatable-Credentials-with-Attributes-and-Their-Application-to-Blockchain/" data-id="cjsl3k09d008zi8jor5bc2i37" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/11/20/CCS-17-Practical-UC-Secure-Delegatable-Credentials-with-Attributes-and-Their-Application-to-Blockchain/" data-id="cjt9ahetb008hidjol7nttskb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CCS/">CCS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Delegatable-Anonymous-Credentials/">Delegatable Anonymous Credentials</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Universal-Composability/">Universal Composability</a></li></ul>
@@ -606,7 +683,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/11/18/NDSS-17-TumbleBit-An-Untrusted-Bitcoin-Compatible-Anonymous-Payment-Hub/" data-id="cjsl3k07h001xi8jobused975" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/11/18/NDSS-17-TumbleBit-An-Untrusted-Bitcoin-Compatible-Anonymous-Payment-Hub/" data-id="cjt9ahern001widjoffgewf5o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blockchain/">Blockchain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Confidential-Transactions/">Confidential Transactions</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NDSS/">NDSS</a></li></ul>
@@ -752,7 +829,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/11/17/USENIX-Security-17-SmartPool-Practical-Decentralized-Pooled-Mining/" data-id="cjsl3k07z0038i8jowkz2qmg3" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/11/17/USENIX-Security-17-SmartPool-Practical-Decentralized-Pooled-Mining/" data-id="cjt9ahetf008midjoblqwawj4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blockchain/">Blockchain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mining-Pool/">Mining Pool</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/USENIX-Security/">USENIX Security</a></li></ul>
@@ -867,7 +944,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/11/17/CCS-17-Revive-Rebalancing-Off-Blockchain-Payment-Networks/" data-id="cjsl3k06v000ai8joq25hbu0k" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/11/17/CCS-17-Revive-Rebalancing-Off-Blockchain-Payment-Networks/" data-id="cjt9aheqx000aidjomye00tye" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blockchain/">Blockchain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CCS/">CCS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Payment-Channels/">Payment Channels</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Smart-Contracts/">Smart Contracts</a></li></ul>
@@ -996,7 +1073,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/11/17/CCS-18-RapidChain-Scaling-Blockchain-via-Full-Sharding/" data-id="cjsl3k06z000hi8jo6oa3gmx9" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/11/17/CCS-18-RapidChain-Scaling-Blockchain-via-Full-Sharding/" data-id="cjt9aher3000kidjorbvm0zzp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blockchain/">Blockchain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CCS/">CCS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scalability/">Scalability</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sharding/">Sharding</a></li></ul>
@@ -1073,70 +1150,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/11/11/Bilinear-Pairing-Explained/" data-id="cjsl3k06s0005i8jo115hlvon" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/11/11/Bilinear-Pairing-Explained/" data-id="cjt9aheqq0002idjoyebnhc8q" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cryptography/">Cryptography</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Elliptic-Curve/">Elliptic Curve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Public-Key-Cryptography/">Public-Key Cryptography</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Polland-Rho-Algorithm" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/11/11/Polland-Rho-Algorithm/" class="article-date">
-  <time datetime="2018-11-11T02:48:32.000Z" itemprop="datePublished">2018-11-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/cryptography/">cryptography</a>►<a class="article-category-link" href="/categories/cryptography/numerical-algorithms/">numerical algorithms</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/11/Polland-Rho-Algorithm/">Polland Rho Algorithm</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><ul>
-<li>Pollard&#x2019;s rho algorithm is an algorithm for integer factorization. It was invented by John Pollard in 1975.</li>
-<li>It uses only a small amount of space, and its expected running time is proportional to the square root of the size of the smallest prime factor of the composite number being factorized.</li>
-</ul>
-<h1 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h1><p>Assume $g(x)$ is a sequential random number generator.<br>For example:</p>
-<ul>
-<li>$x_{1} = g(x_{0})$</li>
-<li>$x_{2} = g(x_{1})$</li>
-<li>&#x2026;</li>
-</ul>
-<p>The Polland Rho algorithm is</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">factor</span><span class="params">(N)</span>:</span></span><br><span class="line">    x=y=<span class="number">2</span>, d=<span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> d == <span class="number">1</span>:</span><br><span class="line">        x = g(x)</span><br><span class="line">        y = g(g(y))</span><br><span class="line">        d = GCD(|x-y|, N)</span><br><span class="line">    <span class="keyword">if</span> d == N:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> d</span><br></pre></td></tr></table></figure>
-<p>However $g(x)$ may have cycles. We need a cycle detection algorithm, e.g. <strong>the Floyd&#x2019;s cycle-finding algorithm</strong>.</p>
-<h1 id="Variants"><a href="#Variants" class="headerlink" title="Variants"></a>Variants</h1><ul>
-<li>In 1980, Richard Brent published a faster variant of the rho algorithm. He used the same core ideas as Pollard but a different method of cycle detection, replacing Floyd&#x2019;s cycle-finding algorithm with the related Brent&#x2019;s cycle finding method.</li>
-</ul>
-<h1 id="Complexity"><a href="#Complexity" class="headerlink" title="Complexity"></a>Complexity</h1><p>The algorithm offers a <strong>trade-off</strong> between its <strong>running time</strong> and the <strong>probability</strong> that it finds a factor. </p>
-<p>A prime divisor can be achieved with a probability around 0.5, in $O(\sqrt{d}) \leq O(n^{\frac{1}{4}})$ iterations. This is a heuristic claim, and rigorous analysis of the algorithm remains open, based on the <strong>Birthday paradox</strong>.</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/11/11/Polland-Rho-Algorithm/" data-id="cjsl3k07q002mi8jotmd7vv5s" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cryptography/">Cryptography</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Factorization/">Factorization</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Numerical-Algorithms/">Numerical Algorithms</a></li></ul>
 
     </footer>
   </div>
@@ -1180,7 +1197,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Atomic-Multicast/" style="font-size: 10px;">Atomic Multicast</a> <a href="/tags/Atomic-Swap/" style="font-size: 10px;">Atomic Swap</a> <a href="/tags/Attack/" style="font-size: 11.67px;">Attack</a> <a href="/tags/Authenticated-Data-Structure/" style="font-size: 10px;">Authenticated Data Structure</a> <a href="/tags/BFT/" style="font-size: 10px;">BFT</a> <a href="/tags/BGW-Protocol/" style="font-size: 10px;">BGW Protocol</a> <a href="/tags/BLS/" style="font-size: 13.33px;">BLS</a> <a href="/tags/Barreto-Naehrig-Curve/" style="font-size: 10px;">Barreto-Naehrig Curve</a> <a href="/tags/Bitcoin/" style="font-size: 13.33px;">Bitcoin</a> <a href="/tags/Blockchain/" style="font-size: 20px;">Blockchain</a> <a href="/tags/CCS/" style="font-size: 16.67px;">CCS</a> <a href="/tags/CRYPTO/" style="font-size: 10px;">CRYPTO</a> <a href="/tags/Confidential-Transactions/" style="font-size: 13.33px;">Confidential Transactions</a> <a href="/tags/Consensus/" style="font-size: 16.67px;">Consensus</a> <a href="/tags/Consistency/" style="font-size: 10px;">Consistency</a> <a href="/tags/CryptoNote/" style="font-size: 10px;">CryptoNote</a> <a href="/tags/Cryptography/" style="font-size: 16.67px;">Cryptography</a> <a href="/tags/DAG/" style="font-size: 10px;">DAG</a> <a href="/tags/Decentralization/" style="font-size: 10px;">Decentralization</a> <a href="/tags/Delegatable-Anonymous-Credentials/" style="font-size: 10px;">Delegatable Anonymous Credentials</a> <a href="/tags/Distributed-Randomness/" style="font-size: 10px;">Distributed Randomness</a> <a href="/tags/ECDSA/" style="font-size: 10px;">ECDSA</a> <a href="/tags/Elliptic-Curve/" style="font-size: 13.33px;">Elliptic Curve</a> <a href="/tags/Ethereum/" style="font-size: 10px;">Ethereum</a> <a href="/tags/FC/" style="font-size: 10px;">FC</a> <a href="/tags/Factorization/" style="font-size: 10px;">Factorization</a> <a href="/tags/Garbled-Circuits/" style="font-size: 10px;">Garbled Circuits</a> <a href="/tags/HTLC/" style="font-size: 11.67px;">HTLC</a> <a href="/tags/Homomorphic-Encryption/" style="font-size: 10px;">Homomorphic Encryption</a> <a href="/tags/MPC/" style="font-size: 16.67px;">MPC</a> <a href="/tags/Measurement/" style="font-size: 10px;">Measurement</a> <a href="/tags/Merkle-Puzzles/" style="font-size: 10px;">Merkle Puzzles</a> <a href="/tags/Mining-Pool/" style="font-size: 10px;">Mining Pool</a> <a href="/tags/MultiSig/" style="font-size: 13.33px;">MultiSig</a> <a href="/tags/NDSS/" style="font-size: 11.67px;">NDSS</a> <a href="/tags/Numerical-Algorithms/" style="font-size: 10px;">Numerical Algorithms</a> <a href="/tags/Oblivious-Transfer/" style="font-size: 10px;">Oblivious Transfer</a> <a href="/tags/Off-chain-Payment/" style="font-size: 10px;">Off-chain Payment</a> <a href="/tags/P2P-Mixing/" style="font-size: 10px;">P2P Mixing</a> <a href="/tags/P2P-Network/" style="font-size: 10px;">P2P Network</a> <a href="/tags/Pairing/" style="font-size: 13.33px;">Pairing</a> <a href="/tags/Payment-Channel/" style="font-size: 10px;">Payment Channel</a> <a href="/tags/Payment-Channels/" style="font-size: 10px;">Payment Channels</a> <a href="/tags/PoS/" style="font-size: 10px;">PoS</a> <a href="/tags/Privacy/" style="font-size: 10px;">Privacy</a> <a href="/tags/Public-Blockchains/" style="font-size: 10px;">Public Blockchains</a> <a href="/tags/Public-Key-Cryptography/" style="font-size: 10px;">Public-Key Cryptography</a> <a href="/tags/RSMC/" style="font-size: 10px;">RSMC</a> <a href="/tags/SPDZ/" style="font-size: 10px;">SPDZ</a> <a href="/tags/Scalability/" style="font-size: 18.33px;">Scalability</a> <a href="/tags/Schnorr/" style="font-size: 11.67px;">Schnorr</a> <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/Security-Privacy/" style="font-size: 10px;">Security&Privacy</a> <a href="/tags/Sharding/" style="font-size: 13.33px;">Sharding</a> <a href="/tags/Short-Signatures/" style="font-size: 10px;">Short Signatures</a> <a href="/tags/Signature-Aggregation/" style="font-size: 10px;">Signature Aggregation</a> <a href="/tags/Smart-Contracts/" style="font-size: 15px;">Smart Contracts</a> <a href="/tags/Solidity/" style="font-size: 10px;">Solidity</a> <a href="/tags/Threshold-Encryption/" style="font-size: 10px;">Threshold Encryption</a> <a href="/tags/USENIX-Security/" style="font-size: 15px;">USENIX Security</a> <a href="/tags/Universal-Composability/" style="font-size: 10px;">Universal Composability</a> <a href="/tags/Unlinkable-Transactions/" style="font-size: 10px;">Unlinkable Transactions</a> <a href="/tags/VRF/" style="font-size: 10px;">VRF</a> <a href="/tags/VSS/" style="font-size: 10px;">VSS</a> <a href="/tags/Zcash/" style="font-size: 10px;">Zcash</a> <a href="/tags/Zero-Knowledge/" style="font-size: 10px;">Zero Knowledge</a> <a href="/tags/zkSNARKs/" style="font-size: 10px;">zkSNARKs</a>
+      <a href="/tags/Atomic-Multicast/" style="font-size: 10px;">Atomic Multicast</a> <a href="/tags/Atomic-Swap/" style="font-size: 10px;">Atomic Swap</a> <a href="/tags/Attack/" style="font-size: 11.67px;">Attack</a> <a href="/tags/Authenticated-Data-Structure/" style="font-size: 10px;">Authenticated Data Structure</a> <a href="/tags/BFT/" style="font-size: 10px;">BFT</a> <a href="/tags/BGW-Protocol/" style="font-size: 10px;">BGW Protocol</a> <a href="/tags/BLS/" style="font-size: 13.33px;">BLS</a> <a href="/tags/Barreto-Naehrig-Curve/" style="font-size: 10px;">Barreto-Naehrig Curve</a> <a href="/tags/Bitcoin/" style="font-size: 13.33px;">Bitcoin</a> <a href="/tags/Blockchain/" style="font-size: 20px;">Blockchain</a> <a href="/tags/CCS/" style="font-size: 16.67px;">CCS</a> <a href="/tags/CRYPTO/" style="font-size: 10px;">CRYPTO</a> <a href="/tags/Confidential-Transactions/" style="font-size: 13.33px;">Confidential Transactions</a> <a href="/tags/Consensus/" style="font-size: 16.67px;">Consensus</a> <a href="/tags/Consistency/" style="font-size: 10px;">Consistency</a> <a href="/tags/CryptoNote/" style="font-size: 10px;">CryptoNote</a> <a href="/tags/Cryptography/" style="font-size: 16.67px;">Cryptography</a> <a href="/tags/DAG/" style="font-size: 10px;">DAG</a> <a href="/tags/Decentralization/" style="font-size: 10px;">Decentralization</a> <a href="/tags/Delegatable-Anonymous-Credentials/" style="font-size: 10px;">Delegatable Anonymous Credentials</a> <a href="/tags/Distributed-Randomness/" style="font-size: 10px;">Distributed Randomness</a> <a href="/tags/ECDSA/" style="font-size: 10px;">ECDSA</a> <a href="/tags/Elliptic-Curve/" style="font-size: 13.33px;">Elliptic Curve</a> <a href="/tags/Ethereum/" style="font-size: 10px;">Ethereum</a> <a href="/tags/FC/" style="font-size: 10px;">FC</a> <a href="/tags/Factorization/" style="font-size: 10px;">Factorization</a> <a href="/tags/Garbled-Circuits/" style="font-size: 10px;">Garbled Circuits</a> <a href="/tags/HTLC/" style="font-size: 11.67px;">HTLC</a> <a href="/tags/Homomorphic-Encryption/" style="font-size: 10px;">Homomorphic Encryption</a> <a href="/tags/MPC/" style="font-size: 16.67px;">MPC</a> <a href="/tags/Measurement/" style="font-size: 10px;">Measurement</a> <a href="/tags/Merkle-Puzzles/" style="font-size: 10px;">Merkle Puzzles</a> <a href="/tags/Mining-Pool/" style="font-size: 10px;">Mining Pool</a> <a href="/tags/MultiSig/" style="font-size: 13.33px;">MultiSig</a> <a href="/tags/NDSS/" style="font-size: 11.67px;">NDSS</a> <a href="/tags/Numerical-Algorithms/" style="font-size: 10px;">Numerical Algorithms</a> <a href="/tags/Oblivious-Transfer/" style="font-size: 10px;">Oblivious Transfer</a> <a href="/tags/Off-chain-Payment/" style="font-size: 10px;">Off-chain Payment</a> <a href="/tags/P2P-Mixing/" style="font-size: 10px;">P2P Mixing</a> <a href="/tags/P2P-Network/" style="font-size: 10px;">P2P Network</a> <a href="/tags/Pairing/" style="font-size: 13.33px;">Pairing</a> <a href="/tags/Payment-Channel/" style="font-size: 10px;">Payment Channel</a> <a href="/tags/Payment-Channels/" style="font-size: 10px;">Payment Channels</a> <a href="/tags/PoS/" style="font-size: 10px;">PoS</a> <a href="/tags/Privacy/" style="font-size: 10px;">Privacy</a> <a href="/tags/Public-Blockchains/" style="font-size: 10px;">Public Blockchains</a> <a href="/tags/Public-Key-Cryptography/" style="font-size: 10px;">Public-Key Cryptography</a> <a href="/tags/RSMC/" style="font-size: 10px;">RSMC</a> <a href="/tags/SPDZ/" style="font-size: 10px;">SPDZ</a> <a href="/tags/Scalability/" style="font-size: 18.33px;">Scalability</a> <a href="/tags/Schnorr/" style="font-size: 11.67px;">Schnorr</a> <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/Security-Privacy/" style="font-size: 10px;">Security&Privacy</a> <a href="/tags/Sharding/" style="font-size: 13.33px;">Sharding</a> <a href="/tags/Short-Signatures/" style="font-size: 10px;">Short Signatures</a> <a href="/tags/Signature-Aggregation/" style="font-size: 10px;">Signature Aggregation</a> <a href="/tags/Smart-Contracts/" style="font-size: 15px;">Smart Contracts</a> <a href="/tags/Solidity/" style="font-size: 10px;">Solidity</a> <a href="/tags/Threshold-Encryption/" style="font-size: 10px;">Threshold Encryption</a> <a href="/tags/USENIX-Security/" style="font-size: 15px;">USENIX Security</a> <a href="/tags/Universal-Composability/" style="font-size: 10px;">Universal Composability</a> <a href="/tags/Unlinkable-Transactions/" style="font-size: 10px;">Unlinkable Transactions</a> <a href="/tags/VRF/" style="font-size: 10px;">VRF</a> <a href="/tags/VSS/" style="font-size: 10px;">VSS</a> <a href="/tags/Zcash/" style="font-size: 10px;">Zcash</a> <a href="/tags/Zero-Knowledge/" style="font-size: 11.67px;">Zero Knowledge</a> <a href="/tags/zkSNARKs/" style="font-size: 10px;">zkSNARKs</a>
     </div>
   </div>
 
@@ -1189,7 +1206,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
     </div>
   </div>
 
@@ -1200,6 +1217,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/03/15/Fiat-Shamir-Heuristic/">Fiat-Shamir Heuristic</a>
+          </li>
         
           <li>
             <a href="/2019/02/26/Merkle-Puzzles/">Merkle Puzzles</a>
@@ -1215,10 +1236,6 @@
         
           <li>
             <a href="/2019/01/13/SOSP-17-Algorand-Scaling-Byzantine-Agreements-for-Cryptocurrencies/">SOSP&#39;17 - Algorand: Scaling Byzantine Agreements for Cryptocurrencies</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/13/Preprint-Scaling-Nakamoto-Consensus-to-Thousands-of-Transactions-per-Second/">Preprint - Scaling Nakamoto Consensus to Thousands of Transactions per Second</a>
           </li>
         
       </ul>
@@ -1261,22 +1278,7 @@
 
 
 
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>
