@@ -64,6 +64,473 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-USENIX-Security-17-SmartPool-Practical-Decentralized-Pooled-Mining" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/17/USENIX-Security-17-SmartPool-Practical-Decentralized-Pooled-Mining/" class="article-date">
+  <time datetime="2018-11-17T06:32:17.000Z" itemprop="datePublished">2018-11-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/paper-reading/">paper reading</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/17/USENIX-Security-17-SmartPool-Practical-Decentralized-Pooled-Mining/">USENIX Security&#39;17 - SmartPool: Practical Decentralized Pooled Mining</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Info"><a href="#Info" class="headerlink" title="Info"></a>Info</h1><ul>
+<li><strong>Title</strong>: SmartPool: Practical Decentralized Pooled Mining</li>
+<li><strong>Conference</strong>: USENIX Security</li>
+<li><strong>Year</strong>: 2017</li>
+<li><strong>Topic</strong>: Cryptography and Security (cs.CR)</li>
+<li><strong>URL</strong>: <a href="https://eprint.iacr.org/2017/019.pdf" target="_blank" rel="noopener">https://eprint.iacr.org/2017/019.pdf</a></li>
+<li><strong>Source code</strong>: <a href="https://github.com/SmartPool" target="_blank" rel="noopener">https://github.com/SmartPool</a></li>
+</ul>
+<h1 id="Addressed-Problems"><a href="#Addressed-Problems" class="headerlink" title="Addressed Problems"></a>Addressed Problems</h1><ul>
+<li>Centralized pool operators direct the massive computational power of their pools&#x2019; participants<ul>
+<li>Bitcoin derives at least 95% of its mining power from only 10 mining pools</li>
+<li>Ethereum network has 80% of its mining power emanating from 6 pools</li>
+</ul>
+</li>
+<li>Recent work by Apostolaki et al. has demonstrated large-scale network attacks on cryptocurrencies<ul>
+<li>e.g. double spending and network partitioning</li>
+</ul>
+</li>
+<li>Pools currently dictate which transactions get included in the blockchain, thus increasing the threat of transaction censorship significantly</li>
+<li>Existing decentralized mining pools are not widely applied, as technical challenges have hindered widespread adoption.<ul>
+<li>Scalable participation under P2POOL&#x2019;s current design would require the system to check a massive number of sub-puzzles</li>
+<li>P2POOL only works for Bitcoin; we are not aware of any decentralized mining approach for Ethereum.</li>
+</ul>
+</li>
+</ul>
+<h1 id="Challenges"><a href="#Challenges" class="headerlink" title="Challenges"></a>Challenges</h1><ul>
+<li>Decentralization</li>
+<li>Efficiency</li>
+<li>Security</li>
+<li>Fairness</li>
+</ul>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ul>
+<li>we observe that it is possible to run a decentralized pool mining protocol as a smart contract on the Ethereum cryptocurrency<ul>
+<li>Our solution layers its security on the existing mining network of a large and widely deployed cryp-tocurrency network, thereby mitigating the difficulty of bootstrapping a new mining network from scratch.</li>
+</ul>
+</li>
+<li>we propose a design that is efficient and scales to a large number of participants.<ul>
+<li>Our design uses a simple yet powerful probabilistic verification technique which guarantees the fairness of the payoff.</li>
+<li>We also introduce a new data structure, the augmented Merkle tree, for secure and efficient verification.</li>
+<li>SMARTPOOL allows miners to freely select which transaction set they want to include in a block.</li>
+<li>SMARTPOOL does not charge any fees, unlike centralized pools, and disburses all block rewards to pool participants entirely.</li>
+</ul>
+</li>
+<li>We demonstrate the standard pay-per-share (or PPS) scheme in our implementation. <ul>
+<li>Supporting other standard schemes like pay-per-last-n-shares (PPLNS) and schemes that disincentivize against block withholding attacks [9&#x2013;11] is left for future work.</li>
+</ul>
+</li>
+<li>We implemented SMARTPOOL and deployed real mining pools on <strong>Ethereum and Ethereum Classic</strong>. The pools have so far mined 105 real blocks and have handled significant hashrates while deferring only 0.6% of block rewards to transaction fee costs.</li>
+</ul>
+<h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><ul>
+<li>SMARTPOOL is a smart contract which implements a decentralized mining pool for Ethereum and runs on the Ethereum network.<ul>
+<li>SMARTPOOL maintains two main lists in its contract state<ul>
+<li><em>claimList</em><ul>
+<li>When a miner submits a set of shares as claim for the current Ethereum block, it is added to the claimList</li>
+<li>Each claim allows miners to submit a batch of (say, 1 million) shares.</li>
+<li>acts as a cryptographic commitment to the set of shares claimed to be found by the miner</li>
+<li>Each claim specifies <strong>the number of shares</strong> the miner claims to have found, and it has a particular structure that aids verification in a subsequent step</li>
+</ul>
+</li>
+<li><em>verClaimList</em><ul>
+<li>SMARTPOOL then proceeds to verify the validity of the claim</li>
+<li>once verified, it moves it to the <em>verClaimList</em></li>
+<li>Claim verification and payments for verified claims happen <strong>atomically</strong> in a <strong>single Ethereum transaction</strong>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Chaim submissions<ul>
+<li>SMARTPOOL defines a <em>Claim</em> structure which consists of a few pieces of data</li>
+<li>The miner cryptographically commits to the set of shares he is claiming.<ul>
+<li>The cryptographic commitment goes via a specific data structure we call an <strong>augmented Merkle tree</strong>, as discussed in Section 3.5.</li>
+</ul>
+</li>
+<li><strong>Probabilistic verification</strong><ul>
+<li>Searching for existing shares</li>
+<li>Checking validity of shares</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Augmented Merkle Tree<ul>
+<li>Each share is mapped to an integer</li>
+<li>Each node has the form {$mix(x)$, $hash(x)$, $max(x)$}</li>
+<li>$mix(x)$/$max(x)$ is the minimum/maximum of x&#x2019;s children</li>
+<li>An augmented Merkle tree is called <em>sorted</em> if all of its leaves occur in strictly increasing order from left to right with respect to its counter function</li>
+<li><em>Batch submission</em> with <em>Augmented Merkle Tree</em></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="Relevance"><a href="#Relevance" class="headerlink" title="Relevance"></a>Relevance</h1><ul>
+<li>I&#x2019;m a core developer of <a href="matpool.io">MATPool</a>, which is the mining pool for <a href="bytom.io">Bytom</a></li>
+<li>Decentralize the mining pool is critical for the cryptocurrency ecosystem, in order to circumvent the censorship</li>
+</ul>
+<h1 id="To-discuss-investigate"><a href="#To-discuss-investigate" class="headerlink" title="To discuss/investigate"></a>To discuss/investigate</h1><ul>
+<li>I don&#x2019;t think overlaying the mining pool upon the Ethereum smart contracts can achieve acceptable efficiency<ul>
+<li>Mining pool&#x2019;s reward highly relies on the network latency, and the smart contract&#x2019;s efficiency will make the mining reward dropping radically</li>
+</ul>
+</li>
+<li>What if we keep using the centralized mining pool, but leave the disputes to smart contracts?</li>
+<li>It is not necessary to decentralize the mining pool by the smart contracts, but we can utilize existing P2P systems like Kademlia</li>
+<li>What if we develop a hierarchical mining pool which can overlay each other?</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://SebastianElvis.github.io/2018/11/17/USENIX-Security-17-SmartPool-Practical-Decentralized-Pooled-Mining/" data-id="cju23lfg0003in1jo40hvzmmn" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blockchain/">Blockchain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mining-Pool/">Mining Pool</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/USENIX-Security/">USENIX Security</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CCS-17-Revive-Rebalancing-Off-Blockchain-Payment-Networks" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/17/CCS-17-Revive-Rebalancing-Off-Blockchain-Payment-Networks/" class="article-date">
+  <time datetime="2018-11-17T05:04:49.000Z" itemprop="datePublished">2018-11-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/paper-reading/">paper reading</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/17/CCS-17-Revive-Rebalancing-Off-Blockchain-Payment-Networks/">CCS&#39;17 - Revive: Rebalancing Off-Blockchain Payment Networks</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Info"><a href="#Info" class="headerlink" title="Info"></a>Info</h1><ul>
+<li><strong>Title</strong>: Revive: Rebalancing Off-Blockchain Payment Networks</li>
+<li><strong>Conference</strong>: ACM CCS</li>
+<li><strong>Year</strong>: 2017</li>
+<li><strong>Topic</strong>: Cryptography and Security (cs.CR)</li>
+<li><strong>URL</strong>: <a href="https://eprint.iacr.org/2017/823.pdf" target="_blank" rel="noopener">https://eprint.iacr.org/2017/823.pdf</a></li>
+<li><strong>Source code</strong>: <a href="https://github.com/rami-khalil/revive" target="_blank" rel="noopener">https://github.com/rami-khalil/revive</a></li>
+</ul>
+<h1 id="Addressed-Problems"><a href="#Addressed-Problems" class="headerlink" title="Addressed Problems"></a>Addressed Problems</h1><ul>
+<li>Refunding a payment channel requires performing transactions on the blockchain, which is expensive<ul>
+<li>Once a payment channel is depleted, the channel needs to be closed and re-funded, requiring at least two expensive on-chain transactions</li>
+</ul>
+</li>
+<li>Before refunding a channel, users might first opt to choose more expensive channel routes, which will increase the transaction costs over payment channels (each hop in a payment network receives a <strong>relay fee</strong>).</li>
+</ul>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ul>
+<li>We proposed the first rebalancing scheme REVIVE for off-chain payment networks.<ul>
+<li>enables a set of members in a payment network to shift balances between their payment channels safely</li>
+<li>our solution allows participants to safely <strong>revive</strong> a channel by re-allocating off-chain funds they have assigned to their payment channels</li>
+<li>rebalancing with REVIVE is free</li>
+<li>REVIVE can be applied to different underlying payment networks</li>
+</ul>
+</li>
+<li>We provide an implementation and evaluation of Revive for the Ethereum network, using the Sprites[7] payment channel.</li>
+</ul>
+<h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><h2 id="System-Model"><a href="#System-Model" class="headerlink" title="System Model"></a>System Model</h2><ul>
+<li>Blockchain</li>
+<li>Smart Contracts</li>
+<li>Off-chain Payment Network</li>
+<li>Payment Network Topology</li>
+<li>Communication Network</li>
+<li>Adaptability</li>
+</ul>
+<h2 id="Rebalancing-Protocol"><a href="#Rebalancing-Protocol" class="headerlink" title="Rebalancing Protocol"></a>Rebalancing Protocol</h2><ul>
+<li>Leader Election<ul>
+<li>A leader elected to act as a point of synchronization for the protocol</li>
+<li>The leader receives enough information about channel balances, calculate a set of rebalancing transactions</li>
+<li>This leader does not need to be a stakeholder in any of the payment channels that are to be rebalanced, therefore, it may even be a third party chosen by the participants</li>
+</ul>
+</li>
+<li>Triggering<ul>
+<li>the current leader waits for rebalancing initiation requests from participants in the sub-network</li>
+<li>the leader sends an initiation request to all participants asking for confirmation of their participation in this round of rebalancing</li>
+<li>This triggering phase is <strong>customizable</strong> and serves to <strong>set a threshold past</strong> which a rebalancing is considered to be worth executing.</li>
+</ul>
+</li>
+<li>Participation<ul>
+<li>After receiving the confirmations, the leader announces to the involved participants which nodes are confirmed in the current round, and asks them to freeze the relevant payment channels they wish to rebalance.</li>
+</ul>
+</li>
+<li>Transaction Set Generation<ul>
+<li>Participants respond which channels they have frozen, along with their respective balances and objectives for the challenge</li>
+<li><strong>Mutual agreement</strong> by both owners of a payment channel on the freezing and the balances should be expected. </li>
+<li>Participants may submit rebalancing objectives, which specify whether they wish to <strong>gain or lose</strong> credit in each channel. </li>
+<li>Mutual agreement by both peers on the direction of rebalance in a channel should also be expected here.</li>
+<li>The generation is done through <strong>solving a linear program</strong> that produces a set of rebalancing transactions.</li>
+</ul>
+</li>
+<li>Consensus<ul>
+<li>The transaction set and a list of participating members are then sent <strong>in the form of a commitment</strong> to all nodes for verification and signing. </li>
+<li>The commitment is composed of <strong>the merkle-tree root</strong> [20] of all rebalancing transactions, and <strong>a hash of all the participants&#x2019; public addresses</strong> (identities), both hashed together.</li>
+<li>Once all signatures are obtained by the leader, they are multicast to the involved participants.</li>
+</ul>
+</li>
+<li>Dispute</li>
+</ul>
+<h1 id="Relevance"><a href="#Relevance" class="headerlink" title="Relevance"></a>Relevance</h1><ul>
+<li>Payment Channel can scale the public blockchain greatly without the need of modifying the consensus protocol</li>
+<li>This method seems to be able to greatly reduce the Payment Channel centralization</li>
+</ul>
+<h1 id="To-discuss-investigate"><a href="#To-discuss-investigate" class="headerlink" title="To discuss/investigate"></a>To discuss/investigate</h1><ul>
+<li>Could we reproduce the experiment with their open-sourced smart contracts?</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://SebastianElvis.github.io/2018/11/17/CCS-17-Revive-Rebalancing-Off-Blockchain-Payment-Networks/" data-id="cju23lfew000an1jo6xsjji7n" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blockchain/">Blockchain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CCS/">CCS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Payment-Channels/">Payment Channels</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Smart-Contracts/">Smart Contracts</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CCS-18-RapidChain-Scaling-Blockchain-via-Full-Sharding" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/17/CCS-18-RapidChain-Scaling-Blockchain-via-Full-Sharding/" class="article-date">
+  <time datetime="2018-11-17T03:26:46.000Z" itemprop="datePublished">2018-11-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/paper-reading/">paper reading</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/17/CCS-18-RapidChain-Scaling-Blockchain-via-Full-Sharding/">CCS&#39;18 - RapidChain: Scaling Blockchain via Full Sharding</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Info"><a href="#Info" class="headerlink" title="Info"></a>Info</h1><ul>
+<li><strong>Title</strong>: RapidChain: Scaling Blockchain via Full Sharding</li>
+<li><strong>Conference</strong>: ACM CCS</li>
+<li><strong>Year</strong>: 2018</li>
+<li><strong>Topic</strong>: Cryptography and Security (cs.CR)</li>
+<li><strong>URL</strong>: <a href="https://eprint.iacr.org/2018/460.pdf" target="_blank" rel="noopener">https://eprint.iacr.org/2018/460.pdf</a></li>
+<li><strong>Source code</strong>: No</li>
+</ul>
+<h1 id="Addressed-Problems"><a href="#Addressed-Problems" class="headerlink" title="Addressed Problems"></a>Addressed Problems</h1><ul>
+<li>Existing solutions currently either fail to solve the above challenges or make security/performance trade-offs that, unfortunately, make them no longer truly-decentralized solutions.<ul>
+<li>In particular, traditional Byzantine consensus mechanisms such as [17, 19, 43] can only work in a <strong>closed membership</strong> setting, where the set of participants is fixed and their identities are known to everyone via a <strong>trusted third party</strong>.</li>
+<li>If used in an open setting, these protocols can be easily compromised using Sybil attacks [25], where the adversary repeatedly rejoins malicious parties with fresh identities to gain significant influence on the protocol outcome.</li>
+</ul>
+</li>
+<li>The trade-off between the security (adversary model) and the performance is hard<ul>
+<li>Most traditional schemes assume a static adversary who can select the set of corrupt parties only at the start of the protocol. </li>
+<li>Existing protocols that are secure against an adaptive adversary such as [12, 18, 37] either scale poorly with the number of participants or are inefficient.</li>
+</ul>
+</li>
+<li>While most of these protocols can reportedly improve the throughput and latency ofBitcoin, all ofthem still require the often-overlooked assumption of <strong>a trusted setup</strong> to generate an unpredictable initial common randomness in the form of a common genesis block to bootstrap the blockchain.</li>
+<li>In addition to being partially decentralized, most of these solutions have either <strong>large per-node storage requirements</strong> [4, 23, 28, 40, 46, 51, 54], <strong>low fault resiliency</strong> [41, 46], <strong>incomplete specifications</strong> [23, 40], or other s<strong>ecurity issues</strong> [40, 41, 46]</li>
+</ul>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ul>
+<li>We propose RapidChain, a Byzantine-resilient public blockchain protocol that improves upon the scalability and security limitations<ul>
+<li>RapidChain <strong>partitions</strong> the set of nodes into multiple smaller groups of nodes called <em>committees</em> that operate <strong>in parallel</strong> on <strong>disjoint</strong> blocks of transactions and maintain <strong>disjoint</strong> ledgers.</li>
+<li>Such a partitioning of operations and/or data among multiple groups of nodes is often referred to as <em>sharding</em> [21] and has been recently studied in the context of blockchain protocols [41, 46].</li>
+<li>Properties:<ul>
+<li>Sublinear Communication: $O(n)$ bits exchanged per TX</li>
+<li>Higher Resiliency: $\frac{1}{3}$ malicious nodes</li>
+<li>Rapid Committee Consensus: 3-10 times faster compared to previous solutions</li>
+<li>Secure Reconfiguration: the Cuckoo rule [8, 60] to provably protect against a slowly-adaptive Byzantine adversary</li>
+<li>Fast Cross-Shard Verification<ul>
+<li>each node stores only a $\frac{1}{k}$ fraction of the entire blockchain with $k$ committees</li>
+<li>Kademlia routing -&gt; $\log(n)$ latency and storage</li>
+</ul>
+</li>
+<li>Decentralized Bootstrapping: bootstrap <strong>with</strong> only $O(n\sqrt{n})$ messages <strong>without</strong> common randomness (genesis block)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>We also implement a prototype of RapidChain to evaluate its performance and compare it with the state-of-the-art sharding-based protocols.</li>
+</ul>
+<h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><h2 id="Network-Model"><a href="#Network-Model" class="headerlink" title="Network Model"></a>Network Model</h2><ul>
+<li>Sybil attack-resistant: by PoW variants</li>
+<li>Synchronous communication only during our intra-committee consensus</li>
+<li>Partially-synchronous channels [19] between nodes with exponentially-increasing time-outs (similar to [41]) to minimize latency and achieve responsiveness.</li>
+</ul>
+<h2 id="Threat-Model"><a href="#Threat-Model" class="headerlink" title="Threat Model"></a>Threat Model</h2><ul>
+<li>Nodes may disconnect from the network during an epoch or between two epochs <strong>due to any reason</strong> such as internal failure or network jitter</li>
+<li>PPT Byzantine adversary who corrupts $t \lt \frac{n}{3}$ of the nodes at any time</li>
+<li>the adversary is <em>slowly adaptive</em>, that it is allowed to select the set of corrupt nodes at the beginning of the protocol and/or between each epoch but <strong>cannot change this set within the epoch</strong></li>
+<li>At the end of each epoch, the adversary is allowed to corrupt a constant (and small) number of uncorrupted nodes while maintaining their identities</li>
+<li>the adversary can run a join-leave attack [8, 25]</li>
+</ul>
+<h2 id="Lifecycle"><a href="#Lifecycle" class="headerlink" title="Lifecycle"></a>Lifecycle</h2><ul>
+<li>Bootstrapping</li>
+<li>Consensus<ul>
+<li>Each ommittee accpets TXs independently<ul>
+<li>Partially synchronous</li>
+<li>Inter-committee routing to find which committee the client should send TXs to</li>
+</ul>
+</li>
+<li>Intra-committee Consensus<ul>
+<li>Synchronous consensus in fixed rounds</li>
+<li>Info Dispersal Algorithm (IDA) based gossip protocol</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Reconfiguration<ul>
+<li>For renewing committees</li>
+<li>PoW only for combatting Sybil attacks</li>
+<li>Epoch randomness generation by <em>Distributed Randomness Generation</em> (DRG)</li>
+<li>Cuckoo replacement policy</li>
+</ul>
+</li>
+</ul>
+<h1 id="Relevance"><a href="#Relevance" class="headerlink" title="Relevance"></a>Relevance</h1><ul>
+<li>Sharding is one of the most potential approaches to scale public blockchains</li>
+<li>This research reviews state-of-the-art work in detail</li>
+<li>This research covers different aspects (layers) of Blockchain (consensus, network, routing, &#x2026;)</li>
+</ul>
+<h1 id="To-discuss-investigate"><a href="#To-discuss-investigate" class="headerlink" title="To discuss/investigate"></a>To discuss/investigate</h1><ul>
+<li>Could we reproduce the performance evaluation experiments?</li>
+<li>It is necessary to develop an open-sourced sharding framework, as those committee-based protocols are quite similar and modularized</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://SebastianElvis.github.io/2018/11/17/CCS-18-RapidChain-Scaling-Blockchain-via-Full-Sharding/" data-id="cju23lff1000hn1jo1d5axfkp" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blockchain/">Blockchain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CCS/">CCS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scalability/">Scalability</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sharding/">Sharding</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Bilinear-Pairing-Explained" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/11/Bilinear-Pairing-Explained/" class="article-date">
+  <time datetime="2018-11-11T05:50:12.000Z" itemprop="datePublished">2018-11-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/cryptography/">cryptography</a>►<a class="article-category-link" href="/categories/cryptography/public-key-cryptography/">public-key cryptography</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/11/Bilinear-Pairing-Explained/">Bilinear Pairing Explained</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h1><ul>
+<li>Here are 3 multiplicative cyclic group: $G_{1}$, $G_{2}$ and $G_{T}$.</li>
+<li>Define a mapping $ e: G_{1} \times G_{2} \rightarrow G_{T}$</li>
+<li>If the function $e$ satisfies:</li>
+</ul>
+<ol>
+<li><strong>Bilinearity</strong>: $\forall g_{1} \in G_{1}, g_{2} \in G_{2}, a, b \in Z_{p}$, we have $e(g_{1}^{a}, g_{2}^{b}) = e(g_{1}, g_{2})^{ab}$</li>
+<li><strong>Non-degeneracy</strong>: $\exists g_{1} \in G_{1}, g_{2} \in G_{2}$, we have $e(g_{1}, g_{2}) \neq 1_{G_{T}}$</li>
+<li><strong>Computability</strong>: $e$ can be efficiently computed</li>
+</ol>
+<p>We say $e$ is a bilinear pairing on ($G_{1}, G_{2}$)</p>
+<h1 id="Classification"><a href="#Classification" class="headerlink" title="Classification"></a>Classification</h1><p>If the same group is used for the first two groups (i.e. $G_{1}=G_{2}$), the pairing is called <strong>symmetric</strong> and is a mapping from two elements of one group to an element from a second group (i.e. $G_{1} \times G_{1} \rightarrow G_{T}$).</p>
+<p>Some researchers classify pairing instantiations into three (or more) basic types:</p>
+<ul>
+<li>$G_{1}=G_{2}$</li>
+<li>$G_{1}\neq G_{2}$ but there is an efficiently computable <a href="https://en.wikipedia.org/wiki/Homomorphism" target="_blank" rel="noopener">homomorphism</a> $ \phi :G_{2} \to G_{1}$</li>
+<li>$G_{1}\neq G_{2}$ and there are no efficiently computable homomorphisms between $G_{1}$ and $G_{2}$</li>
+</ul>
+<h1 id="DDH-CDH-BDDH-BCDH"><a href="#DDH-CDH-BDDH-BCDH" class="headerlink" title="DDH, CDH, BDDH, BCDH"></a>DDH, CDH, BDDH, BCDH</h1><h2 id="DDH-CDH"><a href="#DDH-CDH" class="headerlink" title="DDH, CDH"></a>DDH, CDH</h2><ul>
+<li><p><strong>DDH (Decisional Diffie-Hellman Problem)</strong>: For aribitrary $a, b, c \in Z_{q}$ and $g$ as the generator in $Z_{q}$, given $g, g^{a}, g^{b}, g^{c}$, decide $c \stackrel{?}{=} ab $ </p>
+</li>
+<li><p><strong>CDH (Computational Diffie-Hellman Problem)</strong>: Given $ g, g^{x}, g^{y}$, compute $g^{xy} $</p>
+</li>
+</ul>
+<p>Many cryptographic protocols are based on the assumption that DDH and CDH do not have probabilistic polynomial-time (PPT) solutions.</p>
+<h2 id="Problem-with-Bilinear-Pairing"><a href="#Problem-with-Bilinear-Pairing" class="headerlink" title="Problem with Bilinear Pairing"></a>Problem with Bilinear Pairing</h2><ul>
+<li>If $\exists G \times G \rightarrow G_{T}$, DDH can be solved fast.</li>
+<li>Therefore, we need BDDH, which will still be hard if $\exists G \times G \rightarrow G_{T}$</li>
+</ul>
+<h2 id="BDDH-BCDH"><a href="#BDDH-BCDH" class="headerlink" title="BDDH, BCDH"></a>BDDH, BCDH</h2><ul>
+<li><p><strong>Bilinear DDH (BDDH)</strong>: For arbitrary $a, b, c, d \in Z_{q}$, given $g^{a}, g^{b}, g^{c}, g^{d}, g^{abc}$, decide $d \stackrel{?}{=} abc$</p>
+</li>
+<li><p><strong>Bilinear CDH (BCDH)</strong>: For arbitrary $a, b, c \in Z_{q}$, given $g^{a}, g^{b}, g^{c}$, compute $g^{abc}$</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://SebastianElvis.github.io/2018/11/11/Bilinear-Pairing-Explained/" data-id="cju23lfep0002n1josxjloskx" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cryptography/">Cryptography</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Elliptic-Curve/">Elliptic Curve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Public-Key-Cryptography/">Public-Key Cryptography</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Polland-Rho-Algorithm" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/11/11/Polland-Rho-Algorithm/" class="article-date">
@@ -112,7 +579,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/11/11/Polland-Rho-Algorithm/" data-id="cjt9am99m002lvejoi2qn8gec" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/11/11/Polland-Rho-Algorithm/" data-id="cju23lffs002tn1jorjfmhpra" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cryptography/">Cryptography</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Factorization/">Factorization</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Numerical-Algorithms/">Numerical Algorithms</a></li></ul>
@@ -213,7 +680,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/11/11/NDSS-17-P2P-Mixing-and-Unlinkable-Bitcoin-Transactions/" data-id="cjt9am99d001uvejo3x9kyana" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/11/11/NDSS-17-P2P-Mixing-and-Unlinkable-Bitcoin-Transactions/" data-id="cju23lffj001zn1jos21yy05r" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blockchain/">Blockchain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NDSS/">NDSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/P2P-Mixing/">P2P Mixing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Privacy/">Privacy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unlinkable-Transactions/">Unlinkable Transactions</a></li></ul>
@@ -317,7 +784,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/11/09/CCS-18-A-Better-Method-to-Analyze-Blockchain-Consistency/" data-id="cjt9am98r000avejol0nv54cd" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/11/09/CCS-18-A-Better-Method-to-Analyze-Blockchain-Consistency/" data-id="cju23lff0000fn1joj0f77yr6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blockchain/">Blockchain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CCS/">CCS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Consensus/">Consensus</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Consistency/">Consistency</a></li></ul>
@@ -422,7 +889,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/11/08/USENIX-Security-18-TEETHER-Gnawing-at-Ethereum-to-Automatically-Exploit-Smart-Contracts/" data-id="cjt9am9a0003kvejooc8klshn" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/11/08/USENIX-Security-18-TEETHER-Gnawing-at-Ethereum-to-Automatically-Exploit-Smart-Contracts/" data-id="cju23lfh80098n1joyces3o5p" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blockchain/">Blockchain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Security/">Security</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Smart-Contracts/">Smart Contracts</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/USENIX-Security/">USENIX Security</a></li></ul>
@@ -495,7 +962,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/11/08/CCS-18-Ouroboros-Genesis-Composable-Proof-of-Stake-Blockchains-with-Dynamic-Availability/" data-id="cjt9am98v000fvejojj9tcqov" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/11/08/CCS-18-Ouroboros-Genesis-Composable-Proof-of-Stake-Blockchains-with-Dynamic-Availability/" data-id="cju23lfey000bn1jopn5ag5cn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blockchain/">Blockchain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CCS/">CCS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Consensus/">Consensus</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cryptography/">Cryptography</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PoS/">PoS</a></li></ul>
@@ -589,7 +1056,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/11/08/USENIX-Security-18-An-Empirimal-Analysis-of-Anonymity-in-Zcash/" data-id="cjt9am99z003hvejos5xk9zy6" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/11/08/USENIX-Security-18-An-Empirimal-Analysis-of-Anonymity-in-Zcash/" data-id="cju23lfg1003kn1jot3n12tb8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blockchain/">Blockchain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Security-Privacy/">Security&Privacy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/USENIX-Security/">USENIX Security</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Zcash/">Zcash</a></li></ul>
@@ -616,7 +1083,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/blockchain/">blockchain</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/blockchain/cross-chain/">cross-chain</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/blockchain/digital-signature/">digital signature</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/blockchain/off-chain/">off-chain</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/blockchain/privacy/">privacy</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/cryptography/">cryptography</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/cryptography/numerical-algorithms/">numerical algorithms</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cryptography/public-key-cryptography/">public-key cryptography</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cryptography/zero-knowledge/">zero knowledge</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/paper-reading/">paper reading</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/self/">self</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/self/research/">research</a></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/blockchain/">blockchain</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/blockchain/cross-chain/">cross-chain</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/blockchain/digital-signature/">digital signature</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/blockchain/off-chain/">off-chain</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/blockchain/privacy/">privacy</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/cryptography/">cryptography</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/cryptography/foundation/">foundation</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cryptography/numerical-algorithms/">numerical algorithms</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cryptography/public-key-cryptography/">public-key cryptography</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cryptography/zero-knowledge/">zero knowledge</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/paper-reading/">paper reading</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/self/">self</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/self/research/">research</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/writing/">writing</a></li></ul>
     </div>
   </div>
 
@@ -636,7 +1103,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Atomic-Multicast/" style="font-size: 10px;">Atomic Multicast</a> <a href="/tags/Atomic-Swap/" style="font-size: 10px;">Atomic Swap</a> <a href="/tags/Attack/" style="font-size: 11.67px;">Attack</a> <a href="/tags/Authenticated-Data-Structure/" style="font-size: 10px;">Authenticated Data Structure</a> <a href="/tags/BFT/" style="font-size: 10px;">BFT</a> <a href="/tags/BGW-Protocol/" style="font-size: 10px;">BGW Protocol</a> <a href="/tags/BLS/" style="font-size: 13.33px;">BLS</a> <a href="/tags/Barreto-Naehrig-Curve/" style="font-size: 10px;">Barreto-Naehrig Curve</a> <a href="/tags/Bitcoin/" style="font-size: 13.33px;">Bitcoin</a> <a href="/tags/Blockchain/" style="font-size: 20px;">Blockchain</a> <a href="/tags/CCS/" style="font-size: 16.67px;">CCS</a> <a href="/tags/CRYPTO/" style="font-size: 10px;">CRYPTO</a> <a href="/tags/Confidential-Transactions/" style="font-size: 13.33px;">Confidential Transactions</a> <a href="/tags/Consensus/" style="font-size: 16.67px;">Consensus</a> <a href="/tags/Consistency/" style="font-size: 10px;">Consistency</a> <a href="/tags/CryptoNote/" style="font-size: 10px;">CryptoNote</a> <a href="/tags/Cryptography/" style="font-size: 16.67px;">Cryptography</a> <a href="/tags/DAG/" style="font-size: 10px;">DAG</a> <a href="/tags/Decentralization/" style="font-size: 10px;">Decentralization</a> <a href="/tags/Delegatable-Anonymous-Credentials/" style="font-size: 10px;">Delegatable Anonymous Credentials</a> <a href="/tags/Distributed-Randomness/" style="font-size: 10px;">Distributed Randomness</a> <a href="/tags/ECDSA/" style="font-size: 10px;">ECDSA</a> <a href="/tags/Elliptic-Curve/" style="font-size: 13.33px;">Elliptic Curve</a> <a href="/tags/Ethereum/" style="font-size: 10px;">Ethereum</a> <a href="/tags/FC/" style="font-size: 10px;">FC</a> <a href="/tags/Factorization/" style="font-size: 10px;">Factorization</a> <a href="/tags/Garbled-Circuits/" style="font-size: 10px;">Garbled Circuits</a> <a href="/tags/HTLC/" style="font-size: 11.67px;">HTLC</a> <a href="/tags/Homomorphic-Encryption/" style="font-size: 10px;">Homomorphic Encryption</a> <a href="/tags/MPC/" style="font-size: 16.67px;">MPC</a> <a href="/tags/Measurement/" style="font-size: 10px;">Measurement</a> <a href="/tags/Merkle-Puzzles/" style="font-size: 10px;">Merkle Puzzles</a> <a href="/tags/Mining-Pool/" style="font-size: 10px;">Mining Pool</a> <a href="/tags/MultiSig/" style="font-size: 13.33px;">MultiSig</a> <a href="/tags/NDSS/" style="font-size: 11.67px;">NDSS</a> <a href="/tags/Numerical-Algorithms/" style="font-size: 10px;">Numerical Algorithms</a> <a href="/tags/Oblivious-Transfer/" style="font-size: 10px;">Oblivious Transfer</a> <a href="/tags/Off-chain-Payment/" style="font-size: 10px;">Off-chain Payment</a> <a href="/tags/P2P-Mixing/" style="font-size: 10px;">P2P Mixing</a> <a href="/tags/P2P-Network/" style="font-size: 10px;">P2P Network</a> <a href="/tags/Pairing/" style="font-size: 13.33px;">Pairing</a> <a href="/tags/Payment-Channel/" style="font-size: 10px;">Payment Channel</a> <a href="/tags/Payment-Channels/" style="font-size: 10px;">Payment Channels</a> <a href="/tags/PoS/" style="font-size: 10px;">PoS</a> <a href="/tags/Privacy/" style="font-size: 10px;">Privacy</a> <a href="/tags/Public-Blockchains/" style="font-size: 10px;">Public Blockchains</a> <a href="/tags/Public-Key-Cryptography/" style="font-size: 10px;">Public-Key Cryptography</a> <a href="/tags/RSMC/" style="font-size: 10px;">RSMC</a> <a href="/tags/SPDZ/" style="font-size: 10px;">SPDZ</a> <a href="/tags/Scalability/" style="font-size: 18.33px;">Scalability</a> <a href="/tags/Schnorr/" style="font-size: 11.67px;">Schnorr</a> <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/Security-Privacy/" style="font-size: 10px;">Security&Privacy</a> <a href="/tags/Sharding/" style="font-size: 13.33px;">Sharding</a> <a href="/tags/Short-Signatures/" style="font-size: 10px;">Short Signatures</a> <a href="/tags/Signature-Aggregation/" style="font-size: 10px;">Signature Aggregation</a> <a href="/tags/Smart-Contracts/" style="font-size: 15px;">Smart Contracts</a> <a href="/tags/Solidity/" style="font-size: 10px;">Solidity</a> <a href="/tags/Threshold-Encryption/" style="font-size: 10px;">Threshold Encryption</a> <a href="/tags/USENIX-Security/" style="font-size: 15px;">USENIX Security</a> <a href="/tags/Universal-Composability/" style="font-size: 10px;">Universal Composability</a> <a href="/tags/Unlinkable-Transactions/" style="font-size: 10px;">Unlinkable Transactions</a> <a href="/tags/VRF/" style="font-size: 10px;">VRF</a> <a href="/tags/VSS/" style="font-size: 10px;">VSS</a> <a href="/tags/Zcash/" style="font-size: 10px;">Zcash</a> <a href="/tags/Zero-Knowledge/" style="font-size: 11.67px;">Zero Knowledge</a> <a href="/tags/zkSNARKs/" style="font-size: 10px;">zkSNARKs</a>
+      <a href="/tags/Atomic-Multicast/" style="font-size: 10px;">Atomic Multicast</a> <a href="/tags/Atomic-Swap/" style="font-size: 10px;">Atomic Swap</a> <a href="/tags/Attack/" style="font-size: 11.67px;">Attack</a> <a href="/tags/Authenticated-Data-Structure/" style="font-size: 10px;">Authenticated Data Structure</a> <a href="/tags/BFT/" style="font-size: 10px;">BFT</a> <a href="/tags/BGW-Protocol/" style="font-size: 10px;">BGW Protocol</a> <a href="/tags/BLS/" style="font-size: 13.33px;">BLS</a> <a href="/tags/Barreto-Naehrig-Curve/" style="font-size: 10px;">Barreto-Naehrig Curve</a> <a href="/tags/Bitcoin/" style="font-size: 13.33px;">Bitcoin</a> <a href="/tags/Blockchain/" style="font-size: 20px;">Blockchain</a> <a href="/tags/CCS/" style="font-size: 16.67px;">CCS</a> <a href="/tags/CRYPTO/" style="font-size: 10px;">CRYPTO</a> <a href="/tags/Confidential-Transactions/" style="font-size: 13.33px;">Confidential Transactions</a> <a href="/tags/Consensus/" style="font-size: 16.67px;">Consensus</a> <a href="/tags/Consistency/" style="font-size: 10px;">Consistency</a> <a href="/tags/CryptoNote/" style="font-size: 10px;">CryptoNote</a> <a href="/tags/Cryptography/" style="font-size: 16.67px;">Cryptography</a> <a href="/tags/DAG/" style="font-size: 10px;">DAG</a> <a href="/tags/Decentralization/" style="font-size: 10px;">Decentralization</a> <a href="/tags/Delegatable-Anonymous-Credentials/" style="font-size: 10px;">Delegatable Anonymous Credentials</a> <a href="/tags/Distributed-Randomness/" style="font-size: 10px;">Distributed Randomness</a> <a href="/tags/ECDSA/" style="font-size: 10px;">ECDSA</a> <a href="/tags/Elliptic-Curve/" style="font-size: 13.33px;">Elliptic Curve</a> <a href="/tags/Ethereum/" style="font-size: 10px;">Ethereum</a> <a href="/tags/FC/" style="font-size: 10px;">FC</a> <a href="/tags/Factorization/" style="font-size: 10px;">Factorization</a> <a href="/tags/Garbled-Circuits/" style="font-size: 10px;">Garbled Circuits</a> <a href="/tags/HTLC/" style="font-size: 11.67px;">HTLC</a> <a href="/tags/Homomorphic-Encryption/" style="font-size: 10px;">Homomorphic Encryption</a> <a href="/tags/MPC/" style="font-size: 16.67px;">MPC</a> <a href="/tags/Measurement/" style="font-size: 10px;">Measurement</a> <a href="/tags/Merkle-Puzzles/" style="font-size: 10px;">Merkle Puzzles</a> <a href="/tags/Mining-Pool/" style="font-size: 10px;">Mining Pool</a> <a href="/tags/MultiSig/" style="font-size: 13.33px;">MultiSig</a> <a href="/tags/NDSS/" style="font-size: 11.67px;">NDSS</a> <a href="/tags/Numerical-Algorithms/" style="font-size: 10px;">Numerical Algorithms</a> <a href="/tags/Oblivious-Transfer/" style="font-size: 10px;">Oblivious Transfer</a> <a href="/tags/Off-chain-Payment/" style="font-size: 10px;">Off-chain Payment</a> <a href="/tags/P2P-Mixing/" style="font-size: 10px;">P2P Mixing</a> <a href="/tags/P2P-Network/" style="font-size: 10px;">P2P Network</a> <a href="/tags/Pairing/" style="font-size: 13.33px;">Pairing</a> <a href="/tags/Payment-Channel/" style="font-size: 10px;">Payment Channel</a> <a href="/tags/Payment-Channels/" style="font-size: 10px;">Payment Channels</a> <a href="/tags/PoS/" style="font-size: 10px;">PoS</a> <a href="/tags/Privacy/" style="font-size: 10px;">Privacy</a> <a href="/tags/Public-Blockchains/" style="font-size: 10px;">Public Blockchains</a> <a href="/tags/Public-Key-Cryptography/" style="font-size: 10px;">Public-Key Cryptography</a> <a href="/tags/RSMC/" style="font-size: 10px;">RSMC</a> <a href="/tags/SPDZ/" style="font-size: 10px;">SPDZ</a> <a href="/tags/Scalability/" style="font-size: 18.33px;">Scalability</a> <a href="/tags/Schnorr/" style="font-size: 11.67px;">Schnorr</a> <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/Security-Privacy/" style="font-size: 10px;">Security&Privacy</a> <a href="/tags/Sharding/" style="font-size: 13.33px;">Sharding</a> <a href="/tags/Short-Signatures/" style="font-size: 10px;">Short Signatures</a> <a href="/tags/Signature-Aggregation/" style="font-size: 10px;">Signature Aggregation</a> <a href="/tags/Smart-Contracts/" style="font-size: 15px;">Smart Contracts</a> <a href="/tags/Solidity/" style="font-size: 10px;">Solidity</a> <a href="/tags/Threshold-Encryption/" style="font-size: 10px;">Threshold Encryption</a> <a href="/tags/USENIX-Security/" style="font-size: 15px;">USENIX Security</a> <a href="/tags/Universal-Composability/" style="font-size: 10px;">Universal Composability</a> <a href="/tags/Unlinkable-Transactions/" style="font-size: 10px;">Unlinkable Transactions</a> <a href="/tags/VRF/" style="font-size: 10px;">VRF</a> <a href="/tags/VSS/" style="font-size: 10px;">VSS</a> <a href="/tags/Zcash/" style="font-size: 10px;">Zcash</a> <a href="/tags/Zero-Knowledge/" style="font-size: 13.33px;">Zero Knowledge</a> <a href="/tags/zkSNARKs/" style="font-size: 10px;">zkSNARKs</a>
     </div>
   </div>
 
@@ -645,7 +1112,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
     </div>
   </div>
 
@@ -658,23 +1125,23 @@
       <ul>
         
           <li>
+            <a href="/2019/04/04/Writing-in-the-Sciences-1-6-Practicing-cutting-clutter/">Writing in the Sciences - 1.6: Practicing cutting clutter</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/04/Writing-in-the-Sciences-1-5-Cut-the-clutter-more-tricks/">Writing in the Sciences - 1.5: Cut the clutter, more tricks</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/04/Writing-in-the-Sciences-1-4-Cut-the-clutter/">Writing in the Sciences - 1.4: Cut the clutter</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/15/Interactive-Proof-Systems/">Interactive Proof Systems</a>
+          </li>
+        
+          <li>
             <a href="/2019/03/15/Fiat-Shamir-Heuristic/">Fiat-Shamir Heuristic</a>
-          </li>
-        
-          <li>
-            <a href="/2019/02/26/Merkle-Puzzles/">Merkle Puzzles</a>
-          </li>
-        
-          <li>
-            <a href="/2019/02/25/Lightning-Network-In-Detail/">Lightning Network In Detail</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/13/CCS-16-The-Honey-Badger-of-BFT-Protocols/">CCS&#39;16 - The Honey Badger of BFT Protocols</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/13/SOSP-17-Algorand-Scaling-Byzantine-Agreements-for-Cryptocurrencies/">SOSP&#39;17 - Algorand: Scaling Byzantine Agreements for Cryptocurrencies</a>
           </li>
         
       </ul>
