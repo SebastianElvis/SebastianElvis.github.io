@@ -64,6 +64,952 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-zkSNARKs-Explained" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/19/zkSNARKs-Explained/" class="article-date">
+  <time datetime="2018-12-19T07:41:18.000Z" itemprop="datePublished">2018-12-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/cryptography/">cryptography</a>►<a class="article-category-link" href="/categories/cryptography/zero-knowledge/">zero knowledge</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/19/zkSNARKs-Explained/">zkSNARKs Explained</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><ul>
+<li>Zero Knowledge: Verify the correctness of computations without<ul>
+<li>having to execute them</li>
+<li>learning what was executed</li>
+</ul>
+</li>
+<li>zkSNARKs<ul>
+<li><strong>Zero Knowledge - Succinct Non-interactive ARguments of Knowledge</strong> for short</li>
+<li><strong>Succinct</strong>: The sizes of msgs are tiny compared to the length of actual computations</li>
+<li><strong>Non-interactive</strong>: Little or no interaction<ul>
+<li>In zkSNARKs, only a setup phase + a msg from prover to verifier</li>
+</ul>
+</li>
+<li><strong>ARguments</strong>: Verifier is ONLY protected against computationally limited provers</li>
+<li><strong>of Knowledge</strong>: Impossible for prover to construct a proof/argument without knowing <em>witness</em></li>
+</ul>
+</li>
+</ul>
+<h1 id="Ingredients-of-zkSNARKs"><a href="#Ingredients-of-zkSNARKs" class="headerlink" title="Ingredients of zkSNARKs"></a>Ingredients of zkSNARKs</h1><ol>
+<li>Encoding the program to a quadratic equation of polynomials $t(x)h(x) = w(x)v(x)$<ul>
+<li>The equality holds iff the program is correctly computed</li>
+<li>The prover wants to convinve the verifier that the equality holds</li>
+</ul>
+</li>
+<li>Random Sampling for Succintness<ul>
+<li>Verifier chooses a secret evaluation point $s$</li>
+<li>To reduce the problem from evaluating polynomials to evaluating $t(s)h(s) = w(s)v(s)$</li>
+</ul>
+</li>
+<li>Homomorphic Encoding / Encryption<ul>
+<li>An encoding / encryption function $E$ which is <strong>Partially Homomorphic</strong></li>
+<li>Knowing $E(s)$ $\Rightarrow$ Can compute $E(t(s)), E(h(s)), E(w(s)), E(v(s))$</li>
+</ul>
+</li>
+<li>Zero Knowledge<ul>
+<li>Prover obfuscates $E(t(s)), E(h(s)), E(w(s)), E(v(s))$ by multiplying with a number</li>
+<li>Verifier can still check their correct structure without knowing the actual encoded values</li>
+</ul>
+</li>
+</ol>
+<h1 id="Simple-ZK-by-RSA"><a href="#Simple-ZK-by-RSA" class="headerlink" title="Simple ZK by RSA"></a>Simple ZK by RSA</h1><ul>
+<li>RSA recap:<ul>
+<li>$c = E(m) = m^{e} \mod n$</li>
+<li>$m = D(c) = c^{d} \mod n$</li>
+</ul>
+</li>
+<li>RSA is <strong>Multiplicatively Homomorphic</strong><ul>
+<li>$ E(x)E(y) \equiv x^{e}y^{e} \equiv (xy)^{e} \equiv E(xy) ( \mod n) $</li>
+</ul>
+</li>
+<li>ZK by RSA<ul>
+<li>Prover knows $x, y$ and he wants to prove this for Verifier</li>
+<li>Prover sends $ E(x), E(y), E(xy) $ to Verifier</li>
+<li>NOT secure!</li>
+</ul>
+</li>
+</ul>
+<h1 id="NP-Completeness"><a href="#NP-Completeness" class="headerlink" title="NP-Completeness"></a>NP-Completeness</h1><p>For any NP problem $L$, there is a Polynomial Time <em>reduction function</em> $f$ s.t.:</p>
+<p>$L(x) = SAT(f(x))$</p>
+<p>$f$ can be seen as a <strong>compiler</strong></p>
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><p>$PolyZero(f) \Rightarrow$ Determine if $f$ is a polynomial which has a zero where its variables are taken from {0, 1}</p>
+<h2 id="Quadratic-Span-Program-QSP"><a href="#Quadratic-Span-Program-QSP" class="headerlink" title="Quadratic Span Program (QSP)"></a>Quadratic Span Program (QSP)</h2><ul>
+<li>From <a href="https://eprint.iacr.org/2012/215.pdf" target="_blank" rel="noopener">Quadratic Span Programs and Succinct NIZKs without PCPs</a></li>
+<li>An NP problem suitable for zkSNARKs</li>
+<li>QSP consists of a set of polynomials</li>
+<li>The task is to find a linear combination of those is a multiple of another given polynomial</li>
+</ul>
+<p>Formally, a QSP over a field $F$ for inputs of length $n$ consists of:</p>
+<ul>
+<li>Polynomials $v_{0},&#x2026;,v_{m}$, $w_{0},&#x2026;,w_{m}$ over the field $F$</li>
+<li>A polynomial $t$ over $F$ (the target polynomial)</li>
+<li>An injective function $f: { (i,j) | 1 \leq i \leq n, j \in {0,1} \rightarrow {1,&#x2026;,m} }$</li>
+</ul>
+<p>Then</p>
+<ul>
+<li>$QSP(u) \rightarrow {0,1}$</li>
+<li>$u$ is a string input with $n$ bits</li>
+<li>0 = false, 1 = true</li>
+<li><strong>Find $u$ is NP-Complete</strong><ul>
+<li>Find $u$ $\Rightarrow$ Determine factors</li>
+<li>Determining factors is <strong>NP-Complete</strong></li>
+</ul>
+</li>
+</ul>
+<p>Formally, an input $u$ is <em>accepted</em> (verified) iff there are tuples $a = (a_{1},&#x2026;,a_{n})$, $b = (b_{1},&#x2026;,b_{n})$ from $F$ s.t.</p>
+<ul>
+<li>$a_{k}, b_{k} = 1$ if $k = f(i, u[i])$ for some $i$, ($u[i]$ is the $i$th bit of $u$)</li>
+<li>$a_{k}, b_{k} = 0$ if $k = f(i, 1-u[i])$ for some $i$</li>
+<li>$t \mod VW = 0$ where<ul>
+<li>$V = v_{0} + a_{1}v_{1} + &#x2026; + a_{m}v_{m}$</li>
+<li>$W = w_{0} + b_{1}w_{1} + &#x2026; + b_{m}w_{m}$</li>
+</ul>
+</li>
+</ul>
+<p>Note that the verifer can choose a secret random point $s$ to compute $t(s), v_{k}(s), w_{k}(s),&#x2026;$, then only checks those scalars</p>
+<ul>
+<li>After used, the point $s$ is part of the &#x201C;toxic waste&#x201D; of zCash</li>
+</ul>
+<h1 id="zkSNARKs-in-Detail"><a href="#zkSNARKs-in-Detail" class="headerlink" title="zkSNARKs in Detail"></a>zkSNARKs in Detail</h1><ul>
+<li>A trusted setup<ul>
+<li>The circuit (the transaction verifier, or says the <strong>compiler</strong>) is fixed</li>
+<li>The polynomials for the QSP are fixed<ul>
+<li>Setup once and reused for all TXs</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Verifier chooses a random field element $s$</li>
+<li>Verifier publishes $E(v_{k}(s)), E(w_{k}(s))$<ul>
+<li>Part of the Common Reference String (CRS)</li>
+</ul>
+</li>
+<li>Prover computes $E(v(s)), E(w(s))$ without knowing $v_{k}(s), w_{k}(s)$</li>
+</ul>
+<h2 id="The-Base-Protocol"><a href="#The-Base-Protocol" class="headerlink" title="The Base Protocol"></a>The Base Protocol</h2><p>Based on <strong>Knowledge of Exponent (KEA1) Assumption</strong>.</p>
+<ol>
+<li>Verifier chooses a secret field value $s$ and publishes $E(s^{0}),&#x2026;E(s^{d})$ as part of CRS<ul>
+<li>$d$ is the max degree of all polynomials</li>
+<li>After that $s$ is toxic and should be forgotten</li>
+<li>Now Prover can compute $E(f(s))$ without knowing $s$</li>
+</ul>
+</li>
+<li>Verifier chooses another secret field value $\alpha$ and publishes the &#x201C;shifted&#x201D; values $E( \alpha s^{0}),&#x2026;E( \alpha s^{d})$<ul>
+<li>$\alpha$ is also destroyed after the setup phase</li>
+<li>Proer can also easily compute $E( \alpha f(s))$</li>
+</ul>
+</li>
+<li>Prover publishes $A = E(f(s))$ and $B = E( \alpha f(s))$</li>
+<li>Verifier check that these values match<ul>
+<li>By <strong>Bilinear Pairing</strong><ul>
+<li>$e(A, g^{\alpha}) = e(g^{f(s)}, g^{\alpha}) = e(g, g)^{\alpha f(s)}$</li>
+<li>$e(B, g) = e(g^{\alpha f(s)}, g) = e(g, g)^{\alpha f(s)}$</li>
+<li>If equal, then the value is correct</li>
+<li>KEA1 assumption assumes coming up with $A, B$ is impossible</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="The-Base-Protocol-ZK-Part"><a href="#The-Base-Protocol-ZK-Part" class="headerlink" title="The Base Protocol + ZK Part"></a>The Base Protocol + ZK Part</h2><p>In the Base Protocol, Verifier knows the <strong>exact value</strong> of $E(f(s)), E( \alpha f(s))$ from Prover.</p>
+<p>Now we want a solution where</p>
+<ul>
+<li>Verifier publishes $E(s^{0}),&#x2026;,E(s^{d}), E( \alpha s^{0}),&#x2026;,E( \alpha s^{d})$</li>
+<li>Verifier convinces that Prover knows $E(f(s)), E( \alpha f(s))$</li>
+<li>But Verifier cannot know anything about $f(s)$, not even $E(f(s))$</li>
+</ul>
+<p>The solution is as follows:</p>
+<ol>
+<li>same</li>
+<li>same</li>
+<li>Prover picks a random $\delta$, and sends $A&#x2019; = E( \delta + f(s)), B&#x2019; = E( \alpha ( \delta +f(s)))$<ul>
+<li>e.g. $A&#x2019; = E( \delta + f(s)) = g^{\delta + f(s)} = g^{\delta}g^{f(s)} = E( \delta)E(f(s))A$</li>
+</ul>
+</li>
+</ol>
+<h2 id="A-SNARK-for-QSP"><a href="#A-SNARK-for-QSP" class="headerlink" title="A SNARK for QSP"></a>A SNARK for QSP</h2><p>We have the following public variables:</p>
+<ul>
+<li>Polynomials $v_{0},&#x2026;,v_{m},w_{0},&#x2026;,w_{m}$</li>
+<li>A target polynomial $t$ of degree at most $d$</li>
+<li>An injective function $f: { (i,j) | 1 \leq i \leq n, j \in {0,1} \rightarrow {1,&#x2026;,m} }$</li>
+<li>A binary input string $u$</li>
+</ul>
+<p>Prover should find </p>
+<ul>
+<li>$a_{1},&#x2026;,a_{m},b_{1},&#x2026;,b_{m}$ <ul>
+<li>(restricted by an injective function $f$ depending on $u$)</li>
+</ul>
+</li>
+<li>A polynomial $h$</li>
+</ul>
+<p>such that</p>
+<p>$th = (v_{0}+a_{1}v_{1}+&#x2026;+a_{m}v_{m}) (w_{0}+b_{1}w_{1}+&#x2026;+b_{m}w_{m})$</p>
+<p>The process is as follows</p>
+<ol>
+<li>Verifier chooses secret numbers $s$ and $a$, then publishes CRS consisting of<ul>
+<li>$E(s^{0})$, &#x2026;, $E(s^{d})$ and $E( \alpha s^{0})$, &#x2026;, $E( \alpha s^{d})$</li>
+<li>Encrypted $t$ values on point $s$<ul>
+<li>$E(t(s))$ and $E( \alpha t(s))$</li>
+<li>$E(v_{0}(s))$, &#x2026;, $E(v_{m}(s))$ and $E( \alpha v_{0}(s))$, &#x2026;, $E( \alpha v_{m}(s))$</li>
+<li>$E(w_{0}(s))$, &#x2026;, $E(w_{m}(s))$ and $E( \alpha w_{0}(s))$, &#x2026;, $E( \alpha w_{m}(s))$</li>
+</ul>
+</li>
+<li>Verifier further chooses secret numbers $\beta_{v}$, $\beta_{w}$, $\gamma$ used for verify that those polynomials were evaluated and not some arbitrary polynomials (formally, <strong>Commitment</strong>)<ul>
+<li>$E( \gamma)$, $E( \beta_{v} \gamma)$, $E( \beta_{w}\gamma)$</li>
+<li>$E( \beta_{v} v_{1}(s))$, &#x2026;, $E( \beta_{v}v_{m}(s))$</li>
+<li>$E( \beta_{w} w_{1}(s))$, &#x2026;, $E( \beta_{w}w_{m}(s))$</li>
+<li>$E( \beta_{v}t(s))$, $E( \beta_{w}t(s))$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Prover gives <em>proof</em> to Verifier<ul>
+<li>Recall $f: { (i,j) | 1 \leq i \leq n, j \in {0,1} \rightarrow {1,&#x2026;,m} }$, where $m$ is relatively large</li>
+<li>$f$ cannot cover all values over $1,&#x2026;,m$</li>
+<li>We call values $f$ does not cover $I_{free}$</li>
+<li>We define $v_{free}(x) = \sum{a_{k}v_{k}(x)}$ where $k$ ranges over all $I_{free}$</li>
+<li>The <em>proof</em> consists of <ul>
+<li>$V_{free} = E(v_{free}(s))$, $W = E(w(s))$, $H = E(h(s))$</li>
+<li>${V&#x2019;}<em>{free} = E( \alpha v</em>{free}(s))$, $W&#x2019; = E( \alpha w(s))$, $H&#x2019; = E( \alpha h(s))$</li>
+<li>$Y = E( \beta_{v}v_{free}(s) + \beta_{w}w(s))$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Verifier verifies <em>proof</em><ul>
+<li>Verifier computes $E(v_{in}(s)) = E( \sum a_{k}v_{k}(s))$, where $v_{in}$ of Verifier should $= v_{free}$ of Prover</li>
+<li>Verifier verifies the following equalities using the Pairing function $e$<ul>
+<li>$e( {V&#x2019;}<em>{free}, g) = e( V</em>{free}, g^{\alpha})$, $e(W&#x2019;, E(1)) = e(W, E( \alpha))$, $e(H&#x2019;, E(1)) = e(H, E( \alpha))$</li>
+<li>$e(E( \gamma), Y) = e(E( \beta_{v}\gamma), V_{free})e(E( \beta_{w}\gamma), W)$</li>
+<li>$e( E(v_{0}(s))E(v_{in}(s))V_{free}, E(w_{0}(s))W ) = e(H, E(t(s)))$</li>
+</ul>
+</li>
+<li>Insight: Pairing allows us to do some limited computation on encrypted values - <strong>arbitrary additions but just a single multiplication</strong><ul>
+<li>Addition: Adding over Elliptic Curve is homomorphic: $E(a)=aG, E(b)=bG \Rightarrow E(a+b)=(a+b)G=aG+bG=E(a)+E(b)$</li>
+<li>Multiplication: From pairing, $e( \alpha G, W) = e(G, \alpha W) \Rightarrow $ solve $\alpha W$ unconditionally</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ol>
+<li><a href="https://chriseth.github.io/notes/articles/zksnarks/zksnarks.pdf" target="_blank" rel="noopener">https://chriseth.github.io/notes/articles/zksnarks/zksnarks.pdf</a></li>
+<li><a href="http://zerocash-project.org/media/pdf/zerocash-extended-20140518.pdf" target="_blank" rel="noopener">http://zerocash-project.org/media/pdf/zerocash-extended-20140518.pdf</a></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://SebastianElvis.github.io/2018/12/19/zkSNARKs-Explained/" data-id="cju7notd0009ps7jo12hak6tm" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cryptography/">Cryptography</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Zero-Knowledge/">Zero Knowledge</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/zkSNARKs/">zkSNARKs</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-P2P-13-Information-Propagation-in-the-Bitcoin-Network" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/16/P2P-13-Information-Propagation-in-the-Bitcoin-Network/" class="article-date">
+  <time datetime="2018-12-16T03:48:07.000Z" itemprop="datePublished">2018-12-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/paper-reading/">paper reading</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/16/P2P-13-Information-Propagation-in-the-Bitcoin-Network/">P2P&#39;13 - Information Propagation in the Bitcoin Network</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Info"><a href="#Info" class="headerlink" title="Info"></a>Info</h1><ul>
+<li><strong>Title</strong>: Information Propagation in the Bitcoin Network</li>
+<li><strong>Conference</strong>: IEEE P2P</li>
+<li><strong>Year</strong>: 2013</li>
+<li><strong>URL</strong>: <a href="https://www.tik.ee.ethz.ch/file/0bc1493ba049fe69dbafccef4220c666/presentation.pdf" target="_blank" rel="noopener">https://www.tik.ee.ethz.ch/file/0bc1493ba049fe69dbafccef4220c666/presentation.pdf</a></li>
+<li><strong>Source code</strong>: No</li>
+</ul>
+<h1 id="Addressed-Problems"><a href="#Addressed-Problems" class="headerlink" title="Addressed Problems"></a>Addressed Problems</h1><ul>
+<li>Any inconsistency introduces uncertainty about the validity of a given transaction.</li>
+<li>An inconsistency may jeopardize the security of the consensus itself.</li>
+</ul>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ul>
+<li>In this work we analyze Bitcoin from a networking perspective<ul>
+<li>e.g. How information is disseminated or propagated in the Bitcoin network?<ul>
+<li>We identify key weaknesses as well as the resulting problems.</li>
+</ul>
+</li>
+<li>We analyze the synchronization mechanism which fails to synchronize the information stored at the ledger with a non-negligible probability.<ul>
+<li>This problem not only causes a prolonged inconsistency that goes unnoticed by a large number of nodes, but also weakens the system&#x2019;s defenses against attackers.</li>
+<li>We then propose some changes to the current protocol that, while not a solution to the intrinsic problems of the communication model used by Bitcoin, may mitigate them.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><h2 id="Info-Propagation-Method"><a href="#Info-Propagation-Method" class="headerlink" title="Info Propagation Method"></a>Info Propagation Method</h2><ul>
+<li>Only transaction (tx) and block (block) messages are relevant to the info propagation</li>
+<li><em>inv</em> message<ul>
+<li>invite a node to ask for data from itself</li>
+<li>contains a set of transaction hashes and block hashes that have been received by the sender and are now available to be requested</li>
+</ul>
+</li>
+<li><em>getdata</em> message<ul>
+<li>select data it wants</li>
+<li>after receiving <em>inv</em>, respond a <em>getdata</em> message</li>
+<li>containing the hashes of the information it needs</li>
+</ul>
+</li>
+<li><em>block</em> message<ul>
+<li>actual data transfer</li>
+</ul>
+</li>
+<li>At each hop in the broadcast the message incurs in a propagation delay.</li>
+</ul>
+<h2 id="Blockchain-Forks"><a href="#Blockchain-Forks" class="headerlink" title="Blockchain Forks"></a>Blockchain Forks</h2><h2 id="Speeding-Up-the-Propagation"><a href="#Speeding-Up-the-Propagation" class="headerlink" title="Speeding Up the Propagation"></a>Speeding Up the Propagation</h2><ul>
+<li>Minimize verification <ul>
+<li>There is a strong correlation between the size of a block and the time to verify it</li>
+<li>verification can be divided into two phases:<ul>
+<li>An initial difficulty check<ul>
+<li>if meet difficulty</li>
+<li>if duplicated</li>
+</ul>
+</li>
+<li>A transaction validation</li>
+</ul>
+</li>
+<li>Therefore could be changed to send an <em>inv</em> message as soon as the difficulty check is done, instead of waiting for the considerably longer transaction validation to be finished.</li>
+</ul>
+</li>
+<li>Pipelining block propagation<ul>
+<li>immediately forwarding incoming <em>inv</em> messages to neighbors</li>
+<li>amortize the round-trip times between the node and its neighbors</li>
+</ul>
+</li>
+<li>Connectivity increase</li>
+</ul>
+<h1 id="Relevance"><a href="#Relevance" class="headerlink" title="Relevance"></a>Relevance</h1><ul>
+<li>P2P network synchronization lacks measurement and optimization</li>
+</ul>
+<h1 id="To-discuss-investigate"><a href="#To-discuss-investigate" class="headerlink" title="To discuss/investigate"></a>To discuss/investigate</h1><ul>
+<li>What else P2P network measurement we can do?</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://SebastianElvis.github.io/2018/12/16/P2P-13-Information-Propagation-in-the-Bitcoin-Network/" data-id="cju7notc1005bs7jowf9q4j5m" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bitcoin/">Bitcoin</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/P2P-Network/">P2P Network</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-USENIX-Security-15-Eclipse-Attacks-on-Bitcoin-s-Peer-to-Peer-Network" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/16/USENIX-Security-15-Eclipse-Attacks-on-Bitcoin-s-Peer-to-Peer-Network/" class="article-date">
+  <time datetime="2018-12-16T01:24:30.000Z" itemprop="datePublished">2018-12-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/paper-reading/">paper reading</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/16/USENIX-Security-15-Eclipse-Attacks-on-Bitcoin-s-Peer-to-Peer-Network/">USENIX Security&#39;15 - Eclipse Attacks on Bitcoin&#39;s Peer-to-Peer Network</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Info"><a href="#Info" class="headerlink" title="Info"></a>Info</h1><ul>
+<li><strong>Title</strong>: Eclipse Attacks on Bitcoin&#x2019;s Peer-to-Peer Network</li>
+<li><strong>Conference</strong>: USENIX Security</li>
+<li><strong>Year</strong>: 2015</li>
+<li><strong>URL</strong>: <a href="https://eprint.iacr.org/2015/263.pdf" target="_blank" rel="noopener">https://eprint.iacr.org/2015/263.pdf</a></li>
+<li><strong>Source code</strong>: <a href="https://github.com/bitcoin/bitcoin/pull/9037" target="_blank" rel="noopener">https://github.com/bitcoin/bitcoin/pull/9037</a></li>
+</ul>
+<h1 id="Addressed-Problems"><a href="#Addressed-Problems" class="headerlink" title="Addressed Problems"></a>Addressed Problems</h1><ul>
+<li>Little attention has been paid to the P2P network security</li>
+<li>Cryptographic authentication between peers is not used, and nodes are identified by their IP addresses</li>
+<li>The P2P network is open, so adversaries are easy to get in</li>
+</ul>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ul>
+<li>We present and quantify the resources required for <strong>eclipse attacks</strong> on nodes with public IPs running bitcoind version 0.9.3</li>
+<li>The attacker monopolizes all of the victim&#x2019;s incoming and outgoing connections, thus <strong>isolating</strong> the victim from the rest of its peers in the network</li>
+<li>We present <strong>off-path attacks</strong>, where the attacker controls endhosts, but not key network infrastructure between the victim and the rest of the bitcoin network.</li>
+<li>We propose a set of countermeasures that preserve openness by allowing unsolicited incoming connections, while raising the bar for eclipse attacks.</li>
+</ul>
+<h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><h2 id="Implication-of-Eclipse-Attack"><a href="#Implication-of-Eclipse-Attack" class="headerlink" title="Implication of Eclipse Attack"></a>Implication of Eclipse Attack</h2><p>Attacks based on Eclipse Attack</p>
+<ul>
+<li>Engineering block races<ul>
+<li>Block race: Two miners discover blocks at the same time</li>
+<li>An attacker that eclipses many miners can engineer block races by hording blocks discovered by eclipsed miners, and releasing blocks to both the eclipsed and non-eclipsed miners once a competing block has been found</li>
+<li>Thus, the eclipsed miners waste effort on orphan blocks.</li>
+</ul>
+</li>
+<li>Splitting mining power</li>
+<li>Selfish mining<ul>
+<li>Attacker strategically withholds blocks to win more than its fair share of mining rewards</li>
+<li>If attacker&#x2019;s blockchain is longer, withhold</li>
+<li>If honest blockchain becomes longer, broadcast the attacker&#x2019;s blockchain and let them mine on the attacker&#x2019;s blockchain</li>
+<li>Decrease the waste of mining power</li>
+<li><a href="http://www.greywyvern.com/code/javascript/selfishmining" target="_blank" rel="noopener">http://www.greywyvern.com/code/javascript/selfishmining</a></li>
+</ul>
+</li>
+<li>0-confirmation double spend<ul>
+<li>Attacker eclipses the merchant&#x2019;s bitcoin node</li>
+</ul>
+</li>
+</ul>
+<h2 id="Bitcoin-P2P-Network"><a href="#Bitcoin-P2P-Network" class="headerlink" title="Bitcoin P2P Network"></a>Bitcoin P2P Network</h2><ul>
+<li>A node with a public IP can initiate up to 8 outgoing connections with other bitcoin nodes, and accept up to 117 incoming connections (<strong>Configurable</strong>).</li>
+<li>Propagating Network Info<ul>
+<li>DNS Seeders<ul>
+<li>A DNS seeder is a server that responds to DNS queries from bitcoin nodes with a (<strong>not</strong> cryptographically-authenticated) list of IP addresses for bitcoin nodes.</li>
+<li>The seeder obtains these addresses by periodically crawling the bitcoin network.</li>
+<li>The bitcoin network has 6 seeders which are queried in 2 cases only.<ol>
+<li>a new node joins the network for the first time<ul>
+<li>Query, if fail, then use a hardcoded list of 600 IP addresses</li>
+</ul>
+</li>
+<li>an existing node restarts and reconnects to new peers<ul>
+<li>only if 11 seconds have elapsed but the node has less than 2 outgoing connections</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>ADDR messages<ul>
+<li>containing up to 1000 IP address and their timestamps</li>
+<li>obtain network information from peers</li>
+<li>accept unsolicited ADDR messages <strong>only</strong> upon establishing a outgoing connection with a peer</li>
+<li>&lt;= 3 ADDR message each containing up to 1000 addresses randomly selected from its tables once</li>
+<li>2 cases<ol>
+<li>Each day, a node sends its own IP address in a ADDR message to each peer</li>
+<li>When a node receives an ADDR message with no more than 10 addresses, it forwards the ADDR message to two randomly-selected connected peers.</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Storing Network Info<ul>
+<li>Public IPs are stored in a node&#x2019;s <em>tried</em> and <em>new</em> tables.  </li>
+<li>Tables are stored on disk and persist when a node restarts.</li>
+<li><em>Tried</em> table<ul>
+<li>A <em>tried</em> table has 64 buckets</li>
+<li>each bucket can store up to 64 unique addresses for peers</li>
+<li>All stored peers have successfully established an incoming or outgoing connection</li>
+</ul>
+</li>
+<li><em>New</em> table<ul>
+<li>A <em>new</em> table has 256 buckets</li>
+<li>each bucket can store up to 64 unique addresses for peers</li>
+<li>All stored peers have not yet initiated a successful connection</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Eclipse-Attack"><a href="#Eclipse-Attack" class="headerlink" title="Eclipse Attack"></a>Eclipse Attack</h2><ul>
+<li>Populating <em>tried</em> and <em>new</em><ul>
+<li>exploits<ul>
+<li>the <em>bitcoin eviction</em> discipline<ul>
+<li>fresher addresses are likely to evict any older addresses</li>
+</ul>
+</li>
+<li>A node accepts unsolicited ADDR messages</li>
+<li>Nodes only rarely solicit network information from peers and DNS seeders</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Restarting the victim<ul>
+<li>Try everything to make it restart (by cheating, DDoS,&#x2026;)</li>
+</ul>
+</li>
+<li>Selecting outgoing connections<ul>
+<li>After restarting, the victim makes all its outgoing connections to attacker addresses</li>
+</ul>
+</li>
+<li>Monopolizing the eclipsed victim</li>
+</ul>
+<h2 id="Countermeasures"><a href="#Countermeasures" class="headerlink" title="Countermeasures"></a>Countermeasures</h2><ul>
+<li>Deterministic random eviction</li>
+<li>Random selection</li>
+<li>Test before evict</li>
+<li>Feeler Connections<ul>
+<li>Add an outgoing connection that establish short-lived test connections to randomly- selected addresses in <em>new</em></li>
+</ul>
+</li>
+<li>Anchor connections<ul>
+<li>add two connections that persist between restarts</li>
+</ul>
+</li>
+</ul>
+<p>Raise bar of attacks</p>
+<ul>
+<li>More buckets</li>
+<li>More outgoing connections</li>
+<li>Ban unsolicited ADDR messages</li>
+<li>Diversify incoming connections</li>
+<li>Anomaly detection</li>
+</ul>
+<h1 id="Relevance"><a href="#Relevance" class="headerlink" title="Relevance"></a>Relevance</h1><ul>
+<li>The P2P network security is a critical and low-level research topic in Blockchain </li>
+</ul>
+<h1 id="To-discuss-investigate"><a href="#To-discuss-investigate" class="headerlink" title="To discuss/investigate"></a>To discuss/investigate</h1><ul>
+<li>How to &#x2018;measure&#x2019; the P2P network</li>
+<li>The way of simulating the attack needs more conern</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://SebastianElvis.github.io/2018/12/16/USENIX-Security-15-Eclipse-Attacks-on-Bitcoin-s-Peer-to-Peer-Network/" data-id="cju7notc4005ls7joet0uum5r" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Attack/">Attack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bitcoin/">Bitcoin</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CCS-16-Making-Smart-Contracts-Smarter" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/15/CCS-16-Making-Smart-Contracts-Smarter/" class="article-date">
+  <time datetime="2018-12-15T00:18:03.000Z" itemprop="datePublished">2018-12-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/paper-reading/">paper reading</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/15/CCS-16-Making-Smart-Contracts-Smarter/">CCS&#39;16 - Making Smart Contracts Smarter</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Info"><a href="#Info" class="headerlink" title="Info"></a>Info</h1><ul>
+<li><strong>Title</strong>: Making Smart Contracts Smarter</li>
+<li><strong>Conference</strong>: ACM CCS</li>
+<li><strong>Year</strong>: 2016</li>
+<li><strong>Topic</strong>: Cryptography and Security (cs.CR)</li>
+<li><strong>URL</strong>: <a href="https://eprint.iacr.org/2016/633.pdf" target="_blank" rel="noopener">https://eprint.iacr.org/2016/633.pdf</a></li>
+<li><strong>Source code</strong>: <a href="https://github.com/melonproject/oyente" target="_blank" rel="noopener">https://github.com/melonproject/oyente</a></li>
+</ul>
+<h1 id="Addressed-Problems"><a href="#Addressed-Problems" class="headerlink" title="Addressed Problems"></a>Addressed Problems</h1><ul>
+<li>Smart contracts has high enough financial incentives to attract adversaries.</li>
+<li>Ethereum is permissionless, so adversaries are arbitrary</li>
+<li>The security of smart contracts has not received much attention</li>
+<li>smart contracts are irreversible and immutable. <ul>
+<li>There is no way to patch a buggy smart contract, regardless of its popularity or how much money it has</li>
+</ul>
+</li>
+</ul>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ul>
+<li>We document several new classes of security bugs in Ethereum smart contracts.</li>
+<li>We formalize the semantics of Ethereum smart contracts and propose recomendations as solutions for the documented bugs.</li>
+<li>We provide <em>Oyente</em>, a symbolic execution tool which analyses Ethereum smart contracts to detect bugs.</li>
+<li>We run <em>Oyente</em> on real Ethereum smart contracts and confirmed the attacks in the real Ethereum network.</li>
+</ul>
+<h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><h2 id="Security-Bugs-in-ETH-Smart-Contracts"><a href="#Security-Bugs-in-ETH-Smart-Contracts" class="headerlink" title="Security Bugs in ETH Smart Contracts"></a>Security Bugs in ETH Smart Contracts</h2><ol>
+<li>Transaction-Ordering Dependence<ul>
+<li>Users have uncertain knowledge of which state the contract is at when their individual invocation is executed.</li>
+<li>We call such contracts as transaction-ordering dependent (TOD) contracts.</li>
+<li>e.g. The Crypto Puzzle contract (PoW)<ul>
+<li>A malicious owner of the Puzzle contract can keep listening to the network to see if there is a transaction which submits a solution to his contract.</li>
+<li>setting higher <em>gasPrice</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Timestamp Dependence<ul>
+<li>A contract may have uses the block timestamp as a triggering condition to execute some critical operations, e.g., sending money. </li>
+<li>We call such contracts as timestamp-dependent contracts.</li>
+<li>e.g. The Run contract<ul>
+<li>The contract uses the timestamp and block number as the entropy source to generate a random number, which decides a participant to win the Jackpot</li>
+<li>timestamp of a block can be arbitrary ~900s</li>
+<li>The entropy source is not secure</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Mishandled Exceptions<ul>
+<li>If there is an exception raised (e.g., not enough gas, exceeding call stack limit) in the callee contract, the callee contract terminates, reverts its state and returns false.</li>
+<li>However, depending on how the call is made, the exception in the callee contract <strong>may or may not</strong> get propagated to the caller.<ul>
+<li>The caller contract should <strong>explicitly</strong> check the return value to verify if the call has been executed properly.</li>
+<li>This inconsistent exception propagation policy leads to many cases where exceptions are not handled properly.</li>
+</ul>
+</li>
+<li>e.g. KingOfTheEtherThrone (KoET for short) contract<ul>
+<li>Participants bid to become the king</li>
+<li>The KoET contract does not check the result of the compensation transaction</li>
+<li>Rely on the instant notification of the exception handling and updated status</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Reentrancy Vulnerability<ul>
+<li>The DAO hack</li>
+<li>In Ethereum, when a contract calls another, the current execution waits for the call to finish. <ul>
+<li>This can lead to an issue when the recipient of the call makes use of the intermediate state the caller is in.</li>
+<li>The network is fully asynchronous and probablistic, so not deterministic</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="Oyente"><a href="#Oyente" class="headerlink" title="Oyente"></a>Oyente</h2><p><img src="oyente.png" alt=""></p>
+<p>CFG: Control Flow Graph</p>
+<ul>
+<li>Based on Symbolic Execution<ul>
+<li>because it can statically reason about a program path-by-path</li>
+<li>superior to <em>dynamic testing</em>, which reasons about a program input-by-input</li>
+</ul>
+</li>
+</ul>
+<h1 id="Relevance"><a href="#Relevance" class="headerlink" title="Relevance"></a>Relevance</h1><ul>
+<li>Smart contracts is the core component for some protocols like Lightning Network</li>
+<li>Smart contract security is highly concerned currently</li>
+</ul>
+<h1 id="To-discuss-investigate"><a href="#To-discuss-investigate" class="headerlink" title="To discuss/investigate"></a>To discuss/investigate</h1><ul>
+<li>Debug more on smart contracts</li>
+<li>Dissecting the EVM and smart contract programming language</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://SebastianElvis.github.io/2018/12/15/CCS-16-Making-Smart-Contracts-Smarter/" data-id="cju7not9w0007s7jotv8uncpi" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ethereum/">Ethereum</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Smart-Contracts/">Smart Contracts</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solidity/">Solidity</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-FC-18-Decentralization-in-Bitcoin-and-Ethereum-Networks" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/13/FC-18-Decentralization-in-Bitcoin-and-Ethereum-Networks/" class="article-date">
+  <time datetime="2018-12-13T08:10:10.000Z" itemprop="datePublished">2018-12-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/paper-reading/">paper reading</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/13/FC-18-Decentralization-in-Bitcoin-and-Ethereum-Networks/">FC&#39;18 - Decentralization in Bitcoin and Ethereum Networks</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Info"><a href="#Info" class="headerlink" title="Info"></a>Info</h1><ul>
+<li><strong>Title</strong>: Decentralization in Bitcoin and Ethereum Networks</li>
+<li><strong>Conference</strong>: FC</li>
+<li><strong>Year</strong>: 2018</li>
+<li><strong>Topic</strong>: Cryptography and Security (cs.CR)</li>
+<li><strong>URL</strong>: <a href="https://fc18.ifca.ai/preproceedings/75.pdf" target="_blank" rel="noopener">https://fc18.ifca.ai/preproceedings/75.pdf</a></li>
+<li><strong>Source code</strong>: No</li>
+</ul>
+<h1 id="Addressed-Problems"><a href="#Addressed-Problems" class="headerlink" title="Addressed Problems"></a>Addressed Problems</h1><ul>
+<li>Few measurement studies on the level of decentralization of Public blockchains</li>
+<li>Current debates and decisiions about the underlying networks are often based on assumptions rather than measurement.</li>
+</ul>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ul>
+<li>We present a comprehensive measurement study on decentralization metrics in these operational systems and shed light on whether or not existing assumptions are satisfied in practice.<ul>
+<li>We adapt prior Internet measurement techniques for Bitcoin and Ethereum and use novel approaches to obtain application layer data.</li>
+<li>Data source:<ul>
+<li>direct measurements of these networks from multiple vantage points</li>
+<li>a Bitcoin relay network called <em>Falcon</em> that we deployed and operated for a year</li>
+<li>blockchain histories of Bitcoin and Ethereum</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Key findings:<ul>
+<li>the Bitcoin network can increase the bandwidth requirements for nodes by a factor of 1.7 and keep the same level of decentralization as 2016</li>
+<li>the Bitcoin network is geographically more clustered than Ethereum, with many nodes likely residing in datacenters</li>
+<li>Ethereum has lower mining power utilization than Bitcoin and would benefit from a relay network</li>
+<li>small miners experience more volatility in block rewards in Bitcoin than Ethereum</li>
+</ul>
+</li>
+</ul>
+<h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><h2 id="Bitcoin-and-Ethereum"><a href="#Bitcoin-and-Ethereum" class="headerlink" title="Bitcoin and Ethereum"></a>Bitcoin and Ethereum</h2><ul>
+<li>Bitcoin<ul>
+<li>P2P connection is based on TCP, by a 3-way handshake<ul>
+<li>exchange state like block height and version</li>
+</ul>
+</li>
+<li>When discover a new block, broadcast to the whole network and its hash (BlockHash)</li>
+<li>Neighbor querys the block by BlockHash</li>
+<li>Many block formats, like compact and Merkle</li>
+</ul>
+</li>
+<li>Ethereum<ul>
+<li>GHOST protocol</li>
+<li>Uncle blocks has rewards</li>
+<li>Block interval 10-20 seconds</li>
+<li>Block size determined indirectly by <em>gas</em></li>
+<li>UDP-based node discovery inspired by <em>Kademlia</em></li>
+<li>P2P connection is over TCP</li>
+<li>P2P msgs are encrypted and authenticated, unlike Bitcoin</li>
+</ul>
+</li>
+</ul>
+<h2 id="Measurement-Infra"><a href="#Measurement-Infra" class="headerlink" title="Measurement Infra"></a>Measurement Infra</h2><ul>
+<li><em>Blockchain Measurement System(BMS)</em> - Falcon<ul>
+<li>a measurement system than ran experiments of varying duration&#x2013;from a few days up to 12 months</li>
+<li>uses multiple <strong>vantage points</strong> in order to gain a com- prehensive view of the cryptocurrency networks</li>
+<li>continuously collecting data regarding the pro- visioned bandwidth of peers and peer-to-peer latency</li>
+<li>first connects to a peer, collects measurements, and then disconnects before proceeding to the next peer</li>
+<li>Targets:<ul>
+<li>Bitcoin nodes over IPv4, IPv6 and Tor</li>
+<li>Ethereum nodes over IPv4 <ul>
+<li>ETH does not have Tor nodes as of May 2017, as Tor is exclusively TCP but ETH node discovery is UDP-based</li>
+<li>No ETH IPv6 nodes because BMS was unable to discover enough nodes to reach generalized conclusions</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Vantage points:<ul>
+<li>15 out of 18 nodes reside in PlanetLab&#x2019;s global research network [14]</li>
+<li>the remaining three nodes are part of Cornell&#x2019;s academic network, located in Ithaca, NY</li>
+</ul>
+</li>
+<li>Bandwidth measurement:<ul>
+<li>requires nodes<ul>
+<li>high download capacities</li>
+<li>sufficient disk capacities</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Node sampling</li>
+<li>BMS uses a list containing nodes from Bitcoin and Ethereum node crawling sites</li>
+<li>a locally deployed Ethereum supernode configured with a high peer limit</li>
+</ul>
+</li>
+</ul>
+<h2 id="Measurement"><a href="#Measurement" class="headerlink" title="Measurement"></a>Measurement</h2><ul>
+<li>Provisioned Bandwidth<ul>
+<li>by requesting a large amount of data from each peer and seeing how fast the peers can stream the data to BMS&#x2019;s measurement nodes<ol>
+<li>asking for blocks that were first seen over a year ago &#x2013; similar to how a stale node asks for blocks to sync state</li>
+<li>BMS divides the time into epochs and records the number of bytes received during each epoch</li>
+<li>BMS processes the collected data to determine the provisioned bandwidth</li>
+</ol>
+</li>
+<li>Results<ul>
+<li>Bitcoin network has improved tremendously in terms of its provisioned bandwidth</li>
+<li>experimental limitations and expected errors<ul>
+<li>the network bottleneck lies on the side of the measurement beacon rather than the remote peer</li>
+<li>network traffic on the side of BMS interferes with the collected results</li>
+<li>the remote peer intentionally shapes the traffic to selectively limit the bandwidth available to BMS</li>
+<li>different steady state bandwidth between Bitcoin and Ethereum</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Network structure<ul>
+<li>we use the state of the art estimation techniques to establish bounds and gain insights into network structure</li>
+<li>Single Beacon Latency<ul>
+<li>We first collect direct ICMP ping measurements from BMS nodes to all peers in the network.</li>
+</ul>
+</li>
+<li>Peer-to-Peer Latency<ul>
+<li>Measuring the peer-to-peer latency requires access to the end points.</li>
+<li>we establish bounds from observed latencies from multiple beacons, using techniques from prior literature [37]</li>
+</ul>
+</li>
+<li>BMS also uses IP geolocation data to calculate distances between peer nodes as an additional validation on our results.</li>
+</ul>
+</li>
+<li>Mining power distribution<ul>
+<li>we examined their weekly distribution over the last 10 months starting on July 15, 2016.</li>
+</ul>
+</li>
+<li>Mining power utilization<ul>
+<li>measures the fraction of mined blocks that remain in the main chain</li>
+<li>Bitcoin: &gt;99%</li>
+<li>Ethereum: ~95%. Drop when DAO event </li>
+</ul>
+</li>
+</ul>
+<h1 id="Relevance"><a href="#Relevance" class="headerlink" title="Relevance"></a>Relevance</h1><ul>
+<li>This is a good reference for decentralization research</li>
+<li>Network measurement is critical for P2P systems</li>
+</ul>
+<h1 id="To-discuss-investigate"><a href="#To-discuss-investigate" class="headerlink" title="To discuss/investigate"></a>To discuss/investigate</h1><ul>
+<li>Do something like Tor metrics or similar stuff?</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://SebastianElvis.github.io/2018/12/13/FC-18-Decentralization-in-Bitcoin-and-Ethereum-Networks/" data-id="cju7notb8003cs7jok0pvggeu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Decentralization/">Decentralization</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Measurement/">Measurement</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CSF-17-Rethinking-Large-Scale-Consensus" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/10/CSF-17-Rethinking-Large-Scale-Consensus/" class="article-date">
+  <time datetime="2018-12-10T01:17:40.000Z" itemprop="datePublished">2018-12-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/paper-reading/">paper reading</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/10/CSF-17-Rethinking-Large-Scale-Consensus/">CSF&#39;17 - Rethinking Large-Scale Consensus</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Info"><a href="#Info" class="headerlink" title="Info"></a>Info</h1><ul>
+<li><strong>Title</strong>: Rethinking Large-Scale Consensus</li>
+<li><strong>Conference</strong>: IEEE CSF</li>
+<li><strong>Year</strong>: 2017</li>
+<li><strong>URL</strong>: <a href="https://eprint.iacr.org/2018/302.pdf" target="_blank" rel="noopener">https://eprint.iacr.org/2018/302.pdf</a></li>
+<li><strong>Source code</strong>: No</li>
+</ul>
+<h1 id="Addressed-Problems"><a href="#Addressed-Problems" class="headerlink" title="Addressed Problems"></a>Addressed Problems</h1><p>The question below hasn&#x2019;t been answered yet:</p>
+<ul>
+<li>Is consensus in the permissionless setting inherently mode &#x201C;difficult&#x201D; than consensus in the permissioned setting, and if so, what properties of the permissionless model introduce these difficulties?</li>
+</ul>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ul>
+<li>We prove several simple but hopefully insightful lower bounds that demonstrate exactly why reaching consensus in a permissionless setting is fundamentally more difficult than the classical, permissioned setting.</li>
+<li>We then present a simplified proof of Nakamoto&#x2019;s blockchain which we recommend for pedagogical purposes.</li>
+<li>Finally, we survey recent results including how to avoid well-known painpoints in permissionless consensus, and how to apply core ideas behind blockchains to solve consensus in the classical, permissioned setting and meanwhile achieve new properties that are not attained by classical approaches.</li>
+</ul>
+<h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><ol>
+<li>Proofs-of-work are needed without authentication</li>
+<li>Proofs-of-work must be performed infinitely often in the presence of late spawning.</li>
+<li>Honest-majority of computing power is needed in the presence of late spawning.</li>
+<li>Protocol must know an upper bound of the network&#x2019;s delay if uncertain of the number of players.</li>
+</ol>
+<h1 id="Relevance"><a href="#Relevance" class="headerlink" title="Relevance"></a>Relevance</h1><ul>
+<li>This paper shows that permissionless Blockchains require PoW, which is highly relevant with design</li>
+</ul>
+<h1 id="To-discuss-investigate"><a href="#To-discuss-investigate" class="headerlink" title="To discuss/investigate"></a>To discuss/investigate</h1><ul>
+<li>How should we &#x201C;verify&#x201D; this proof?</li>
+<li>The survey of this paper is interesting.</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://SebastianElvis.github.io/2018/12/10/CSF-17-Rethinking-Large-Scale-Consensus/" data-id="cju7nota3000ls7jolpyvojg6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Consensus/">Consensus</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Public-Blockchains/">Public Blockchains</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Oakland-17-Scalable-Bias-Resistant-Distributed-Randomness" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/12/05/Oakland-17-Scalable-Bias-Resistant-Distributed-Randomness/" class="article-date">
@@ -141,7 +1087,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/12/05/Oakland-17-Scalable-Bias-Resistant-Distributed-Randomness/" data-id="cju23vskt002obwjo7e49tnsf" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/12/05/Oakland-17-Scalable-Bias-Resistant-Distributed-Randomness/" data-id="cju7notbw0051s7joni1bh6x4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Distributed-Randomness/">Distributed Randomness</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MPC/">MPC</a></li></ul>
@@ -232,7 +1178,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/12/05/DSN-18-Byzantine-Fault-Tolerant-Atomic-Multicast/" data-id="cju23vsk1000tbwjo5pzk4ym2" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/12/05/DSN-18-Byzantine-Fault-Tolerant-Atomic-Multicast/" data-id="cju7notb30037s7jov6nl9ic6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Atomic-Multicast/">Atomic Multicast</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BFT/">BFT</a></li></ul>
@@ -406,7 +1352,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/12/05/Oakland-17-OmniLedger-A-Secure-Scale-Out-Decentralized-Ledger-via-Sharding/" data-id="cju23vskq002fbwjo4uxf7n3d" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/12/05/Oakland-17-OmniLedger-A-Secure-Scale-Out-Decentralized-Ledger-via-Sharding/" data-id="cju7notbs004ts7jozr62ps48" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blockchain/">Blockchain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scalability/">Scalability</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sharding/">Sharding</a></li></ul>
@@ -520,641 +1466,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/12/02/USENIX-Security-11-Faster-Secure-Two-Party-Computation-Using-Garbled-Circuits/" data-id="cju23vsl10037bwjofptw39tv" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/12/02/USENIX-Security-11-Faster-Secure-Two-Party-Computation-Using-Garbled-Circuits/" data-id="cju7notca0062s7joggdogaj7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Garbled-Circuits/">Garbled Circuits</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MPC/">MPC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/USENIX-Security/">USENIX Security</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-CRYPTO-12-Multiparty-Computation-from-Somewhat-Homomorphic-Encryption" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/12/02/CRYPTO-12-Multiparty-Computation-from-Somewhat-Homomorphic-Encryption/" class="article-date">
-  <time datetime="2018-12-02T03:09:14.000Z" itemprop="datePublished">2018-12-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/paper-reading/">paper reading</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/02/CRYPTO-12-Multiparty-Computation-from-Somewhat-Homomorphic-Encryption/">CRYPTO&#39;12 - Multiparty Computation from Somewhat Homomorphic Encryption</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Info"><a href="#Info" class="headerlink" title="Info"></a>Info</h1><ul>
-<li><strong>Title</strong>: Multiparty Computation from Somewhat Homomorphic Encryption</li>
-<li><strong>Conference</strong>: CRYPTO</li>
-<li><strong>Year</strong>: 2012</li>
-<li><strong>Topic</strong>: Cryptography and Security (cs.CR)</li>
-<li><strong>URL</strong>: <a href="https://eprint.iacr.org/2011/535.pdf" target="_blank" rel="noopener">https://eprint.iacr.org/2011/535.pdf</a></li>
-<li><strong>Source code</strong>: <a href="https://github.com/bristolcrypto/SPDZ-2" target="_blank" rel="noopener">https://github.com/bristolcrypto/SPDZ-2</a></li>
-</ul>
-<h1 id="Addressed-Problems"><a href="#Addressed-Problems" class="headerlink" title="Addressed Problems"></a>Addressed Problems</h1><ul>
-<li>Recently, a new approach has been proposed making such protocols more practical. This approach works as follows: one first designs a general MPC protocol in the preprocessing model, where access to a &#x201C;trusted dealer&#x201D; is assumed.<ul>
-<li>The dealer does not need to know the function to be computed, nor the inputs, he just supplies raw material for the computation before it starts. </li>
-<li>This allows the &#x201C;online&#x201D; protocol to use only cheap information theoretic primitives and hence be efficient. F</li>
-<li>One implements the trusted dealer by a secure protocol using public-key techniques, this protocol can then be run in a preprocessing phase.</li>
-</ul>
-</li>
-<li>Recently, another approach has become possible with the advent of Fully Homomorphic Encryption (FHE) by Gentry [15]. <ul>
-<li>The advantage of the FHE-based approach is that interaction is only needed to supply inputs and get output. </li>
-<li>However, However, the low bandwidth consumption comes at a price; current FHE schemes are very slow and can only evaluate small circuits, i.e., they actually only provide what is known as somewhat homomorphic encryption (SHE).</li>
-</ul>
-</li>
-</ul>
-<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ul>
-<li>We propose an MPC protocol in the preprocessing model that computes securely an arithmetic circuit C over any finite field $\mathcal{F}_{p^{k}}$.<ul>
-<li>The protocol is statistically UC-secure against active and adaptive corruption of up to n&#x2212;1 of the n players</li>
-<li>We assume synchronous communication and secure point-to-point channels.</li>
-</ul>
-</li>
-<li>As a conceptual contribution we propose what we believe is <strong>the right way</strong> to use FHE/SHE for computationally efficient MPC, namely to use it for <strong>implementing a preprocessing phase</strong>.</li>
-<li>We obtain a constant-round preprocessing protocol that is UC-secure against active and static corruption of $n&#x2212;1$ players assuming the underlying cryptosystem is semantically secure, which follows from the polynomial (PLWE) assumption.</li>
-<li>Both the preprocessing and online phase have been implemented and tested for 3 players on up-to-date machines connected on a LAN.</li>
-</ul>
-<h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><h1 id="Relevance"><a href="#Relevance" class="headerlink" title="Relevance"></a>Relevance</h1><ul>
-<li>FHE may have potential to construct consensus scheme</li>
-<li>However, currently too complex and inefficient&#x2026;</li>
-</ul>
-<h1 id="To-discuss-investigate"><a href="#To-discuss-investigate" class="headerlink" title="To discuss/investigate"></a>To discuss/investigate</h1>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/12/02/CRYPTO-12-Multiparty-Computation-from-Somewhat-Homomorphic-Encryption/" data-id="cju23vsjw000hbwjogjhsfswg" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CRYPTO/">CRYPTO</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Homomorphic-Encryption/">Homomorphic Encryption</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MPC/">MPC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SPDZ/">SPDZ</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-LATINCRYPT-15-The-Simplest-Protocol-for-Oblivious-Transfer" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/12/01/LATINCRYPT-15-The-Simplest-Protocol-for-Oblivious-Transfer/" class="article-date">
-  <time datetime="2018-12-01T03:04:51.000Z" itemprop="datePublished">2018-12-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/paper-reading/">paper reading</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/01/LATINCRYPT-15-The-Simplest-Protocol-for-Oblivious-Transfer/">LATINCRYPT&#39;15 - The Simplest Protocol for Oblivious Transfer</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Info"><a href="#Info" class="headerlink" title="Info"></a>Info</h1><ul>
-<li><strong>Title</strong>: The Simplest Protocol for Oblivious Transfer</li>
-<li><strong>Conference</strong>: LATINCRYPT</li>
-<li><strong>Year</strong>: 2015</li>
-<li><strong>Topic</strong>: Cryptography and Security (cs.CR)</li>
-<li><strong>URL</strong>: <a href="https://eprint.iacr.org/2015/267.pdf" target="_blank" rel="noopener">https://eprint.iacr.org/2015/267.pdf</a></li>
-<li><strong>Source code</strong>: No</li>
-</ul>
-<h1 id="Addressed-Problems"><a href="#Addressed-Problems" class="headerlink" title="Addressed Problems"></a>Addressed Problems</h1><ul>
-<li>Oblivious Transfer (OT) is one of the fundamental building blocks of cryptographic protocols.</li>
-</ul>
-<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ul>
-<li>In this paper we present a <em>novel</em> and <em>extremely simple</em>, <em>efficient</em> and <em>secure</em> OT protocol. <ul>
-<li>1-out-of-2 random OT</li>
-<li>The protocol is a simple tweak of the celebrated Diffie- Hellman (DH) key exchange protocol.</li>
-<li>Our choice for the group is a <em>twisted Edwards curve</em> for building the <em>Ed25519</em> signature scheme</li>
-</ul>
-</li>
-<li>We compares the speed of our implementation of $({2 \atop 1})$-OT (i.e., $n=2$) with other similar implementations.</li>
-</ul>
-<h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><h2 id="Twisted-Edwards-Curve"><a href="#Twisted-Edwards-Curve" class="headerlink" title="Twisted Edwards Curve"></a>Twisted Edwards Curve</h2><h3 id="The-Group-mathbb-F"><a href="#The-Group-mathbb-F" class="headerlink" title="The Group $\mathbb{F}$"></a>The Group $\mathbb{F}$</h3><p>The Twisted Edwards Curve: is defined as<br>[ {(x,y) \in \mathbb{F}<em>{2^{255}-19} \times \mathbb{F}</em>{2^{255}-19} : -x^{2} + y^{2} = 1 + dx^{2}y^{2} } ]</p>
-<p>The Twisted Edwards Addition Law is</p>
-<p>[ (x_{1},y_{1}) + (x_{2},y_{2}) = (\frac{x_{1}y_{2}+x_{2}y_{1}}{1+dx_{1}x_{2}y_{1}y_{2}}, \frac{y_{1}y_{2}+x_{1}x_{2}}{1-dx_{1}x_{2}y_{1}y_{2}}) ]</p>
-<h3 id="Encoding-mathcal-E-of-group-elements"><a href="#Encoding-mathcal-E-of-group-elements" class="headerlink" title="Encoding $\mathcal{E}$ of group elements"></a>Encoding $\mathcal{E}$ of group elements</h3><ul>
-<li>An encoding $\mathcal{E}$ for a group $\mathbb{G}_{0}$ is a way of representing group elements as fixed-length bitstrings.</li>
-<li>We write $\mathcal{E}(P)$ for a bitstring which represents $P \in \mathbb{G}_{0}$.</li>
-<li><em>Note</em> that there can be multiple bitstrings that represent $P$<ul>
-<li>If there is only one bitstring for each group element, $\mathcal{E}$ is said to be <em>deterministic</em> </li>
-<li>$\mathcal{E}$ is said to be non-deterministic otherwise.</li>
-</ul>
-</li>
-<li><em>Note</em> that some bitstrings (of the fixed length) might <strong>not</strong> represent any group element.</li>
-<li>We write $ \mathcal{E}(\mathbb{G}<em>{1}) $ for the set of bitstrings which represent some element in $ \mathbb{G}</em>{1} \in \mathbb{G}_{0} $. </li>
-<li>$\mathcal{E}$ is said to be <strong>verifiable</strong> if there exists an efficient algorithm that, given a bitstring as input, outputs whether it is in $E(G0)$ or not.</li>
-</ul>
-<h2 id="Diffie-Hellman-Key-Exchange"><a href="#Diffie-Hellman-Key-Exchange" class="headerlink" title="Diffie-Hellman Key Exchange"></a>Diffie-Hellman Key Exchange</h2><p><img src="dh.png" alt=""></p>
-<h2 id="Proposed-OT-scheme"><a href="#Proposed-OT-scheme" class="headerlink" title="Proposed OT scheme"></a>Proposed OT scheme</h2><p><img src="ot.png" alt=""></p>
-<h1 id="Relevance"><a href="#Relevance" class="headerlink" title="Relevance"></a>Relevance</h1><ul>
-<li>OT is a strong primitive to protect the privacy of the message selector</li>
-<li>It may be utilized to improve the Blockchain privacy</li>
-</ul>
-<h1 id="To-discuss-investigate"><a href="#To-discuss-investigate" class="headerlink" title="To discuss/investigate"></a>To discuss/investigate</h1><ul>
-<li>Implement or benchmark this protocol?</li>
-<li>Any relationship to the NIZK?</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/12/01/LATINCRYPT-15-The-Simplest-Protocol-for-Oblivious-Transfer/" data-id="cju23vske001mbwjomadj0qmk" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MPC/">MPC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oblivious-Transfer/">Oblivious Transfer</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Journal-of-Cryptology-17-A-Full-Proof-of-the-BGW-Protocol-for-Perfectly-Secure-Multiparty-Computation" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/11/30/Journal-of-Cryptology-17-A-Full-Proof-of-the-BGW-Protocol-for-Perfectly-Secure-Multiparty-Computation/" class="article-date">
-  <time datetime="2018-11-30T07:10:58.000Z" itemprop="datePublished">2018-11-30</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/paper-reading/">paper reading</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/30/Journal-of-Cryptology-17-A-Full-Proof-of-the-BGW-Protocol-for-Perfectly-Secure-Multiparty-Computation/">Journal of Cryptology&#39;17 - A Full Proof of the BGW Protocol for Perfectly Secure Multiparty Computation</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Info"><a href="#Info" class="headerlink" title="Info"></a>Info</h1><ul>
-<li><strong>Title</strong>: A Full Proof of the BGW Protocol for Perfectly Secure Multiparty Computation</li>
-<li><strong>Conference</strong>: Journal of Cryptology</li>
-<li><strong>Year</strong>: 2017</li>
-<li><strong>Topic</strong>: Cryptography and Security (cs.CR)</li>
-<li><strong>URL</strong>: <a href="https://eprint.iacr.org/2011/136.pdf" target="_blank" rel="noopener">https://eprint.iacr.org/2011/136.pdf</a></li>
-<li><strong>Source code</strong>: No</li>
-</ul>
-<h1 id="Addressed-Problems"><a href="#Addressed-Problems" class="headerlink" title="Addressed Problems"></a>Addressed Problems</h1><ul>
-<li>Ben-Or, Goldwasser and Wigderson (BGW) Protocol is one of the most fundamental results of MPC<ul>
-<li>Any n-party functionality can be computed with <em>perfect security</em>, in the <em>private channel model</em>.</li>
-<li>When the adversary is <em>semi-honest</em> this holds as long as t &lt; n/2 parties are corrupted</li>
-<li>When the adversary is malicious this holds as long as t &lt; n/3 parties are corrupted.</li>
-</ul>
-</li>
-<li>Unfortunately, a full proof of these results was never published.</li>
-</ul>
-<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ul>
-<li>In this paper, we remedy this situation and provide a full proof of security of the BGW protocol.</li>
-</ul>
-<h1 id="Primitives"><a href="#Primitives" class="headerlink" title="Primitives"></a>Primitives</h1><h2 id="Shamir-Secret-Sharing"><a href="#Shamir-Secret-Sharing" class="headerlink" title="Shamir Secret Sharing"></a>Shamir Secret Sharing</h2><p>A <em>(t+1)-out-of-n</em> secret sharing scheme:</p>
-<ul>
-<li>Input: a secret $s$</li>
-<li>Outputs: $n$ shares<ul>
-<li>Can only reconstruct $s$ from every subset of $t+1$ shares</li>
-<li>$t$ is called the <strong>thereshold</strong> of the scheme</li>
-</ul>
-</li>
-</ul>
-<p>SSS consists of 2 algorithms:</p>
-<ul>
-<li>The <strong>sharing algorithm</strong></li>
-<li>The <strong>reconstruction algorithm</strong></li>
-</ul>
-<p>Process of SSS:</p>
-<ul>
-<li>Pre-defined stuff:<ul>
-<li>$\mathbb{F}$ a finite field of size greater than $n$, and let $s \in \mathbb{F}$ </li>
-</ul>
-</li>
-<li>Sharing<ul>
-<li>Defines a polynomial $q(x)$ in $\mathbb{F}[x]$<ul>
-<li>degree (highest degree of individual terms with non-zero coefficients) is $t$</li>
-<li>the constant term is $s$</li>
-<li>all other coefficients are selected uniformly, independently and randomly in $\mathbb{F}$</li>
-</ul>
-</li>
-<li>The shares are defined as $q(\alpha_{i})$ for every $i \in {1,&#x2026;,n}$<ul>
-<li>where $\alpha_{1},&#x2026;\alpha_{n}$ are any $n$ distinct non-zero predetermined values in $\mathbb{F}$</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Reconstruction<ul>
-<li>Based on the fact that any $t+1$ points define exactly one polynomial of degree $t$</li>
-<li>Using interpolation can efficiently reconstruct $q(x)$ given any subsets of $t+1$ points $(\alpha_{i}, q(\alpha_{i})$</li>
-</ul>
-</li>
-</ul>
-<h2 id="Verifiable-Secret-Sharing-based-on-SSS"><a href="#Verifiable-Secret-Sharing-based-on-SSS" class="headerlink" title="Verifiable Secret Sharing based on SSS"></a>Verifiable Secret Sharing based on SSS</h2><ul>
-<li>The dealer inputs a polynomial $q(x)$ of degree $t$</li>
-<li>Each party $P_{i}$ receives its Shamir share $q(\alpha_{i})$ based on that polynomial.</li>
-<li>The &#x201C;verifiable&#x201D; part is that if $q$ is of degree greater than $t$, the parties reject the dealer&#x2019;s shares and output $\perp$</li>
-</ul>
-<h2 id="Securely-Computing-F-VSS"><a href="#Securely-Computing-F-VSS" class="headerlink" title="Securely Computing $F_{VSS}$"></a>Securely Computing $F_{VSS}$</h2><ul>
-<li>Input: The dealer $D = P_{1}$ holds a poly $q(x)$ of degree at most $t$. The other parties $P_{2},&#x2026;,P_{n}$ have not inputs</li>
-<li>Public values: The description of a field $\mathbb{F}$ and $n$ non-zero elements $\alpha_{1},&#x2026;,\alpha_{n} \in \mathbb{F}$</li>
-<li>The Protocol:<ol>
-<li><strong>Send Shares</strong> - The dealer $D$<br>1.1. $D$ selects a uniformly distributed bivariate polynomial $S(x,y) \in \mathcal{B}^{q(0),t}$, where $S(0,z) = q(z)$<br>1.2. For every $i \in {1,&#x2026;,n}$, $D$ defines<ul>
-<li>polynomial $f_{i}(x) \stackrel{def}{=} S(x,\alpha_{i})$</li>
-<li>polynomial $g_{i}(y) \stackrel{def}{=} S(\alpha_{i}, y)$<br>1.3. $D$ then sends to each party $P_{i}$ the poly $f_{i}(x)$ and $g_{i}(y)$</li>
-</ul>
-</li>
-<li><strong>Exchange Subshares</strong> - Each party $P_{i}$<br>2.1. $P_{i}$ stores the poly $f_{i}(x)$ and $g_{i}(y)$ received from $D$<ul>
-<li>If $f_{i}(x)$ or $g_{i}(y)$ is of degree greater than $t$ then truncate it to be of degree $t$.)<br>2.2. For every $j \in {1,&#x2026;,n}$, $P_{i}$ sends $f_{i}(\alpha_{j})$ and $g_{i}(\alpha_{j})$ to $P_{j}$</li>
-</ul>
-</li>
-<li><strong>Broadcast Compliants</strong> - Each party $P_{i}$<br>3.1. For every $j \in {1,&#x2026;,n}$, let $u_{j}, v_{j}$ denote the values received from player $P_{j}$ in Round 2<ul>
-<li>these are supposed to be $u_{j} = f_{j}(\alpha_{i})$ and $v_{j} = g_{j}(\alpha_{i})$</li>
-<li>If $u_{j} \neq f_{j}(\alpha_{i})$ or $v_{j} \neq g_{j}(\alpha_{i})$, broadcast complaint($i,j,f_{i}(\alpha_{j}, g_{i}(\alpha_{j}))$)</li>
-</ul>
-</li>
-<li><strong>Resolve Complaints</strong> - The dealer $D$: for every complaint message recevied, do:<br>4.1. Upon viewing a message complaint $(i,j,u,v)$ broadcast by $P_{i}$, check that $u = S(\alpha_{j},\alpha_{i})$ and $v = S(\alpha_{i},\alpha_{j})$.<ul>
-<li>Note that if the dealer and $P_{i}$ are honest, then it holds that $u = f_{i}(\alpha_{j})$ and $v = g_{i}(\alpha_{j})$<br>4.2. If the above condition holds, then do nothing. Otherwise, broadcast reveal($i,f_{i}(x), g_{i}(y)$)</li>
-</ul>
-</li>
-<li><strong>Evaluate Complaint Resolutions</strong> &#x2013; Each party $P_{i}$<ul>
-<li>Haven&#x2019;t understood yet&#x2026;</li>
-</ul>
-</li>
-<li><strong>Output Decision</strong> (if there were complaints) - Each party $P_{i}$<br>6.1. If at least $n&#x2212;t$ parties broadcast consistent, output $f_{i}(0)$. Otherwise, output $\perp$.</li>
-</ol>
-</li>
-</ul>
-<h1 id="Relevance"><a href="#Relevance" class="headerlink" title="Relevance"></a>Relevance</h1><ul>
-<li>VSS is a simple but powerful primitive, which may be very useful in Blockchain</li>
-<li>MPC is strongly related to the consensus problem</li>
-</ul>
-<h1 id="To-discuss-investigate"><a href="#To-discuss-investigate" class="headerlink" title="To discuss/investigate"></a>To discuss/investigate</h1><ul>
-<li>Is it worth a try to combine VSS or Threshold Encryption to the consensus?</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/11/30/Journal-of-Cryptology-17-A-Full-Proof-of-the-BGW-Protocol-for-Perfectly-Secure-Multiparty-Computation/" data-id="cju23vskd001jbwjour4bxkpy" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BGW-Protocol/">BGW Protocol</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MPC/">MPC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VSS/">VSS</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-FC-19-New-Empirical-Traceability-Analysis-of-CryptoNote-Style-Blockchains" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/11/21/FC-19-New-Empirical-Traceability-Analysis-of-CryptoNote-Style-Blockchains/" class="article-date">
-  <time datetime="2018-11-21T07:45:28.000Z" itemprop="datePublished">2018-11-21</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/paper-reading/">paper reading</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/21/FC-19-New-Empirical-Traceability-Analysis-of-CryptoNote-Style-Blockchains/">FC&#39;19 - New Empirical Traceability Analysis of CryptoNote-Style Blockchains</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Info"><a href="#Info" class="headerlink" title="Info"></a>Info</h1><ul>
-<li><strong>Title</strong>: New Empirical Traceability Analysis of CryptoNote-Style Blockchains</li>
-<li><strong>Conference</strong>: FC</li>
-<li><strong>Year</strong>: 2019</li>
-<li><strong>Topic</strong>: Cryptography and Security (cs.CR)</li>
-<li><strong>URL</strong>: No</li>
-<li><strong>Source code</strong>: No</li>
-</ul>
-<h1 id="Addressed-Problems"><a href="#Addressed-Problems" class="headerlink" title="Addressed Problems"></a>Addressed Problems</h1><ul>
-<li>In practice, CryptoNote-style cryptocurrencies fall short from achieving their claimed anonymity<ul>
-<li>Monero transactions may be de-anonymized via statistical analysis</li>
-<li>Most inputs in Monero have very small number of mixins and more than half inputs are paid without mixin</li>
-<li>Once a coin payed without mixin is chosen as a mixin in another transaction, the input of this transaction also faces a danger of being de-anonymized.<ul>
-<li>called &#x201C;chain-reaction&#x201D; analysis or cascade effect [4].</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Problems still exist<ul>
-<li>Can anonymity of users be well-protected with a current small ring size, i.e., the counter-measures for known attacks?</li>
-<li>How to theoretically analyze the security level achieved by those cryptocurrencies adopting the ring signature for untraceability</li>
-</ul>
-</li>
-<li>There is no empirical analysis on other CryptoNote-style currencies.</li>
-</ul>
-<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ul>
-<li>We show that the current countermeasures to resist known attacks make Monero a good system to provide anonymity</li>
-<li>We show other CryptoNote-style protocols are still suffering from the same type of attacks.</li>
-<li>We introduce a new attack on the untraceability of CryptoNote-style currencies called <strong>closed set attack</strong><ul>
-<li>This attack is based on the fact that $n$ transaction inputs will and must use $n$ distinct public-keys as real-spend, since each public-key can only be redeemed once.</li>
-<li>A set of inputs is called a <em>closed set</em> if the number of inputs equals to the number of distinct public-keys included.</li>
-<li>Hence, we can deduce that all public-keys included in a <em>closed set</em> must be mixins in other inputs outside of this closed set.</li>
-<li>In this way, the searching for closed sets will be helpful to track the real-spend of some other inputs.</li>
-</ul>
-</li>
-<li>We verify the impact of our attack via performing experiments on actual blockchain data, where we pick the top 3 CryptoNote-style currencies by market capitalization, i.e., Monero, Bytecoin and DigitalNote.<ul>
-<li>As the closed set attack is too expensive to run due to its high complexity, we propose an efficient algorithm, namely, <strong>clustering algorithm</strong>, to (approximately) implement closed set attack.</li>
-<li>We give a lower bound of our clustering algorithm in implementing the closed set attack. Specifically, we prove that our algorithm can find all <em>closed set</em> of size 5.</li>
-</ul>
-</li>
-<li>In addition, we also provide a theoretical analysis on the existence of <em>closed set</em>. <ul>
-<li>We find that if all inputs have 3 mixins and all mixins are uniformly distributed, with all but a very small probability (about $2^{-19}$), there will not exist any <em>closed set</em>.</li>
-</ul>
-</li>
-</ul>
-<h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><h1 id="Relevance"><a href="#Relevance" class="headerlink" title="Relevance"></a>Relevance</h1><h1 id="To-discuss-investigate"><a href="#To-discuss-investigate" class="headerlink" title="To discuss/investigate"></a>To discuss/investigate</h1>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/11/21/FC-19-New-Empirical-Traceability-Analysis-of-CryptoNote-Style-Blockchains/" data-id="cju23vsk90013bwjo91t5ogqz" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Confidential-Transactions/">Confidential Transactions</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CryptoNote/">CryptoNote</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FC/">FC</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-CCS-17-Practical-UC-Secure-Delegatable-Credentials-with-Attributes-and-Their-Application-to-Blockchain" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/11/20/CCS-17-Practical-UC-Secure-Delegatable-Credentials-with-Attributes-and-Their-Application-to-Blockchain/" class="article-date">
-  <time datetime="2018-11-20T07:47:04.000Z" itemprop="datePublished">2018-11-20</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/paper-reading/">paper reading</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/20/CCS-17-Practical-UC-Secure-Delegatable-Credentials-with-Attributes-and-Their-Application-to-Blockchain/">CCS&#39;17 - Practical UC-Secure Delegatable Credentials with Attributes and Their Application to Blockchain</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Info"><a href="#Info" class="headerlink" title="Info"></a>Info</h1><ul>
-<li><strong>Title</strong>: Practical UC-Secure Delegatable Credentials with Attributes and Their Application to Blockchain</li>
-<li><strong>Conference</strong>: ACM CCS</li>
-<li><strong>Year</strong>: 2017</li>
-<li><strong>Topic</strong>: Cryptography and Security (cs.CR)</li>
-<li><strong>URL</strong>: <a href="https://acmccs.github.io/papers/p683-camenischA.pdf" target="_blank" rel="noopener">https://acmccs.github.io/papers/p683-camenischA.pdf</a></li>
-<li><strong>Source code</strong>: No</li>
-</ul>
-<h1 id="Addressed-Problems"><a href="#Addressed-Problems" class="headerlink" title="Addressed Problems"></a>Addressed Problems</h1><ul>
-<li><strong>Delegatable anonymous credentials (DAC)</strong> can allow a credential owner to delegate her credential to another user, who, in turn, can delegate it further as well as present it to a verifier for authentication purposes.</li>
-<li>Existing constructions are <strong>not practical</strong>, because they use generic zero-knowledge proofs or Groth-Sahai proofs with many expensive pairing operations and a large credential size.</li>
-<li>Existing constructions are described mostly in a <strong>black-box</strong> fashion (to hide the complexity of their concrete instantiations), often <strong>leaving out the details</strong> that would be necessary for their implementation.</li>
-<li>The existing DAC security models <strong>do not consider attributes</strong>, which, however, are necessary in many practical applications.</li>
-<li>Existing constructions <strong>do not provide an ideal functionality</strong> for DAC ([20]) or <strong>are proven secure in standalone models</strong> ([3, 17, 26]) that guarantee security only if a protocol is run in isolation</li>
-</ul>
-<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ul>
-<li>We propose <strong>the first practical DAC system with attributes</strong> that is well-suited for real-world applications.<ul>
-<li>A simple and ideal functionality $\mathcal{F}_{dac}$</li>
-<li>Attributes can be different on any level ofdelegation.</li>
-<li>Each attribute at any level can be selectively revealed when generating presentation token.</li>
-<li>Tokens can be used to sign arbitrary messages.</li>
-<li>Privacy is guaranteed only during presentation, during delegation the delegatee knows the full credential chain delegated to her.</li>
-</ul>
-</li>
-<li>We propose <strong>a generic DAC construction from signature schemes and zero-knowledge proofs</strong> and <strong>prove it secure</strong> in the <strong>universal composability (UC) framework</strong> introduced by Canetti [14].</li>
-<li>We describe <strong>a very efficient instantiation of our DAC scheme</strong> based on a recent structure-preserving signature scheme by Groth [29] and on Schnorr zero-knowledge proofs [34].</li>
-<li>We report on an <strong>implementation</strong> of our scheme in the context of <strong>a privacy-preserving membership service for permissioned blockchains</strong> and give <strong>concrete performance figures</strong>, demonstrating the practicality of our construction.</li>
-</ul>
-<h1 id="Primitives"><a href="#Primitives" class="headerlink" title="Primitives"></a>Primitives</h1><h2 id="Bilinear-Map"><a href="#Bilinear-Map" class="headerlink" title="Bilinear Map"></a>Bilinear Map</h2><p>Let $\mathcal{G}$ be a bilinear group generator that takes as an input a security parameter 1&#x3BA; and outputs the descriptions of multiplicative groups $ \Lambda = (q, \mathbb{G}<em>{1}, \mathbb{G}</em>{2}, \mathbb{G}<em>{t}, e, g</em>{1}, g_{2}) $, where:</p>
-<ul>
-<li>$\mathbb{G}<em>{1}, \mathbb{G}</em>{2}, \mathbb{G}_{t}$ are groups of prime order $q$</li>
-<li>$e$ is an efficient, non-degenerating bilinear map $e (\mathbb{G}<em>{1} \times \mathbb{G}</em>{2}) \rightarrow \mathbb{G}_{t}$</li>
-<li>$g_{1}, g_{2}$ are generators of groups $\mathbb{G}<em>{1}, \mathbb{G}</em>{2}$ respectively</li>
-<li>We denote $ \Lambda^{*} = (q, \mathbb{G}<em>{1}, \mathbb{G}</em>{2}, \mathbb{G}_{t}, e) $ as $ \Lambda $ without group generators</li>
-</ul>
-<h2 id="Zero-Knowledge-Proofs"><a href="#Zero-Knowledge-Proofs" class="headerlink" title="Zero-Knowledge Proofs"></a>Zero-Knowledge Proofs</h2><p><em>Prover</em> proves he knows $(a,b,c)$ to the <em>verifier</em> without leaking $(a,b,c)$.</p>
-<p>$ PK{ (a,b,c) : Y = g_{1}^{a} \wedge \tilde{Y} = \tilde{g_{1}}^{a}\tilde{H}^{c} } $ denotes a</p>
-<ul>
-<li><em>zero-knowledge <strong>Proof of Knowledge</strong> of integers $a,b,c$ </em> s.t. <ul>
-<li>$Y = g_{1}^{a}H^{b}$ and $ \tilde{Y} = \tilde{g_{1}}^{a}\tilde{H}^{c} $</li>
-<li>where $y, g, h$ are elements of some groups $G = \langle g_{1} \rangle = \langle H \rangle$</li>
-<li>where $\tilde{Y}, \tilde{g_{1}}, \tilde{H}$ are elements of some groups $\tilde{G} = \langle \tilde{g_{1}} \rangle = \langle \tilde{H} \rangle$</li>
-</ul>
-</li>
-<li>$(a,b,c)$ denote the knowledge, while all other values are known to the verifier</li>
-</ul>
-<p>We can create a similar proof proving knowledge of group elements instead of exponents, e.g.</p>
-<p>$SPK{a \in \mathbb{G}_{1} : y = e(a, b) }$ where:</p>
-<ul>
-<li>e(a, b) is a defined computation on the group $\mathbb{G}_{1}$, like $b^{a}$ on the finite field</li>
-</ul>
-<p>We use $NIZK{w, s(w)}$ to denote a generic non-interactive zero-knowledge (NIZK) proof proving knowledge of witness $w$ such that statement $s(w)$ is true.</p>
-<h2 id="Signature-Schemes"><a href="#Signature-Schemes" class="headerlink" title="Signature Schemes"></a>Signature Schemes</h2><p>A digital signature scheme $Sig$ is a set of PPT algorithms $Sig = (Setup, Gen, Sign, Verify)$:</p>
-<ul>
-<li>$Sig.Setup(1^{K}) \stackrel{\$}{\rightarrow} sp$: The setup algorithm $Sig.Setup$ takes a security parameter $1^{K}$ and outputs public system parameters $sp$ that also specify a message space $\mathcal{M}$.</li>
-<li>$Sig.Gen(sp) \stackrel{\$}{\rightarrow} (sk,vk) $: The key generation algorithm $Sig.Gen(sp)$ the input system parameter $sp$ and outputs a verification key $vk$ and a corresponding secret key $sk$.</li>
-<li>$Sig.Sign(sk,m) \stackrel{\$}{\rightarrow} \sigma $: The signing algorithm $Sig.Sign$ takes a private key $sk$ and a message $m \in \mathcal{M}$ and outputs a signature $\sigma$.</li>
-<li>$Sig.Verify(vk,m,\sigma) \rightarrow 1/0$: The verification algorithm $Sig.Verify$ takes a public verification key $vk$, a messagem $m$ and a signature $\sigma$ and outputs 1 for acceptance or 0 for rejection</li>
-</ul>
-<h2 id="Sibling-Signatures"><a href="#Sibling-Signatures" class="headerlink" title="Sibling Signatures"></a>Sibling Signatures</h2><p>Sibling Signature allows a signer with one key pair to use two different signing algorithms, each with a dedicated verification algorithm.<br>A sibling signature scheme consists of algorithms $(Setup, Gen, Sign1, Sign2, Verify1, Verify2)$.</p>
-<ul>
-<li>$Sib.Setup(1^{K}) \stackrel{\$}{\rightarrow} sp$: The setup algorithm $Sib.Setup$ takes a security parameter $1^{K}$ and outputs public system parameters $sp$ that also specify two message spaces $\mathcal{M}<em>{1}, \mathcal{M}</em>{2}$.</li>
-<li>$Sib.Gen(sp) \stackrel{\$}{\rightarrow} (sk, vk)$ : The key generation algorithm takes public system parameters $sp$ and outputs a verification key $vk$ and a corresponding secret key $sk$.</li>
-<li>$Sib.Sign1(sk,m) \stackrel{\$}{\rightarrow} \sigma$ : The signing algorithm $Sib.Sign1(sk,m)$ takes as input a private key $sk$ and a message $m \in \mathcal{M}$ and outputs a signature $\sigma$.</li>
-<li>$Sib.Sign2(sk,m) \stackrel{\$}{\rightarrow} \sigma$ : The signing algorithm $Sib.Sign2(sk,m)$ takes as input a private key $sk$ and a message $m \in \mathcal{M}$ and outputs a signature $\sigma$.</li>
-<li>$Sib.Verify1(vk,m,\sigma) \rightarrow 1/0$: The verification algorithm $Sib.Verify1$ takes as input a public verification key $vk$, a message $m$ and a signature $\sigma$ and outputs 1 for acceptance or 0 for rejection.</li>
-<li>$Sib.Verify2(vk,m,\sigma) \rightarrow 1/0$: The verification algorithm $Sib.Verify2$ takes as input a public verification key $vk$, a message $m$ and a signature $\sigma$ and outputs 1 for acceptance or 0 for rejection.</li>
-</ul>
-<h2 id="Universal-Composability-UC"><a href="#Universal-Composability-UC" class="headerlink" title="Universal Composability (UC)"></a>Universal Composability (UC)</h2><p>UC is a framework for proving a protocol is secure in the real world.</p>
-<ul>
-<li>In UC, an environment $\varepsilon$ gives input to the protocol participants and receives their outputs</li>
-<li>UC defines 2 world:<ul>
-<li>Real world<ul>
-<li>Honest parties execute a protocol over a network controlled by an adversary $\mathcal{A}$</li>
-<li>$\mathcal{A}$ also controls the corrupt parties while communicating freely with environment $\varepsilon$</li>
-</ul>
-</li>
-<li>Ideal world<ul>
-<li>Honest parties are &#x201C;dummy parties&#x201D; who forward their inputs to the ideal functionality $\mathcal{F}$</li>
-<li>$\mathcal{F}$ internally performs the desired task and generates outputs for honest parties</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>A protocol $\pi$ securely realizes an ideal functionality $\mathcal{F}$ if the real world is as secure as the ideal world.</li>
-<li>For every adversary $\mathcal{A}$ attacking the real world, there exists a simulator $\mathcal{S}$ that performs an equivalent attack on the ideal world.</li>
-<li>If there are no meaningful attacks <strong>on the ideal world</strong>, it follows that there are no meaningful attacks <strong>on the real world</strong>.</li>
-</ul>
-<h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><h1 id="Relevance"><a href="#Relevance" class="headerlink" title="Relevance"></a>Relevance</h1><ul>
-<li>This is a plausible approach for access control in permissioned Blockchain systams. </li>
-<li>We may explore its usage in public Blockchains.</li>
-</ul>
-<h1 id="To-discuss-investigate"><a href="#To-discuss-investigate" class="headerlink" title="To discuss/investigate"></a>To discuss/investigate</h1><ul>
-<li>Is it possible to combine this technique with multi-signature?</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/11/20/CCS-17-Practical-UC-Secure-Delegatable-Credentials-with-Attributes-and-Their-Application-to-Blockchain/" data-id="cju23vsma009ibwjoysgtbrwt" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CCS/">CCS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Delegatable-Anonymous-Credentials/">Delegatable Anonymous Credentials</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Universal-Composability/">Universal Composability</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-NDSS-17-TumbleBit-An-Untrusted-Bitcoin-Compatible-Anonymous-Payment-Hub" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/11/18/NDSS-17-TumbleBit-An-Untrusted-Bitcoin-Compatible-Anonymous-Payment-Hub/" class="article-date">
-  <time datetime="2018-11-18T02:54:35.000Z" itemprop="datePublished">2018-11-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/paper-reading/">paper reading</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/18/NDSS-17-TumbleBit-An-Untrusted-Bitcoin-Compatible-Anonymous-Payment-Hub/">NDSS&#39;17 - TumbleBit: An Untrusted Bitcoin-Compatible Anonymous Payment Hub</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Info"><a href="#Info" class="headerlink" title="Info"></a>Info</h1><ul>
-<li><strong>Title</strong>: TumbleBit: An Untrusted Bitcoin-Compatible Anonymous Payment Hub</li>
-<li><strong>Conference</strong>: USENIX NDSS</li>
-<li><strong>Year</strong>: 2017</li>
-<li><strong>Topic</strong>: Cryptography and Security (cs.CR)</li>
-<li><strong>URL</strong>: <a href="https://eprint.iacr.org/2016/575.pdf" target="_blank" rel="noopener">https://eprint.iacr.org/2016/575.pdf</a></li>
-<li><strong>Source code</strong>: <a href="https://github.com/BUSEC/TumbleBit/" target="_blank" rel="noopener">https://github.com/BUSEC/TumbleBit/</a></li>
-</ul>
-<h1 id="Addressed-Problems"><a href="#Addressed-Problems" class="headerlink" title="Addressed Problems"></a>Addressed Problems</h1><ul>
-<li>The sheen of Bitcoin anonymity has all but worn off, dulled by a stream of academic papers [38], [51], and a blockchain surveillance industry [32], [26], that have demonstrated weak-nesses in Bitcoin&#x2019;s anonymity properties.</li>
-</ul>
-<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ul>
-<li>We present TumbleBit, a <em>unidirectional unlinkable payment hub</em> that uses an untrusted intermediary, the Tumbler <em>T</em>, to enhance anonymity.<ul>
-<li>TumbleBit allows a payer A to send fast off-blockchain payments (of denomination one bitcoin) to a set of payees (B1, &#x2026;, BQ) of her choice.</li>
-<li>Off-chain, so scalable, high performance and low latency</li>
-</ul>
-</li>
-<li>We implemented TumbleBit as a classic tumbler. (That is, each payer and payee can send/receive Q = 1 payment/epoch.) We then used TumbleBit to mix bitcoins from 800 payers (Alice A) to 800 payees (Bob B).</li>
-</ul>
-<h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><ul>
-<li>TumbleBit replaces on-blockchain payments with <strong>off-blockchain puzzle solving</strong><ul>
-<li>where Alice $A$ pays Bob $B$ by providing $B$ with the solution to a puzzle. </li>
-<li>The puzzle $z$ is generated through interaction between $B$ and $T$, and solved through an interaction between $A$ and $T$. </li>
-<li>Each time a puzzle is solved, 1 bitcoin is transferred from Alice $A$ to the Tumbler $T$ and finally on to Bob $B$.</li>
-</ul>
-</li>
-<li>The protocol proceeds in three phases<ul>
-<li>Escrow Phase<ul>
-<li>Alice $A$ opens a payment channel with the Tumbler $T$ by escrowing $Q$ bitcoins on the blockchain</li>
-<li>Payee Bob $B4 also opens a channel with $T$<ul>
-<li>$T$ escrowing $Q$ bitcoins on the blockchain</li>
-<li>$B$ and $T$ engaging in a puzzle-promise protocol that generates up to $Q$ puzzles for $B$.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Payment Phase<ul>
-<li>$A$ makes up to Q off-blockchain payments to any set of payees</li>
-<li>To make a payment, $A$ interacts with $T$ to learn the solution to a puzzle $B$ provided</li>
-</ul>
-</li>
-<li>Cash-Out Phase<ul>
-<li>closes all payment channels</li>
-<li>$B$ uses his $Q&#x2019;$ solved puzzles (aka, TumbleBit payments) to create an on-blockchain transaction that claims $Q&#x2019;$ bitcoins from $T$&#x2019;s escrow</li>
-<li>$A$ also closes her escrow with $T$, recovering bitcoins not used in a payment</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h1 id="Relevance"><a href="#Relevance" class="headerlink" title="Relevance"></a>Relevance</h1><ul>
-<li>This is a confidential transaction scheme compatible with Bitcoin, but requires a trusted third party</li>
-<li>The RSA puzzle based puzzle-promise protocol is an efficient method of mixing TXs </li>
-</ul>
-<h1 id="To-discuss-investigate"><a href="#To-discuss-investigate" class="headerlink" title="To discuss/investigate"></a>To discuss/investigate</h1><ul>
-<li>Is there any related work about the RSA puzzle promise protocol?</li>
-<li>Here is a family of confidential transaction schemes compatible with Bitcoin. Should we summary them?</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/11/18/NDSS-17-TumbleBit-An-Untrusted-Bitcoin-Compatible-Anonymous-Payment-Hub/" data-id="cju23vskk0021bwjoldi1h3tf" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blockchain/">Blockchain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Confidential-Transactions/">Confidential Transactions</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NDSS/">NDSS</a></li></ul>
 
     </footer>
   </div>
@@ -1167,7 +1482,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -1220,23 +1535,23 @@
       <ul>
         
           <li>
-            <a href="/2019/04/04/Writing-in-the-Sciences-1-6-Practicing-cutting-clutter/">Writing in the Sciences - 1.6: Practicing cutting clutter</a>
+            <a href="/2019/04/08/Writing-in-the-Sciences-2-6-A-few-grammar-tips/">Writing in the Sciences - 2.6: A few grammar tips</a>
           </li>
         
           <li>
-            <a href="/2019/04/04/Writing-in-the-Sciences-1-5-Cut-the-clutter-more-tricks/">Writing in the Sciences - 1.5: Cut the clutter, more tricks</a>
+            <a href="/2019/04/08/Writing-in-the-Sciences-2-5-Practise-examples/">Writing in the Sciences - 2.5: Practise examples</a>
           </li>
         
           <li>
-            <a href="/2019/04/04/Writing-in-the-Sciences-1-4-Cut-the-clutter/">Writing in the Sciences - 1.4: Cut the clutter</a>
+            <a href="/2019/04/05/Writing-in-the-Sciences-2-4-Write-with-verbs/">Writing in the Sciences - 2.4: Write with verbs</a>
           </li>
         
           <li>
-            <a href="/2019/03/15/Interactive-Proof-Systems/">Interactive Proof Systems</a>
+            <a href="/2019/04/05/Writing-in-the-Sciences-2-3-Active-voice-practice/">Writing in the Sciences - 2.3: Active voice practice</a>
           </li>
         
           <li>
-            <a href="/2019/03/15/Fiat-Shamir-Heuristic/">Fiat-Shamir Heuristic</a>
+            <a href="/2019/04/05/Writing-in-the-Sciences-2-2-Is-it-really-OK-to-use-We-and-I/">Writing in the Sciences - 2.2: Is it really OK to use We and I?</a>
           </li>
         
       </ul>

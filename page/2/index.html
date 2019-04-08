@@ -64,6 +64,661 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Fiat-Shamir-Heuristic" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/15/Fiat-Shamir-Heuristic/" class="article-date">
+  <time datetime="2019-03-14T23:26:18.000Z" itemprop="datePublished">2019-03-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/cryptography/">cryptography</a>►<a class="article-category-link" href="/categories/cryptography/zero-knowledge/">zero knowledge</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/15/Fiat-Shamir-Heuristic/">Fiat-Shamir Heuristic</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h1><p>The Fiat&#x2013;Shamir Heuristic [FS86] is a cryptographic technique to create a digital signature of an Interactive Proof of Knowledge and make it publicly verifiable.</p>
+<p>This can be used for converting an Interactive Proof of Knowledge to a Non-Interactive Proof of Knowledge.</p>
+<h1 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h1><h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><p>Here is an example of the Proof of Knowledge (PoK) problem.</p>
+<ul>
+<li>Participants<ul>
+<li>Peggy: the Prover (female)</li>
+<li>Victor: the Verifier (male)</li>
+</ul>
+</li>
+<li>Problem<ul>
+<li>Knowledge: Peggy knows $x: y = g^{x}$ where $x \in \mathbb{Z}^{*}_{q}$ (a finite field with the prime degree $q$ and a generator $g$)</li>
+<li>Problem: Peggy wants to prove she knows $x$ to Victor without revealing $x$</li>
+</ul>
+</li>
+</ul>
+<h2 id="Solution-1-An-Interactive-Protocol"><a href="#Solution-1-An-Interactive-Protocol" class="headerlink" title="Solution 1: An Interactive Protocol"></a>Solution 1: An Interactive Protocol</h2><ol>
+<li>Peggy picks a random $x \in \mathbb{Z}^{*}_{q}$, then computes $t = g^{v}$, then sends $t$ to Victor</li>
+<li>Victor picks a random $c \in \mathbb{Z}^{*}_{q}$, then sends it to Peggy</li>
+<li>Peggy computes $r = v - cx$, then returns $t$ to Victor</li>
+<li>Victor can check $t \stackrel{?}{=} g^{r} y^{c}$<ul>
+<li>Proof: $g^{x} y^{c} = g^{v-cx} g^{xc} = g^v = t$</li>
+</ul>
+</li>
+</ol>
+<p>Only Victor can verify this, as $c$ is chosen by Victor and others may not trust Victor.</p>
+<h2 id="Solution-2-A-Non-Interactive-and-Publicly-Verifiable-Protocol"><a href="#Solution-2-A-Non-Interactive-and-Publicly-Verifiable-Protocol" class="headerlink" title="Solution 2: A Non-Interactive and Publicly Verifiable Protocol"></a>Solution 2: A Non-Interactive and Publicly Verifiable Protocol</h2><ol>
+<li>Peggy picks a random $x \in \mathbb{Z}^{*}_{q}$, then computes $t = g^{v}$</li>
+<li>Peggy computes $c = H(g, y, t)$, where $H()$ is an ideal Random Oracle</li>
+<li>Peggy computes $r = v-cx$, and the resulting Proof of Knowledge is $\pi = (t ,r)$, then she publishes $\pi$</li>
+<li>$\pi$ can be verifiable by anyone, by checking $t \stackrel{?}{=} g^{r} y^{c}$ ($c$ can be computed from $g, y, t$ by anyone)</li>
+</ol>
+<p>Theory:</p>
+<ul>
+<li>$x$ is an entropy source</li>
+<li>$H()$ makes $c$ unpredictable and publicly computable</li>
+<li>$\pi$ can be treated as a digital signature of the Interactive Proof of Knowledge, equivalent to a Non-Interactive proof of Knowledge</li>
+</ul>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li>[FS86] <a href="https://www.math.uni-frankfurt.de/~dmst/teaching/SS2012/Vorlesung/Fiat.Shamir.pdf" target="_blank" rel="noopener">Amos Fiat and Adi Shamir: How to Prove Yourself: Practical Solutions to Identification and Signature Problems. CRYPTO 1986.</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://SebastianElvis.github.io/2019/03/15/Fiat-Shamir-Heuristic/" data-id="cju7notbd003ks7jot80gqldt" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Zero-Knowledge/">Zero Knowledge</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Merkle-Puzzles" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/26/Merkle-Puzzles/" class="article-date">
+  <time datetime="2019-02-26T01:17:48.000Z" itemprop="datePublished">2019-02-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/cryptography/">cryptography</a>►<a class="article-category-link" href="/categories/cryptography/public-key-cryptography/">public-key cryptography</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/26/Merkle-Puzzles/">Merkle Puzzles</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h1><p>Merkle Puzzles [Mer75] allow two parties to agree on a shared secret by exchanging messages, even if they have no secrets in common beforehand (similar to Diffie-Hellman Key Exchange).</p>
+<h1 id="Construction"><a href="#Construction" class="headerlink" title="Construction"></a>Construction</h1><p>Common Knowledges:</p>
+<ul>
+<li>$n$: the security parameter</li>
+<li>$H: {0, 1}^{l} \to {0, 1}^{l}$ is a hash function, where $l \gg \log{n}$</li>
+</ul>
+<p>The protocol operates as follows:</p>
+<ol>
+<li>Alice chooses $n$ random numbers $(x_{1}, \dots, x_{n}) \in [n^{2}]$</li>
+<li>Alice sends $(a_{1}, \dots, a_{n})$ to Bob where $a_{i} = H(x_{i})$ for $i \in [1, n]$</li>
+<li>Bob chooses $n$ random numbers $(y_{1}, \dots, y_{n}) \in [n^{2}]$</li>
+<li>Bob sends $(b_{1}, \dots, b_{n})$ to Alice where $b_{i} = H(y_{i})$ for $i \in [1, n]$</li>
+<li>With at least 0.9 probability, there will be at least one <strong>collision</strong> between Alice&#x2019;s and Bob&#x2019;s messages: a pair $(i, j)$ s.t. $a_{i} = b_{j}$. Alice and Bob choose the lexicographically first such pair as their secrets<ul>
+<li>Alice sets $s_{a} = x_{i}$ as her secret, and Bob sets $s_{b} = y_{j}$ as his secret</li>
+<li>If no collision, no secret</li>
+</ul>
+</li>
+</ol>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li>[Mer75] <a href="http://www.merkle.com/1974/Puzzles1975.12.07.pdf" target="_blank" rel="noopener">Ralph Merkle. Secure Communication Over Insecure Channels.</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://SebastianElvis.github.io/2019/02/26/Merkle-Puzzles/" data-id="cju7notbj0041s7jo6tapv3ta" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Merkle-Puzzles/">Merkle Puzzles</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Lightning-Network-In-Detail" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/25/Lightning-Network-In-Detail/" class="article-date">
+  <time datetime="2019-02-25T03:25:30.000Z" itemprop="datePublished">2019-02-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/blockchain/">blockchain</a>►<a class="article-category-link" href="/categories/blockchain/off-chain/">off-chain</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/25/Lightning-Network-In-Detail/">Lightning Network In Detail</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="The-Lightning-Network-Protocol"><a href="#The-Lightning-Network-Protocol" class="headerlink" title="The Lightning Network Protocol"></a>The Lightning Network Protocol</h1><ol>
+<li>Establishing the Duplex Payment Channel<ul>
+<li>By creating a Funding Transaction</li>
+</ul>
+</li>
+<li>Making Commitment Transactions<ul>
+<li>Unenforcible TXs</li>
+<li>tx1, tx2, &#x2026; whatever you want</li>
+<li>2-2 MultiSig TXs</li>
+</ul>
+</li>
+<li>Closing the Duplex Payment Channel</li>
+</ol>
+<h1 id="Establishing-the-Duplex-Payment-Channel"><a href="#Establishing-the-Duplex-Payment-Channel" class="headerlink" title="Establishing the Duplex Payment Channel"></a>Establishing the Duplex Payment Channel</h1><h1 id="Making-Commitment-Transactions"><a href="#Making-Commitment-Transactions" class="headerlink" title="Making Commitment Transactions"></a>Making Commitment Transactions</h1><h2 id="Process"><a href="#Process" class="headerlink" title="Process"></a>Process</h2><ul>
+<li>If Alice and Bob have a payment channel, both of them should have a &#x201C;latest&#x201D; <strong>commitment transaction</strong>.</li>
+<li>A <strong>commitment transaction</strong> divides the funds from the funding transaction according to the correct allocation between Alice and Bob<ul>
+<li>e.g. if Alice owns 1.0 mBTC and Bob owns 1.0 mBTC in the channel, the commitment transactions divide the total channel funds in that way</li>
+</ul>
+</li>
+</ul>
+<p>Initially, </p>
+<ul>
+<li>Alice holds the $A_{1}$ commitment TX, and Bob holds the $B_{1}$ commitment TX</li>
+<li>$R_{A_{1}}$ is the revocation key for $A_{1}$ hold by Alice, $R_{B_{1}}$ is the revocation key for $B_{1}$ hold by Bob</li>
+</ul>
+<p>Suppose Alice decides to pay Bob 0.25 mBTC (before this, each owns 1 mBTC):</p>
+<ol>
+<li>Alice creates a new Bob&#x2019;s TX $B_{2}$<ul>
+<li>$B_{2}$: allocating 0.75 mBTC to Alice, and 1.25 mBTC to Bob</li>
+</ul>
+</li>
+<li>Alice signs $B_{2}$ and sends it to Bob</li>
+<li>Bob receives $B_{2}$, signs it and keep it</li>
+<li>Bob creates a new Alice&#x2019;s TX $A_{2}$<ul>
+<li>$A_{2}$: allocating 0.75 mBTC to Alice and 1.25 mBTC to Bob</li>
+</ul>
+</li>
+<li>Bob signs $A_{2}$ and sends it to Alice</li>
+<li>Alice receives $A_{2}$, signs it and keep it</li>
+<li>Alice provides $R_{A_{1}}$, which invalidates $A_{1}$. Then Alice can delete $A_{1}$</li>
+<li>Bob provides $R_{B_{1}}$, which invalidates $B_{1}$. Then Bob can delete $B_{1}$</li>
+</ol>
+<h2 id="Insights"><a href="#Insights" class="headerlink" title="Insights"></a>Insights</h2><ul>
+<li>$A_{n}$ and $B_{n}$ are both 2-2 multisig TXs<ul>
+<li>$A_{n} = B_{n}$ if no one misbehaves</li>
+<li>The fund is locked in this TX</li>
+</ul>
+</li>
+<li>The latest TX (i.e. with bigger $n$) is the authority</li>
+<li>The TX $A_{i}/B_{i}$ are &#x201C;updated&#x201D; atomicly for each $i \to i+1$</li>
+<li>Neither Bob and Alice has incentive to fraud<ul>
+<li>Alice makes the payment. She wants to get something from Bob by paying Bob some Bitcoin. However, she signs the TX first so undeniable.</li>
+<li>Bob receives the payment. He wants to get Bitcoin without giving Alice anything. Only when $A_{n}$ and $B_{n}$ are both broadcasted, the TX is finalized. Therefore, Hiding $A_{n}$ cannot make Bob profit.</li>
+</ul>
+</li>
+</ul>
+<h1 id="Closing-the-Duplex-Payment-Channel"><a href="#Closing-the-Duplex-Payment-Channel" class="headerlink" title="Closing the Duplex Payment Channel"></a>Closing the Duplex Payment Channel</h1><ul>
+<li>Good way (mutual close)<ul>
+<li>Alice and Bob generate a closing TX (which is similar to a commitment transaction, but without any pending payments) and publish it on the blockchain</li>
+</ul>
+</li>
+<li>Bad way (unilateral close)<ul>
+<li>something goes wrong, possibly without evil intent on either side. One side publishes its latest commitment transaction.<ul>
+<li>e.g. one party crashed</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Ugly way (revoked TX close)<ul>
+<li>one of the parties deliberately tries to cheat, by publishing an <strong>outdated</strong> commitment transaction (presumably, a prior version, which is more in its favor).</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://SebastianElvis.github.io/2019/02/25/Lightning-Network-In-Detail/" data-id="cju7notbf003ss7jogjxfu9y9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTLC/">HTLC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Off-chain-Payment/">Off-chain Payment</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Payment-Channel/">Payment Channel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RSMC/">RSMC</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CCS-16-The-Honey-Badger-of-BFT-Protocols" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/13/CCS-16-The-Honey-Badger-of-BFT-Protocols/" class="article-date">
+  <time datetime="2019-01-13T04:37:33.000Z" itemprop="datePublished">2019-01-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/paper-reading/">paper reading</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/13/CCS-16-The-Honey-Badger-of-BFT-Protocols/">CCS&#39;16 - The Honey Badger of BFT Protocols</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Info"><a href="#Info" class="headerlink" title="Info"></a>Info</h1><ul>
+<li><strong>Title</strong>: The Honey Badger of BFT Protocols</li>
+<li><strong>Conference</strong>: CCS</li>
+<li><strong>Year</strong>: 2016</li>
+<li><strong>URL</strong>: <a href="https://eprint.iacr.org/2016/199" target="_blank" rel="noopener">https://eprint.iacr.org/2016/199</a></li>
+<li><strong>Source code</strong>: <a href="https://github.com/amiller/HoneyBadgerBFT" target="_blank" rel="noopener">https://github.com/amiller/HoneyBadgerBFT</a></li>
+</ul>
+<h1 id="Addressed-Problems"><a href="#Addressed-Problems" class="headerlink" title="Addressed Problems"></a>Addressed Problems</h1><ul>
+<li>Protocols relying critically on network timing assumptions and only guarantee liveness when the network behaves as expected are ill-suited for public Blockchain scenario.</li>
+</ul>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ul>
+<li>Positions<ul>
+<li>Robustness is a first-class citizen.</li>
+<li>Favor throughput over latency</li>
+<li>Timing assumptions considered harmful</li>
+</ul>
+</li>
+<li>We propose HoneyBadgerBFT, the first BFT atomic broadcast protocol to provide optimal asymptotic efficiency in the asynchronous setting<ul>
+<li>Communication complexity: Best $O(n)$, Worst: $O(n)$<ul>
+<li>state-of-the-art: both $O(n^{2})$</li>
+</ul>
+</li>
+<li>HoneyBadgerBFT&#x2019;s design is optimized for a cryptocurrency-like deployment scenario <ul>
+<li>where network bandwidth is the scarce resource, but computation is relatively ample. </li>
+</ul>
+</li>
+<li>This allows us to take advantage of cryptographic building blocks (in particular, threshold public-key encryption) <ul>
+<li>that would be considered too expensive in a classical fault-tolerant database setting where the primary goal is to minimize response time even under contention</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><p>TODO</p>
+<h1 id="Relevance"><a href="#Relevance" class="headerlink" title="Relevance"></a>Relevance</h1><ul>
+<li>HoneyBadgerBFT is the first practical BFT-style consensus protocol for public blockchains </li>
+</ul>
+<h1 id="To-discuss-investigate"><a href="#To-discuss-investigate" class="headerlink" title="To discuss/investigate"></a>To discuss/investigate</h1><ul>
+<li>Evaluation?</li>
+<li>How to make it not require fixed participants?</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://SebastianElvis.github.io/2019/01/13/CCS-16-The-Honey-Badger-of-BFT-Protocols/" data-id="cju7not9v0006s7joojdqtneg" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Consensus/">Consensus</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scalability/">Scalability</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-SOSP-17-Algorand-Scaling-Byzantine-Agreements-for-Cryptocurrencies" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/13/SOSP-17-Algorand-Scaling-Byzantine-Agreements-for-Cryptocurrencies/" class="article-date">
+  <time datetime="2019-01-13T02:29:57.000Z" itemprop="datePublished">2019-01-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/paper-reading/">paper reading</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/13/SOSP-17-Algorand-Scaling-Byzantine-Agreements-for-Cryptocurrencies/">SOSP&#39;17 - Algorand: Scaling Byzantine Agreements for Cryptocurrencies</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Info"><a href="#Info" class="headerlink" title="Info"></a>Info</h1><ul>
+<li><strong>Title</strong>:  Algorand: Scaling Byzantine Agreements for Cryptocurrencies</li>
+<li><strong>Conference</strong>: SOSP</li>
+<li><strong>Year</strong>: 2017</li>
+<li><strong>URL</strong>: <a href="https://people.csail.mit.edu/nickolai/papers/gilad-algorand-eprint.pdf" target="_blank" rel="noopener">https://people.csail.mit.edu/nickolai/papers/gilad-algorand-eprint.pdf</a></li>
+<li><strong>Source code</strong>: No</li>
+</ul>
+<h1 id="Addressed-Problems"><a href="#Addressed-Problems" class="headerlink" title="Addressed Problems"></a>Addressed Problems</h1><ul>
+<li>Mitigating forks requires two unfortunate sacrifices: <ul>
+<li>the time to growthe chain by one block must be reasonably high (e.g., 10 minutes in Bitcoin), </li>
+<li>applications must wait for several blocks in order to ensure their transaction remains on the authoritative chain (6 blocks are recommended in Bitcoin [7]). </li>
+</ul>
+</li>
+<li>The result is that it takes about an hour to confirm a transaction in Bitcoin.</li>
+</ul>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ul>
+<li>This paper presents Algorand, a new cryptocurrency designed to confirm transactions on the order of <strong>one minute</strong>. </li>
+<li>The core of Algorand uses a Byzantine agreement protocol called BA&#x22C6; that scales to many users, which allows Algorand to reach consensus on a newblock with <ul>
+<li>low latency </li>
+<li>without the possibility of forks.</li>
+</ul>
+</li>
+<li>A key technique that makes BA&#x22C6; suitable for Algorand is the use of verifiable random functions (VRFs) [39] to randomly select users in a private and non-interactive way.</li>
+</ul>
+<h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><h2 id="Challenges-and-Solutions"><a href="#Challenges-and-Solutions" class="headerlink" title="Challenges and Solutions"></a>Challenges and Solutions</h2><ul>
+<li>Challenges<ul>
+<li>Algorand must avoid Sybil attacks</li>
+<li>BA&#x22C6; must scale to millions of users</li>
+<li>Algorand must be resilient to DoS attacks</li>
+</ul>
+</li>
+<li>Solutions<ul>
+<li>Weighted users: In Algorand, we weigh users based on the money in their account.</li>
+<li>Consensus by committee: choosing a small set of representatives randomly selected from all users to run BA*</li>
+<li>Cryptographic sortition <ul>
+<li>BA&#x22C6; selects committee members in a <strong>private</strong> and <strong>non-interactive</strong> way. This means that every user in the system can independently determine if they are chosen to be on the committee</li>
+<li>Implemented by a VRF [39] of their private key and public information from the blockchain</li>
+<li>If the function indicates that the user is chosen, it returns a short string that proves this user&#x2019;s committee membership to other users, which the user can include in his network messages. </li>
+<li>Since membership selection is non-interactive, an adversary does not know which user to target until that user starts participating in BA&#x22C6;.</li>
+</ul>
+</li>
+<li>Participant replacement: <ul>
+<li>an adversary may target a committee member once that member sends a message in BA&#x22C6;</li>
+<li>BA&#x22C6; mitigates this attack by requiring committee members to speak just once.</li>
+<li>Thus, once a committeemember sends his message (exposing his identity to an adversary), the committee member becomes irrelevant to BA&#x22C6;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Cryptographic-Sortition-by-VRF"><a href="#Cryptographic-Sortition-by-VRF" class="headerlink" title="Cryptographic Sortition by VRF"></a>Cryptographic Sortition by VRF</h2><ul>
+<li>Cryptographic sortition is an algorithm for choosing a ran- dom subset of users according to per-user weights.</li>
+<li>Sortition is implemented using verifiable random functions (VRFs) [39].</li>
+</ul>
+<h3 id="VRF"><a href="#VRF" class="headerlink" title="VRF"></a>VRF</h3><ul>
+<li>$sk, pk$: secret key and public key</li>
+<li>$VRF_{sk}(x) \rightarrow (hash, \pi)$<ul>
+<li>$x$ is any input (the seed)</li>
+<li>$hash$ is a <em>hashlen-bit-long</em> value <ul>
+<li>uniquely determined by $sk$ and $x$ </li>
+<li>indistinguishable from random to anyone that does not know $sk$</li>
+</ul>
+</li>
+<li>$\pi$ is the proof enables anyone that knows $pk$ to check that $hash$ indeed corresponds to $x$</li>
+</ul>
+</li>
+<li>$Verify_{pk}(\pi) \rightarrow {0, 1}$<ul>
+<li>Verify that<ul>
+<li>$hash$ is indeed corresponding to $x$</li>
+<li>$hash$ is generated by the owner of $sk$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Cryptographic-Sortition"><a href="#Cryptographic-Sortition" class="headerlink" title="Cryptographic Sortition"></a>Cryptographic Sortition</h3><p>Procedure $Sortition(sk, seed, \tau, w, W)$:</p>
+<ol>
+<li>$(hash, \pi) \leftarrow VRF_{sk}(seed|role) $</li>
+<li>$p \leftarrow \frac{\tau}{W}$, $j = 0$</li>
+<li>While $ \frac{hash}{s^{hashlen}} \notin [ \sum_{k=0}^{j} B(k;w,p), \sum_{k=0}^{j+1} B(k;w,p) ) $ do<br>3.1. $j++$</li>
+<li>return $(hash, \pi, j)$ </li>
+</ol>
+<p>Description:</p>
+<ul>
+<li>$\tau$: the <em>weight</em> threshold to be the committee (an integer)</li>
+<li>$W$: total amount of currency units in Algorand blockchain</li>
+<li>$w$: your amount of currency units</li>
+<li>$B(k;w,p) = (<em>{k}^{w})p^{k}(1&#x2212;p)^{w&#x2212;k}$ is a binomial distribution, where $\sum</em>{k=0}^{w} B(k;w,p) = 1$<ul>
+<li>Assume you have $w$ coins, flip it, $P(front) = p$</li>
+<li>$B(k;w,p)$ means the probability that you have exactly $k$ times with front side for $w$-time flipping</li>
+</ul>
+</li>
+</ul>
+<p>Insight:</p>
+<ul>
+<li>Parameters:<ul>
+<li>The unit above is selected with probability $p = \frac{\tau}{W}$ , where $W$ is the total amount of currency units in Algorand</li>
+</ul>
+</li>
+<li>Splitting the $[0,1)$ to consecutive $j$ intervals:<ul>
+<li>$I^{j} = [ \sum_{k=0}^{j} B(k;w,p), \sum_{k=0}^{j+1} B(k;w,p) ) $ for $ j \in {0,1, \dots ,w}$.</li>
+<li>join all $I^{j}$ $\Rightarrow$ $[0, 1)$</li>
+<li>$I^{j} \Rightarrow$ [ P($\leq j$), P($\leq j+1$) )</li>
+</ul>
+</li>
+<li>User selection<ul>
+<li>To select users in proportion to their money, we consider each unit of Algorand currency as a different &#x201C;sub-user&#x201D;</li>
+<li>Being chosen $j$ times means that the user gets to participate as $j$ different &#x201C;sub-users&#x201D;</li>
+<li>If user $i$ owns $w_{i}$ (integral) units of Algorand, then simulated user $(i, j)$ with $j \in {1, \dots ,w_{i} }$ represents the j-th unit of currency $i$ owns</li>
+<li>If $\frac{hash}{2^{hashlen}}$ (where hashlen is the bit-length of hash) falls in the interval $I^{j}$ , then the user has exactly $j$ selected sub-users (coins).</li>
+<li>The number of selected sub-users is publicly verifiable using the proof $\pi$ (from the VRF output).</li>
+</ul>
+</li>
+<li>Weights<ul>
+<li>&#x201C;sub-users&#x201D; $j$ is an integer considered as the <em>weight</em></li>
+<li>With bigger $w$ (i.e. more money), you will have a higher bound of $j$ (higher bound is $w$)</li>
+</ul>
+</li>
+</ul>
+<p>Properties:</p>
+<ul>
+<li>given a random seed, the VRF outputs a pseudo-random hash value, which is essentially uniformly distributed between 0 and $2^{hashlen &#x2212;1}$.<ul>
+<li>As a result, users are selected at random based on their weights</li>
+</ul>
+</li>
+<li>an adversary that does not know $sk_{i}$  <ul>
+<li>CANNOT guess the <em>weight</em> of i</li>
+<li>CANNOT if $i$ was chosen as the committee</li>
+</ul>
+</li>
+<li>After BA* the committee members are publicly known, but it&#x2019;s too late for attackers</li>
+</ul>
+<h3 id="Choosing-Seed-for-Each-Round"><a href="#Choosing-Seed-for-Each-Round" class="headerlink" title="Choosing Seed for Each Round"></a>Choosing Seed for Each Round</h3><p>In each round of Algorand a new seed is published.</p>
+<ul>
+<li>For Round $r$, the seed is determined by the previous-round seed</li>
+<li>$&#x27E8;seed_{r} ,\pi&#x27E9; \leftarrow VRF_{sk_{u}} (seed_{r&#x2212;1} || r)$</li>
+</ul>
+<p>where $u$ proposer of the last block. (TODO: need more details)</p>
+<h2 id="block-Proposal"><a href="#block-Proposal" class="headerlink" title="block Proposal"></a>block Proposal</h2><ul>
+<li>Block proposer $=$ committee members this round</li>
+<li>To ensure that some block is proposed in each round, Algorand sets the sortition threshold (the minimum of <em>weight</em>) for the block-proposal role</li>
+<li>Defined as $\tau \gt 1$ proposer (although Algorand will reach consensus on at most one of these proposed blocks). </li>
+<li>Appendix B of the technical report [27] proves that choosing $\tau = 26$ ensures that a reasonable number of proposers ($1 \leq n \leq 70$ empirically) are chosen with very high probability (e.g., $\frac{10}{11}$).</li>
+</ul>
+<h2 id="BA"><a href="#BA" class="headerlink" title="BA*"></a>BA*</h2><p>TODO</p>
+<h1 id="Relevance"><a href="#Relevance" class="headerlink" title="Relevance"></a>Relevance</h1><ul>
+<li>VRF provides good properties for generating publicly verifiable randomness and joint distributed randomness</li>
+<li>A possible approach to minize the communication complexity</li>
+</ul>
+<h1 id="To-discuss-investigate"><a href="#To-discuss-investigate" class="headerlink" title="To discuss/investigate"></a>To discuss/investigate</h1><ul>
+<li>Implement the cryptographic sortition.</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://SebastianElvis.github.io/2019/01/13/SOSP-17-Algorand-Scaling-Byzantine-Agreements-for-Cryptocurrencies/" data-id="cju7notc5005ps7jokzpe1oeg" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Consensus/">Consensus</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scalability/">Scalability</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VRF/">VRF</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Preprint-Scaling-Nakamoto-Consensus-to-Thousands-of-Transactions-per-Second" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/13/Preprint-Scaling-Nakamoto-Consensus-to-Thousands-of-Transactions-per-Second/" class="article-date">
+  <time datetime="2019-01-13T01:33:36.000Z" itemprop="datePublished">2019-01-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/paper-reading/">paper reading</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/13/Preprint-Scaling-Nakamoto-Consensus-to-Thousands-of-Transactions-per-Second/">Preprint - Scaling Nakamoto Consensus to Thousands of Transactions per Second</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Info"><a href="#Info" class="headerlink" title="Info"></a>Info</h1><ul>
+<li><strong>Title</strong>: Scaling-Nakamoto-Consensus-to-Thousands-of-Transactions-per-Second</li>
+<li><strong>Conference</strong>: No</li>
+<li><strong>Year</strong>: 2018</li>
+<li><strong>URL</strong>: <a href="https://arxiv.org/abs/1805.03870" target="_blank" rel="noopener">https://arxiv.org/abs/1805.03870</a></li>
+<li><strong>Source code</strong>: No</li>
+</ul>
+<h1 id="Addressed-Problems"><a href="#Addressed-Problems" class="headerlink" title="Addressed Problems"></a>Addressed Problems</h1><ul>
+<li>However, the performance bottleneck remains one of the most critical challenges of current blockchains.</li>
+<li>In the standard Nakamoto consensus, the performance is bot- tlenecked by the facts<ul>
+<li>only one participant can win the competition and contribute to the blockchain, i.e., concurrent blocks are discarded as forks</li>
+<li>the slowness is essential to defend against adversaries</li>
+</ul>
+</li>
+<li>Hours of waiting before confirming a transaction.</li>
+</ul>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ul>
+<li>We present Conflux, a fast, scalable, and decentralized blockchain system that can process thousands of trans- actions per second while confirming each transaction in minutes.</li>
+<li>By defering the transaction total ordering and optimistically process concurrent transactions and blocks.</li>
+<li>Given that the transactions rarely conflict in blockchains (particularly in cryptocurrencies), Conflux first optimistically assumes that transactions in concurrent blocks would not conflict with each other by default.</li>
+</ul>
+<h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><h2 id="The-Conflux-DAG"><a href="#The-Conflux-DAG" class="headerlink" title="The Conflux DAG"></a>The Conflux DAG</h2><h3 id="DAG"><a href="#DAG" class="headerlink" title="DAG"></a>DAG</h3><p>(e.g. $A \leftarrow B$ where A and B are blocks, and A is older than B)</p>
+<ul>
+<li>Parent Edge: The edge is the Parent Edge for B.</li>
+<li>Reference Edge: The edge is the Reference Edge for A.</li>
+</ul>
+<h3 id="Pivot-Chain"><a href="#Pivot-Chain" class="headerlink" title="Pivot Chain:"></a>Pivot Chain:</h3><ul>
+<li>all parent edges in a DAG together form a parental tree in which the genesis block is the root.</li>
+<li>Conflux selects a chain from the genesis block to one of the leaf blocks as the pivot chain.</li>
+<li>Run the GHOST rule (same as Ethereum)</li>
+</ul>
+<h3 id="Generating-New-Block"><a href="#Generating-New-Block" class="headerlink" title="Generating New Block"></a>Generating New Block</h3><ul>
+<li>It first computes the pivot chain in its local DAG state and sets the last block in the chain as the parent of the new block.</li>
+</ul>
+<h3 id="Epoch"><a href="#Epoch" class="headerlink" title="Epoch"></a>Epoch</h3><ul>
+<li>Parent edges, reference edges, and the pivot chain together enable Conflux to split all blocks in a DAG into epochs.</li>
+<li>Every block in the pivot chain corresponds to one epoch</li>
+<li>Each epoch contains all blocks<ul>
+<li>that are reachable from the corresponding block in the pivot chain via the combination of parent edges and reference edges</li>
+<li>that are not included in previous epochs</li>
+</ul>
+</li>
+</ul>
+<h3 id="Block-Total-Order"><a href="#Block-Total-Order" class="headerlink" title="Block Total Order"></a>Block Total Order</h3><ul>
+<li>Conflux first sorts the blocks based on their corresponding epochs and then sorts the blocks in each epoch based on their topological order.</li>
+<li>If two blocks in an epoch have no partial order relationship, Conflux breaks ties deterministically with the unique ids of the two blocks.</li>
+</ul>
+<h3 id="Transaction-Order"><a href="#Transaction-Order" class="headerlink" title="Transaction Order"></a>Transaction Order</h3><ul>
+<li>Conflux first sorts transactions based on the total orders of their enclosing blocks. </li>
+<li>If two transactions belong to the same block, Conflux sorts the two transactions based on the appearance order in the block.</li>
+</ul>
+<h2 id="Conflux-Consensus-The-First-DAG-based-Nakamoto-Consensus"><a href="#Conflux-Consensus-The-First-DAG-based-Nakamoto-Consensus" class="headerlink" title="Conflux Consensus - The First DAG-based Nakamoto Consensus"></a>Conflux Consensus - The First DAG-based Nakamoto Consensus</h2><ul>
+<li>Use whatever consensus protocol you want</li>
+<li>But appending the blocks follows the GHOST protocol and the block/TX ordering mechanism above, so blocks/TXs can be concurrent within one epoch</li>
+<li>The consensus consists of 2 events:<ul>
+<li>Receive a new block<ul>
+<li>Verify</li>
+<li>Update the DAG</li>
+<li>Broadcast</li>
+</ul>
+</li>
+<li>Generate a new block<ul>
+<li>Update the DAG</li>
+<li>Broadcast</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="Relevance"><a href="#Relevance" class="headerlink" title="Relevance"></a>Relevance</h1><ul>
+<li>DAG is a possible solution for concurrent Nakamoto Consensus</li>
+<li>But this cannot shorten the confirmation time</li>
+</ul>
+<h1 id="To-discuss-investigate"><a href="#To-discuss-investigate" class="headerlink" title="To discuss/investigate"></a>To discuss/investigate</h1><ul>
+<li>Implement this using Ethereum?</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://SebastianElvis.github.io/2019/01/13/Preprint-Scaling-Nakamoto-Consensus-to-Thousands-of-Transactions-per-Second/" data-id="cju7notbz0057s7joozeab6sk" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DAG/">DAG</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scalability/">Scalability</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Preprint-A-Web-of-Blocks" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/01/12/Preprint-A-Web-of-Blocks/" class="article-date">
@@ -151,7 +806,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2019/01/12/Preprint-A-Web-of-Blocks/" data-id="cju23vsku002qbwjoa82865o8" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2019/01/12/Preprint-A-Web-of-Blocks/" data-id="cju7notbu004ws7jo4gxay5ph" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Authenticated-Data-Structure/">Authenticated Data Structure</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scalability/">Scalability</a></li></ul>
@@ -261,7 +916,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2019/01/04/Compact-Multi-Signatures-for-Smaller-Blockchains/" data-id="cju23vsk0000rbwjo1cuajley" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2019/01/04/Compact-Multi-Signatures-for-Smaller-Blockchains/" data-id="cju7notb50039s7jomo8wtget" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BLS/">BLS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MultiSig/">MultiSig</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pairing/">Pairing</a></li></ul>
@@ -352,7 +1007,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2019/01/04/Simple-Schnorr-Multi-Signatures-with-Applications-to-Bitcoin/" data-id="cju23vskz0034bwjovfeioo7e" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2019/01/04/Simple-Schnorr-Multi-Signatures-with-Applications-to-Bitcoin/" data-id="cju7notc3005is7jow1h5z17m" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MultiSig/">MultiSig</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Schnorr/">Schnorr</a></li></ul>
@@ -423,600 +1078,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2019/01/03/CVCBT-18-A-Scale-Out-Blockchain-for-Value-Transfer-with-Spontaneous-Sharding/" data-id="cju23vsk5000vbwjocd6ry5df" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2019/01/03/CVCBT-18-A-Scale-Out-Blockchain-for-Value-Transfer-with-Spontaneous-Sharding/" data-id="cju7nota4000rs7jo95s0gf4p" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scalability/">Scalability</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sharding/">Sharding</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-NDSS-18-ZEUS-Analyzing-Safety-of-Smart-Contracts" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/03/NDSS-18-ZEUS-Analyzing-Safety-of-Smart-Contracts/" class="article-date">
-  <time datetime="2019-01-03T08:56:32.000Z" itemprop="datePublished">2019-01-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/paper-reading/">paper reading</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/03/NDSS-18-ZEUS-Analyzing-Safety-of-Smart-Contracts/">NDSS&#39;18 - ZEUS: Analyzing Safety of Smart Contracts</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Info"><a href="#Info" class="headerlink" title="Info"></a>Info</h1><ul>
-<li><strong>Title</strong>: ZEUS: Analyzing Safety of Smart Contracts</li>
-<li><strong>Conference</strong>: NDSS</li>
-<li><strong>Year</strong>: 2018</li>
-<li><strong>URL</strong>: <a href="http://wp.internetsociety.org/ndss/wp-content/uploads/sites/25/2018/02/ndss2018_09-1_Kalra_paper.pdf" target="_blank" rel="noopener">http://wp.internetsociety.org/ndss/wp-content/uploads/sites/25/2018/02/ndss2018_09-1_Kalra_paper.pdf</a></li>
-<li><strong>Source code</strong>: <a href="https://seahorn.github.io/" target="_blank" rel="noopener">https://seahorn.github.io/</a></li>
-</ul>
-<h1 id="Addressed-Problems"><a href="#Addressed-Problems" class="headerlink" title="Addressed Problems"></a>Addressed Problems</h1><ul>
-<li>A smart contract is hard to patch for bugs once it is<br>deployed, irrespective of the money it holds.<br>A recent bug caused losses worth around $50 million of cryptocurrency.</li>
-</ul>
-<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ul>
-<li>We classify several new and previously known issues but unstudied in the context of smart contracts and show that they can potentially lead to loss of money.</li>
-<li>We present a formal abstraction of Solidity&#x2019;s execution semantics for verifying smart contracts using a combination<br>of abstract interpretation and symbolic model checking.</li>
-<li>We present the design and implementation of ZEUS, a symbolic model checking framework for verification of correctness and fairness policies.</li>
-<li>We present the first large scale source code analysis of<br>Solidity-based smart contracts.</li>
-<li>ZEUS is sound (with zero false negatives) and outperforms Oyente for contracts in our data set</li>
-<li>We show ZEUS&#x2019;s generic applicability by leveraging it to verify smart contracts for the Fabric blockchain.</li>
-</ul>
-<h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><h2 id="Taxonomy"><a href="#Taxonomy" class="headerlink" title="Taxonomy"></a>Taxonomy</h2><ul>
-<li>Incorrect Contracts<ul>
-<li>REENTRANCY<ul>
-<li>A function is reentrant if it can be interrupted while in the midst of its execution, and safely re-invoked even before its previous invocations complete execution.</li>
-</ul>
-</li>
-<li>UNCHECKED SEND<ul>
-<li>Since Solidity allows only 2300 gas upon a send call, a computation-heavy fallback function at the receiving contract will cause the invoking send to fail.</li>
-</ul>
-</li>
-<li>FAILED SEND<ul>
-<li>executing a throw upon a failed send, in order to revert the transaction. However, this paradigm can also put contracts at risk.</li>
-</ul>
-</li>
-<li>INTEGER OVERFLOW/UNDERFLOW<ul>
-<li>all arithmetic operations to be susceptible to overflow/underflow</li>
-</ul>
-</li>
-<li>TRANSACTION STATE DEPENDENCE</li>
-</ul>
-</li>
-<li>Unfair Contracts<ul>
-<li>ABSENCE OF LOGIC</li>
-<li>INCORRECT LOGIC</li>
-<li>LOGICALLY CORRECT BUT UNFAIR</li>
-</ul>
-</li>
-</ul>
-<h2 id="ZEUS"><a href="#ZEUS" class="headerlink" title="ZEUS"></a>ZEUS</h2><ul>
-<li>Formalizing Solidity Semantics</li>
-<li>Formalizing the Policy Language</li>
-<li>The proof for soundness</li>
-<li>Symbolic Model Checking via CHCs</li>
-</ul>
-<h1 id="Relevance"><a href="#Relevance" class="headerlink" title="Relevance"></a>Relevance</h1><ul>
-<li>Smart Contract Security</li>
-</ul>
-<h1 id="To-discuss-investigate"><a href="#To-discuss-investigate" class="headerlink" title="To discuss/investigate"></a>To discuss/investigate</h1><ul>
-<li>This project seems not fully open-source</li>
-<li>LLVM based compiler seems to be promising</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2019/01/03/NDSS-18-ZEUS-Analyzing-Safety-of-Smart-Contracts/" data-id="cju23vskp002abwjo30bk2ve0" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Smart-Contracts/">Smart Contracts</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Oakland-17-Hijacking-Bitcoin-Routing-Attacks-on-Cryptocurrencies" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/03/Oakland-17-Hijacking-Bitcoin-Routing-Attacks-on-Cryptocurrencies/" class="article-date">
-  <time datetime="2019-01-03T08:14:31.000Z" itemprop="datePublished">2019-01-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/paper-reading/">paper reading</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/03/Oakland-17-Hijacking-Bitcoin-Routing-Attacks-on-Cryptocurrencies/">Oakland&#39;17 - Hijacking Bitcoin: Routing Attacks on Cryptocurrencies</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Info"><a href="#Info" class="headerlink" title="Info"></a>Info</h1><ul>
-<li><strong>Title</strong>: Hijacking Bitcoin: Routing Attacks on Cryptocurrencies</li>
-<li><strong>Conference</strong>: USENIX Security</li>
-<li><strong>Year</strong>: 2017</li>
-<li><strong>URL</strong>: <a href="https://btc-hijack.ethz.ch/files/btc_hijack.pdf" target="_blank" rel="noopener">https://btc-hijack.ethz.ch/files/btc_hijack.pdf</a></li>
-<li><strong>Source code</strong>: <a href="https://github.com/nsg-ethz/hijack-btc" target="_blank" rel="noopener">https://github.com/nsg-ethz/hijack-btc</a></li>
-</ul>
-<h1 id="Addressed-Problems"><a href="#Addressed-Problems" class="headerlink" title="Addressed Problems"></a>Addressed Problems</h1><ul>
-<li>One important attack vector of Cryptocurrencies has been left out: attacking the currency via the Internet routing infrastructure itself.</li>
-</ul>
-<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ul>
-<li>This paper presents the first taxonomy of routing attacks and their impact on Bitcoin, considering both<ul>
-<li>small-scale attacks</li>
-<li>targeting individual nodes</li>
-<li>large-scale attacks</li>
-<li>targeting the network as a whole</li>
-</ul>
-</li>
-<li>two key properties make routing attacks practical:<ul>
-<li>the efficiency of routing manipulation</li>
-<li>the significant centralization of Bitcoin in terms of mining and routing</li>
-</ul>
-</li>
-<li>We demonstrate the feasibility of each attack against the<br>deployed Bitcoin software</li>
-<li>we provide both short and long-term countermeasures, some of which can be deployed immediately</li>
-</ul>
-<h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><h2 id="BGP"><a href="#BGP" class="headerlink" title="BGP"></a>BGP</h2><ul>
-<li>BGP (Border Gateway Protocol) [42] is the de-facto routing protocol that regulates how IP packets are forwarded in the Internet. (based on TCP)</li>
-<li><strong>BGP Hijack</strong> An attacker wishes to attract all the traffic for a legitimate prefix $p$ (say, 100.0.0.0/16) by hijacking<ul>
-<li>For instance, in order to attract all traffic destined to $p$, the attacker could advertise 100.0.0.0/17 and 100.0.128.0/17.</li>
-<li>By default, hijacking a prefix creates a black hole at the attacker&#x2019;s location.</li>
-</ul>
-</li>
-</ul>
-<h2 id="Routing-Attacks"><a href="#Routing-Attacks" class="headerlink" title="Routing Attacks"></a>Routing Attacks</h2><h3 id="Partitioning-the-Bitcoin-network"><a href="#Partitioning-the-Bitcoin-network" class="headerlink" title="Partitioning the Bitcoin network"></a>Partitioning the Bitcoin network</h3><ul>
-<li>In this attack, an AS-level adversary seeks to isolate a set of nodes P from the rest of the network, effectively partitioning the Bitcoin network into two disjoint components.</li>
-<li>The actual content of P depends on the attacker&#x2019;s objectives and can range from one or few merchant nodes, to a set of nodes holding a considerable percentage of the total mining power.</li>
-</ul>
-<h3 id="Delaying-the-propagation-of-blocks"><a href="#Delaying-the-propagation-of-blocks" class="headerlink" title="Delaying the propagation of blocks"></a>Delaying the propagation of blocks</h3><ul>
-<li>The actual content of P depends on the attacker&#x2019;s objectives and can range from one or few merchant nodes, to a set of nodes holding a considerable percentage of the total mining power.</li>
-<li>Unlike partitioning attacks though, an attacker can delay the overall propagation of blocks towards a node even if she intercepts a subset of its connections.</li>
-</ul>
-<h2 id="Countermeasures"><a href="#Countermeasures" class="headerlink" title="Countermeasures"></a>Countermeasures</h2><h3 id="Short-term"><a href="#Short-term" class="headerlink" title="Short-term"></a>Short-term</h3><ul>
-<li>Increase the diversity of node connections</li>
-<li>Select Bitcoin peers while taking routing into account</li>
-<li>Monitor round-trip time (RTT)</li>
-<li>Monitor additional statistics</li>
-<li>Embrace churn</li>
-<li>Use gateways in different ASes</li>
-<li>Prefer peers hosted in the same AS and in /24 prefixe</li>
-</ul>
-<h3 id="Longer-term"><a href="#Longer-term" class="headerlink" title="Longer-term"></a>Longer-term</h3><ul>
-<li>Encrypt Bitcoin Communication and/or adopt MAC</li>
-<li>Use distinct control and data channels</li>
-<li>Use UDP heartbeats</li>
-<li>Request a block on multiple connections</li>
-</ul>
-<h1 id="Relevance"><a href="#Relevance" class="headerlink" title="Relevance"></a>Relevance</h1><ul>
-<li>P2P layer security is a critical part of the Blockchain security</li>
-</ul>
-<h1 id="To-discuss-investigate"><a href="#To-discuss-investigate" class="headerlink" title="To discuss/investigate"></a>To discuss/investigate</h1><ul>
-<li>What&#x2019;s the difference between this attack and the eclipse attack?</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2019/01/03/Oakland-17-Hijacking-Bitcoin-Routing-Attacks-on-Cryptocurrencies/" data-id="cju23vskl0023bwjow3anujwz" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Attack/">Attack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bitcoin/">Bitcoin</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-MimbleWimble-Explained" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/01/MimbleWimble-Explained/" class="article-date">
-  <time datetime="2019-01-01T03:12:05.000Z" itemprop="datePublished">2019-01-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/blockchain/">blockchain</a>►<a class="article-category-link" href="/categories/blockchain/privacy/">privacy</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/01/MimbleWimble-Explained/">MimbleWimble Explained</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Addresses-Problems"><a href="#Addresses-Problems" class="headerlink" title="Addresses Problems"></a>Addresses Problems</h1><ul>
-<li>All Bitcoin participants must download and <strong>replay</strong> every tx that has ever occurred.</li>
-<li>Bitcoin blockchain is huge<ul>
-<li>Today the Bitcoin blockchain sits just shy of 100Gb on the author&#x2019;s disk. </li>
-<li>With Confidential Transactions[Max15] (CT), each of the approximately 430 million outputs would consume 2.5Kb each, totalling over a terabyte of historical data.</li>
-</ul>
-</li>
-</ul>
-<h1 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a>Solutions</h1><ul>
-<li>we describe a research project to design a Bitcoin-like cryptocurrency, which achieves dramatically better scaling and privacy properties than Bitcoin.<ul>
-<li>It allows removal of most historic blockchain data while still allowing users to fully verify the chain, including <ul>
-<li>spent transaction outputs</li>
-<li>rangeproofs</li>
-<li>other stuff&#x2026;</li>
-</ul>
-</li>
-<li>Further, this currency allows transactions to be noninteractively combined (e.g. Coinjoin[Max13a]) and cut-through[Max13b], eliminating much of the topological structure of the transaction graph.</li>
-<li>Unfortunately, it accomplishes these goals at cost of sacrificing functionality.</li>
-</ul>
-</li>
-</ul>
-<h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><h2 id="Design-goals"><a href="#Design-goals" class="headerlink" title="Design goals"></a>Design goals</h2><p>Sacrifices:</p>
-<ul>
-<li>Mimblewimble cannot support a general-purpose scripting system such as that in Bitcoin, which precludes<ul>
-<li>zero-knowledge contingent payments[Max16]</li>
-<li>cross-chain atomic swaps[Nol13]</li>
-<li>micropayment channels[PD16]</li>
-</ul>
-</li>
-</ul>
-<p>Achievements:</p>
-<ul>
-<li>Direct transfer of value between parti(es) to other parti(es)</li>
-<li>Output amounts are hidden</li>
-<li>Transactions should be noninteractively aggregable[Mou13]</li>
-<li>For a new participant, the amount of bandwidth and processing power needed to catch up with the system should be proportional to the current state of the system</li>
-</ul>
-<h2 id="Cryptography-Primitives"><a href="#Cryptography-Primitives" class="headerlink" title="Cryptography Primitives"></a>Cryptography Primitives</h2><h3 id="Groups"><a href="#Groups" class="headerlink" title="Groups"></a>Groups</h3><ul>
-<li>$\mathscr{Y}<em>{1}, \mathscr{Y}</em>{2}$ are Elliptic Curve Groups <ul>
-<li>with an efficiently computable Bilinear Pairing $\hat{e}: \mathscr{Y}<em>{1} \times \mathscr{Y}</em>{2} \rightarrow \mathscr{Y}_{T}$</li>
-<li>with $\mathscr{Y}<em>{T}$ equal to the multiplicative group of $\mathbb{F}</em>{q^{k}}$ for some prime $q$, small positive integer $k$</li>
-</ul>
-</li>
-</ul>
-<h3 id="Commitment"><a href="#Commitment" class="headerlink" title="Commitment"></a>Commitment</h3><ul>
-<li>A Commitment Scheme is a pair of algorithms Commit($v, r$) $\rightarrow$ $\mathscr{Y}$, Open($v, r$, C) $\rightarrow$ {true, false}</li>
-<li><p>s.t. Open($v, r$, Commit($v, r$)) = true</p>
-</li>
-<li><p>We define a Homomorphic Commitment Scheme that</p>
-<ul>
-<li>commitments to $v$, $v&#x2019;$ can be added to obtain a commitment to $v+v&#x2019;$ having the same security properties</li>
-</ul>
-</li>
-</ul>
-<p>e.g. Pedersen Commitment</p>
-<ul>
-<li>Commitment $\mathbb{Z}_{r}^{2} \rightarrow \mathscr{Y}$: Commit($v, r$) = C = $vH + rG$</li>
-<li>Open $\mathbb{Z}_{r}^{2} \times \mathscr{Y} \rightarrow$ {true, false}: Open($v, r$, C) = ($vH+rG \stackrel{?}{=} C$) = true</li>
-</ul>
-<h3 id="Rangeproof"><a href="#Rangeproof" class="headerlink" title="Rangeproof"></a>Rangeproof</h3><p>Given a Homomorphic Commitment $C$, we define a rangeproof on $C$ as a cryptographic proof that the commitment value of $C$ lies in some given range [a, b].</p>
-<p>The rangeproofs are zero-knowledge proofs of knowledge (zkPoK) of the opening info of the commitments.</p>
-<h3 id="Sinking-Signatures"><a href="#Sinking-Signatures" class="headerlink" title="Sinking Signatures"></a>Sinking Signatures</h3><p>We define a sinking signature as the following collection of algorithms:</p>
-<ul>
-<li>Setup($1^{\lambda}$) $\rightarrow$ a keypair (sk, pk)</li>
-<li>Sign(sk, $h$) takes the secret key $sk$ and non-integer height $h$ which is a polynomial in $\lambda$, and outputs a signature $s$</li>
-<li>Verify($pk, h, s$) outputs {true, false}</li>
-</ul>
-<p>The name &#x201C;sinking signature&#x201D; is motivated by the fact that </p>
-<ul>
-<li>given a signature $s$ on height $h$, it may be possible for a forger to create a signature $s&#x2019;$ on height $h&#x2019;$ with the same $pk$ and $h&#x2019; \leq h$, thus <strong>decreasing the height</strong> of the signature.</li>
-</ul>
-<p>We say a sinking signature is <strong>aggregatable</strong> or <strong>summable</strong> if given a a linear combination $pk$ of $pk_{i}$ values computed from Setup$(1^{\lambda})$, the same linear combination of $s_{i} \leftarrow Sign(sk_{i},h)$ (for fixed $h$) it is possible to compute a signature s such that $Verify(pk,h,s)$ accepts.<br>(similar to the batch verification)</p>
-<h2 id="MimbleWimble-Primitives"><a href="#MimbleWimble-Primitives" class="headerlink" title="MimbleWimble Primitives"></a>MimbleWimble Primitives</h2><h3 id="Transaction"><a href="#Transaction" class="headerlink" title="Transaction"></a>Transaction</h3><p>A MimbleWimble TX contains the following data:</p>
-<ul>
-<li>A list of Homomorphic Commitments termed the <strong>inputs</strong>, with attached rangeproofs.</li>
-<li>A list of Homomorphic Commitments termed the <strong>outputs</strong>, with attached rangeproofs.</li>
-<li>A blockheight $x$</li>
-<li>An excess commitment to zero, with a summable sinking signature on blockheight $x$ with this as pubkey</li>
-</ul>
-<p>We define the $sum = outputs - inputs + excess$.</p>
-<p>The TX is valid if</p>
-<ul>
-<li>$sum = 0$</li>
-<li>the rangeproofs and sinking signature are valid</li>
-</ul>
-<h4 id="Ownership"><a href="#Ownership" class="headerlink" title="Ownership"></a>Ownership</h4><p>We say that a party S owns a set of TX outputs if she knows the <strong>opening</strong> of the sum of the outputs</p>
-<h4 id="Sending-n-coins"><a href="#Sending-n-coins" class="headerlink" title="Sending n coins"></a>Sending n coins</h4><p>To send $n$ coins from $S$ to $R$, $S$ produces a TX:</p>
-<ul>
-<li>chooses inputs</li>
-<li>creates uniformly random change output(s)</li>
-<li>a uniformly random excess</li>
-<li>where sum is a commitment to $n$</li>
-<li>S sends the stuff above along with the opening info of the sum</li>
-</ul>
-<h4 id="Receiving-n-coins"><a href="#Receiving-n-coins" class="headerlink" title="Receiving n coins"></a>Receiving n coins</h4><p>To receive $n$ coins, $R$ receives a TX $T&#x2019;$ which sums to a commitment of $m \geq n$ coins, along with opening info of the sum.</p>
-<ol>
-<li>$R$ first produces uniformly random outputs whose total committed value is $n$, and adds these to the TX</li>
-<li>If $m = n$, $R$ negates the sum of this TX and adds it to the excess of the TX, so that the total sum is now zero</li>
-<li>Otherwise, the TX now has sum committing to $m-n$, so $R$ adds a uniformly random value to excess, updates the signature, and gives the opening info of the new sum to another recipient who can take the remaining value.</li>
-</ol>
-<p>#TODO!!!</p>
-<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ol>
-<li><a href="https://download.wpsoftware.net/bitcoin/wizardry/mimblewimble.pdf" target="_blank" rel="noopener">https://download.wpsoftware.net/bitcoin/wizardry/mimblewimble.pdf</a></li>
-<li><a href="https://download.wpsoftware.net/bitcoin/wizardry/mimblewimble.txt" target="_blank" rel="noopener">https://download.wpsoftware.net/bitcoin/wizardry/mimblewimble.txt</a></li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2019/01/01/MimbleWimble-Explained/" data-id="cju23vski001ybwjok60dxd1u" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Confidential-Transactions/">Confidential Transactions</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cryptography/">Cryptography</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Ideas-of-Research-and-Programming" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/01/Ideas-of-Research-and-Programming/" class="article-date">
-  <time datetime="2019-01-01T03:11:43.000Z" itemprop="datePublished">2019-01-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/self/">self</a>►<a class="article-category-link" href="/categories/self/research/">research</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/01/Ideas-of-Research-and-Programming/">Ideas of Research and Programming</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Go-implementation-of-Shamir-Secret-Sharing"><a href="#Go-implementation-of-Shamir-Secret-Sharing" class="headerlink" title="Go implementation of Shamir Secret Sharing"></a>Go implementation of Shamir Secret Sharing</h1><h1 id="Comparisons-among-Confidential-Transaction-solutions"><a href="#Comparisons-among-Confidential-Transaction-solutions" class="headerlink" title="Comparisons among Confidential Transaction solutions"></a>Comparisons among Confidential Transaction solutions</h1><h1 id="Lightning-Network-experiments"><a href="#Lightning-Network-experiments" class="headerlink" title="Lightning Network experiments"></a>Lightning Network experiments</h1><h1 id="Bitcoin-tx-types-amp-bytecodes-survey"><a href="#Bitcoin-tx-types-amp-bytecodes-survey" class="headerlink" title="Bitcoin tx types &amp; bytecodes survey"></a>Bitcoin tx types &amp; bytecodes survey</h1>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2019/01/01/Ideas-of-Research-and-Programming/" data-id="cju23vskc001ebwjovmlmz5rf" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-TODO-List" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/01/TODO-List/" class="article-date">
-  <time datetime="2019-01-01T03:11:05.000Z" itemprop="datePublished">2019-01-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/self/">self</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/01/TODO-List/">TODO List</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2019/01/01/TODO-List/" data-id="cju23vsl2003abwjooxotlocu" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Digital-Signatures-in-Blockchains" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/12/25/Digital-Signatures-in-Blockchains/" class="article-date">
-  <time datetime="2018-12-25T01:49:08.000Z" itemprop="datePublished">2018-12-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/blockchain/">blockchain</a>►<a class="article-category-link" href="/categories/blockchain/digital-signature/">digital signature</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/25/Digital-Signatures-in-Blockchains/">Digital Signatures in Blockchains</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Evolution-of-Digital-Signatures-for-Blockchain"><a href="#Evolution-of-Digital-Signatures-for-Blockchain" class="headerlink" title="Evolution of Digital Signatures for Blockchain"></a>Evolution of Digital Signatures for Blockchain</h1><ol>
-<li>ECDSA based on Secp256k1</li>
-<li>EdDSA</li>
-<li>Segwit</li>
-<li>MultiSig</li>
-<li>Schnorr Signatures</li>
-<li>BLS</li>
-</ol>
-<p><a href="https://medium.com/cryptoadvance/how-schnorr-signatures-may-improve-bitcoin-91655bcb4744" target="_blank" rel="noopener">https://medium.com/cryptoadvance/how-schnorr-signatures-may-improve-bitcoin-91655bcb4744</a><br><a href="https://medium.com/cryptoadvance/bls-signatures-better-than-schnorr-5a7fe30ea716" target="_blank" rel="noopener">https://medium.com/cryptoadvance/bls-signatures-better-than-schnorr-5a7fe30ea716</a></p>
-<h1 id="ECDSA"><a href="#ECDSA" class="headerlink" title="ECDSA"></a>ECDSA</h1><p>Choose an Elliptic Curve with base point $G$ and order $n$ ($nG = O$)</p>
-<ul>
-<li><strong>GEN</strong>:<ul>
-<li>private key $p$</li>
-<li>public key $P = pG$</li>
-</ul>
-</li>
-<li><strong>SIGN</strong>:<ul>
-<li>message $m$, $z = H(m)$</li>
-<li>random number $k \in [1, n-1]$</li>
-<li>$R = (r, _) = kG$</li>
-<li>$s = k^{-1}(z + rp)$</li>
-<li>signature $\sigma = (r, s)$</li>
-</ul>
-</li>
-<li><strong>VERIFY</strong>:<ul>
-<li>check $sr \stackrel{?}{=} zG + rP$</li>
-</ul>
-</li>
-</ul>
-<p><img src="ecdsa.png" alt=""></p>
-<h1 id="EdDSA"><a href="#EdDSA" class="headerlink" title="EdDSA"></a>EdDSA</h1><p>Edwards-curve Digital Signature Algorithm (EdDSA) is a digital signature scheme using a variant of Schnorr signature based on Twisted Edwards curves.</p>
-<ul>
-<li>It is designed to be faster than existing digital signature schemes without sacrificing security. </li>
-<li>It was developed by a team including Daniel J. Bernstein, Niels Duif, Tanja Lange, Peter Schwabe, and Bo-Yin Yang.</li>
-</ul>
-<p>Parameters:</p>
-<ul>
-<li>$b \in \mathbb{N}$ and $b \geq 10$</li>
-<li>hash function $H$ with $2b$-bit output</li>
-<li>a prime power $p \equiv 1 (\mod 4)$</li>
-<li>a non-square element $d \in \mathbb{F}_{p}$</li>
-<li>a prime $q$ with $2^{b-4} \leq q \leq 2^{b-3}$</li>
-</ul>
-<p>The Elliptic Curve $E$ is:</p>
-<p>$$E = { (x,y) \in \mathbb{F}<em>{p} \times \mathbb{F}</em>{p}: -x^{2} + y^{2} = 1 + dx^{2}y^{2} }$$</p>
-<p>Process:</p>
-<ul>
-<li><strong>GEN</strong>:<ul>
-<li>private key $p$ with $b$ bits</li>
-<li>$ H(p) = (h_{0}, \dots , h_{2b-1}) $</li>
-<li>$ a = 2^{b-2} + \sum_{3 \leq i \leq b-2}2^{i}h_{i} $</li>
-<li>public key $P = aG$</li>
-</ul>
-</li>
-<li><strong>SIGN</strong>:<ul>
-<li>message $m$</li>
-<li>$r = H(H(p) || m)$</li>
-<li>$R = rG$</li>
-<li>$s = (r + H(R, P, m) \cdot p) \mod q$</li>
-<li>signature $\sigma = (R, s)$</li>
-</ul>
-</li>
-<li><strong>VERIFY</strong>:<ul>
-<li>check $sG \stackrel{?}{=} R + H(R, P, m) \cdot A$</li>
-</ul>
-</li>
-</ul>
-<h1 id="SegWit"><a href="#SegWit" class="headerlink" title="SegWit"></a>SegWit</h1><p>Segregated Witness:</p>
-<ul>
-<li>The signature data called <em>witness</em> will be seperated from the Merkle Tree record.</li>
-</ul>
-<p>Why Segwit:</p>
-<ul>
-<li>Block size limit</li>
-<li>Scalability and malleabilituy</li>
-</ul>
-<h1 id="MultiSig"><a href="#MultiSig" class="headerlink" title="MultiSig"></a>MultiSig</h1><ul>
-<li><a href="https://cseweb.ucsd.edu/~mihir/papers/multisignatures-ccs.pdf" target="_blank" rel="noopener">https://cseweb.ucsd.edu/~mihir/papers/multisignatures-ccs.pdf</a></li>
-<li><a href="https://eprint.iacr.org/2018/483.pdf" target="_blank" rel="noopener">https://eprint.iacr.org/2018/483.pdf</a></li>
-</ul>
-<h1 id="Schnorr"><a href="#Schnorr" class="headerlink" title="Schnorr"></a>Schnorr</h1><ul>
-<li><strong>GEN</strong>:<ul>
-<li>private key $p$</li>
-<li>public key $P = pG$</li>
-</ul>
-</li>
-<li><strong>SIGN</strong>:<ul>
-<li>message $m$</li>
-<li>random number $k \in [1, n-1]$</li>
-<li>random point $R = kG$</li>
-<li>$s = k + H(P, R, m) \cdot p$</li>
-<li>signature $\sigma = (R, s)$</li>
-</ul>
-</li>
-<li><strong>VERIFY</strong>:<ul>
-<li>check $s \cdot G = R + H(P, R, m) \cdot P$</li>
-</ul>
-</li>
-</ul>
-<p><img src="schnorr.png" alt=""></p>
-<h2 id="Applications"><a href="#Applications" class="headerlink" title="Applications"></a>Applications</h2><h3 id="Batch-Validation"><a href="#Batch-Validation" class="headerlink" title="Batch Validation"></a>Batch Validation</h3><ul>
-<li>With Schnorr we can add up all signature verification equations and verify only once<br>$$ (s_{1} + \dots + s_{1000})G = (R_{1}+ \dots +R_{1000}) + (H(P_{1},R_{1},m_{1})P_{1} + \dots + H(P_{1000},R_{1000},m_{1000})P_{1000}) $$</li>
-</ul>
-<p><img src="batch-validation.png" alt=""></p>
-<p>###Key Aggregation</p>
-<ul>
-<li>Generate a shared public key with a pair of private keys</li>
-<li>$ P = P_{1} + P_{2} = p_{1}G + p_{2}G $</li>
-<li>&#x2026;</li>
-<li>Signature $ \sigma = (R_{1}+R_{2}, s_{1}+s_{2}) $</li>
-</ul>
-<h3 id="MuSig"><a href="#MuSig" class="headerlink" title="MuSig"></a>MuSig</h3><ul>
-<li><a href="https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html" target="_blank" rel="noopener">https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html</a></li>
-</ul>
-<h1 id="BLS"><a href="#BLS" class="headerlink" title="BLS"></a>BLS</h1><p><a href="https://medium.com/cryptoadvance/bls-signatures-better-than-schnorr-5a7fe30ea716" target="_blank" rel="noopener">https://medium.com/cryptoadvance/bls-signatures-better-than-schnorr-5a7fe30ea716</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/12/25/Digital-Signatures-in-Blockchains/" data-id="cju23vsk6000ybwjov2w9ioay" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BLS/">BLS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ECDSA/">ECDSA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MultiSig/">MultiSig</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Schnorr/">Schnorr</a></li></ul>
 
     </footer>
   </div>
@@ -1029,7 +1094,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -1082,23 +1147,23 @@
       <ul>
         
           <li>
-            <a href="/2019/04/04/Writing-in-the-Sciences-1-6-Practicing-cutting-clutter/">Writing in the Sciences - 1.6: Practicing cutting clutter</a>
+            <a href="/2019/04/08/Writing-in-the-Sciences-2-6-A-few-grammar-tips/">Writing in the Sciences - 2.6: A few grammar tips</a>
           </li>
         
           <li>
-            <a href="/2019/04/04/Writing-in-the-Sciences-1-5-Cut-the-clutter-more-tricks/">Writing in the Sciences - 1.5: Cut the clutter, more tricks</a>
+            <a href="/2019/04/08/Writing-in-the-Sciences-2-5-Practise-examples/">Writing in the Sciences - 2.5: Practise examples</a>
           </li>
         
           <li>
-            <a href="/2019/04/04/Writing-in-the-Sciences-1-4-Cut-the-clutter/">Writing in the Sciences - 1.4: Cut the clutter</a>
+            <a href="/2019/04/05/Writing-in-the-Sciences-2-4-Write-with-verbs/">Writing in the Sciences - 2.4: Write with verbs</a>
           </li>
         
           <li>
-            <a href="/2019/03/15/Interactive-Proof-Systems/">Interactive Proof Systems</a>
+            <a href="/2019/04/05/Writing-in-the-Sciences-2-3-Active-voice-practice/">Writing in the Sciences - 2.3: Active voice practice</a>
           </li>
         
           <li>
-            <a href="/2019/03/15/Fiat-Shamir-Heuristic/">Fiat-Shamir Heuristic</a>
+            <a href="/2019/04/05/Writing-in-the-Sciences-2-2-Is-it-really-OK-to-use-We-and-I/">Writing in the Sciences - 2.2: Is it really OK to use We and I?</a>
           </li>
         
       </ul>
