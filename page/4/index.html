@@ -64,583 +64,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-Ideas-of-Research-and-Programming" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/01/Ideas-of-Research-and-Programming/" class="article-date">
-  <time datetime="2019-01-01T03:11:43.000Z" itemprop="datePublished">2019-01-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/self/">self</a>►<a class="article-category-link" href="/categories/self/research/">research</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/01/Ideas-of-Research-and-Programming/">Ideas of Research and Programming</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Go-implementation-of-Shamir-Secret-Sharing"><a href="#Go-implementation-of-Shamir-Secret-Sharing" class="headerlink" title="Go implementation of Shamir Secret Sharing"></a>Go implementation of Shamir Secret Sharing</h1><h1 id="Comparisons-among-Confidential-Transaction-solutions"><a href="#Comparisons-among-Confidential-Transaction-solutions" class="headerlink" title="Comparisons among Confidential Transaction solutions"></a>Comparisons among Confidential Transaction solutions</h1><h1 id="Lightning-Network-experiments"><a href="#Lightning-Network-experiments" class="headerlink" title="Lightning Network experiments"></a>Lightning Network experiments</h1><h1 id="Bitcoin-tx-types-amp-bytecodes-survey"><a href="#Bitcoin-tx-types-amp-bytecodes-survey" class="headerlink" title="Bitcoin tx types &amp; bytecodes survey"></a>Bitcoin tx types &amp; bytecodes survey</h1>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2019/01/01/Ideas-of-Research-and-Programming/" data-id="cjucjghuv001b60jok4r69tdl" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-TODO-List" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/01/TODO-List/" class="article-date">
-  <time datetime="2019-01-01T03:11:05.000Z" itemprop="datePublished">2019-01-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/self/">self</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/01/TODO-List/">TODO List</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2019/01/01/TODO-List/" data-id="cjucjghvl003b60jo9tum488r" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Digital-Signatures-in-Blockchains" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/12/25/Digital-Signatures-in-Blockchains/" class="article-date">
-  <time datetime="2018-12-25T01:49:08.000Z" itemprop="datePublished">2018-12-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/blockchain/">blockchain</a>►<a class="article-category-link" href="/categories/blockchain/digital-signature/">digital signature</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/25/Digital-Signatures-in-Blockchains/">Digital Signatures in Blockchains</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Evolution-of-Digital-Signatures-for-Blockchain"><a href="#Evolution-of-Digital-Signatures-for-Blockchain" class="headerlink" title="Evolution of Digital Signatures for Blockchain"></a>Evolution of Digital Signatures for Blockchain</h1><ol>
-<li>ECDSA based on Secp256k1</li>
-<li>EdDSA</li>
-<li>Segwit</li>
-<li>MultiSig</li>
-<li>Schnorr Signatures</li>
-<li>BLS</li>
-</ol>
-<p><a href="https://medium.com/cryptoadvance/how-schnorr-signatures-may-improve-bitcoin-91655bcb4744" target="_blank" rel="noopener">https://medium.com/cryptoadvance/how-schnorr-signatures-may-improve-bitcoin-91655bcb4744</a><br><a href="https://medium.com/cryptoadvance/bls-signatures-better-than-schnorr-5a7fe30ea716" target="_blank" rel="noopener">https://medium.com/cryptoadvance/bls-signatures-better-than-schnorr-5a7fe30ea716</a></p>
-<h1 id="ECDSA"><a href="#ECDSA" class="headerlink" title="ECDSA"></a>ECDSA</h1><p>Choose an Elliptic Curve with base point $G$ and order $n$ ($nG = O$)</p>
-<ul>
-<li><strong>GEN</strong>:<ul>
-<li>private key $p$</li>
-<li>public key $P = pG$</li>
-</ul>
-</li>
-<li><strong>SIGN</strong>:<ul>
-<li>message $m$, $z = H(m)$</li>
-<li>random number $k \in [1, n-1]$</li>
-<li>$R = (r, _) = kG$</li>
-<li>$s = k^{-1}(z + rp)$</li>
-<li>signature $\sigma = (r, s)$</li>
-</ul>
-</li>
-<li><strong>VERIFY</strong>:<ul>
-<li>check $sr \stackrel{?}{=} zG + rP$</li>
-</ul>
-</li>
-</ul>
-<p><img src="ecdsa.png" alt=""></p>
-<h1 id="EdDSA"><a href="#EdDSA" class="headerlink" title="EdDSA"></a>EdDSA</h1><p>Edwards-curve Digital Signature Algorithm (EdDSA) is a digital signature scheme using a variant of Schnorr signature based on Twisted Edwards curves.</p>
-<ul>
-<li>It is designed to be faster than existing digital signature schemes without sacrificing security. </li>
-<li>It was developed by a team including Daniel J. Bernstein, Niels Duif, Tanja Lange, Peter Schwabe, and Bo-Yin Yang.</li>
-</ul>
-<p>Parameters:</p>
-<ul>
-<li>$b \in \mathbb{N}$ and $b \geq 10$</li>
-<li>hash function $H$ with $2b$-bit output</li>
-<li>a prime power $p \equiv 1 (\mod 4)$</li>
-<li>a non-square element $d \in \mathbb{F}_{p}$</li>
-<li>a prime $q$ with $2^{b-4} \leq q \leq 2^{b-3}$</li>
-</ul>
-<p>The Elliptic Curve $E$ is:</p>
-<p>$$E = { (x,y) \in \mathbb{F}<em>{p} \times \mathbb{F}</em>{p}: -x^{2} + y^{2} = 1 + dx^{2}y^{2} }$$</p>
-<p>Process:</p>
-<ul>
-<li><strong>GEN</strong>:<ul>
-<li>private key $p$ with $b$ bits</li>
-<li>$ H(p) = (h_{0}, \dots , h_{2b-1}) $</li>
-<li>$ a = 2^{b-2} + \sum_{3 \leq i \leq b-2}2^{i}h_{i} $</li>
-<li>public key $P = aG$</li>
-</ul>
-</li>
-<li><strong>SIGN</strong>:<ul>
-<li>message $m$</li>
-<li>$r = H(H(p) || m)$</li>
-<li>$R = rG$</li>
-<li>$s = (r + H(R, P, m) \cdot p) \mod q$</li>
-<li>signature $\sigma = (R, s)$</li>
-</ul>
-</li>
-<li><strong>VERIFY</strong>:<ul>
-<li>check $sG \stackrel{?}{=} R + H(R, P, m) \cdot A$</li>
-</ul>
-</li>
-</ul>
-<h1 id="SegWit"><a href="#SegWit" class="headerlink" title="SegWit"></a>SegWit</h1><p>Segregated Witness:</p>
-<ul>
-<li>The signature data called <em>witness</em> will be seperated from the Merkle Tree record.</li>
-</ul>
-<p>Why Segwit:</p>
-<ul>
-<li>Block size limit</li>
-<li>Scalability and malleabilituy</li>
-</ul>
-<h1 id="MultiSig"><a href="#MultiSig" class="headerlink" title="MultiSig"></a>MultiSig</h1><ul>
-<li><a href="https://cseweb.ucsd.edu/~mihir/papers/multisignatures-ccs.pdf" target="_blank" rel="noopener">https://cseweb.ucsd.edu/~mihir/papers/multisignatures-ccs.pdf</a></li>
-<li><a href="https://eprint.iacr.org/2018/483.pdf" target="_blank" rel="noopener">https://eprint.iacr.org/2018/483.pdf</a></li>
-</ul>
-<h1 id="Schnorr"><a href="#Schnorr" class="headerlink" title="Schnorr"></a>Schnorr</h1><ul>
-<li><strong>GEN</strong>:<ul>
-<li>private key $p$</li>
-<li>public key $P = pG$</li>
-</ul>
-</li>
-<li><strong>SIGN</strong>:<ul>
-<li>message $m$</li>
-<li>random number $k \in [1, n-1]$</li>
-<li>random point $R = kG$</li>
-<li>$s = k + H(P, R, m) \cdot p$</li>
-<li>signature $\sigma = (R, s)$</li>
-</ul>
-</li>
-<li><strong>VERIFY</strong>:<ul>
-<li>check $s \cdot G = R + H(P, R, m) \cdot P$</li>
-</ul>
-</li>
-</ul>
-<p><img src="schnorr.png" alt=""></p>
-<h2 id="Applications"><a href="#Applications" class="headerlink" title="Applications"></a>Applications</h2><h3 id="Batch-Validation"><a href="#Batch-Validation" class="headerlink" title="Batch Validation"></a>Batch Validation</h3><ul>
-<li>With Schnorr we can add up all signature verification equations and verify only once<br>$$ (s_{1} + \dots + s_{1000})G = (R_{1}+ \dots +R_{1000}) + (H(P_{1},R_{1},m_{1})P_{1} + \dots + H(P_{1000},R_{1000},m_{1000})P_{1000}) $$</li>
-</ul>
-<p><img src="batch-validation.png" alt=""></p>
-<p>###Key Aggregation</p>
-<ul>
-<li>Generate a shared public key with a pair of private keys</li>
-<li>$ P = P_{1} + P_{2} = p_{1}G + p_{2}G $</li>
-<li>&#x2026;</li>
-<li>Signature $ \sigma = (R_{1}+R_{2}, s_{1}+s_{2}) $</li>
-</ul>
-<h3 id="MuSig"><a href="#MuSig" class="headerlink" title="MuSig"></a>MuSig</h3><ul>
-<li><a href="https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html" target="_blank" rel="noopener">https://blockstream.com/2018/01/23/musig-key-aggregation-schnorr-signatures.html</a></li>
-</ul>
-<h1 id="BLS"><a href="#BLS" class="headerlink" title="BLS"></a>BLS</h1><p><a href="https://medium.com/cryptoadvance/bls-signatures-better-than-schnorr-5a7fe30ea716" target="_blank" rel="noopener">https://medium.com/cryptoadvance/bls-signatures-better-than-schnorr-5a7fe30ea716</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/12/25/Digital-Signatures-in-Blockchains/" data-id="cjucjghur000z60jojys6hffs" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BLS/">BLS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ECDSA/">ECDSA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MultiSig/">MultiSig</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Schnorr/">Schnorr</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Atomic-Swap-and-Cross-chain-Trading" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/12/25/Atomic-Swap-and-Cross-chain-Trading/" class="article-date">
-  <time datetime="2018-12-24T23:08:00.000Z" itemprop="datePublished">2018-12-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/blockchain/">blockchain</a>►<a class="article-category-link" href="/categories/blockchain/cross-chain/">cross-chain</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/25/Atomic-Swap-and-Cross-chain-Trading/">Atomic Swap and Cross-chain Trading</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>Cross-chain Trading:</p>
-<ul>
-<li>Allows some amount of one cryptocurrency (e.g. Bitcoin) to be traded for some amount of another cryptocurrency (e.g. Bitcoin on a sidechain)</li>
-</ul>
-<p>Hashed Timelock Contracts (HTLC):</p>
-<ul>
-<li>Use hash locks and timelocks to require a payee either<ul>
-<li>acknowledge receiving prior to a deadline by generating cryptographic proof of payment</li>
-<li>or forfeit the ability to chaim the payment and return it to the payer</li>
-</ul>
-</li>
-<li>Hashlock: <ul>
-<li>a type of encumbrance </li>
-<li>restricts the spending of an output until <strong>a specified piece of data is publicly revealed</strong>.</li>
-</ul>
-</li>
-<li>Timelock:<ul>
-<li>a type of smart contract primitive</li>
-<li>restricts the spending of an output until a specified <strong>future time</strong> or <strong>block height</strong>.</li>
-</ul>
-</li>
-</ul>
-<h1 id="Hashed-Timelock-Contracts"><a href="#Hashed-Timelock-Contracts" class="headerlink" title="Hashed Timelock Contracts"></a>Hashed Timelock Contracts</h1><h2 id="Hashlock"><a href="#Hashlock" class="headerlink" title="Hashlock"></a>Hashlock</h2><p>The Bitcoin Script describes a transaction that uses one of these hash functions to create a <strong>transaction puzzle</strong></p>
-<ul>
-<li>A transaction output which can only be spent by someone who can satisfy this encumbrance</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OP_HASH256 6fe28c0ab6f1b372c1a6a246ae63f74f931e8365e15a089c68d6190000000000 OP_EQUAL</span><br></pre></td></tr></table></figure>
-<p>Execution process:</p>
-<ol>
-<li>take the data on the top of the stack (not shown)</li>
-<li>hash it with the sha256d function (creating a computed hash)</li>
-<li>compare it to the string 6fe2&#x2026;0000 above (the provided hash)</li>
-<li>If the computed hash equals the provided hash, then the encumbrance is satisfied and the output can be spent</li>
-</ol>
-<ul>
-<li>The Script page tells us that provided hash is the hash of the Genesis Block header</li>
-<li>so the data necessary to satisfy this encumbrance is the header of the Genesis Block. </li>
-<li>Someone has already done that, so if we look up the transaction on the blockchain that spent this output, we would see that Genesis Block header in one of that transaction&#x2019;s scriptSigs.</li>
-</ul>
-<h2 id="Timelock"><a href="#Timelock" class="headerlink" title="Timelock"></a>Timelock</h2><h3 id="nLockTime"><a href="#nLockTime" class="headerlink" title="nLockTime"></a>nLockTime</h3><ul>
-<li>A part of the original Bitcoin implementation</li>
-<li><em>nLockTime</em> is a field that specifies the <strong>earliest</strong> time a transaction may be added to a valid block. </li>
-<li>A later Bitcoin soft fork allowed <em>nLockTime</em> to alternatively specify the <strong>lowest block height</strong> a transaction may be added to a valid block.</li>
-</ul>
-<h3 id="CheckLockTimeVerify-CLTV"><a href="#CheckLockTimeVerify-CLTV" class="headerlink" title="CheckLockTimeVerify (CLTV)"></a>CheckLockTimeVerify (CLTV)</h3><ul>
-<li>In late 2015, the <strong>BIP65</strong> soft fork redefined the <strong>NOP2</strong> opcode as the <strong>CheckLockTimeVerify (CLTV)</strong> opcode</li>
-<li>allowing transaction outputs (rather than whole transactions) to be encumbered by a timelock</li>
-<li>When the CLTV opcode is called, it will cause the script to fail unless the nLockTime on the transaction $\geq$ the time parameter provided to the CLTV opcode. </li>
-<li>Since a transaction may only be included in a valid block if its nLockTime is in the past, this ensures the CLTV-based timelock has expired before the transaction may be included in a valid block.</li>
-<li>CLTV is currently used in <strong>CLTV-style payment channels</strong>.</li>
-</ul>
-<h3 id="Relative-locktime"><a href="#Relative-locktime" class="headerlink" title="Relative locktime"></a>Relative locktime</h3><ul>
-<li>In mid-2016, the <strong>BIP68/112/113</strong> soft fork </li>
-<li>give consensus-enforced meaning to some values in the <em>nSequence</em> field, that is a part of every transaction input, creating a <em>relative locktime</em>. </li>
-<li>This allowed an input to specify the <strong>earliest time</strong> it can be added to a block based on how long ago the output being spent by that input was included in a block on the block chain.</li>
-</ul>
-<h3 id="CheckSequenceVerify-CSV"><a href="#CheckSequenceVerify-CSV" class="headerlink" title="CheckSequenceVerify (CSV)"></a>CheckSequenceVerify (CSV)</h3><ul>
-<li>Also part of the <strong>BIP68/112/113</strong> soft fork </li>
-<li>the <em>CheckSequenceVerify</em> opcode provides for <em>relative locktime</em> the same feature <em>CLTV</em> provides for absolute locktime</li>
-<li>When the <em>CSV</em> opcode is called, it will cause the script to fail unless the <em>nSequence</em> on the transaction indicates an equal or greater amount of relative locktime has passed than the parameter provided to the <em>CSV</em> opcode. </li>
-<li>Since an input may only be included in a valid block if its relative locktime is expired, this ensures the CSV-based timelock has expired before the transaction may be included in a valid block.</li>
-<li>CSV is used by Lightning Network transactions.</li>
-</ul>
-<h2 id="HTLCs-in-Payment-Channels"><a href="#HTLCs-in-Payment-Channels" class="headerlink" title="HTLCs in Payment Channels"></a>HTLCs in Payment Channels</h2><p>Payment channels already use timelocks, and it can be relatively simple conceptually to extend them with hashlocks. This provides the useful benefit of making payments routable across two or more payment channels.</p>
-<ol>
-<li>Alice opens a payment channel to Bob, and Bob opens a payment channel to Charlie.</li>
-<li>Alice wants to buy something from Charlie for 1000 satoshis.</li>
-<li>Charlie generates a random number $r$ and generates its SHA256 hash $h = H(r)$. Charlie gives $h$ to Alice.</li>
-<li>Alice uses her payment channel to Bob to pay him 1,000 satoshis, but she adds $h$ to the payment along with an extra condition:<ul>
-<li>in order for Bob to claim the payment, he has to provide the data which was used to produce $h$.</li>
-</ul>
-</li>
-<li>Bob uses his payment channel to Charlie to pay Charlie 1,000 satoshis<ul>
-<li><strong>and</strong> adds the same condition as Alice (the $h$ puzzle to Charlie).</li>
-</ul>
-</li>
-<li>Charlie has the original data that was used to produce the hash ($r$, called a pre-image), so Charlie can use it to finalize his payment and fully receive the payment from Bob. By doing so, Charlie necessarily makes the $r$ available to Bob.</li>
-<li>Bob uses the $r$ to finalize his payment from Alice</li>
-</ol>
-<h1 id="Atomic-Swap"><a href="#Atomic-Swap" class="headerlink" title="Atomic Swap"></a>Atomic Swap</h1><p>(At least) Two parties want to exchange different coins without having to trust a third party.</p>
-<ul>
-<li>A non-atomic trivial solution is: Alice send her coins to Bob, and then have Bob send other coins to Alice<ul>
-<li>but Bob has the option of going back on his end of the bargain and simply not following through with the protocol, ending up with both sets of coins.</li>
-</ul>
-</li>
-<li>Atomic swaps can be used for<ul>
-<li>trading between bitcoin and another cryptocurrency</li>
-<li>trading bitcoin UTXOs for <strong>privacy</strong> purposes (Coinswap).</li>
-</ul>
-</li>
-</ul>
-<p>Solution by using Contracts and <em>nLockTime</em></p>
-<ul>
-<li>A picks a random number $x$, $h = H(x)$</li>
-<li>A creates TX1: &#x201C;Pay $w$ BTC to $PK_{B}$ if ($x$ is known and signed by B) or (signed by A&amp;B)&#x201D;</li>
-<li>A creates TX2: &#x201C;Pay $w$ BTC from TX1 to $PK_{A}$, locked for 48 hours, signed by A&#x201D;</li>
-<li>A sends TX2 to B</li>
-<li>B signs TX2 and returns to A<br><strong>1. A submits TX1 to the Blockchain</strong></li>
-<li>B creates TX3: &#x201C;Pay $v$ altcoins to $PK_{A}$ if ($x$ is known and signed by A) or (signed by A&amp;B)&#x201D;</li>
-<li>B creates TX4: &#x201C;Pay $v$ altcoins from TX3 to $PK_{B}$, locked 24 hours, signed by B&#x201D;</li>
-<li>B sends TX4 to A</li>
-<li>A signs TX4 and sends back to B<br><strong>2. B submits TX3 to the Blockchain</strong><br><strong>3. A spends TX3, revealing $x$</strong><br><strong>4. B spends TX1, using $x$</strong></li>
-</ul>
-<p>Situations:</p>
-<ul>
-<li>Before 1: Nothing public has been broadcast, so nothing happens</li>
-<li>Between 1 &amp; 2: A can use refund transaction after 72 hours to get his money back</li>
-<li>Between 2 &amp; 3: B can get refund after 24 hours.  A has 24 more hours to get his refund</li>
-<li>After 3: Transaction is completed by 2<ul>
-<li>A must spend his new coin within 24 hours or B can claim the refund and keep his coins</li>
-<li>B must spend his new coin within 72 hours or A can claim the refund and keep his coins</li>
-</ul>
-</li>
-</ul>
-<p>Disadvantages:</p>
-<ul>
-<li>if counterparty does not go through the trade, funds will be locked and cannot used in another trade for the duration of timeout. </li>
-<li>it depends on transaction replacement which may, or may not be considered standard under current bitcoin protocol rules.</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/12/25/Atomic-Swap-and-Cross-chain-Trading/" data-id="cjucjghts000060joaw385o7h" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Atomic-Swap/">Atomic Swap</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTLC/">HTLC</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Oakland-14-Zerocash-Decentralized-Anonymous-Payments-from-Bitcoin" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/12/24/Oakland-14-Zerocash-Decentralized-Anonymous-Payments-from-Bitcoin/" class="article-date">
-  <time datetime="2018-12-24T01:46:41.000Z" itemprop="datePublished">2018-12-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/24/Oakland-14-Zerocash-Decentralized-Anonymous-Payments-from-Bitcoin/">Oakland&#39;14 - Zerocash: Decentralized Anonymous Payments from Bitcoin</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/12/24/Oakland-14-Zerocash-Decentralized-Anonymous-Payments-from-Bitcoin/" data-id="cjucjghv8002a60jocucu74q7" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-ASIACRYPT-01-Short-Signatures-from-the-Weil-Pairing" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/12/24/ASIACRYPT-01-Short-Signatures-from-the-Weil-Pairing/" class="article-date">
-  <time datetime="2018-12-24T01:45:53.000Z" itemprop="datePublished">2018-12-24</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/paper-reading/">paper reading</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/24/ASIACRYPT-01-Short-Signatures-from-the-Weil-Pairing/">ASIACRYPT&#39;01 - Short Signatures from the Weil Pairing</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Info"><a href="#Info" class="headerlink" title="Info"></a>Info</h1><ul>
-<li><strong>Title</strong>: Short Signatures from the Weil Pairing</li>
-<li><strong>Conference</strong>: ASIACRYPT</li>
-<li><strong>Year</strong>: 2001</li>
-<li><strong>URL</strong>: <a href="https://www.iacr.org/archive/asiacrypt2001/22480516.pdf" target="_blank" rel="noopener">https://www.iacr.org/archive/asiacrypt2001/22480516.pdf</a></li>
-<li><strong>Source code</strong>: No</li>
-</ul>
-<h1 id="Addressed-Problems"><a href="#Addressed-Problems" class="headerlink" title="Addressed Problems"></a>Addressed Problems</h1><ul>
-<li>A 320-bit signature is too long to be keyed in by a human.</li>
-</ul>
-<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ul>
-<li>We propose a signature scheme whose length is approximately 160 bits and provides a level of security similar to 320-bit DSA signatures.<ul>
-<li>secure against existential forgery under a chosen message attack (in the random oracle model) </li>
-<li>Verifying the signature is done using a bilinear pairing on the curve.</li>
-</ul>
-</li>
-</ul>
-<h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><ol>
-<li>GEN: private key $x$, public key $g^{x}$</li>
-<li>SIGN: for message $m$, $h = H(m)$, the signature $\sigma = h^{x}$</li>
-<li>VERIFY: check $ e(\sigma, g) \stackrel{?}{=} e(h, g^{x}) $</li>
-</ol>
-<p>Properties:</p>
-<ol>
-<li>Simple threshold encryption</li>
-<li>Signature aggregation with constant signature size</li>
-<li>Unique &amp; deterministic</li>
-</ol>
-<h1 id="Relevance"><a href="#Relevance" class="headerlink" title="Relevance"></a>Relevance</h1><ul>
-<li>BLS signature is widely used in blockchain</li>
-</ul>
-<h1 id="To-discuss-investigate"><a href="#To-discuss-investigate" class="headerlink" title="To discuss/investigate"></a>To discuss/investigate</h1><ul>
-<li>Research on BLS-based blockchain protocols?</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/12/24/ASIACRYPT-01-Short-Signatures-from-the-Weil-Pairing/" data-id="cjucjghtw000260joedlmp96r" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BLS/">BLS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Elliptic-Curve/">Elliptic Curve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pairing/">Pairing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Short-Signatures/">Short Signatures</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Signature-Aggregation/">Signature Aggregation</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Threshold-Encryption/">Threshold Encryption</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-SAC-05-Pairing-Friendly-Elliptic-Curves-of-Prime-Order" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/12/24/SAC-05-Pairing-Friendly-Elliptic-Curves-of-Prime-Order/" class="article-date">
-  <time datetime="2018-12-24T01:44:53.000Z" itemprop="datePublished">2018-12-24</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/paper-reading/">paper reading</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/24/SAC-05-Pairing-Friendly-Elliptic-Curves-of-Prime-Order/">SAC&#39;05 - Pairing-Friendly Elliptic Curves of Prime Order</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Info"><a href="#Info" class="headerlink" title="Info"></a>Info</h1><ul>
-<li><strong>Title</strong>: Pairing-Friendly Elliptic Curves of Prime Order</li>
-<li><strong>Conference</strong>: SAC</li>
-<li><strong>Year</strong>: 2005</li>
-<li><strong>URL</strong>: <a href="https://eprint.iacr.org/2005/133.pdf" target="_blank" rel="noopener">https://eprint.iacr.org/2005/133.pdf</a></li>
-<li><strong>Source code</strong>: No</li>
-</ul>
-<h1 id="Addressed-Problems"><a href="#Addressed-Problems" class="headerlink" title="Addressed Problems"></a>Addressed Problems</h1><ul>
-<li>In spite of all these efforts, constructing pairing-friendly curves with prime<br>order has remained an elusive open problem since it was posed by Boneh et<br>al. [5, section 3.5] (see also [6, section 4.5]).</li>
-</ul>
-<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ul>
-<li>We propose a surprisingly simple algorithm to construct curves of prime order and embedding degree $k = 12$<ul>
-<li>The resulting security enhancement is even better than the lower bound of $k = 10$ required by Boneh et al.</li>
-<li>Using the proposed method, even a 160-bit signature maps to 1920-bit field, where the best algorithms to compute discrete logarithms are worse than Pollard-rho in the elliptic group itself</li>
-</ul>
-</li>
-<li>We next discuss how to compress the representations of points and pairing values to $\frac{1}{6}$ of their expected length for the proposed curves in section 3.</li>
-<li>We show in section 4 that the ability to handle large complex multiplication (CM) discriminants may have a positive influence on the minimization of $\rho$. </li>
-</ul>
-<h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><h1 id="Relevance"><a href="#Relevance" class="headerlink" title="Relevance"></a>Relevance</h1><ul>
-<li>Pairing is a strong primitive for providing multiplicative homomorphism in Elliptic Curve Cyclic Groups</li>
-</ul>
-<h1 id="To-discuss-investigate"><a href="#To-discuss-investigate" class="headerlink" title="To discuss/investigate"></a>To discuss/investigate</h1><ul>
-<li>BN Curve is widely used in Blockchain, so it&#x2019;s worth doing some research on it.</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/12/24/SAC-05-Pairing-Friendly-Elliptic-Curves-of-Prime-Order/" data-id="cjucjghvj003560jop8mfv02v" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Barreto-Naehrig-Curve/">Barreto-Naehrig Curve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Elliptic-Curve/">Elliptic Curve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pairing/">Pairing</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-zkSNARKs-Explained" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/12/19/zkSNARKs-Explained/" class="article-date">
@@ -895,7 +318,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/12/19/zkSNARKs-Explained/" data-id="cjucjghxe00aa60jo3mnmfg7x" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/12/19/zkSNARKs-Explained/" data-id="ck4z13h5l004obdjoie0l95vg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cryptography/">Cryptography</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Zero-Knowledge/">Zero Knowledge</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/zkSNARKs/">zkSNARKs</a></li></ul>
@@ -1009,7 +432,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/12/16/P2P-13-Information-Propagation-in-the-Bitcoin-Network/" data-id="cjucjghve002r60jo2n5dmpa3" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/12/16/P2P-13-Information-Propagation-in-the-Bitcoin-Network/" data-id="ck4z13h4y002ybdjoro0bc7zw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bitcoin/">Bitcoin</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/P2P-Network/">P2P Network</a></li></ul>
@@ -1193,10 +616,860 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://SebastianElvis.github.io/2018/12/16/USENIX-Security-15-Eclipse-Attacks-on-Bitcoin-s-Peer-to-Peer-Network/" data-id="cjucjghvn003h60jo778ymteu" class="article-share-link">Share</a>
+      <a data-url="http://SebastianElvis.github.io/2018/12/16/USENIX-Security-15-Eclipse-Attacks-on-Bitcoin-s-Peer-to-Peer-Network/" data-id="ck4z13h55003jbdjox6a2sz9p" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Attack/">Attack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bitcoin/">Bitcoin</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CCS-16-Making-Smart-Contracts-Smarter" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/15/CCS-16-Making-Smart-Contracts-Smarter/" class="article-date">
+  <time datetime="2018-12-15T00:18:03.000Z" itemprop="datePublished">2018-12-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/paper-reading/">paper reading</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/15/CCS-16-Making-Smart-Contracts-Smarter/">CCS&#39;16 - Making Smart Contracts Smarter</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Info"><a href="#Info" class="headerlink" title="Info"></a>Info</h1><ul>
+<li><strong>Title</strong>: Making Smart Contracts Smarter</li>
+<li><strong>Conference</strong>: ACM CCS</li>
+<li><strong>Year</strong>: 2016</li>
+<li><strong>Topic</strong>: Cryptography and Security (cs.CR)</li>
+<li><strong>URL</strong>: <a href="https://eprint.iacr.org/2016/633.pdf" target="_blank" rel="noopener">https://eprint.iacr.org/2016/633.pdf</a></li>
+<li><strong>Source code</strong>: <a href="https://github.com/melonproject/oyente" target="_blank" rel="noopener">https://github.com/melonproject/oyente</a></li>
+</ul>
+<h1 id="Addressed-Problems"><a href="#Addressed-Problems" class="headerlink" title="Addressed Problems"></a>Addressed Problems</h1><ul>
+<li>Smart contracts has high enough financial incentives to attract adversaries.</li>
+<li>Ethereum is permissionless, so adversaries are arbitrary</li>
+<li>The security of smart contracts has not received much attention</li>
+<li>smart contracts are irreversible and immutable. <ul>
+<li>There is no way to patch a buggy smart contract, regardless of its popularity or how much money it has</li>
+</ul>
+</li>
+</ul>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ul>
+<li>We document several new classes of security bugs in Ethereum smart contracts.</li>
+<li>We formalize the semantics of Ethereum smart contracts and propose recomendations as solutions for the documented bugs.</li>
+<li>We provide <em>Oyente</em>, a symbolic execution tool which analyses Ethereum smart contracts to detect bugs.</li>
+<li>We run <em>Oyente</em> on real Ethereum smart contracts and confirmed the attacks in the real Ethereum network.</li>
+</ul>
+<h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><h2 id="Security-Bugs-in-ETH-Smart-Contracts"><a href="#Security-Bugs-in-ETH-Smart-Contracts" class="headerlink" title="Security Bugs in ETH Smart Contracts"></a>Security Bugs in ETH Smart Contracts</h2><ol>
+<li>Transaction-Ordering Dependence<ul>
+<li>Users have uncertain knowledge of which state the contract is at when their individual invocation is executed.</li>
+<li>We call such contracts as transaction-ordering dependent (TOD) contracts.</li>
+<li>e.g. The Crypto Puzzle contract (PoW)<ul>
+<li>A malicious owner of the Puzzle contract can keep listening to the network to see if there is a transaction which submits a solution to his contract.</li>
+<li>setting higher <em>gasPrice</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Timestamp Dependence<ul>
+<li>A contract may have uses the block timestamp as a triggering condition to execute some critical operations, e.g., sending money. </li>
+<li>We call such contracts as timestamp-dependent contracts.</li>
+<li>e.g. The Run contract<ul>
+<li>The contract uses the timestamp and block number as the entropy source to generate a random number, which decides a participant to win the Jackpot</li>
+<li>timestamp of a block can be arbitrary ~900s</li>
+<li>The entropy source is not secure</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Mishandled Exceptions<ul>
+<li>If there is an exception raised (e.g., not enough gas, exceeding call stack limit) in the callee contract, the callee contract terminates, reverts its state and returns false.</li>
+<li>However, depending on how the call is made, the exception in the callee contract <strong>may or may not</strong> get propagated to the caller.<ul>
+<li>The caller contract should <strong>explicitly</strong> check the return value to verify if the call has been executed properly.</li>
+<li>This inconsistent exception propagation policy leads to many cases where exceptions are not handled properly.</li>
+</ul>
+</li>
+<li>e.g. KingOfTheEtherThrone (KoET for short) contract<ul>
+<li>Participants bid to become the king</li>
+<li>The KoET contract does not check the result of the compensation transaction</li>
+<li>Rely on the instant notification of the exception handling and updated status</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Reentrancy Vulnerability<ul>
+<li>The DAO hack</li>
+<li>In Ethereum, when a contract calls another, the current execution waits for the call to finish. <ul>
+<li>This can lead to an issue when the recipient of the call makes use of the intermediate state the caller is in.</li>
+<li>The network is fully asynchronous and probablistic, so not deterministic</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="Oyente"><a href="#Oyente" class="headerlink" title="Oyente"></a>Oyente</h2><p><img src="oyente.png" alt=""></p>
+<p>CFG: Control Flow Graph</p>
+<ul>
+<li>Based on Symbolic Execution<ul>
+<li>because it can statically reason about a program path-by-path</li>
+<li>superior to <em>dynamic testing</em>, which reasons about a program input-by-input</li>
+</ul>
+</li>
+</ul>
+<h1 id="Relevance"><a href="#Relevance" class="headerlink" title="Relevance"></a>Relevance</h1><ul>
+<li>Smart contracts is the core component for some protocols like Lightning Network</li>
+<li>Smart contract security is highly concerned currently</li>
+</ul>
+<h1 id="To-discuss-investigate"><a href="#To-discuss-investigate" class="headerlink" title="To discuss/investigate"></a>To discuss/investigate</h1><ul>
+<li>Debug more on smart contracts</li>
+<li>Dissecting the EVM and smart contract programming language</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://SebastianElvis.github.io/2018/12/15/CCS-16-Making-Smart-Contracts-Smarter/" data-id="ck4z13h3t0006bdjon1xfsxmq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ethereum/">Ethereum</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Smart-Contracts/">Smart Contracts</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solidity/">Solidity</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-FC-18-Decentralization-in-Bitcoin-and-Ethereum-Networks" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/13/FC-18-Decentralization-in-Bitcoin-and-Ethereum-Networks/" class="article-date">
+  <time datetime="2018-12-13T08:10:10.000Z" itemprop="datePublished">2018-12-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/paper-reading/">paper reading</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/13/FC-18-Decentralization-in-Bitcoin-and-Ethereum-Networks/">FC&#39;18 - Decentralization in Bitcoin and Ethereum Networks</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Info"><a href="#Info" class="headerlink" title="Info"></a>Info</h1><ul>
+<li><strong>Title</strong>: Decentralization in Bitcoin and Ethereum Networks</li>
+<li><strong>Conference</strong>: FC</li>
+<li><strong>Year</strong>: 2018</li>
+<li><strong>Topic</strong>: Cryptography and Security (cs.CR)</li>
+<li><strong>URL</strong>: <a href="https://fc18.ifca.ai/preproceedings/75.pdf" target="_blank" rel="noopener">https://fc18.ifca.ai/preproceedings/75.pdf</a></li>
+<li><strong>Source code</strong>: No</li>
+</ul>
+<h1 id="Addressed-Problems"><a href="#Addressed-Problems" class="headerlink" title="Addressed Problems"></a>Addressed Problems</h1><ul>
+<li>Few measurement studies on the level of decentralization of Public blockchains</li>
+<li>Current debates and decisiions about the underlying networks are often based on assumptions rather than measurement.</li>
+</ul>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ul>
+<li>We present a comprehensive measurement study on decentralization metrics in these operational systems and shed light on whether or not existing assumptions are satisfied in practice.<ul>
+<li>We adapt prior Internet measurement techniques for Bitcoin and Ethereum and use novel approaches to obtain application layer data.</li>
+<li>Data source:<ul>
+<li>direct measurements of these networks from multiple vantage points</li>
+<li>a Bitcoin relay network called <em>Falcon</em> that we deployed and operated for a year</li>
+<li>blockchain histories of Bitcoin and Ethereum</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Key findings:<ul>
+<li>the Bitcoin network can increase the bandwidth requirements for nodes by a factor of 1.7 and keep the same level of decentralization as 2016</li>
+<li>the Bitcoin network is geographically more clustered than Ethereum, with many nodes likely residing in datacenters</li>
+<li>Ethereum has lower mining power utilization than Bitcoin and would benefit from a relay network</li>
+<li>small miners experience more volatility in block rewards in Bitcoin than Ethereum</li>
+</ul>
+</li>
+</ul>
+<h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><h2 id="Bitcoin-and-Ethereum"><a href="#Bitcoin-and-Ethereum" class="headerlink" title="Bitcoin and Ethereum"></a>Bitcoin and Ethereum</h2><ul>
+<li>Bitcoin<ul>
+<li>P2P connection is based on TCP, by a 3-way handshake<ul>
+<li>exchange state like block height and version</li>
+</ul>
+</li>
+<li>When discover a new block, broadcast to the whole network and its hash (BlockHash)</li>
+<li>Neighbor querys the block by BlockHash</li>
+<li>Many block formats, like compact and Merkle</li>
+</ul>
+</li>
+<li>Ethereum<ul>
+<li>GHOST protocol</li>
+<li>Uncle blocks has rewards</li>
+<li>Block interval 10-20 seconds</li>
+<li>Block size determined indirectly by <em>gas</em></li>
+<li>UDP-based node discovery inspired by <em>Kademlia</em></li>
+<li>P2P connection is over TCP</li>
+<li>P2P msgs are encrypted and authenticated, unlike Bitcoin</li>
+</ul>
+</li>
+</ul>
+<h2 id="Measurement-Infra"><a href="#Measurement-Infra" class="headerlink" title="Measurement Infra"></a>Measurement Infra</h2><ul>
+<li><em>Blockchain Measurement System(BMS)</em> - Falcon<ul>
+<li>a measurement system than ran experiments of varying duration&#x2013;from a few days up to 12 months</li>
+<li>uses multiple <strong>vantage points</strong> in order to gain a com- prehensive view of the cryptocurrency networks</li>
+<li>continuously collecting data regarding the pro- visioned bandwidth of peers and peer-to-peer latency</li>
+<li>first connects to a peer, collects measurements, and then disconnects before proceeding to the next peer</li>
+<li>Targets:<ul>
+<li>Bitcoin nodes over IPv4, IPv6 and Tor</li>
+<li>Ethereum nodes over IPv4 <ul>
+<li>ETH does not have Tor nodes as of May 2017, as Tor is exclusively TCP but ETH node discovery is UDP-based</li>
+<li>No ETH IPv6 nodes because BMS was unable to discover enough nodes to reach generalized conclusions</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Vantage points:<ul>
+<li>15 out of 18 nodes reside in PlanetLab&#x2019;s global research network [14]</li>
+<li>the remaining three nodes are part of Cornell&#x2019;s academic network, located in Ithaca, NY</li>
+</ul>
+</li>
+<li>Bandwidth measurement:<ul>
+<li>requires nodes<ul>
+<li>high download capacities</li>
+<li>sufficient disk capacities</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Node sampling</li>
+<li>BMS uses a list containing nodes from Bitcoin and Ethereum node crawling sites</li>
+<li>a locally deployed Ethereum supernode configured with a high peer limit</li>
+</ul>
+</li>
+</ul>
+<h2 id="Measurement"><a href="#Measurement" class="headerlink" title="Measurement"></a>Measurement</h2><ul>
+<li>Provisioned Bandwidth<ul>
+<li>by requesting a large amount of data from each peer and seeing how fast the peers can stream the data to BMS&#x2019;s measurement nodes<ol>
+<li>asking for blocks that were first seen over a year ago &#x2013; similar to how a stale node asks for blocks to sync state</li>
+<li>BMS divides the time into epochs and records the number of bytes received during each epoch</li>
+<li>BMS processes the collected data to determine the provisioned bandwidth</li>
+</ol>
+</li>
+<li>Results<ul>
+<li>Bitcoin network has improved tremendously in terms of its provisioned bandwidth</li>
+<li>experimental limitations and expected errors<ul>
+<li>the network bottleneck lies on the side of the measurement beacon rather than the remote peer</li>
+<li>network traffic on the side of BMS interferes with the collected results</li>
+<li>the remote peer intentionally shapes the traffic to selectively limit the bandwidth available to BMS</li>
+<li>different steady state bandwidth between Bitcoin and Ethereum</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Network structure<ul>
+<li>we use the state of the art estimation techniques to establish bounds and gain insights into network structure</li>
+<li>Single Beacon Latency<ul>
+<li>We first collect direct ICMP ping measurements from BMS nodes to all peers in the network.</li>
+</ul>
+</li>
+<li>Peer-to-Peer Latency<ul>
+<li>Measuring the peer-to-peer latency requires access to the end points.</li>
+<li>we establish bounds from observed latencies from multiple beacons, using techniques from prior literature [37]</li>
+</ul>
+</li>
+<li>BMS also uses IP geolocation data to calculate distances between peer nodes as an additional validation on our results.</li>
+</ul>
+</li>
+<li>Mining power distribution<ul>
+<li>we examined their weekly distribution over the last 10 months starting on July 15, 2016.</li>
+</ul>
+</li>
+<li>Mining power utilization<ul>
+<li>measures the fraction of mined blocks that remain in the main chain</li>
+<li>Bitcoin: &gt;99%</li>
+<li>Ethereum: ~95%. Drop when DAO event </li>
+</ul>
+</li>
+</ul>
+<h1 id="Relevance"><a href="#Relevance" class="headerlink" title="Relevance"></a>Relevance</h1><ul>
+<li>This is a good reference for decentralization research</li>
+<li>Network measurement is critical for P2P systems</li>
+</ul>
+<h1 id="To-discuss-investigate"><a href="#To-discuss-investigate" class="headerlink" title="To discuss/investigate"></a>To discuss/investigate</h1><ul>
+<li>Do something like Tor metrics or similar stuff?</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://SebastianElvis.github.io/2018/12/13/FC-18-Decentralization-in-Bitcoin-and-Ethereum-Networks/" data-id="ck4z13h490013bdjo6uuzz2db" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Decentralization/">Decentralization</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Measurement/">Measurement</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CSF-17-Rethinking-Large-Scale-Consensus" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/10/CSF-17-Rethinking-Large-Scale-Consensus/" class="article-date">
+  <time datetime="2018-12-10T01:17:40.000Z" itemprop="datePublished">2018-12-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/paper-reading/">paper reading</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/10/CSF-17-Rethinking-Large-Scale-Consensus/">CSF&#39;17 - Rethinking Large-Scale Consensus</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Info"><a href="#Info" class="headerlink" title="Info"></a>Info</h1><ul>
+<li><strong>Title</strong>: Rethinking Large-Scale Consensus</li>
+<li><strong>Conference</strong>: IEEE CSF</li>
+<li><strong>Year</strong>: 2017</li>
+<li><strong>URL</strong>: <a href="https://eprint.iacr.org/2018/302.pdf" target="_blank" rel="noopener">https://eprint.iacr.org/2018/302.pdf</a></li>
+<li><strong>Source code</strong>: No</li>
+</ul>
+<h1 id="Addressed-Problems"><a href="#Addressed-Problems" class="headerlink" title="Addressed Problems"></a>Addressed Problems</h1><p>The question below hasn&#x2019;t been answered yet:</p>
+<ul>
+<li>Is consensus in the permissionless setting inherently mode &#x201C;difficult&#x201D; than consensus in the permissioned setting, and if so, what properties of the permissionless model introduce these difficulties?</li>
+</ul>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ul>
+<li>We prove several simple but hopefully insightful lower bounds that demonstrate exactly why reaching consensus in a permissionless setting is fundamentally more difficult than the classical, permissioned setting.</li>
+<li>We then present a simplified proof of Nakamoto&#x2019;s blockchain which we recommend for pedagogical purposes.</li>
+<li>Finally, we survey recent results including how to avoid well-known painpoints in permissionless consensus, and how to apply core ideas behind blockchains to solve consensus in the classical, permissioned setting and meanwhile achieve new properties that are not attained by classical approaches.</li>
+</ul>
+<h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><ol>
+<li>Proofs-of-work are needed without authentication</li>
+<li>Proofs-of-work must be performed infinitely often in the presence of late spawning.</li>
+<li>Honest-majority of computing power is needed in the presence of late spawning.</li>
+<li>Protocol must know an upper bound of the network&#x2019;s delay if uncertain of the number of players.</li>
+</ol>
+<h1 id="Relevance"><a href="#Relevance" class="headerlink" title="Relevance"></a>Relevance</h1><ul>
+<li>This paper shows that permissionless Blockchains require PoW, which is highly relevant with design</li>
+</ul>
+<h1 id="To-discuss-investigate"><a href="#To-discuss-investigate" class="headerlink" title="To discuss/investigate"></a>To discuss/investigate</h1><ul>
+<li>How should we &#x201C;verify&#x201D; this proof?</li>
+<li>The survey of this paper is interesting.</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://SebastianElvis.github.io/2018/12/10/CSF-17-Rethinking-Large-Scale-Consensus/" data-id="ck4z13h44000rbdjoofbhress" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Consensus/">Consensus</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Public-Blockchains/">Public Blockchains</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Oakland-17-Scalable-Bias-Resistant-Distributed-Randomness" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/05/Oakland-17-Scalable-Bias-Resistant-Distributed-Randomness/" class="article-date">
+  <time datetime="2018-12-05T08:48:33.000Z" itemprop="datePublished">2018-12-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/paper-reading/">paper reading</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/05/Oakland-17-Scalable-Bias-Resistant-Distributed-Randomness/">Oakland&#39;17 - Scalable Bias-Resistant Distributed Randomness</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Info"><a href="#Info" class="headerlink" title="Info"></a>Info</h1><ul>
+<li><strong>Title</strong>: Scalable Bias-Resistant Distributed Randomness</li>
+<li><strong>Conference</strong>: IEEE S&amp;P</li>
+<li><strong>Year</strong>: 2017</li>
+<li><strong>URL</strong>: <a href="https://eprint.iacr.org/2016/1067.pdf" target="_blank" rel="noopener">https://eprint.iacr.org/2016/1067.pdf</a></li>
+<li><strong>Source code</strong>: <a href="https://github.com/dedis/cothority" target="_blank" rel="noopener">https://github.com/dedis/cothority</a></li>
+</ul>
+<h1 id="Addressed-Problems"><a href="#Addressed-Problems" class="headerlink" title="Addressed Problems"></a>Addressed Problems</h1><h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2><ul>
+<li>A reliable source of randomness that provides high-entropy output is a critical component in many protocols.</li>
+<li>More concretely, Tor hidden services [25] depend on the generation of a fresh random value each day for protection against popularity estimations and DoS attacks [34].</li>
+<li>The process of generating public randomness is nontrivial, because obtaining access to sources of good randomness, even in terms of entropy alone, is often difficult and error-prone [19], [36].</li>
+<li>Generating public randomness is hard, as active adversaries can behave dishonestly in order to bias public random choices toward their advantage.<ul>
+<li>e.g., by manipulating their own explicit inputs or by selectively injecting failures.</li>
+</ul>
+</li>
+</ul>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ul>
+<li>Our goal is to provide bias-resistant public randomness in the familiar (t, n)-threshold security model already widely-used both in threshold cryptography [24], [47] and Byzantine consensus protocols [15].</li>
+<li>We introduce two scalable public-randomness generation protocols<ul>
+<li><strong>RandHound</strong> is a &#x201C;one-shot&#x201D; protocol to generate a single random output on demand.</li>
+<li><strong>RandHerd</strong> is a randomness beacon protocol that produces a regular series of random outputs. </li>
+<li>Both protocols provide the same key security properties of unbiasability, unpredictability, availability, and third-party verifiability of their random outputs.</li>
+</ul>
+</li>
+<li>RandHound is a client-server randomness scavenging protocol enabling a client to gather fresh randomness on demand from a potentially large set of nearly-stateless randomness servers, preferably run by independent parties.</li>
+<li>RandHerd is a complementary protocol enabling a potentially large collection of servers to form a distributed public randomness beacon, which proactively generates a regular series of public random outputs.</li>
+</ul>
+<h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><h2 id="Publicly-Verifiable-Secret-Sharing-PVSS"><a href="#Publicly-Verifiable-Secret-Sharing-PVSS" class="headerlink" title="Publicly Verifiable Secret Sharing (PVSS)"></a>Publicly Verifiable Secret Sharing (PVSS)</h2><h2 id="Schnorr-Multi-Signature-Scheme"><a href="#Schnorr-Multi-Signature-Scheme" class="headerlink" title="Schnorr (Multi-)Signature Scheme"></a>Schnorr (Multi-)Signature Scheme</h2><ul>
+<li>Threshold Signature Scheme (TSS)<ul>
+<li>A (t, n) TSS allows any subset of t signers to produce a valid signature.</li>
+</ul>
+</li>
+<li>Collective Signing<ul>
+<li>Scales Schnorr Multi-Signature to thousands of participants by using aggregation techniques and communication trees</li>
+</ul>
+</li>
+</ul>
+<h2 id="RandShare"><a href="#RandShare" class="headerlink" title="RandShare"></a>RandShare</h2><p>RandShare is an unbiasable randomness protocol that ensures unbiasability, unpredictability, and availability, but is practical only at small scale due to $O(n^{3})$ communication overhead.</p>
+<h2 id="RandHound"><a href="#RandHound" class="headerlink" title="RandHound"></a>RandHound</h2><p>RandHound, a scalable client/server protocol for producing public, verifiable, unbiasable randomness. RandHound enables a client, who initiates the protocol, to &#x201C;scavenge&#x201D; public randomness from an arbitrary collection of servers.</p>
+<h2 id="RandHerd"><a href="#RandHerd" class="headerlink" title="RandHerd"></a>RandHerd</h2><p>RandHerd, a protocol that builds a collective authority or cothority [58] to produce unbiasable and verifiable randomness. RandHerd serves as a decentralized randomness beacon [45], [49], efficiently generating a regular stream of random outputs.</p>
+<h1 id="Relevance"><a href="#Relevance" class="headerlink" title="Relevance"></a>Relevance</h1><ul>
+<li>Distributed Randoness may be useful for public Blockchains</li>
+<li>Generating a verifiable random strings across decentralized servers is similar to a consensus process</li>
+</ul>
+<h1 id="To-discuss-investigate"><a href="#To-discuss-investigate" class="headerlink" title="To discuss/investigate"></a>To discuss/investigate</h1><ul>
+<li>Pay more attention to those primitives used in these protocols?</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://SebastianElvis.github.io/2018/12/05/Oakland-17-Scalable-Bias-Resistant-Distributed-Randomness/" data-id="ck4z13h4t002pbdjo4af8p7k2" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Distributed-Randomness/">Distributed Randomness</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MPC/">MPC</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-DSN-18-Byzantine-Fault-Tolerant-Atomic-Multicast" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/05/DSN-18-Byzantine-Fault-Tolerant-Atomic-Multicast/" class="article-date">
+  <time datetime="2018-12-05T08:44:35.000Z" itemprop="datePublished">2018-12-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/paper-reading/">paper reading</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/05/DSN-18-Byzantine-Fault-Tolerant-Atomic-Multicast/">DSN&#39;18 - Byzantine Fault-Tolerant Atomic Multicast</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Info"><a href="#Info" class="headerlink" title="Info"></a>Info</h1><ul>
+<li><strong>Title</strong>: Byzantine Fault-Tolerant Atomic Multicast</li>
+<li><strong>Conference</strong>: IEEE DSN</li>
+<li><strong>Year</strong>: 2018</li>
+<li><strong>URL</strong>: <a href="http://www.inf.usi.ch/faculty/pedone/Paper/2018/2018DSN.pdf" target="_blank" rel="noopener">http://www.inf.usi.ch/faculty/pedone/Paper/2018/2018DSN.pdf</a></li>
+<li><strong>Source code</strong>: No</li>
+</ul>
+<h1 id="Addressed-Problems"><a href="#Addressed-Problems" class="headerlink" title="Addressed Problems"></a>Addressed Problems</h1><ul>
+<li>Atomic multicast is a fundamental communication abstraction in the design space of strongly consistent distributed systems.</li>
+<li>Although research on efficient atomic multicast protocols is relatively mature [8], [9], [10], [11], to date all existing protocols target benign failures (e.g., crash failures) [12], [13], [14], [15].</li>
+</ul>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ul>
+<li>We present a partially genuine atomic multicast protocol that builds on multiple instances of atomic broadcast, a problem that has been extensively studied and efficient libraries exist (e.g. [23], [24], [25]).</li>
+<li>We define the problem of building an overlay tree as an optimization problem.<ul>
+<li>Our optimization model takes into account the frequency of messages per destination and the performance of a group alone.</li>
+</ul>
+</li>
+<li>We describe a prototype of ByzCast developed using BFT-SMaRt, a well-established library that implements BFT atomic broadcast.</li>
+<li>We provide a detailed experimental evaluation of ByzCast and compare it to a naive atomic multicast solution.</li>
+</ul>
+<h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><h2 id="System-Model"><a href="#System-Model" class="headerlink" title="System Model"></a>System Model</h2><ul>
+<li>Processes, Groups and Communication<ul>
+<li>An unbounded set of client processes $ \mathcal{C} = {c_{1}, c_{2},&#x2026;}$</li>
+<li>A bounded set of server processes $ \mathcal{S} = {p_{1},p_{2},&#x2026;} $</li>
+<li>Clients and servers are disjoint</li>
+<li>Client and server processes can be <em>correct</em> or <em>faulty</em>.</li>
+<li>We define $ \Gamma = {g_{1}, &#x2026;, g_{m}}$ as the set of server process groups in the system. </li>
+<li>Groups are disjoint, non-empty, and satisfy $\cup_{g \in \Gamma} g = \mathcal{S}$.</li>
+<li>Each group contains $3f+1$ processes, where $f$ is the maximum number of faulty server processes per group.</li>
+</ul>
+</li>
+<li>Atomic Multicast<ul>
+<li>For every msg $m$, $m.dst$ denotes the groups to which $m$ is multicast.</li>
+<li>A process atomically multicasts a message $m$ by invoking primitive <em>a-multicast($m$)</em> and delivers $m$ with <em>a-deliver($m$)</em>.</li>
+<li>An atomic multicast algorithm $\mathcal{A}$ is genuine iff for any admissible run $R$ of $\mathcal{A}$ and for any correct process $p$ in $R$, if $p$ sends or receives a message, then some message $m$ is <em>a-multicast</em>, and either <ul>
+<li>(a) $p$ is the process that a-multicasts $m$</li>
+<li>(b) $p \in g$ and $g \in m.dst$ [22]</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>#TODO&#x2026;</p>
+<h1 id="Relevance"><a href="#Relevance" class="headerlink" title="Relevance"></a>Relevance</h1><ul>
+<li>Atomic multicast is useful for information propagation in Blockchain</li>
+</ul>
+<h1 id="To-discuss-investigate"><a href="#To-discuss-investigate" class="headerlink" title="To discuss/investigate"></a>To discuss/investigate</h1><ul>
+<li>It may be interesting to reproduce this experiment?</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://SebastianElvis.github.io/2018/12/05/DSN-18-Byzantine-Fault-Tolerant-Atomic-Multicast/" data-id="ck4z13h47000ybdjoogclt934" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Atomic-Multicast/">Atomic Multicast</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BFT/">BFT</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Oakland-17-OmniLedger-A-Secure-Scale-Out-Decentralized-Ledger-via-Sharding" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/05/Oakland-17-OmniLedger-A-Secure-Scale-Out-Decentralized-Ledger-via-Sharding/" class="article-date">
+  <time datetime="2018-12-05T07:17:40.000Z" itemprop="datePublished">2018-12-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/paper-reading/">paper reading</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/05/Oakland-17-OmniLedger-A-Secure-Scale-Out-Decentralized-Ledger-via-Sharding/">Oakland&#39;17 - OmniLedger: A Secure, Scale-Out, Decentralized Ledger via Sharding</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Info"><a href="#Info" class="headerlink" title="Info"></a>Info</h1><ul>
+<li><strong>Title</strong>: OmniLedger: A Secure, Scale-Out, Decentralized Ledger via Sharding</li>
+<li><strong>Conference</strong>: IEEE S&amp;P</li>
+<li><strong>Year</strong>: 2017</li>
+<li><strong>Topic</strong>: Cryptography and Security (cs.CR)</li>
+<li><strong>URL</strong>: <a href="https://eprint.iacr.org/2017/406.pdf" target="_blank" rel="noopener">https://eprint.iacr.org/2017/406.pdf</a></li>
+<li><strong>Source code</strong>: <a href="https://github.com/dedis/student_17_bftcosi" target="_blank" rel="noopener">https://github.com/dedis/student_17_bftcosi</a></li>
+</ul>
+<h1 id="Addressed-Problems"><a href="#Addressed-Problems" class="headerlink" title="Addressed Problems"></a>Addressed Problems</h1><ul>
+<li>Existing proposals for sharded DLs forfeit permissionless decentralization [16], introduce new security assumptions, and/or trade performance for security [34]<ul>
+<li>ByzCoin: It&#x2019;s total processing capacity does not increase with participation i.e., it does not scale-out.</li>
+<li>RandHound [44] is a scalable, SMPC protocol that provides unbiasable, decentralized randomness in a Byzantine setting.</li>
+<li>Elastico: <ul>
+<li>Elastico&#x2019;s relatively small shards (e.g., 100 validators per shard in experiments) yield a high failure- probability of 2.76% per shard per block under a 25% adversary, which cannot safely be relaxed in a PoW system [23].</li>
+<li>Elastico&#x2019;s shard selection is not strongly bias-resistant, as miners can selectively discard PoWs to bias results [7].</li>
+<li>Elastico does <strong>not</strong> ensure transaction atomicity across shards, leaving funds in one shard locked forever if another shard rejects the transaction.</li>
+<li>the validators constantly switch shards, forcing themselves to store the global state, which can hinder performance but provides stronger guarantees against adaptive adversaries.</li>
+<li>the latency of transaction commitment is comparable to Bitcoin (&#x2248; 10 min.), which is far from OmniLedger&#x2019;s usability goals.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ul>
+<li>We introduce the first DL architecture that provides horizontal scaling without compromising either long-term security or permissionless decentralization.</li>
+<li>We introduce Atomix, a Atomic Commit protocol, to commit transactions atomically across shards.</li>
+<li>We introduce ByzCoinX, a BFT consensus protocol that increases performance and robustness to DoS attacks.</li>
+<li>We introduce state blocks, that are deployed along OmniLedger to minimize storage and update overhead.</li>
+<li>We introduce two-tier trust-but-verify processing to minimize the latency of low-value transactions.</li>
+</ul>
+<h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><h2 id="System-Overview"><a href="#System-Overview" class="headerlink" title="System Overview"></a>System Overview</h2><h3 id="System-Model"><a href="#System-Model" class="headerlink" title="System Model"></a>System Model</h3><ul>
+<li>$n$ validators who process TXs and ensure the consistency</li>
+<li>Each validator $i$ has a public/private key pair $(pk_{i}, sk_{i})$, and we often identify $i$ by $pk_{i}$.</li>
+<li>We assume that the configuration parameters of a shard $j$ are summarized in a <em>shard-policy file</em></li>
+<li>We denote by an epoch $e$ the fixed time (e.g., a day) between global reconfiguration events <ul>
+<li>where a new assignment of validators to shards is computed.</li>
+<li>The time during an epoch is counted in rounds $r$ that <strong>do not</strong> have to be consistent between different shards.</li>
+</ul>
+</li>
+<li>During each round $r$, each shard processes TXs collected from clients.</li>
+<li>We assume that validators can establish identities through any Sybil-attack-resistant mechanism and commit them to the identity blockchain.</li>
+<li>To participate in epoch $e$ validators have to register in epoch $e&#x2212;1$</li>
+<li>These identities are added into an identity blockchain</li>
+</ul>
+<h3 id="Network-Model"><a href="#Network-Model" class="headerlink" title="Network Model"></a>Network Model</h3><ul>
+<li>The network graph of honest validators is well connected</li>
+<li>The communication channels between honest validators are synchronous<ul>
+<li>if an honest validator broadcasts a message, then all honest validators receive the message within a known maximum delay $\delta$ [39].</li>
+<li>However, as $\delta$ is in the scale of <strong>minutes</strong>, we cannot use it within epochs as we target latencies of seconds.</li>
+</ul>
+</li>
+</ul>
+<p>In conclusion, all protocols inside one epoch use the <strong>partially synchronous model</strong> [13] with optimistic, exponentially increasing time-outs, whereas $\delta$ is used for slow operations such as identity creation and shard assignment.</p>
+<h3 id="Threat-Model"><a href="#Threat-Model" class="headerlink" title="Threat Model"></a>Threat Model</h3><ul>
+<li>We denote the number of Byzantine validators by $f$ </li>
+<li>We assume that $n = 4f$ <ul>
+<li>i.e., <strong>at most 25%</strong> of the validators can be malicious at any given moment</li>
+<li>which is similar to prior DL&#x2019;s [21], [32], [34].</li>
+</ul>
+</li>
+<li>These malicious nodes can behave arbitrarily<ul>
+<li>e.g., They might refuse to participate or collude to attack the system.</li>
+</ul>
+</li>
+<li>The remaining validators are honest and faithfully follow the protocol.</li>
+<li>We further assume that the adversary is <em>mildly adaptive</em> [31], [34] on the order of epochs, <ul>
+<li>i.e., He can try to corrupt validators, but it takes some time for such corruption attempts to actually take effect.</li>
+</ul>
+</li>
+<li>We further assume that the adversary is <strong>computationally bounded</strong>, that cryptographic primitives are secure, and that the computational Diffie-Hellman (CDH) problem is hard.</li>
+</ul>
+<h3 id="System-Goals"><a href="#System-Goals" class="headerlink" title="System Goals"></a>System Goals</h3><ul>
+<li>Full decentralization<ul>
+<li>no single point of failure or third parties</li>
+</ul>
+</li>
+<li>Shard robustness<ul>
+<li>Each shard correctly and continuously processes transactions assigned to it.</li>
+</ul>
+</li>
+<li>Secure TXs<ul>
+<li>Transactions are committed atomically or eventually aborted, both within and across shards.</li>
+</ul>
+</li>
+<li>Scale-out<ul>
+<li>The expected throughput of OmniLedger increases linearly in the number of participating validators.</li>
+</ul>
+</li>
+<li>Low storage overhead<ul>
+<li>Validators do not need to store the full transaction history but only a periodically computed reference point that summarizes a shard&#x2019;s state.</li>
+</ul>
+</li>
+<li>Low latency<ul>
+<li>OmniLedger provides low latency for transaction confirmations</li>
+</ul>
+</li>
+</ul>
+<h3 id="Architecture-Overview"><a href="#Architecture-Overview" class="headerlink" title="Architecture Overview"></a>Architecture Overview</h3><ol>
+<li>At the beginning of an epoch $e$, all validators run <strong>RandHound</strong> to re-assign randomly a certain threshold of validators to new shards and assign new validators who registered to the identity blockchain in epoch $e&#x2212;1$.</li>
+<li>Validators ensure consistency of the shards&#x2019; ledgers via <strong>ByzCoinX</strong></li>
+<li>Clients ensure consistency of their cross-shard transactions via <strong>Atomix</strong> <ul>
+<li>Here the client spends inputs from shards 1 and 2 and outputs to shard 3.</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>Distributed Randomness Generation by <strong>RandHound + VRF</strong></li>
+<li>Atomically processing transactions across shards by <strong>Atomix</strong> <ul>
+<li>such that each transaction is either committed or eventually aborted.</li>
+<li>The purpose is to ensure consistency of transactions between shards, to prevent double spending and to prevent unspent funds from being locked forever.</li>
+</ul>
+<ol>
+<li>Initialize</li>
+<li>Lock</li>
+<li>Unlock<ul>
+<li>Unlock to Commit</li>
+<li>Unlock to Abort</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>Fault Tolerance under Byzantine Faults via <strong>ByzCoinX</strong></li>
+</ul>
+<h1 id="Relevance"><a href="#Relevance" class="headerlink" title="Relevance"></a>Relevance</h1><ul>
+<li>Sharding is strongly related with our research topic: scalability</li>
+<li>RandHound is based on MPC, which is a strong crypto primitive</li>
+</ul>
+<h1 id="To-discuss-investigate"><a href="#To-discuss-investigate" class="headerlink" title="To discuss/investigate"></a>To discuss/investigate</h1><ul>
+<li>Maybe we can benchmark the existing implementation?</li>
+<li>Does RandHound have implementations?</li>
+<li>Cryptographic sortition seems like an interesting topic</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://SebastianElvis.github.io/2018/12/05/Oakland-17-OmniLedger-A-Secure-Scale-Out-Decentralized-Ledger-via-Sharding/" data-id="ck4z13h4s002mbdjo8w47buy1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blockchain/">Blockchain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scalability/">Scalability</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sharding/">Sharding</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-USENIX-Security-11-Faster-Secure-Two-Party-Computation-Using-Garbled-Circuits" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/02/USENIX-Security-11-Faster-Secure-Two-Party-Computation-Using-Garbled-Circuits/" class="article-date">
+  <time datetime="2018-12-02T04:22:50.000Z" itemprop="datePublished">2018-12-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/paper-reading/">paper reading</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/02/USENIX-Security-11-Faster-Secure-Two-Party-Computation-Using-Garbled-Circuits/">USENIX Security&#39;11 - Faster Secure Two-Party Computation Using Garbled Circuits</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Info"><a href="#Info" class="headerlink" title="Info"></a>Info</h1><ul>
+<li><strong>Title</strong>: Faster Secure Two-Party Computation Using Garbled Circuits</li>
+<li><strong>Conference</strong>: USENIX Security</li>
+<li><strong>Year</strong>: 2011</li>
+<li><strong>Topic</strong>: Cryptography and Security (cs.CR)</li>
+<li><strong>URL</strong>: <a href="https://www.usenix.org/event/sec11/tech/full_papers/Huang.pdf" target="_blank" rel="noopener">https://www.usenix.org/event/sec11/tech/full_papers/Huang.pdf</a></li>
+<li><strong>Source code</strong>: <a href="https://github.com/uvasrg/FastGC" target="_blank" rel="noopener">https://github.com/uvasrg/FastGC</a></li>
+</ul>
+<h1 id="Addressed-Problems"><a href="#Addressed-Problems" class="headerlink" title="Addressed Problems"></a>Addressed Problems</h1><ul>
+<li>There are two main approaches to constructing protocols for secure computation.<ul>
+<li>The first approach exploits specific properties of $f$ to design special-purpose protocols that are, presumably, more efficient than those that would result from generic techniques.</li>
+<li>The second approach relies on completeness theorems for secure computation [7, 8, 34] which give protocols for computing any function $f$ starting from a Boolean circuit representation of $f$.</li>
+</ul>
+</li>
+<li>Indeed, some previous works have explicitly rejected garbled-circuit solutions due to memory exhaustion [16, 26].<ul>
+<li>In previous garbled-circuit implementations including <em>Fairplay</em>, the garbled circuit (whose length is several hundreds bits per binary gate) is fully generated and loaded in memory before circuit evaluation starts. This impacts both the <strong>efficiency</strong> of the resulting implementation and <strong>severely limits its scalability</strong>.</li>
+<li>Developing and debugging privacy-preserving applications using existing compilers is <strong>tedious, cumbersome, and slow</strong>.</li>
+<li>The high-level programming abstraction provided by <em>Fairplay</em> and other tools for secure computation obscures important opportunities for generating more compact circuits</li>
+</ul>
+</li>
+</ul>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ul>
+<li>We show a general method for implementing privacy-preserving applications using garbled circuits that is both faster and more scalable than previous approaches.</li>
+<li>We observe that it is <strong>unnecessary</strong> to generate and store the entire garbled circuit at once. <ul>
+<li>By topologically sorting the gates of the circuit and pipelining the process of circuit generation and evaluation we can significantly improve overall efficiency and scalability.</li>
+<li>We also employ all known optimizations, including the &#x201C;free XOR&#x201D; technique [18], garbled-row reduction [27], and oblivious-transfer extension [14].</li>
+</ul>
+</li>
+<li>We present a new method and supporting framework for generating efficient protocols for secure two-party computation.<ul>
+<li>Our method enables programmers to generate a secure protocol computing some function $f$ from an existing (insecure) implementation of $f$, while providing enough control over the circuit design to enable key optimizations to be employed.</li>
+<li>Our approach allows users to write their programs using a combination of high-level and circuit-level Java code.</li>
+</ul>
+</li>
+</ul>
+<h1 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h1><h2 id="Threat-Model"><a href="#Threat-Model" class="headerlink" title="Threat Model"></a>Threat Model</h2><ul>
+<li>We adopt the semi-honest (also known as honest-but-curious) threat model, where parties are assumed to follow the protocol but may attempt to learn additional information about the other party&#x2019;s input from the protocol transcript.</li>
+<li>Further, our implementation could be modified easily so as to give meaningful privacy guarantees even against malicious adversaries.</li>
+<li>Note that this usage of our protocols provides privacy, but does not provide any correctness guarantees.<ul>
+<li>A malicious generator could construct a circuit that produces an incorrect result without detection.</li>
+</ul>
+</li>
+<li>Many interesting privacy- preserving applications do have the properties needed for our approach to be effective.<ol>
+<li>both parties have a <strong>motivation</strong> to produce the correct result</li>
+<li>only one party needs to receive the output. </li>
+<li>e.g. <ul>
+<li>include financial fraud detection (banks cooperate to de- tect fraudulent accounts)</li>
+<li>personalized medicine (a patient and drug company cooperate to determine the best treatment) </li>
+<li>privacy-preserving face recognition</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h2><ul>
+<li>Pipelined Circuit Execution</li>
+<li>Circuit-level Representation Optimization (Compact Circuits)</li>
+<li>The circuit library and how a programmer defines a new circuit component</li>
+<li>implementation parameters</li>
+</ul>
+<h2 id="Real-World-Examples"><a href="#Real-World-Examples" class="headerlink" title="Real World Examples"></a>Real World Examples</h2><ul>
+<li>Hamming Distance</li>
+<li>Levenshtein Distance</li>
+<li>Smith-Waterman Algorithm for genome and protein alignment</li>
+<li>AES</li>
+</ul>
+<h1 id="Relevance"><a href="#Relevance" class="headerlink" title="Relevance"></a>Relevance</h1><ul>
+<li>GC may be a way of implementing Confidential Transactions</li>
+</ul>
+<h1 id="To-discuss-investigate"><a href="#To-discuss-investigate" class="headerlink" title="To discuss/investigate"></a>To discuss/investigate</h1><ul>
+<li>GC seems to be a good topic for applied crypto research, maybe we can go further on this direction?</li>
+<li>Is 2PC worth doing?</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://SebastianElvis.github.io/2018/12/02/USENIX-Security-11-Faster-Secure-Two-Party-Computation-Using-Garbled-Circuits/" data-id="ck4z13h54003hbdjoxpyv2x10" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Garbled-Circuits/">Garbled Circuits</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MPC/">MPC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/USENIX-Security/">USENIX Security</a></li></ul>
 
     </footer>
   </div>
@@ -1209,7 +1482,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -1262,23 +1535,23 @@
       <ul>
         
           <li>
-            <a href="/2019/04/11/Writing-in-the-Sciences-3-7-A-few-more-tips-repetition-keywords-and-acronyms/">Writing in the Sciences - 3.7: A few more tips: repetition, keywords and acronyms</a>
+            <a href="/2019/04/08/Writing-in-the-Sciences-2-6-A-few-grammar-tips/">Writing in the Sciences - 2.6: A few grammar tips</a>
           </li>
         
           <li>
-            <a href="/2019/04/11/Writing-in-the-Sciences-3-6-Paragraph-Editing-II/">Writing in the Sciences - 3.6: Paragraph Editing II</a>
+            <a href="/2019/04/08/Writing-in-the-Sciences-2-5-Practise-examples/">Writing in the Sciences - 2.5: Practise examples</a>
           </li>
         
           <li>
-            <a href="/2019/04/11/Writing-in-the-Sciences-3-5-Paragraph-Editing-I/">Writing in the Sciences - 3.5: Paragraph Editing I</a>
+            <a href="/2019/04/05/Writing-in-the-Sciences-2-4-Write-with-verbs/">Writing in the Sciences - 2.4: Write with verbs</a>
           </li>
         
           <li>
-            <a href="/2019/04/11/Writing-in-the-Sciences-3-4-Paragraphs/">Writing in the Sciences - 3.4: Paragraphs</a>
+            <a href="/2019/04/05/Writing-in-the-Sciences-2-3-Active-voice-practice/">Writing in the Sciences - 2.3: Active voice practice</a>
           </li>
         
           <li>
-            <a href="/2019/04/11/Writing-in-the-Sciences-3-3-Parallelism/">Writing in the Sciences - 3.3: Parallelism</a>
+            <a href="/2019/04/05/Writing-in-the-Sciences-2-2-Is-it-really-OK-to-use-We-and-I/">Writing in the Sciences - 2.2: Is it really OK to use We and I?</a>
           </li>
         
       </ul>
@@ -1293,7 +1566,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2019 Runchao Han<br>
+      &copy; 2020 Runchao Han<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -1336,7 +1609,7 @@
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>
