@@ -1,0 +1,113 @@
+body { background-color: #ffffff }
+P { margin-top: 6pt; text-indent : 0in }
+P.tbl { margin-top: 0pt; margin-bottom: 3pt; text-indent : 0in }
+
+A:hover {
+   text-decoration: none;
+   color: purple;
+   }
+
+A:link { color: #cc0000 }
+A:active { color: #ff3300 } 
+A:visited { color: #330099 } 
+A.conf:link { color: #202020 }
+A.conf:active { color: #202020 }
+A.conf:visited { color: #202020 }
+A.mainpic:link img { border:2px solid #000 }
+A.mainpic:active img { border:2px solid #000 }
+A.mainpic:visited img { border:2px solid #000 }
+A:link img { border:2px solid #000 }
+A:active img { border:2px solid #000 }
+A:visited img { border:2px solid #000 }
+A.mainpic:link { color: black; background: black }
+A.mainpic:active { color: black }
+A.mainpic:visited { color: black }
+P.stb { margin-top: 12pt }
+P.mtb { margin-top: 24pt; text-indent : 0in}
+P.ltb { margin-top: 36pt; text-indent : 0in}
+p.marginnote { background-color: #E0E0E0 }
+p.paperonly { background-color: #E0E0E0 }
+li.separate { margin-top: 12pt }
+
+h2 { 
+     font-family: verdana;
+     margin-bottom: 4pt 
+}
+h2.first {
+     margin-top: 4pt;
+}
+h3 { 
+     font-family: arial; 
+     margin-bottom: 2pt 
+}
+h3.chapter { 
+     font-family: arial; 
+     color: #000088; 
+     margin-bottom: 2pt 
+}
+
+div#links a span {display: none;}
+div#links a:hover span {display: block;
+   position: absolute; top: 200px; left: 0; width: 125px;
+   padding: 5px; margin: 10px; z-index: 100;
+   color: #AAA; background: black;
+   font: 10px Verdana, sans-serif; text-align: center;}
+
+.dd-list{position:relative}
+.dd-list .quotation{visibility:hidden;position:absolute;
+  top:100%;left:4em;margin-top:-1em;padding:1em;
+  border:1px solid #aaaaaa;background:#dddddd;z-index:1}
+.dd-list .quotation *{margin-left:0;padding-left:0}
+.dd-list:hover .quotation{visibility:visible}
+
+div.faqbody { 
+margin-left: 40px; 
+margin-right: 40px; 
+counter-reset: chapter;
+}
+
+div.question {
+position: relative;
+font-size: 15pt;
+font-family: arial;
+color: red;
+margin-top: 20px;
+margin-left: 80px;
+line-height:normal;
+font-size:12pt;
+}
+
+div.answer {
+position: relative;
+color: black;
+font-family: serif;
+font-size: 12pt;
+margin-left: 90px;
+}
+
+XXXdiv.number:before {
+content: counter(chapter) " ";
+counter-increment: chapter;
+}
+
+div.title {
+font-weight: bold;
+}
+
+div.number {
+float: left;
+font-size:40pt;
+font-style: sans;
+color:#DDD;
+}
+div.clear {
+clear:both;
+}
+
+#researchoverviewouter {
+  background-color: #000000;
+  color: #000000;
+}
+#researchoverview {
+  background-color: #ffffff;
+}
