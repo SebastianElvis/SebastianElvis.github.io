@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/elvisage
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://runchao.rocks
+  * I am elvisage (https://keybase.io/elvisage) on keybase.
+  * I have a public key ASBmGo14lrXX0fuur-NXvLLoBCVncCT7NENsg9O0wE6S5go
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120661a8d7896b5d7d1fbaeafe357bcb2e80425677024fb34436c83d3b4c04e92e60a",
+      "host": "keybase.io",
+      "kid": "0120661a8d7896b5d7d1fbaeafe357bcb2e80425677024fb34436c83d3b4c04e92e60a",
+      "uid": "2709787214c06fb283c284662b28c019",
+      "username": "elvisage"
+    },
+    "merkle_root": {
+      "ctime": 1588860398,
+      "hash": "81cc40b4e14855381a9850b930e766ec438f12e2903db2226851ae36ec7ec6ea1cda98503bca7f87744e1ed164c83b3377600fb53052030390f8217f4a14dd9e",
+      "hash_meta": "faff15d3b58fa060ddb1639d289b84a03b671f75b3f82f6367cc41f3f15c0f95",
+      "seqno": 16191788
+    },
+    "service": {
+      "entropy": "40r98lyL42mVqm8b6hqrjicw",
+      "hostname": "runchao.rocks",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "5.4.2"
+  },
+  "ctime": 1588860409,
+  "expire_in": 504576000,
+  "prev": "731e913f772f616607601d25fde3820797f39fb653abbd02941501227eaab0df",
+  "seqno": 23,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgZhqNeJa119H7rq/jV7yy6AQlZ3Ak+zRDbIPTtMBOkuYKp3BheWxvYWTESpcCF8Qgcx6RP3cvYWYHYB0l/eOCB5fzn7ZTq70ClBUBIn6qsN/EICwmjann+o50k/R/RTZFLcpdFn0UxrulbxK2WEvofeJ9AgHCo3NpZ8RA7OXqbnePCzkur7vGr8QI4574UDFCrigadx0gCfImmai5B45C7QMUf8HSoqENc8NmAKDovQKf7+pICjqS+rV2BqhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIJi+TzYOe2DyRD0wg6fXrvx6j4LvwfAIefbY3sjDO1w5o3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/elvisage
+
+==================================================================
