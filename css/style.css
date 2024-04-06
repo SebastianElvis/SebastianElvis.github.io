@@ -331,6 +331,28 @@ a.desktop-item {
     min-height: 20rem;
 }
 
+.window.services {
+    width: 50%;
+    min-width: 60%;
+    left: 20vw;
+    margin-top: 0;
+    position: relative;
+    top: 10vh;
+    height: 70%;
+    min-height: 20rem;
+}
+
+.window.resource {
+    width: 50%;
+    min-width: 60%;
+    left: 20vw;
+    margin-top: 0;
+    position: relative;
+    top: 10vh;
+    height: 70%;
+    min-height: 20rem;
+}
+
 .window .header {
     background: linear-gradient(90deg, #000b7c, #377cc6);
     color: white;
@@ -635,50 +657,62 @@ textarea:focus {
 
 
 #windows-ie-input:checked~#all-windows .ie,
-#research-tab:checked~#all-windows .notepad,
-#engineering-tab:checked~#all-windows .trash,
+#research-input:checked~#all-windows .notepad,
+#engineering-input:checked~#all-windows .trash,
+#services-input:checked~#all-windows .services,
+#resource-input:checked~#all-windows .resource,
 #windows-documents-input:checked~#all-windows .documents,
-#aboutme-tab:checked~#all-windows .help {
+#aboutme-input:checked~#all-windows .help {
     display: block;
 }
 
 #windows-ie-input:checked~#start-bar .ie-tab,
-#research-tab:checked~#start-bar .notepad-tab,
-#engineering-tab:checked~#start-bar .trash-tab,
+#research-input:checked~#start-bar .notepad-tab,
+#engineering-input:checked~#start-bar .trash-tab,
+#services-input:checked~#start-bar .services-tab,
+#resource-input:checked~#start-bar .resource-tab,
 #windows-documents-input:checked~#start-bar .documents-tab,
-#aboutme-tab:checked~#start-bar .help-tab {
+#aboutme-input:checked~#start-bar .help-tab {
     display: flex;
 }
 
 #windows-ie-input-min:checked~#all-windows .ie,
-#research-tab-min:checked~#all-windows .notepad,
-#engineering-tab-min:checked~#all-windows .trash,
+#research-input-min:checked~#all-windows .notepad,
+#engineering-input-min:checked~#all-windows .trash,
+#services-input-min:checked~#all-windows .services,
+#resource-input-min:checked~#all-windows .resource,
 #windows-documents-input-min:checked~#all-windows .documents,
-#aboutme-tab-min:checked~#all-windows .help {
+#aboutme-input-min:checked~#all-windows .help {
     display: none;
 }
 
 #windows-ie-input:checked~#start-bar .ie-tab,
-#research-tab:checked~#start-bar .notepad-tab,
-#engineering-tab:checked~#start-bar .trash-tab,
+#research-input:checked~#start-bar .notepad-tab,
+#engineering-input:checked~#start-bar .trash-tab,
+#services-input:checked~#start-bar .services-tab,
+#resource-input:checked~#start-bar .resource-tab,
 #windows-documents-input:checked~#start-bar .documents-tab,
-#aboutme-tab:checked~#start-bar .help-tab {
+#aboutme-input:checked~#start-bar .help-tab {
     box-shadow: -2px -2px #818181, -2px 0 #818181, 0 -2px #818181, -4px -4px black, -4px 0 black, 0 -4px black, 2px 2px #e0dede, 0 2px #e0dede, 2px 0 #e0dede, 2px -2px #818181, -2px 2px #e0dede, -4px 2px black, -4px 4px white, 4px 4px white, 4px 0 white, 0 4px white, 2px -4px black, 4px -4px white;
 }
 
 #windows-ie-input-min:checked~#start-bar .ie-tab,
-#research-tab-min:checked~#start-bar .notepad-tab,
-#engineering-tab-min:checked~#start-bar .trash-tab,
+#research-input-min:checked~#start-bar .notepad-tab,
+#engineering-input-min:checked~#start-bar .trash-tab,
+#services-input-min:checked~#start-bar .services-tab,
+#resource-input-min:checked~#start-bar .resource-tab,
 #windows-documents-input-min:checked~#start-bar .documents-tab,
-#aboutme-tab-min:checked~#start-bar .help-tab {
+#aboutme-input-min:checked~#start-bar .help-tab {
     box-shadow: -2px -2px #e0dede, -2px 0 #e0dede, 0 -2px #e0dede, -4px -4px white, -4px 0 white, 0 -4px white, 2px 2px #818181, 0 2px #818181, 2px 0 #818181, 2px -2px #e0dede, -2px 2px #818181, -4px 2px white, -4px 4px black, 4px 4px black, 4px 0 black, 0 4px black, 2px -4px white, 4px -4px black;
 }
 
 #windows-ie-input-on-top:checked~#all-windows .ie,
-#research-tab-on-top:checked~#all-windows .notepad,
-#engineering-tab-on-top:checked~#all-windows .trash,
+#research-input-on-top:checked~#all-windows .notepad,
+#engineering-input-on-top:checked~#all-windows .trash,
+#services-input-on-top:checked~#all-windows .services,
+#resource-input-on-top:checked~#all-windows .resource,
 #windows-documents-input-on-top:checked~#all-windows .documents,
-#aboutme-tab-on-top:checked~#all-windows .help {
+#aboutme-input-on-top:checked~#all-windows .help {
     z-index: 20;
 }
 
