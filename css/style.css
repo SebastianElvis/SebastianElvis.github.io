@@ -635,50 +635,50 @@ textarea:focus {
 
 
 #windows-ie-input:checked~#all-windows .ie,
-#windows-notepad-input:checked~#all-windows .notepad,
-#windows-trash-input:checked~#all-windows .trash,
+#research-tab:checked~#all-windows .notepad,
+#engineering-tab:checked~#all-windows .trash,
 #windows-documents-input:checked~#all-windows .documents,
-#windows-help-input:checked~#all-windows .help {
+#aboutme-tab:checked~#all-windows .help {
     display: block;
 }
 
 #windows-ie-input:checked~#start-bar .ie-tab,
-#windows-notepad-input:checked~#start-bar .notepad-tab,
-#windows-trash-input:checked~#start-bar .trash-tab,
+#research-tab:checked~#start-bar .notepad-tab,
+#engineering-tab:checked~#start-bar .trash-tab,
 #windows-documents-input:checked~#start-bar .documents-tab,
-#windows-help-input:checked~#start-bar .help-tab {
+#aboutme-tab:checked~#start-bar .help-tab {
     display: flex;
 }
 
 #windows-ie-input-min:checked~#all-windows .ie,
-#windows-notepad-input-min:checked~#all-windows .notepad,
-#windows-trash-input-min:checked~#all-windows .trash,
+#research-tab-min:checked~#all-windows .notepad,
+#engineering-tab-min:checked~#all-windows .trash,
 #windows-documents-input-min:checked~#all-windows .documents,
-#windows-help-input-min:checked~#all-windows .help {
+#aboutme-tab-min:checked~#all-windows .help {
     display: none;
 }
 
 #windows-ie-input:checked~#start-bar .ie-tab,
-#windows-notepad-input:checked~#start-bar .notepad-tab,
-#windows-trash-input:checked~#start-bar .trash-tab,
+#research-tab:checked~#start-bar .notepad-tab,
+#engineering-tab:checked~#start-bar .trash-tab,
 #windows-documents-input:checked~#start-bar .documents-tab,
-#windows-help-input:checked~#start-bar .help-tab {
+#aboutme-tab:checked~#start-bar .help-tab {
     box-shadow: -2px -2px #818181, -2px 0 #818181, 0 -2px #818181, -4px -4px black, -4px 0 black, 0 -4px black, 2px 2px #e0dede, 0 2px #e0dede, 2px 0 #e0dede, 2px -2px #818181, -2px 2px #e0dede, -4px 2px black, -4px 4px white, 4px 4px white, 4px 0 white, 0 4px white, 2px -4px black, 4px -4px white;
 }
 
 #windows-ie-input-min:checked~#start-bar .ie-tab,
-#windows-notepad-input-min:checked~#start-bar .notepad-tab,
-#windows-trash-input-min:checked~#start-bar .trash-tab,
+#research-tab-min:checked~#start-bar .notepad-tab,
+#engineering-tab-min:checked~#start-bar .trash-tab,
 #windows-documents-input-min:checked~#start-bar .documents-tab,
-#windows-help-input-min:checked~#start-bar .help-tab {
+#aboutme-tab-min:checked~#start-bar .help-tab {
     box-shadow: -2px -2px #e0dede, -2px 0 #e0dede, 0 -2px #e0dede, -4px -4px white, -4px 0 white, 0 -4px white, 2px 2px #818181, 0 2px #818181, 2px 0 #818181, 2px -2px #e0dede, -2px 2px #818181, -4px 2px white, -4px 4px black, 4px 4px black, 4px 0 black, 0 4px black, 2px -4px white, 4px -4px black;
 }
 
 #windows-ie-input-on-top:checked~#all-windows .ie,
-#windows-notepad-input-on-top:checked~#all-windows .notepad,
-#windows-trash-input-on-top:checked~#all-windows .trash,
+#research-tab-on-top:checked~#all-windows .notepad,
+#engineering-tab-on-top:checked~#all-windows .trash,
 #windows-documents-input-on-top:checked~#all-windows .documents,
-#windows-help-input-on-top:checked~#all-windows .help {
+#aboutme-tab-on-top:checked~#all-windows .help {
     z-index: 20;
 }
 
