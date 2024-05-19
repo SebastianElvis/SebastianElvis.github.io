@@ -10,6 +10,7 @@
     <meta property="og:image" content="./img/favicon.png">
     <meta property="og:description" content="Runchao Han's homepage">
 
+    <link rel="stylesheet" href="./css/rh.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="icon" href="./img/favicon.png">
 </head>
@@ -157,9 +158,9 @@
                         <h2>Brief bio</h2>
                         <p>
                             I'm a researcher and engineer in Blockchain. <br /><br />
-                            Currently, I'm working on <a href="https://babylonchain.io/">Babylon</a>, a new blockchain
-                            that brings
-                            security and decentralisation of Bitcoin to all Proof-of-Stake blockchains. <br /><br />
+                            Currently, I'm working on <a href="https://babylonchain.io/">Babylon</a>, a project
+                            that envisions to bring the security and decentralisation of Bitcoin to the blockchain
+                            ecosystem and more. <br /><br />
                             Previously, I obtained my PhD at <a href="https://monash.edu">Monash University</a> and <a
                                 href="https://data61.csiro.au">CSIRO-Data61</a> (advisors: <a
                                 href="https://www.jiangshanyu.com/">Jiangshan Yu</a>, <a
@@ -197,8 +198,50 @@
                     I aim at improving scalability, security and privacy of <i>permissionless</i> blockchains
                     and
                     cryptocurrencies.<br />
-                    My research mainly combines techniques from Cryptography and Distributed Computing.<br />
-                    My PhD research mainly focused on blockchain sharding protocols and their underlying
+                    My research mainly combines techniques from cryptography and distributed computing.<br />
+                </p>
+                <p>
+                    <a href="https://scholar.google.com/citations?user=xbpDocQAAAAJ">[Google scholar]</a>
+                    <a href="https://dblp.org/pers/hd/h/Han:Runchao">[DBLP]</a> <br />
+                </p>
+
+                <h3>Since Babylon</h3>
+                <p>
+                    At Babylon, I have been focusing on designing and implementing the Babylon system. Nevertheless, I'm still trying to do blockchain research at my spare time.<br/>
+                    My current research interest includes inventing new protocols atop Bitcoin, security sharing protocols, and consensus protocols with new security properties.
+                </p>
+                <ul>
+                    <li>
+                        <div class="title">Modeling Mobile Crash in Byzantine Consensus
+                        </div>
+                        <div class="author">Hans Schmiedel, Runchao Han, Qiang Tang, Ron Steinfeld, and Jiangshan Yu</div>
+                        <div>The 37th IEEE Computer Security Foundations Symposium <b>(CSF 2024)</b> </div>
+                        <div>
+                            <a href="https://eprint.iacr.org/2024/452">[Paper]</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="title">Interchain Timestamping for Mesh Security</div>
+                        <div class="author">Ertem Nusret Tas, Runchao Han, David Tse, Fisher Yu, and Kamilla
+                            Nazirkhanova</div>
+                        <div>ACM Conference on Computer and Communications Security <b>(CCS 2023)</b> </div>
+                        <div>
+                            <a href="https://arxiv.org/abs/2305.07830">[Paper]</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="title">EBFT: Simplifying BFT Consensus Through Egalitarianism</div>
+                        <div class="author">Jianyu Niu*, Runchao Han*, Shengqi Liu, Fangyu Gai, Ivan Beschastnikh, Yinqian Zhang, and Chen Feng</div>
+                        <div>
+                            <a href="https://arxiv.org/abs/2012.01636">[Paper]</a>
+                            <a href="https://github.com/vechain/VIPs/blob/master/vips/VIP-220.md">[Variant used in VeChain]</a>
+                        </div>
+                    </li>
+                </ul>
+
+                <h3>At Monash</h3>
+                <p>
+                    During my PhD, my research mainly focused on blockchain sharding protocols and their underlying
                     primitives, such as <a href="https://eprint.iacr.org/2020/943">shard allocation</a> and <a
                         href="https://eprint.iacr.org/2020/1033">decentralised randomness beacon</a>.<br />
                     I also have worked on some other topics such as <a
@@ -209,12 +252,6 @@
                         of
                         Proof-of-Work mining</a>.
                 </p>
-                <p>
-                    <a href="https://scholar.google.com/citations?user=xbpDocQAAAAJ">[Google scholar]</a>
-                    <a href="https://dblp.org/pers/hd/h/Han:Runchao">[DBLP]</a> <br />
-                </p>
-
-                <h3>Selected papers at Monash</h3>
                 <ul>
                     <li>
                         <div class="title">Fair Delivery of Decentralised Randomness Beacon</div>
@@ -259,16 +296,13 @@
                                 from Monash University]</a>
                         </div>
                     </li>
-                </ul>
-                <h3>Papers at Babylon</h3>
-                <ul>
                     <li>
-                        <div class="title">Interchain Timestamping for Mesh Security</div>
-                        <div class="author">Ertem Nusret Tas, Runchao Han, David Tse, Fisher Yu, and Kamilla
-                            Nazirkhanova</div>
-                        <div>ACM Conference on Computer and Communications Security <b>(CCS 2023)</b> </div>
+                        <div class="title">Evaluating Technical Approaches Toward A National Digital Ledger</div>
+                        <div class="author">Carsten Rudolph, Jiangshan Yu, James Boorman, and Runchao Han</div>
+                        <div>Technical report for the Ministry of Justice, Communication and Foreign Affairs of Tuvalu</b>
+                        </div>
                         <div>
-                            <a href="https://arxiv.org/abs/2305.07830">[Paper]</a>
+                            <a href="https://research.monash.edu/en/publications/evaluating-technical-approaches-toward-a-national-digital-ledger">[Link]</a>
                         </div>
                     </li>
                 </ul>
@@ -308,7 +342,7 @@
 
                 <h3>Selected repositories</h3>
                 <ul>
-                    <li><a href="https://github.com/babylonchain/babylon">Babylon</a>: The Babylon full node
+                    <li><a href="https://github.com/babylonchain/babylon">Babylon</a>: The Babylon full node, providing <a href="https://arxiv.org/pdf/2207.08392">BTC timestamping</a> and <a href="https://docs.babylonchain.io/papers/btc_staking_litepaper(EN).pdf">BTC staking</a> protocols
                     </li>
                     <li><a href="https://github.com/babylonchain/vigilante">Vigilante</a>: The relayer between
                         Babylon and Bitcoin
@@ -316,6 +350,44 @@
                     <li><a href="https://github.com/babylonchain/babylon-relayer">Babylon IBC relayer</a>: The
                         relayer between
                         Babylon and Cosmos zones</li>
+                </ul>
+                <h3>Standard</h3>
+                <ul>
+                    <li>
+                        <div class="title">EIP-2266: Atomic Swap-based American Call Option Contract Standard
+                        </div>
+                        <div class="author">Runchao Han, Haoyu Lin, and Jiangshan Yu</div>
+                        <div><a href="https://github.com/ethereum/ERCs">Ethereum Request for Comments (ERCs)</a></div>
+                        <div>
+                            <a href="https://eips.ethereum.org/EIPS/eip-2266">[Link]</a>
+                            <a href="https://www.youtube.com/watch?v=wwWcfl9N65k">[Peep an EIP #23]</a>
+                        </div>
+                    </li>
+                </ul>
+                <h3>Bug bounty</h3>
+                <ul>
+                    <li>
+                        <div class="title">Default `PrepareProposalHandler` may produce invalid proposals when used with default `SenderNonceMempool`</div>
+                        <div class="author">together with Fangyu Gai, Vitalis Salis, and Konrad Staniec</div>
+                        <div>
+                            <a href="https://hackerone.com/cosmos/reports/new?type=team&report_type=vulnerability">Bug bounty program for Cosmos</a>
+                        </div>
+                        <div>
+                            <a href="https://hackerone.com/reports/2321963">[Report]</a>
+                            <a href="https://github.com/cosmos/cosmos-sdk/security/advisories/GHSA-2557-x9mg-76w8">[Github security advisory]</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="title">PostHandler panicks upon a failed transaction
+                        </div>
+                        <div class="author">together with Fangyu Gai, Vitalis Salis, and Konrad Staniec</div>
+                        <div>
+                            <a href="https://hackerone.com/cosmos/reports/new?type=team&report_type=vulnerability">Bug bounty program for Cosmos</a>
+                        </div>
+                        <div>
+                            <a href="https://hackerone.com/reports/2315552">[Report]</a>
+                        </div>
+                    </li>
                 </ul>
                 <h1> <wbr> </h1>
             </div>
@@ -359,6 +431,7 @@
 
                 <h3>Conference/journal reviewer</h3>
                 <ul>
+                    <li>2024: CCS</li>
                     <li>2023: DSN, TDSC, SecureComm, Ledger Journal, Journal of Network and Systems Management</li>
                     <li>2022: EuroS&P, IEEE Blockchain, IEEE Transaction of Service Computing, ACM DLT Journal, Journal
                         of Network
@@ -383,10 +456,10 @@
                 <ul>
                     <li>Muhong Huang. <a href="https://eprint.iacr.org/2023/169.pdf">Reputation-based state machine
                             replication
-                            (NCA'22)</a></li>
+                            (NCA'22).</a> Now: PhD student at UESTC</li>
                     <li>Zhichun Lu. <a href="https://eprint.iacr.org/2020/456.pdf">General Congestion Attack on
                             HTLC-Based Payment
-                            Channel Networks (Tokenomics'21)</a></li>
+                            Channel Networks (Tokenomics'21).</a> Now: PhD student at University of Sydney</li>
                 </ul>
 
                 <h3>Teaching</h3>
@@ -516,7 +589,7 @@
                 <label class="services-tab tab windows-box-shadow" for="services-input-min"><span><img alt=""
                             src="./img/world-4.png" /></span><span>Services</span></label>
                 <label class="resource-tab tab windows-box-shadow" for="resource-input-min"><span><img alt=""
-                                src="./img/internet_explorer.png" /></span><span>Resource</span></label>
+                            src="./img/internet_explorer.png" /></span><span>Resource</span></label>
                 <label class="ie-tab tab windows-box-shadow" for="windows-ie-input-min"><span><img alt=""
                             src="./img/text_editor.png" /></span><span>About
                         Website</span></label>
