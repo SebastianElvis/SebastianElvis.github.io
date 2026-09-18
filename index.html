@@ -1,160 +1,87 @@
+<!doctype html>
+<html lang="en">
 <head>
-    <title>Runchao Han's homepage</title>
-    <meta name="description" content="Runchao Han's homepage">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Runchao Han — Researcher &amp; Engineer</title>
+    <meta name="description" content="Runchao Han's personal website. I work on Bitcoin, cryptography, and distributed systems.">
     <meta name="author" content="Runchao Han">
-    <meta name="robots" content="index,follow">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Open Graph Meta Tags: -->
-    <meta property="og:title" content="Runchao Han">
-    <meta property="og:type" content="Homepage">
+    <meta property="og:title" content="Runchao Han — Researcher &amp; Engineer">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://runchao.rocks/">
     <meta property="og:image" content="./img/favicon.png">
-    <meta property="og:description" content="Runchao Han's homepage">
-
-    <link rel="stylesheet" href="./css/rh.css">
-    <link rel="stylesheet" href="./css/style.css">
+    <meta property="og:description" content="I build and study open systems. This is my personal desktop on the web.">
+    <meta name="theme-color" content="#008080">
     <link rel="icon" href="./img/favicon.png">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./scripts/desktop.js" defer></script>
 </head>
-
-<form id="windows">
-    <!-- Login and Shutdown -->
-    <input id="start-button-input" name="start-button-input" type="checkbox" />
-    <div id="background"></div>
-    <!-- Minimize Windows -->
-    <input id="windows-ie-input-min" name="windows-ie-input-min" type="checkbox" />
-    <input id="windows-documents-input-min" name="windows-documents-input-min" type="checkbox" />
-    <input id="aboutme-input-min" name="aboutme-input-min" type="checkbox" />
-    <input id="research-input-min" name="research-input-min" type="checkbox" />
-    <input id="engineering-input-min" name="engineering-input-min" type="checkbox" />
-    <input id="services" name="services-input-min" type="checkbox" />
-    <input id="resource" name="resource-input-min" type="checkbox" />
-    <!-- Window Order -->
-    <input id="windows-ie-input-on-top" name="windows-order" type="radio" />
-    <input id="windows-documents-input-on-top" name="windows-order" type="radio" />
-    <input id="aboutme-input-on-top" name="windows-order" type="radio" />
-    <input id="research-input-on-top" name="windows-order" type="radio" />
-    <input id="engineering-input-on-top" name="windows-order" type="radio" />
-    <input id="services-input-on-top" name="windows-order" type="radio" />
-    <input id="resource-input-on-top" name="windows-order" type="radio" />
-    <!-- Window Visibility -->
-    <input id="windows-ie-input" name="windows-ie-input" type="checkbox" />
-    <input id="windows-documents-input" name="windows-documents-input" type="checkbox" />
-    <input id="aboutme-input" name="aboutme-input" type="checkbox" />
-    <input id="research-input" name="research-input" type="checkbox" />
-    <input id="engineering-input" name="engineering-input" type="checkbox" />
-    <input id="services-input" name="services-input" type="checkbox" />
-    <input id="resource-input" name="resource-input" type="checkbox" />
-
-    <div id="desktop">
-        <label class="desktop-item" for="aboutme-input">
-            <div class="icon"><img alt="" src="./img/computer_explorer-5.png" /></div>
-            <div class="text">About Me</div>
-        </label>
-        <label class="desktop-item" for="research-input">
-            <div class="icon"><img alt="" src="./img/paper.png" />
-            </div>
-            <div class="text">Research</div>
-        </label>
-        <label class="desktop-item" for="engineering-input">
-            <div class="icon"><img alt="" src="./img/help_book_computer-4.png" /> </div>
-            <div class="text">Engineering</div>
-        </label>
-        <label class="desktop-item" for="services-input">
-            <div class="icon"><img alt="" src="./img/world-4.png" /> </div>
-            <div class="text">Services</div>
-        </label>
-        <label class="desktop-item" for="resource-input">
-            <div class="icon"><img alt="" src="./img/internet_explorer.png" /> </div>
-            <div class="text">Resource</div>
-        </label>
-    </div>
-    <div id="all-windows">
-        <div class="window ie windows-box-shadow">
-            <div class="header">
-                <label for="windows-ie-input-on-top">About Website</label>
-                <div class="header-buttons">
-                    <label class="minimize windows-box-shadow" for="windows-ie-input-min"></label>
-                    <label class="maximize windows-box-shadow"></label>
-                    <label class="close windows-box-shadow" for="windows-ie-input">X</label>
-                </div>
-            </div>
-            <div class="options line">
-                <div class="item">File</div>
-                <div class="item">Edit</div>
-                <div class="item float-right"><img alt="" src="./img/windows_logo_header.png" /></div>
-            </div>
-            <div class="options padding">
-                <div class="item">Address</div>
-                <input class="inverse-windows-box-shadow" type="text" value="https://runchao.rocks" />
-            </div>
-            <div class="content white-scroll">
-                <p>
-                    I wrote the website based on <a href=https://github.com/mahbodnr/mahbodnr.github.io>this</a>.
-                </p>
-                <h1><wbr></h1>
-                <h1><wbr></h1>
-            </div>
+<body>
+<div id="desktop-shell">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<nav id="desktop-icons" aria-label="Desktop shortcuts">
+<button class="desktop-icon" data-open="profile"><img src="./img/computer_explorer-5.png" alt=""><span>About Me</span></button>
+<button class="desktop-icon" data-open="home"><img src="./img/computer_explorer-5.png" alt=""><span>My Homepage</span></button>
+<button class="desktop-icon" data-open="research"><img src="./img/paper.png" alt=""><span>Research</span></button>
+<button class="desktop-icon" data-open="engineering"><img src="./img/help_book_computer-4.png" alt=""><span>Engineering</span></button>
+<button class="desktop-icon" data-open="resources"><img src="./img/internet_explorer.png" alt=""><span>Internet Links</span></button>
+<button class="desktop-icon" data-open="services"><img src="./img/world-4.png" alt=""><span>Services</span></button>
+<button class="desktop-icon" data-open="music"><img src="./img/notepad.png" alt=""><span>Winamp</span></button>
+<a class="desktop-icon" href="https://github.com/SebastianElvis/cv/raw/master/runchao-han-cv.pdf"><img src="./img/documents.png" alt=""><span>My CV</span></a>
+</nav>
+<main id="workspace" aria-label="Desktop windows">
+<section class="window" id="home" aria-labelledby="home-title" hidden>
+    <header class="titlebar">
+        <h2 id="home-title"><img src="./img/internet_explorer.png" alt="">Runchao Han - Microsoft Internet Explorer</h2>
+        <div class="window-controls">
+            <button data-action="minimize" aria-label="Minimize Runchao Han - Microsoft Internet Explorer">_</button>
+            <button data-action="maximize" aria-label="Maximize Runchao Han - Microsoft Internet Explorer">□</button>
+            <button data-action="close" aria-label="Close Runchao Han - Microsoft Internet Explorer">×</button>
         </div>
-        <div class="window help windows-box-shadow">
-            <div class="header"><label for="aboutme-input-on-top">About Me</label>
-                <div class="header-buttons">
-                    <label class="minimize windows-box-shadow" for="aboutme-input-min"></label>
-                    <label class="maximize windows-box-shadow"></label>
-                    <label class="close windows-box-shadow" for="aboutme-input">X</label>
-                </div>
-            </div>
-            <div class="options padding">
-                <div class="item">Location</div>
-                <input class="inverse-windows-box-shadow" type="text" value="Melbourne, Australia" readonly />
-            </div>
-            <div class="tab-box-content">
-                <input checked="" id="topic-1" name="topics-radio" type="radio" />
-                <input id="topic-2" name="topics-radio" type="radio" />
-                <input id="topic-3" name="topics-radio" type="radio" />
-                <input id="topic-4" name="topics-radio" type="radio" />
-                <div class="tab-box">
-                    <div class="tab-header">Questions</div>
-                    <ul class="box">
-                        <li><label for="topic-1"><img alt="" src="./img/help_book.png" /> Index
-                            </label></li>
-                        <li><label for="topic-2"><img alt="" src="./img/help_book.png" /> Brief bio</label></li>
-                        <!-- <li><label for="topic-3"><img alt="" src="./img/help_book.png" /> Engineering</label>
-                        </li> -->
-                        <!-- <li><label for="topic-4"><img alt=""
-                                    src="./img/help_book.png"
-                                    />Projects</label></li> -->
-                    </ul>
-                </div>
-                <div class="content about-me">
-                    <div class="topic-1-content">
-                        <h2>Index</h2>
-                        <a href="https://opensea.io/assets/ethereum/0x5af0d9827e0c53e4799bb226655a1de152a425a5/977"
-                            target="fullsize">
-                            <img src="./img/milady.avif" width="200">
-                        </a>
-                        <p></p>
-                        <p>
-                            Emails:
-                            <br /> &nbsp; &nbsp; &nbsp; <a
-                                href="mailto:runchao@babylonlabs.io">runchao@babylonlabs.io</a>
-                            <br /> &nbsp; &nbsp; &nbsp; <a href="mailto:me@runchao.rocks">me@runchao.rocks</a>
-                        </p>
-                        <p>
-                            <a href="https://runchao.notion.site/df81be3821314e9b94b91b7768b8a2fe">[My blog]</a>
-                        </p>
-                        <p>
-                            <a href="https://github.com/SebastianElvis/cv/raw/master/runchao-han-cv.pdf">[CV]</a>
-                            <a href="https://scholar.google.com/citations?user=xbpDocQAAAAJ">[Google scholar]</a>
-                            <a href="https://dblp.org/pers/hd/h/Han:Runchao">[DBLP]</a>
-                            <a href="https://github.com/SebastianElvis">[Github]</a>
-                            <a href="https://www.linkedin.com/in/runchao-han">[LinkedIn]</a>
-                            <a href="https://t.me/runchaohan">[Telegram]</a>
-                            <a href="https://keybase.io/elvisage">[Keybase]</a>
-                            <a href="./images/wechat-qrcode.jpeg">[Wechat]</a>
-                            <a href="https://calendar.app.google/xHqBbaU4JD5RtzEDA">[Calendar]</a>
-                        </p>
-                        <h1> <wbr> </h1>
-                    </div>
-                    <div class="topic-2-content">
+    </header>
+    <nav class="toolbar" aria-label="Homepage toolbar">
+    <button data-open="home"><img src="./img/computer_explorer-5.png" alt="">Home</button>
+    <button data-open="research"><img src="./img/paper.png" alt="">Research</button>
+    <button data-open="resources"><img src="./img/world-4.png" alt="">Favorites</button>
+    <a href="mailto:me@runchao.rocks"><img src="./img/outlook_express-5.png" alt="">Mail</a>
+    <img class="toolbar-logo" src="./img/windows_logo_header.png" alt="Windows 98">
+</nav>
+<div class="addressbar"><label for="home-address">Address</label><input id="home-address" value="https://runchao.rocks" readonly><span aria-hidden="true">↵</span></div>
+<div class="window-body homepage" id="main-content" tabindex="-1">
+    <div class="site-masthead"><strong>RUNCHAO HAN</strong><span>PERSONAL HOME PAGE</span></div>
+    <div class="welcome-banner">
+        <span class="eyebrow">RESEARCHER · ENGINEER · INTERNET RESIDENT</span>
+        <h1>Welcome to my corner<br>of the Internet <span class="star">✳</span></h1>
+        <p>I build and study open systems.</p>
+        <p>I work on Bitcoin, cryptography, and distributed systems.</p>
+        <div class="banner-links"><a href="https://babylonlabs.io/">I build at Babylon ↗</a><span>Go · Rust · Research</span></div>
+    </div>
+    <div class="section-label"><strong>You can start here.</strong><span>4 folders</span></div>
+    <div class="folder-grid">
+        <button data-open="research"><img src="./img/paper.png" alt=""><span><strong>Research</strong><small>Publications &amp; protocols</small></span><b aria-hidden="true">→</b></button>
+        <button data-open="engineering"><img src="./img/help_book_computer-4.png" alt=""><span><strong>Engineering</strong><small>Code &amp; open-source systems</small></span><b aria-hidden="true">→</b></button>
+        <a href="https://runchao.notion.site/df81be3821314e9b94b91b7768b8a2fe"><img src="./img/text_editor.png" alt=""><span><strong>My blog ↗</strong><small>Notes from my work</small></span><b aria-hidden="true">→</b></a>
+        <button data-open="resources"><img src="./img/world-4.png" alt=""><span><strong>Internet links</strong><small>Things worth reading</small></span><b aria-hidden="true">→</b></button>
+    </div>
+    <div class="home-footer"><div class="web-badges" aria-label="Site badges"><span class="badge windows-badge">WINDOWS<br><b>98 INSIDE</b></span><span class="badge web-badge">THE WEB IS<br><b>PERSONAL</b></span><span class="badge code-badge">BUILT WITH<br><b>HTML + CSS</b></span></div><button class="text-button" data-open="site">About this website</button></div>
+</div>
+    <footer class="statusbar"><span>Done</span><span>runchao.rocks</span></footer>
+</section>
+<section class="window compact" id="profile" aria-labelledby="profile-title" hidden>
+    <header class="titlebar">
+        <h2 id="profile-title"><img src="./img/computer_explorer-5.png" alt="">My profile</h2>
+        <div class="window-controls">
+            <button data-action="minimize" aria-label="Minimize My profile">_</button>
+            <button data-action="maximize" aria-label="Maximize My profile">□</button>
+            <button data-action="close" aria-label="Close My profile">×</button>
+        </div>
+    </header>
+    <div class="window-body profile">
+    <div class="profile-heading"><img class="avatar" src="./img/milady.avif" alt="Runchao's Milady avatar" width="72" height="88"><div><span class="eyebrow">USER INFORMATION</span><h3>Runchao Han</h3><p lang="zh-Hans">韩润超</p><span class="profile-tag">Researcher &amp; engineer</span></div></div>
+    <p class="profile-note">I work on open systems.<br>I keep a personal corner of the web.</p>
+    <p class="profile-location">Melbourne, Australia</p><div class="profile-actions"><a class="raised" href="mailto:me@runchao.rocks">Send email</a><a class="raised" href="https://github.com/SebastianElvis/cv/raw/master/runchao-han-cv.pdf">Read CV ↗</a></div>
+    <details><summary>Biography &amp; contact links</summary>
+
                         <h2>Brief bio</h2>
                         <p>
                             I'm a researcher and engineer in Blockchain. <br /><br />
@@ -171,502 +98,427 @@
                                 href="http://bupt.edu.cn/">BUPT</a>. <br /><br />
                             My name in Chinese is 韩润超.
                         </p>
-                        <h1> <wbr> </h1>
-                    </div>
-                </div>
-            </div>
+
+        <p><a href="mailto:runchao@babylonlabs.io">runchao@babylonlabs.io</a><br><a href="mailto:me@runchao.rocks">me@runchao.rocks</a></p>
+        <div class="contact-links"><a href="https://github.com/SebastianElvis">GitHub</a><a href="https://scholar.google.com/citations?user=xbpDocQAAAAJ">Google Scholar</a><a href="https://dblp.org/pers/hd/h/Han:Runchao">DBLP</a><a href="https://www.linkedin.com/in/runchao-han">LinkedIn</a><a href="https://t.me/runchaohan">Telegram</a><a href="https://keybase.io/elvisage">Keybase</a><a href="./img/wechat-qrcode.jpeg">WeChat</a><a href="https://calendar.app.google/xHqBbaU4JD5RtzEDA">Calendar</a><a href="https://twitter.com/runchao_han">Twitter</a><a href="https://opensea.io/assets/ethereum/0x5af0d9827e0c53e4799bb226655a1de152a425a5/977">My avatar</a></div>
+    </details>
+</div>
+    <footer class="statusbar"><span>Personal information</span><span>runchao.rocks</span></footer>
+</section>
+
+<section class="window" id="research" aria-labelledby="research-title" hidden>
+    <header class="titlebar">
+        <h2 id="research-title"><img src="./img/paper.png" alt="">Research</h2>
+        <div class="window-controls">
+            <button data-action="minimize" aria-label="Minimize Research">_</button>
+            <button data-action="maximize" aria-label="Maximize Research">□</button>
+            <button data-action="close" aria-label="Close Research">×</button>
         </div>
-        <div class="window notepad windows-box-shadow">
-            <div class="header"><label for="research-input-on-top">Research</label>
-                <div class="header-buttons">
-                    <label class="minimize windows-box-shadow" for="research-input-min"></label>
-                    <label class="maximize windows-box-shadow"></label>
-                    <label class="close windows-box-shadow" for="research-input">X</label>
-                </div>
-            </div>
-            <div class="options line">
-                <div class="item">File</div>
-                <div class="item">Edit</div>
-                <div class="item">Views</div>
-                <div class="item">Go</div>
-                <div class="item">Favourites</div>
-                <div class="item">Help</div>
-            </div>
-            <div class="content white-scroll">
-                <h2>Research profile</h2>
-                <p>
-                    I aim at improving scalability, security and privacy of <i>permissionless</i> blockchains
-                    and
-                    cryptocurrencies.<br />
-                    My research mainly combines techniques from cryptography and distributed computing.<br />
-                </p>
-                <p>
-                    <a href="https://scholar.google.com/citations?user=xbpDocQAAAAJ">[Google scholar]</a>
-                    <a href="https://dblp.org/pers/hd/h/Han:Runchao">[DBLP]</a> <br />
-                </p>
+    </header>
+    <div class="addressbar"><span>Folder</span><span class="folder-path">My Computer / Research</span><button data-open="home">Home</button></div><div class="searchbar"><label for="paper-search">Find a paper</label><input id="paper-search" type="search" placeholder="Title, author, venue, or year" autocomplete="off"><output id="paper-count" aria-live="polite"></output></div><div class="window-body document"><h2>Research profile</h2>
+    <p>
+        I aim at improving scalability, security and privacy of <i>permissionless</i> blockchains
+        and
+        cryptocurrencies.<br />
+        My research mainly combines techniques from cryptography and distributed computing.<br />
+    </p>
+    <p>
+        <a href="https://scholar.google.com/citations?user=xbpDocQAAAAJ">[Google scholar]</a>
+        <a href="https://dblp.org/pers/hd/h/Han:Runchao">[DBLP]</a> <br />
+    </p>
 
-                <h3>Since Babylon</h3>
-                <p>
-                    At Babylon, I have been focusing on designing and implementing the Babylon system. Nevertheless, I'm
-                    still trying to do blockchain research at my spare time.<br />
-                    My current research interest includes inventing new protocols atop Bitcoin, security sharing
-                    protocols, and consensus protocols with new security properties.
-                </p>
-                <ul>
-                    <li>
-                        <div class="title">Constant latency and finality for dynamically available DAG</div>
-                        <div class="author">Hans Schmiedel, Runchao Han, Qiang Tang, Ron Steinfeld, and Jiangshan Yu
-                        </div>
-                        <div>The 46th IEEE Symposium on Security and Privacy <b>(SP 2025)</b></div>
-                        <div>
-                            <a href="https://arxiv.org/pdf/2305.07830.pdf">[Paper]</a>
-                        </div>
-                        <div class="title">Modeling Mobile Crash in Byzantine Consensus
-                        </div>
-                        <div class="author">Hans Schmiedel, Runchao Han, Qiang Tang, Ron Steinfeld, and Jiangshan Yu
-                        </div>
-                        <div>The 37th IEEE Computer Security Foundations Symposium <b>(CSF 2024)</b> </div>
-                        <div>
-                            <a href="https://eprint.iacr.org/2024/452">[Paper]</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="title">Interchain Timestamping for Mesh Security</div>
-                        <div class="author">Ertem Nusret Tas, Runchao Han, David Tse, Fisher Yu, and Kamilla
-                            Nazirkhanova</div>
-                        <div>ACM Conference on Computer and Communications Security <b>(CCS 2023)</b> </div>
-                        <div>
-                            <a href="https://arxiv.org/abs/2305.07830">[Paper]</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="title">EBFT: Simplifying BFT Consensus Through Egalitarianism</div>
-                        <div class="author">Jianyu Niu*, Runchao Han*, Shengqi Liu, Fangyu Gai, Ivan Beschastnikh,
-                            Yinqian Zhang, and Chen Feng</div>
-                        <div>
-                            <a href="https://arxiv.org/abs/2012.01636">[Paper]</a>
-                            <a href="https://github.com/vechain/VIPs/blob/master/vips/VIP-220.md">[Variant used in
-                                VeChain]</a>
-                        </div>
-                    </li>
-                </ul>
-
-                <h3>At Monash</h3>
-                <p>
-                    During my PhD, my research mainly focused on blockchain sharding protocols and their underlying
-                    primitives, such as <a href="https://eprint.iacr.org/2020/943">shard allocation</a> and <a
-                        href="https://eprint.iacr.org/2020/1033">decentralised randomness beacon</a>.<br />
-                    I also have worked on some other topics such as <a
-                        href="https://eprint.iacr.org/2019/896">cross-chain
-                        communication</a>, <a href="https://eprint.iacr.org/2019/752">economic security of
-                        blockchains</a>, <a href="https://eprint.iacr.org/2020/456">layer-2 protocols</a>, and
-                    <a href="https://www.research.manchester.ac.uk/portal/files/85753741/paper.pdf">optimisation
-                        of
-                        Proof-of-Work mining</a>.
-                </p>
-                <ul>
-                    <li>
-                        <div class="title">Fair Delivery of Decentralised Randomness Beacon</div>
-                        <div class="author">Runchao Han and Jiangshan Yu</div>
-                        <div>The 27th International Conference on Financial Cryptography and Data Security
-                            <b>(FC 2023)</b>
-                        </div>
-                        <div>
-                            <a href="https://eprint.iacr.org/2023/103">[Paper]</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="title">Analysing and Improving Shard Allocation Protocols for Sharded
-                            Blockchains</div>
-                        <div class="author">Runchao Han, Jiangshan Yu, and Ren Zhang</div>
-                        <div>The 4th ACM Conference on Advances in Financial Technologies <b>(AFT 2022)</b>
-                        </div>
-                        <div>
-                            <a href="https://eprint.iacr.org/2020/943">[Paper]</a>
-                            <a href="https://zkcapital.substack.com">[Selected as "Paper of the Week" (Issue
-                                #68) by ZK
-                                Capital]</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="title">On the optionality and fairness of Atomic Swaps</div>
-                        <div class="author">Runchao Han, Haoyu Lin, and Jiangshan Yu</div>
-                        <div>The First ACM Conference on Advances in Financial Technologies <b>(AFT 2019)</b>
-                        </div>
-                        <div>
-                            <a href="https://eprint.iacr.org/2019/896">[Paper]</a>
-                            <a
-                                href="https://docs.google.com/presentation/d/1cRytvse0g6yjdqrpOThVuFRgmaDqWHAUz3P26Sj7kC8/edit?usp=sharing">[Slides]</a>
-                            <a href="https://github.com/DEX-ware/fair-atomic-swap">[Code]</a>
-                            <a href="https://eips.ethereum.org/EIPS/eip-2266">[EIP-2266 standard]</a>
-                            <a href="https://www.youtube.com/watch?v=wwWcfl9N65k">[Peep an EIP #23]</a>
-                            <a
-                                href="https://cryptonews.com.au/preview/monash-university-researchers-developing-cryptocurrency-transaction-platform">[Report
-                                from CryptoNews]</a>
-                            <a
-                                href="https://www.monash.edu/blockchain/news/to-realise-their-potential,-business-blockchains-must-learn-to-communicate">[Report
-                                from Monash University]</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="title">Evaluating Technical Approaches Toward A National Digital Ledger</div>
-                        <div class="author">Carsten Rudolph, Jiangshan Yu, James Boorman, and Runchao Han</div>
-                        <div>Technical report for the Ministry of Justice, Communication and Foreign Affairs of
-                            Tuvalu</b>
-                        </div>
-                        <div>
-                            <a
-                                href="https://research.monash.edu/en/publications/evaluating-technical-approaches-toward-a-national-digital-ledger">[Link]</a>
-                        </div>
-                    </li>
-                </ul>
-                <h1> <wbr> </h1>
+    <h3>Since Babylon</h3>
+    <p>
+        At Babylon, I have been focusing on designing and implementing the Babylon system. Nevertheless, I'm
+        still trying to do blockchain research at my spare time.<br />
+        My current research interest includes inventing new protocols atop Bitcoin, security sharing
+        protocols, and consensus protocols with new security properties.
+    </p>
+    <ul>
+        <li>
+            <div class="title">Constant latency and finality for dynamically available DAG</div>
+            <div class="author">Hans Schmiedel, Runchao Han, Qiang Tang, Ron Steinfeld, and Jiangshan Yu
             </div>
+            <div>The 46th IEEE Symposium on Security and Privacy <b>(SP 2025)</b></div>
+            <div>
+                <a href="https://arxiv.org/pdf/2305.07830.pdf">[Paper]</a>
+            </div>
+            </li>
+        <li><div class="title">Modeling Mobile Crash in Byzantine Consensus
+            </div>
+            <div class="author">Hans Schmiedel, Runchao Han, Qiang Tang, Ron Steinfeld, and Jiangshan Yu
+            </div>
+            <div>The 37th IEEE Computer Security Foundations Symposium <b>(CSF 2024)</b> </div>
+            <div>
+                <a href="https://eprint.iacr.org/2024/452">[Paper]</a>
+            </div>
+        </li>
+        <li>
+            <div class="title">Interchain Timestamping for Mesh Security</div>
+            <div class="author">Ertem Nusret Tas, Runchao Han, David Tse, Fisher Yu, and Kamilla
+                Nazirkhanova</div>
+            <div>ACM Conference on Computer and Communications Security <b>(CCS 2023)</b> </div>
+            <div>
+                <a href="https://arxiv.org/abs/2305.07830">[Paper]</a>
+            </div>
+        </li>
+        <li>
+            <div class="title">EBFT: Simplifying BFT Consensus Through Egalitarianism</div>
+            <div class="author">Jianyu Niu*, Runchao Han*, Shengqi Liu, Fangyu Gai, Ivan Beschastnikh,
+                Yinqian Zhang, and Chen Feng</div>
+            <div>
+                <a href="https://arxiv.org/abs/2012.01636">[Paper]</a>
+                <a href="https://github.com/vechain/VIPs/blob/master/vips/VIP-220.md">[Variant used in
+                    VeChain]</a>
+            </div>
+        </li>
+    </ul>
+
+    <h3>At Monash</h3>
+    <p>
+        During my PhD, my research mainly focused on blockchain sharding protocols and their underlying
+        primitives, such as <a href="https://eprint.iacr.org/2020/943">shard allocation</a> and <a
+            href="https://eprint.iacr.org/2020/1033">decentralised randomness beacon</a>.<br />
+        I also have worked on some other topics such as <a
+            href="https://eprint.iacr.org/2019/896">cross-chain
+            communication</a>, <a href="https://eprint.iacr.org/2019/752">economic security of
+            blockchains</a>, <a href="https://eprint.iacr.org/2020/456">layer-2 protocols</a>, and
+        <a href="https://www.research.manchester.ac.uk/portal/files/85753741/paper.pdf">optimisation
+            of
+            Proof-of-Work mining</a>.
+    </p>
+    <ul>
+        <li>
+            <div class="title">Fair Delivery of Decentralised Randomness Beacon</div>
+            <div class="author">Runchao Han and Jiangshan Yu</div>
+            <div>The 27th International Conference on Financial Cryptography and Data Security
+                <b>(FC 2023)</b>
+            </div>
+            <div>
+                <a href="https://eprint.iacr.org/2023/103">[Paper]</a>
+            </div>
+        </li>
+        <li>
+            <div class="title">Analysing and Improving Shard Allocation Protocols for Sharded
+                Blockchains</div>
+            <div class="author">Runchao Han, Jiangshan Yu, and Ren Zhang</div>
+            <div>The 4th ACM Conference on Advances in Financial Technologies <b>(AFT 2022)</b>
+            </div>
+            <div>
+                <a href="https://eprint.iacr.org/2020/943">[Paper]</a>
+                <a href="https://zkcapital.substack.com">[Selected as "Paper of the Week" (Issue
+                    #68) by ZK
+                    Capital]</a>
+            </div>
+        </li>
+        <li>
+            <div class="title">On the optionality and fairness of Atomic Swaps</div>
+            <div class="author">Runchao Han, Haoyu Lin, and Jiangshan Yu</div>
+            <div>The First ACM Conference on Advances in Financial Technologies <b>(AFT 2019)</b>
+            </div>
+            <div>
+                <a href="https://eprint.iacr.org/2019/896">[Paper]</a>
+                <a
+                    href="https://docs.google.com/presentation/d/1cRytvse0g6yjdqrpOThVuFRgmaDqWHAUz3P26Sj7kC8/edit?usp=sharing">[Slides]</a>
+                <a href="https://github.com/DEX-ware/fair-atomic-swap">[Code]</a>
+                <a href="https://eips.ethereum.org/EIPS/eip-2266">[EIP-2266 standard]</a>
+                <a href="https://www.youtube.com/watch?v=wwWcfl9N65k">[Peep an EIP #23]</a>
+                <a
+                    href="https://cryptonews.com.au/preview/monash-university-researchers-developing-cryptocurrency-transaction-platform">[Report
+                    from CryptoNews]</a>
+                <a
+                    href="https://www.monash.edu/blockchain/news/to-realise-their-potential,-business-blockchains-must-learn-to-communicate">[Report
+                    from Monash University]</a>
+            </div>
+        </li>
+        <li>
+            <div class="title">Evaluating Technical Approaches Toward A National Digital Ledger</div>
+            <div class="author">Carsten Rudolph, Jiangshan Yu, James Boorman, and Runchao Han</div>
+            <div>Technical report for the Ministry of Justice, Communication and Foreign Affairs of
+                Tuvalu
+            </div>
+            <div>
+                <a
+                    href="https://research.monash.edu/en/publications/evaluating-technical-approaches-toward-a-national-digital-ledger">[Link]</a>
+            </div>
+        </li>
+    </ul><p id="no-papers" hidden>No papers match your search.</p></div>
+    <footer class="statusbar"><span>My Computer</span><span>runchao.rocks</span></footer>
+</section>
+<section class="window" id="engineering" aria-labelledby="engineering-title" hidden>
+    <header class="titlebar">
+        <h2 id="engineering-title"><img src="./img/help_book_computer-4.png" alt="">Engineering</h2>
+        <div class="window-controls">
+            <button data-action="minimize" aria-label="Minimize Engineering">_</button>
+            <button data-action="maximize" aria-label="Maximize Engineering">□</button>
+            <button data-action="close" aria-label="Close Engineering">×</button>
         </div>
-        <div class="window trash windows-box-shadow">
-            <div class="header"><label for="engineering-input-on-top">Engineering</label>
-                <div class="header-buttons">
-                    <label class="minimize windows-box-shadow" for="engineering-input-min"></label>
-                    <label class="maximize windows-box-shadow"></label>
-                    <label class="close windows-box-shadow" for="engineering-input">X</label>
-                </div>
-            </div>
-            <div class="options line">
-                <div class="item">File</div>
-                <div class="item">Edit</div>
-                <div class="item">Views</div>
-                <div class="item">Go</div>
-                <div class="item">Favourites</div>
-                <div class="item">Help</div>
-                <div class="item float-right"><img alt="" src="./img/windows_logo_header.png" /></div>
-            </div>
-            <div class="content white-scroll">
-                <h2>Engineering profile</h2>
-                <p>
-                    I work on designing and implementing systems that promote individual sovereignty and
-                    freedom, especially
-                    blockchains.<br />
-                    I like both prototype systems based on research ideas, and make systems
-                    production-ready.<br />
-                    Currently, I am building the Babylon blockchain together with a group of fantastic
-                    colleagues.<br />
-                    I have been contributing to the design and implementation of various protocols,
-                    including BTC timestamping, BTC staking, and more recently the entire stack for BTC staking
-                    integration.<br />
-                    I program mostly in Go and Rust.<br />
-                </p>
-                <p><a href="https://github.com/SebastianElvis">[Github]</a><br /></p>
+    </header>
+    <div class="addressbar"><span>Folder</span><span class="folder-path">My Computer / Engineering</span><button data-open="home">Home</button></div><div class="window-body document"><h2>Engineering profile</h2>
+    <p>
+        I work on designing and implementing systems that promote individual sovereignty and
+        freedom, especially
+        blockchains.<br />
+        I like both prototype systems based on research ideas, and make systems
+        production-ready.<br />
+        Currently, I am building the Babylon blockchain together with a group of fantastic
+        colleagues.<br />
+        I have been contributing to the design and implementation of various protocols,
+        including BTC timestamping, BTC staking, and more recently the entire stack for BTC staking
+        integration.<br />
+        I program mostly in Go and Rust.<br />
+    </p>
+    <p><a href="https://github.com/SebastianElvis">[Github]</a><br /></p>
 
-                <h3>Selected repositories</h3>
-                <ul>
-                    <li><a href="https://github.com/babylonlabs-io/babylon">Babylon</a>: The Babylon full node,
-                        providing
-                        <a href="https://arxiv.org/pdf/2207.08392">BTC timestamping</a> and <a
-                            href="https://docs.babylonlabs.io/papers/btc_staking_litepaper(EN).pdf">BTC staking</a>
-                        protocols
-                    </li>
-                    <li><a href="https://github.com/babylonlabs-io/vigilante">Vigilante</a>: The relayer between
-                        Babylon and Bitcoin
-                    </li>
-                    <li><a href="https://github.com/babylonlabs-io/babylon-contract">Babylon contracts</a>: The
-                        CosmWasm smart contracts for BTC staking integration</li>
-                </ul>
-                <h3>Standard</h3>
-                <ul>
-                    <li>
-                        <div class="title">EIP-2266: Atomic Swap-based American Call Option Contract Standard
-                        </div>
-                        <div class="author">Runchao Han, Haoyu Lin, and Jiangshan Yu</div>
-                        <div><a href="https://github.com/ethereum/ERCs">Ethereum Request for Comments (ERCs)</a></div>
-                        <div>
-                            <a href="https://eips.ethereum.org/EIPS/eip-2266">[Link]</a>
-                            <a href="https://www.youtube.com/watch?v=wwWcfl9N65k">[Peep an EIP #23]</a>
-                        </div>
-                    </li>
-                </ul>
-                <h3>Bug bounty</h3>
-                <ul>
-                    <li>
-                        <div class="title">Default `PrepareProposalHandler` may produce invalid proposals when used with
-                            default `SenderNonceMempool`</div>
-                        <div class="author">together with Fangyu Gai, Vitalis Salis, and Konrad Staniec</div>
-                        <div>
-                            <a href="https://hackerone.com/cosmos/reports/new?type=team&report_type=vulnerability">Bug
-                                bounty program for Cosmos</a>
-                        </div>
-                        <div>
-                            <a href="https://hackerone.com/reports/2321963">[Report]</a>
-                            <a href="https://github.com/cosmos/cosmos-sdk/security/advisories/GHSA-2557-x9mg-76w8">[Github
-                                security advisory]</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="title">PostHandler panicks upon a failed transaction
-                        </div>
-                        <div class="author">together with Fangyu Gai, Vitalis Salis, and Konrad Staniec</div>
-                        <div>
-                            <a href="https://hackerone.com/cosmos/reports/new?type=team&report_type=vulnerability">Bug
-                                bounty program for Cosmos</a>
-                        </div>
-                        <div>
-                            <a href="https://hackerone.com/reports/2315552">[Report]</a>
-                        </div>
-                    </li>
-                </ul>
-                <h1> <wbr> </h1>
+    <h3>Selected repositories</h3>
+    <ul>
+        <li><a href="https://github.com/babylonlabs-io/babylon">Babylon</a>: The Babylon full node,
+            providing
+            <a href="https://arxiv.org/pdf/2207.08392">BTC timestamping</a> and <a
+                href="https://docs.babylonlabs.io/papers/btc_staking_litepaper(EN).pdf">BTC staking</a>
+            protocols
+        </li>
+        <li><a href="https://github.com/babylonlabs-io/vigilante">Vigilante</a>: The relayer between
+            Babylon and Bitcoin
+        </li>
+        <li><a href="https://github.com/babylonlabs-io/babylon-contract">Babylon contracts</a>: The
+            CosmWasm smart contracts for BTC staking integration</li>
+    </ul>
+    <h3>Standard</h3>
+    <ul>
+        <li>
+            <div class="title">EIP-2266: Atomic Swap-based American Call Option Contract Standard
             </div>
+            <div class="author">Runchao Han, Haoyu Lin, and Jiangshan Yu</div>
+            <div><a href="https://github.com/ethereum/ERCs">Ethereum Request for Comments (ERCs)</a></div>
+            <div>
+                <a href="https://eips.ethereum.org/EIPS/eip-2266">[Link]</a>
+                <a href="https://www.youtube.com/watch?v=wwWcfl9N65k">[Peep an EIP #23]</a>
+            </div>
+        </li>
+    </ul>
+    <h3>Bug bounty</h3>
+    <ul>
+        <li>
+            <div class="title">Default `PrepareProposalHandler` may produce invalid proposals when used with
+                default `SenderNonceMempool`</div>
+            <div class="author">together with Fangyu Gai, Vitalis Salis, and Konrad Staniec</div>
+            <div>
+                <a href="https://hackerone.com/cosmos/reports/new?type=team&report_type=vulnerability">Bug
+                    bounty program for Cosmos</a>
+            </div>
+            <div>
+                <a href="https://hackerone.com/reports/2321963">[Report]</a>
+                <a href="https://github.com/cosmos/cosmos-sdk/security/advisories/GHSA-2557-x9mg-76w8">[Github
+                    security advisory]</a>
+            </div>
+        </li>
+        <li>
+            <div class="title">PostHandler panicks upon a failed transaction
+            </div>
+            <div class="author">together with Fangyu Gai, Vitalis Salis, and Konrad Staniec</div>
+            <div>
+                <a href="https://hackerone.com/cosmos/reports/new?type=team&report_type=vulnerability">Bug
+                    bounty program for Cosmos</a>
+            </div>
+            <div>
+                <a href="https://hackerone.com/reports/2315552">[Report]</a>
+            </div>
+        </li>
+    </ul></div>
+    <footer class="statusbar"><span>My Computer</span><span>runchao.rocks</span></footer>
+</section>
+<section class="window" id="services" aria-labelledby="services-title" hidden>
+    <header class="titlebar">
+        <h2 id="services-title"><img src="./img/world-4.png" alt="">Services</h2>
+        <div class="window-controls">
+            <button data-action="minimize" aria-label="Minimize Services">_</button>
+            <button data-action="maximize" aria-label="Maximize Services">□</button>
+            <button data-action="close" aria-label="Close Services">×</button>
         </div>
-        <div class="window services windows-box-shadow">
-            <div class="header"><label for="services-input-on-top">Services</label>
-                <div class="header-buttons">
-                    <label class="minimize windows-box-shadow" for="services-input-min"></label>
-                    <label class="maximize windows-box-shadow"></label>
-                    <label class="close windows-box-shadow" for="services-input">X</label>
-                </div>
-            </div>
-            <div class="options line">
-                <div class="item">File</div>
-                <div class="item">Edit</div>
-                <div class="item">Views</div>
-                <div class="item">Go</div>
-                <div class="item">Favourites</div>
-                <div class="item">Help</div>
-            </div>
-            <div class="content white-scroll">
-                <h2>Professional services</h2>
-                <h3>Talks</h3>
-                <ul>
-                    <li>2023: FC'23</li>
-                    <li>2022: AFT'22, CSIRO-Data61, Nervos Foundation</li>
-                    <li>2021: AsiaCCS'21, CSIRO-Data61, <a href="https://www.youtube.com/watch?v=wwWcfl9N65k">Peep an
-                            EIP
-                            #23</a></li>
-                    <li>2020: Huawei Noah's Ark Lab, <a href="https://www.youtube.com/watch?v=l4XSbWaKDVY">Decrypto</a>
-                    </li>
-                    <li>2019: AFT'19</li>
-                </ul>
+    </header>
+    <div class="addressbar"><span>Folder</span><span class="folder-path">My Computer / Services</span><button data-open="home">Home</button></div><div class="window-body document"><h2>Professional services</h2>
+    <h3>Talks</h3>
+    <ul>
+        <li>2023: FC'23</li>
+        <li>2022: AFT'22, CSIRO-Data61, Nervos Foundation</li>
+        <li>2021: AsiaCCS'21, CSIRO-Data61, <a href="https://www.youtube.com/watch?v=wwWcfl9N65k">Peep an
+                EIP
+                #23</a></li>
+        <li>2020: Huawei Noah's Ark Lab, <a href="https://www.youtube.com/watch?v=l4XSbWaKDVY">Decrypto</a>
+        </li>
+        <li>2019: AFT'19</li>
+    </ul>
 
-                <h3>Conference program committee member</h3>
-                <ul>
-                    <li>2025: AsiaCCS</li>
-                    <li>2024: GBC</li>
-                    <li>2023: PST, VeriDBSys@SIGMOD</li>
-                    <li>2022: ICA3PP</li>
-                </ul>
+    <h3>Conference program committee member</h3>
+    <ul>
+        <li>2025: AsiaCCS</li>
+        <li>2024: GBC</li>
+        <li>2023: PST, VeriDBSys@SIGMOD</li>
+        <li>2022: ICA3PP</li>
+    </ul>
 
-                <h3>Conference/journal reviewer</h3>
-                <ul>
-                    <li>2024: CCS</li>
-                    <li>2023: DSN, TDSC, SecureComm, Ledger Journal, Journal of Network and Systems Management</li>
-                    <li>2022: EuroS&P, IEEE Blockchain, IEEE Transaction of Service Computing, ACM DLT Journal, Journal
-                        of Network
-                        and Systems Management</li>
-                    <li>2021: DSN, ICBC, IEEE Blockchain, NSS, MSN, TrustCom, IEEE Transaction of Service Computing</li>
-                    <li>2020: AFT, ICDCS, SRDS, ACNS, AsiaCCS, TrustCom, ACISP, ICBC, NSS, TDSC, The Computer Journal,
-                        IEEE IoT
-                        Journal, IEEE Software Journal, IEEE Transaction of Service Computing</li>
-                    <li>2019: Indocrypt, TrustCom, Future Generation Computing System</li>
-                </ul>
+    <h3>Conference/journal reviewer</h3>
+    <ul>
+        <li>2024: CCS</li>
+        <li>2023: DSN, TDSC, SecureComm, Ledger Journal, Journal of Network and Systems Management</li>
+        <li>2022: EuroS&P, IEEE Blockchain, IEEE Transaction of Service Computing, ACM DLT Journal, Journal
+            of Network
+            and Systems Management</li>
+        <li>2021: DSN, ICBC, IEEE Blockchain, NSS, MSN, TrustCom, IEEE Transaction of Service Computing</li>
+        <li>2020: AFT, ICDCS, SRDS, ACNS, AsiaCCS, TrustCom, ACISP, ICBC, NSS, TDSC, The Computer Journal,
+            IEEE IoT
+            Journal, IEEE Software Journal, IEEE Transaction of Service Computing</li>
+        <li>2019: Indocrypt, TrustCom, Future Generation Computing System</li>
+    </ul>
 
-                <h3>Awards</h3>
-                <ul>
-                    <li>Data61 Top-up Scholarship, CSIRO's Data61</li>
-                    <li>Faculty of Information Technology International Postgraduate Research Scholarship, Monash
-                        University</li>
-                    <li>Faculty of Information Technology Research Scholarship, Monash University</li>
-                    <li>Best paper nomination, ISPASS'19</li>
-                </ul>
+    <h3>Awards</h3>
+    <ul>
+        <li>Data61 Top-up Scholarship, CSIRO's Data61</li>
+        <li>Faculty of Information Technology International Postgraduate Research Scholarship, Monash
+            University</li>
+        <li>Faculty of Information Technology Research Scholarship, Monash University</li>
+        <li>Best paper nomination, ISPASS'19</li>
+    </ul>
 
-                <h3>Mentoring</h3>
-                <ul>
-                    <li>Muhong Huang. <a href="https://eprint.iacr.org/2023/169.pdf">Reputation-based state machine
-                            replication
-                            (NCA'22).</a> Now: PhD student at UESTC</li>
-                    <li>Zhichun Lu. <a href="https://eprint.iacr.org/2020/456.pdf">General Congestion Attack on
-                            HTLC-Based Payment
-                            Channel Networks (Tokenomics'21).</a> Now: PhD student at University of Sydney</li>
-                </ul>
+    <h3>Mentoring</h3>
+    <ul>
+        <li>Muhong Huang. <a href="https://eprint.iacr.org/2023/169.pdf">Reputation-based state machine
+                replication
+                (NCA'22).</a> Now: PhD student at UESTC</li>
+        <li>Zhichun Lu. <a href="https://eprint.iacr.org/2020/456.pdf">General Congestion Attack on
+                HTLC-Based Payment
+                Channel Networks (Tokenomics'21).</a> Now: PhD student at University of Sydney</li>
+    </ul>
 
-                <h3>Teaching</h3>
-                <ul>
-                    <li>2019 fall, TA for <a href="https://www3.monash.edu/pubs/2019handbooks/units/FIT5214.html">FIT
-                            5214
-                            Blockchain</a>, Monash University.</li>
-                </ul>
-                <h1> <wbr> </h1>
-            </div>
+    <h3>Teaching</h3>
+    <ul>
+        <li>2019 fall, TA for <a href="https://www3.monash.edu/pubs/2019handbooks/units/FIT5214.html">FIT
+                5214
+                Blockchain</a>, Monash University.</li>
+    </ul></div>
+    <footer class="statusbar"><span>My Computer</span><span>runchao.rocks</span></footer>
+</section>
+<section class="window" id="resources" aria-labelledby="resources-title" hidden>
+    <header class="titlebar">
+        <h2 id="resources-title"><img src="./img/internet_explorer.png" alt="">Internet Links</h2>
+        <div class="window-controls">
+            <button data-action="minimize" aria-label="Minimize Internet Links">_</button>
+            <button data-action="maximize" aria-label="Maximize Internet Links">□</button>
+            <button data-action="close" aria-label="Close Internet Links">×</button>
         </div>
-        <div class="window resource windows-box-shadow">
-            <div class="header"><label for="resource-input-on-top">Resource</label>
-                <div class="header-buttons">
-                    <label class="minimize windows-box-shadow" for="resource-input-min"></label>
-                    <label class="maximize windows-box-shadow"></label>
-                    <label class="close windows-box-shadow" for="resource-input">X</label>
-                </div>
-            </div>
-            <div class="options line">
-                <div class="item">File</div>
-                <div class="item">Edit</div>
-                <div class="item">Views</div>
-                <div class="item">Go</div>
-                <div class="item">Favourites</div>
-                <div class="item">Help</div>
-            </div>
-            <div class="content white-scroll">
-                <h2>Useful resources</h2>
+    </header>
+    <div class="addressbar"><span>Folder</span><span class="folder-path">My Computer / Internet Links</span><button data-open="home">Home</button></div><div class="window-body document"><h2>Useful resources</h2>
 
-                <h3>Research links</h3>
-                <ul>
-                    <li><a href="https://d37ugbyn3rpeym.cloudfront.net/stripe-press/TAODSAE_zine_press.pdf">You and Your
-                            Research</a> by Richard Hamming</li>
-                    <li><a href="http://phdcomics.com/">PHD Comics: The PHD Movies</a></li>
-                    <li><a
-                            href="https://medium.com/digital-diplomacy/how-to-look-for-ideas-in-computer-science-research-7a3fa6f4696f">How
-                            to Look for Ideas in Computer Science Research</a> by Zhiyun Qian</li>
-                    <li><a href="https://homes.cs.washington.edu/~mernst/advice/write-technical-paper.html">How to write
-                            a
-                            technical paper</a> by Michael Ernst</li>
-                    <li><a href="http://gernot-heiser.org/style-guide.html">Tips and Guidance for Students Writing
-                            Papers and
-                            Reports</a> by Gernot Heiser</li>
-                    <li><a href="https://www.nature.com/articles/d41586-018-06991-0">How to write a thorough peer
-                            review</a> and
-                        its associated <a
-                            href="https://www.scisnack.com/wp-content/uploads/2018/10/A-Peer-Review-Process-Guide.pdf">worksheet</a>
-                    </li>
-                </ul>
+    <h3>Research links</h3>
+    <ul>
+        <li><a href="https://d37ugbyn3rpeym.cloudfront.net/stripe-press/TAODSAE_zine_press.pdf">You and Your
+                Research</a> by Richard Hamming</li>
+        <li><a href="http://phdcomics.com/">PHD Comics: The PHD Movies</a></li>
+        <li><a
+                href="https://medium.com/digital-diplomacy/how-to-look-for-ideas-in-computer-science-research-7a3fa6f4696f">How
+                to Look for Ideas in Computer Science Research</a> by Zhiyun Qian</li>
+        <li><a href="https://homes.cs.washington.edu/~mernst/advice/write-technical-paper.html">How to write
+                a
+                technical paper</a> by Michael Ernst</li>
+        <li><a href="http://gernot-heiser.org/style-guide.html">Tips and Guidance for Students Writing
+                Papers and
+                Reports</a> by Gernot Heiser</li>
+        <li><a href="https://www.nature.com/articles/d41586-018-06991-0">How to write a thorough peer
+                review</a> and
+            its associated <a
+                href="https://www.scisnack.com/wp-content/uploads/2018/10/A-Peer-Review-Process-Guide.pdf">worksheet</a>
+        </li>
+    </ul>
 
-                <h3>Crypto links</h3>
-                <ul>
-                    <li><a href="https://sec-deadlines.github.io/">Security and Privacy Conference Deadlines</a></li>
-                    <li><a href="https://github.com/SebastianElvis/crypto-lecture-notes">Crypto lecture notes</a>
-                        collected by
-                        myself</li>
-                    <li><a href="https://eprint.iacr.org/2004/332.pdf">Sequences of games: a tool for taming complexity
-                            in
-                            security proofs</a> by Victor Shoup</li>
-                    <li><a href="https://eprint.iacr.org/2016/046.pdf">How To Simulate It - A Tutorial on the Simulation
-                            Proof
-                            Technique</a> by Yehuda Lindell</li>
-                    <li><a href="https://mathvault.ca/math-glossary">The Definitive Glossary of Higher Mathematical
-                            Jargon</a>
-                    </li>
-                    <li><a href="https://xiao-liang.com/Resources/TheoreticalToys.pdf">Theoretical Toys</a> by Xiao
-                        Liang</li>
-                    <li><a href="https://kconrad.math.uconn.edu/blurbs/">Expository papers</a> by Keith Conrad</li>
-                    <li><a href="https://cseweb.ucsd.edu/~mihir/crypto-links.html">Mihir Bellare's Crypto links</a></li>
-                    <li><a href="https://people.csail.mit.edu/rivest/crypto-security.html">Ron Rivest's Crypto links</a>
-                    </li>
-                </ul>
+    <h3>Crypto links</h3>
+    <ul>
+        <li><a href="https://sec-deadlines.github.io/">Security and Privacy Conference Deadlines</a></li>
+        <li><a href="https://github.com/SebastianElvis/crypto-lecture-notes">Crypto lecture notes</a>
+            collected by
+            myself</li>
+        <li><a href="https://eprint.iacr.org/2004/332.pdf">Sequences of games: a tool for taming complexity
+                in
+                security proofs</a> by Victor Shoup</li>
+        <li><a href="https://eprint.iacr.org/2016/046.pdf">How To Simulate It - A Tutorial on the Simulation
+                Proof
+                Technique</a> by Yehuda Lindell</li>
+        <li><a href="https://mathvault.ca/math-glossary">The Definitive Glossary of Higher Mathematical
+                Jargon</a>
+        </li>
+        <li><a href="https://xiao-liang.com/Resources/TheoreticalToys.pdf">Theoretical Toys</a> by Xiao
+            Liang</li>
+        <li><a href="https://kconrad.math.uconn.edu/blurbs/">Expository papers</a> by Keith Conrad</li>
+        <li><a href="https://cseweb.ucsd.edu/~mihir/crypto-links.html">Mihir Bellare's Crypto links</a></li>
+        <li><a href="https://people.csail.mit.edu/rivest/crypto-security.html">Ron Rivest's Crypto links</a>
+        </li>
+    </ul>
 
-                <h3>System links</h3>
-                <ul>
-                    <li><a href="http://www.cs.technion.ac.il/~dan/index_sysvenues_deadline.html">System Conference
-                            Deadlines</a>
-                    </li>
-                    <li><a href="https://www.usenix.org/legacy/event/samples/submit/advice.html">How (and How Not) to
-                            Write a Good
-                            Systems Paper</a> by Roy Levin and David D. Redell</li>
-                    <li><a href="https://gramoli.redbellyblockchain.io/web/doc/talks/researchmethod.pdf">How to write a
-                            systems
-                            paper</a> by Vincent Gramoli</li>
-                    <li><a href="https://www.cse.unsw.edu.au/~gernot/benchmarking-crimes.html">Systems Benchmarking
-                            Crimes</a>
-                        by Gernot Heiser</li>
-                    <li><a href="https://people.inf.ethz.ch/troscoe/pubs/review-writing.pdf">Writing reviews for systems
-                            conferences</a> by Timothy Roscoe</li>
-                </ul>
-                <h3>Programming links</h3>
-                <ul>
-                    <li><a href="https://cheats.rs">Rust Language Cheat Sheet</a></li>
-                    <li><a href="https://rust-lang.github.io/api-guidelines/checklist.html">Rust API Guidelines
-                            Checklist</a></li>
-                    <li><a href="https://github.com/veorq/cryptocoding">Cryptocoding: Guidelines for low-level
-                            cryptography
-                            software</a></li>
-                </ul>
+    <h3>System links</h3>
+    <ul>
+        <li><a href="http://www.cs.technion.ac.il/~dan/index_sysvenues_deadline.html">System Conference
+                Deadlines</a>
+        </li>
+        <li><a href="https://www.usenix.org/legacy/event/samples/submit/advice.html">How (and How Not) to
+                Write a Good
+                Systems Paper</a> by Roy Levin and David D. Redell</li>
+        <li><a href="https://gramoli.redbellyblockchain.io/web/doc/talks/researchmethod.pdf">How to write a
+                systems
+                paper</a> by Vincent Gramoli</li>
+        <li><a href="https://www.cse.unsw.edu.au/~gernot/benchmarking-crimes.html">Systems Benchmarking
+                Crimes</a>
+            by Gernot Heiser</li>
+        <li><a href="https://people.inf.ethz.ch/troscoe/pubs/review-writing.pdf">Writing reviews for systems
+                conferences</a> by Timothy Roscoe</li>
+    </ul>
+    <h3>Programming links</h3>
+    <ul>
+        <li><a href="https://cheats.rs">Rust Language Cheat Sheet</a></li>
+        <li><a href="https://rust-lang.github.io/api-guidelines/checklist.html">Rust API Guidelines
+                Checklist</a></li>
+        <li><a href="https://github.com/veorq/cryptocoding">Cryptocoding: Guidelines for low-level
+                cryptography
+                software</a></li>
+    </ul>
 
-                <h3>Some books</h3>
-                <ul>
-                    <li><a href="./books/mao/index.html">Selected Works of Mao Tse-Tung</a> (Credit to <a
-                            href="https://github.com/weiyinfu/MaoZeDongAnthology">this repo</a>) </li>
-                    <li><a href="utils/bibi/?book=lky" data-bibi="embed">The Singapore Story: Memoirs of Lee Kuan
-                            Yew</a></li>
-                    <li><a href="https://remoteok.cn/">RemoteOK</a> (in Chinese)</li>
-                </ul>
-                <h1> <wbr> </h1>
-            </div>
+    <h3>Some books</h3>
+    <ul>
+        <li><a href="./books/mao/index.html">Selected Works of Mao Tse-Tung</a> (Credit to <a
+                href="https://github.com/weiyinfu/MaoZeDongAnthology">this repo</a>) </li>
+        <li><a href="utils/bibi/?book=lky" data-bibi="embed">The Singapore Story: Memoirs of Lee Kuan
+                Yew</a></li>
+        <li><a href="https://remoteok.cn/">RemoteOK</a> (in Chinese)</li>
+    </ul></div>
+    <footer class="statusbar"><span>My Computer</span><span>runchao.rocks</span></footer>
+</section>
+<section class="window" id="site" aria-labelledby="site-title" hidden>
+    <header class="titlebar">
+        <h2 id="site-title"><img src="./img/text_editor.png" alt="">About this website</h2>
+        <div class="window-controls">
+            <button data-action="minimize" aria-label="Minimize About this website">_</button>
+            <button data-action="maximize" aria-label="Maximize About this website">□</button>
+            <button data-action="close" aria-label="Close About this website">×</button>
         </div>
-    </div>
-
-
-    <div id="start-bar">
-        <div id="start-button-items">
-            <label class="windows-box-shadow" for="start-button-input" id="start-button"></label>
-            <div id="items">
-                <label class="help-tab tab windows-box-shadow" for="aboutme-input-min"><span><img alt=""
-                            src="./img/computer_explorer-5.png" /></span><span>About
-                        Me</span></label>
-                <label class="notepad-tab tab windows-box-shadow" for="research-input-min"><span><img alt=""
-                            src="./img/paper.png" /></span><span>Research</span></label>
-                <label class="trash-tab tab windows-box-shadow" for="engineering-input-min"><span><img alt=""
-                            src="./img/help_book_computer-4.png" /></span><span>Engineering</span></label>
-                <label class="services-tab tab windows-box-shadow" for="services-input-min"><span><img alt=""
-                            src="./img/world-4.png" /></span><span>Services</span></label>
-                <label class="resource-tab tab windows-box-shadow" for="resource-input-min"><span><img alt=""
-                            src="./img/internet_explorer.png" /></span><span>Resource</span></label>
-                <label class="ie-tab tab windows-box-shadow" for="windows-ie-input-min"><span><img alt=""
-                            src="./img/text_editor.png" /></span><span>About
-                        Website</span></label>
-            </div>
-        </div>
-        <div class="windows-box-shadow" id="start-menu">
-            <div id="windows-start-menu-blue">Windows<span>98</span></div>
-            <ul>
-                <li><a href="https://github.com/SebastianElvis/cv/raw/master/runchao-han-cv.pdf" target="_blank"><label>
-                            <img alt="" src="./img/documents.png" style="width: 1.5rem;" />CV
-                        </label></a></li>
-                <li><a href="https://www.linkedin.com/in/runchao-han" target="_blank"><label>
-                            <img alt="" src="./img/linkedin.png" style="width: 1.5rem;" />Linkedin
-                        </label></a></li>
-                <li><a href="https://github.com/SebastianElvis" target="_blank"><label>
-                            <img alt="" src="./img/github.png" style="width: 1.5rem;" />GitHub
-                        </label></a></li>
-                <li>
-                    <a href="https://dblp.org/pers/hd/h/Han:Runchao" target="_blank">
-                        <label><img alt="" src="./img/dblp.png" style="width: 1.5rem;" />DBLP</label>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://scholar.google.com/citations?user=xbpDocQAAAAJ" target="_blank">
-                        <label><img alt="" src="./img/scholar.png" style="width: 1.5rem;" />Google Scholar</label>
-                    </a>
-                </li>
-                <li><a href="https://t.me/runchaohan" target="_blank"><label>
-                            <img alt="" src="./img/telegram.png" style="width: 1.5rem;" />Telegram
-                        </label></a></li>
-                <li><a href="https://twitter.com/runchao_han" target="_blank"><label>
-                            <img alt="" src="./img/twitter.png" style="width: 1.5rem;" />Twitter
-                        </label></a></li>
-                <li><a href="https://calendar.app.google/xHqBbaU4JD5RtzEDA" target="_blank"><label>
-                            <img alt="" src="./img/calendar.png" style="width: 1.5rem;" />Calendar
-                        </label></a></li>
-                <li class="line">
-                    <a href="./img/wechat-qrcode.jpeg" target="_blank">
-                        <label><img alt="" src="./img/wechat.png" style="width: 1.5rem;" />WeChat</label>
-                    </a>
-                </li>
-                <li class="line"><label for="windows-ie-input"><img alt="" src="./img/text_editor.png"
-                            style="width: 1.5rem;" /> About Website</label></li>
-            </ul>
-        </div>
-        <div id="time-options"></div>
-    </div>
-</form>
-
-<!-- Drag and drop windows -->
-<script src="./scripts/drag.js"></script>
-<!-- Maximize windows -->
-<script src="./scripts/maximize.js"></script>
-<!-- Read projects -->
-<script src="./scripts/read_projects.js"></script>
+    </header>
+    <div class="window-body document"><h1>About this website</h1><p>This site is my personal desktop on the web.</p><p>Windows 98 provides the frame. Old profile windows, music software, and small web badges add personal details.</p><h2>You control the desktop.</h2><ul><li>You can open a window with one click.</li><li>You can drag a window by its title bar.</li><li>You can minimize a window to the taskbar.</li><li>You can double-click a title bar to maximize a window.</li><li>You can use Tab and Enter to reach each control.</li><li>You can press Escape to close the Start menu.</li></ul><p>The original site used <a href="https://github.com/mahbodnr/mahbodnr.github.io">mahbodnr's Windows-style homepage</a>.</p><p>This site uses HTML, CSS, and JavaScript. <a href="https://github.com/captbaritone/webamp">Webamp</a> provides the music player.</p><button id="reset-desktop">Reset desktop</button></div>
+    <footer class="statusbar"><span>Help</span><span>runchao.rocks</span></footer>
+</section></main>
+<nav id="start-menu" aria-label="Start menu" hidden><div class="start-rail">Windows <b>98</b></div><div class="start-links"><strong>Runchao's desktop</strong>
+<button data-open="home"><img src="./img/computer_explorer-5.png" alt="">My Homepage</button>
+<button data-open="research"><img src="./img/paper.png" alt="">Research</button>
+<button data-open="engineering"><img src="./img/help_book_computer-4.png" alt="">Engineering</button>
+<button data-open="resources"><img src="./img/internet_explorer.png" alt="">Internet Links</button>
+<button data-open="services"><img src="./img/world-4.png" alt="">Services</button>
+<button data-open="music"><img src="./img/notepad.png" alt="">Winamp</button><button data-open="profile"><img src="./img/computer_explorer-5.png" alt="">My profile</button><button data-open="site"><img src="./img/text_editor.png" alt="">About this website</button></div></nav>
+<footer id="taskbar"><button id="start-button" aria-expanded="false" aria-controls="start-menu"><img src="./img/windows_logo_header.png" alt=""><b>Start</b></button><button id="show-desktop" title="Show desktop" aria-label="Show desktop"><img src="./img/computer_explorer-5.png" alt=""></button><nav id="tasks" aria-label="Open windows"></nav><div class="system-tray"><span class="tray-mark" aria-hidden="true">▣</span><time id="clock" aria-label="Local time"></time></div></footer>
+</div>
+<div id="music" aria-label="Winamp" hidden></div>
+<noscript><style>
+#desktop-shell #desktop-icons, #desktop-shell #taskbar, #desktop-shell #start-menu, #desktop-shell .window-controls, #desktop-shell .toolbar, #desktop-shell .folder-grid button, #desktop-shell .text-button, #desktop-shell .searchbar, #desktop-shell .addressbar button, #desktop-shell #reset-desktop {display:none!important}
+body {overflow:auto;height:auto}
+#desktop-shell #workspace {position:static;display:block;margin:0;padding:16px}
+#desktop-shell .window, #desktop-shell .window[hidden] {display:flex!important;position:relative;inset:auto!important;width:100%!important;height:auto!important;margin-bottom:24px;max-height:none}
+#desktop-shell .window-body {overflow:visible}
+</style><p>This page shows all sections because JavaScript is off.</p></noscript>
+</body>
+</html>
