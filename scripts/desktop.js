@@ -2,6 +2,7 @@ const windows = [...document.querySelectorAll('#workspace .window')];
 const music = document.getElementById('music');
 const arcade = document.getElementById('arcade');
 const arcadeFrame = document.getElementById('arcade-frame');
+const arcadeGame = document.getElementById('arcade-game');
 const apps = [...windows, music];
 const workspace = document.getElementById('workspace');
 const tasks = document.getElementById('tasks');
@@ -53,7 +54,7 @@ function openWindow(id, moveFocus = true) {
     focusWindow(win, moveFocus);
     if (id === 'music') loadPlayer();
     else keepInBounds(win);
-    if (id === 'arcade' && !arcadeFrame.hasAttribute('src')) arcadeFrame.src = './arcade/';
+    if (id === 'arcade' && !arcadeFrame.hasAttribute('src')) arcadeFrame.src = './arcade/?game=' + arcadeGame.value;
 }
 
 function hideWindow(win, close = false) {
@@ -170,6 +171,12 @@ if (['#true', '#false'].includes(location.hash)) history.replaceState(null, '', 
 addEventListener('resize', () => windows.forEach(keepInBounds));
 addEventListener('blur', () => {
     if (document.activeElement === arcadeFrame && !arcade.hidden) focusWindow(arcade);
+});
+arcadeGame.addEventListener('change', () => {
+    arcadeFrame.contentWindow?.pauseGame?.();
+    document.getElementById('arcade-game-title').textContent = arcadeGame.selectedOptions[0].textContent;
+    document.getElementById('arcade-buttons').textContent = arcadeGame.value === 'kof98' ? 'U: Light punch · I: Light kick · O: Heavy punch · J: Heavy kick' : 'U / I / O: Light / Medium / Heavy punch · J / K / L: Light / Medium / Heavy kick';
+    arcadeFrame.src = './arcade/?game=' + arcadeGame.value;
 });
 const boundsObserver = new ResizeObserver(entries => entries.forEach(entry => keepInBounds(entry.target)));
 windows.forEach(win => boundsObserver.observe(win));

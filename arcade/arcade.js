@@ -1,8 +1,11 @@
+const game = new URLSearchParams(location.search).get('game') === 'sfza' ? 'sfza' : 'kof98';
 window.EJS_player = '#game';
-window.EJS_core = 'fbneo';
-window.EJS_gameUrl = './roms/kof98.zip';
-window.EJS_externalFiles = { '/neogeo.zip': './roms/neogeo.zip' };
-window.EJS_gameName = "The King of Fighters '98";
+window.EJS_core = game === 'sfza' ? 'fbalpha2012_cps2' : 'fbneo';
+window.EJS_gameUrl = `./roms/${game}.zip`;
+window.EJS_biosUrl = game === 'kof98' ? 'neogeo.zip' : '';
+window.EJS_dontExtractBIOS = true;
+window.EJS_gameName = game;
+window.EJS_gameID = game === 'kof98' ? 9802 : 9502;
 window.EJS_pathtodata = 'https://cdn.emulatorjs.org/4.2.3/data/';
 window.EJS_threads = false;
 window.EJS_startOnLoaded = false;
@@ -11,27 +14,24 @@ window.EJS_color = '#b72232';
 window.EJS_backgroundColor = '#111';
 window.EJS_volume = 0.5;
 window.EJS_noAutoFocus = true;
-window.EJS_disableAutoLang = true;
+window.EJS_language = 'en-US';
+window.EJS_defaultControls = {
+    0: {
+        4: { value: 'w', value2: 'DPAD_UP' }, 5: { value: 's', value2: 'DPAD_DOWN' },
+        6: { value: 'a', value2: 'DPAD_LEFT' }, 7: { value: 'd', value2: 'DPAD_RIGHT' },
+        1: { value: game === 'kof98' ? 'o' : 'u', value2: 'BUTTON_4' }, 9: { value: game === 'kof98' ? 'j' : 'i', value2: 'BUTTON_3' },
+        10: { value: game === 'kof98' ? '' : 'o', value2: 'LEFT_TOP_SHOULDER' }, 0: { value: game === 'kof98' ? 'u' : 'j', value2: 'BUTTON_2' },
+        8: { value: game === 'kof98' ? 'i' : 'k', value2: 'BUTTON_1' }, 11: { value: game === 'kof98' ? '' : 'l', value2: 'RIGHT_TOP_SHOULDER' },
+        2: { value: 'v', value2: 'SELECT' }, 3: { value: 'enter', value2: 'START' }
+    },
+    1: {}, 2: {}, 3: {}
+};
 
 const message = document.getElementById('message');
 const status = document.getElementById('status');
 const retry = document.getElementById('retry');
-const localFiles = document.getElementById('local-files');
 let timeout;
 retry.addEventListener('click', () => location.reload());
-localFiles.addEventListener('submit', event => {
-    event.preventDefault();
-    const rom = document.getElementById('rom').files[0];
-    const bios = document.getElementById('bios').files[0];
-    if (rom?.name !== 'kof98.zip' || bios?.name !== 'neogeo.zip') {
-        status.textContent = 'You must select kof98.zip and neogeo.zip.';
-        return;
-    }
-    window.EJS_gameUrl = URL.createObjectURL(rom);
-    window.EJS_gameName = 'kof98.zip';
-    window.EJS_externalFiles['/neogeo.zip'] = URL.createObjectURL(bios);
-    loadEmulator();
-});
 
 window.pauseGame = () => {
     const emulator = window.EJS_emulator;
@@ -56,6 +56,7 @@ function fail(text) {
 window.EJS_ready = () => {
     clearTimeout(timeout);
     if (retry.hidden) message.hidden = true;
+    if (game === 'sfza') window.EJS_emulator.on('saveDatabaseLoaded', fs => fs.symlink('/sfza.zip', '/sfa.zip'));
     const start = document.querySelector('.ejs_start_button');
     if (!start) return;
     start.setAttribute('role', 'button');
@@ -77,7 +78,6 @@ document.addEventListener('visibilitychange', () => {
 });
 
 function loadEmulator() {
-    localFiles.hidden = true;
     retry.hidden = true;
     document.getElementById('game').hidden = false;
     status.textContent = 'The emulator loads. The first start can take a minute.';
@@ -90,17 +90,15 @@ function loadEmulator() {
 
 (async () => {
     try {
-        const files = [window.EJS_gameUrl, window.EJS_externalFiles['/neogeo.zip']];
+        const files = [window.EJS_gameUrl, window.EJS_biosUrl].filter(Boolean);
         const results = await Promise.all(files.map(url => fetch(url, { method: 'HEAD', signal: AbortSignal.timeout(15000) })));
         const missing = files.filter((url, index) => !results[index].ok);
         if (missing.length) {
             fail(`The site lacks these game files: ${missing.map(url => url.split('/').pop()).join(', ')}.`);
-            localFiles.hidden = false;
             return;
         }
         loadEmulator();
     } catch {
         fail('The site could not load the game files. You can retry.');
-        localFiles.hidden = false;
     }
 })();

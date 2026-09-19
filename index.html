@@ -13,8 +13,8 @@
     <meta property="og:description" content="I build and study open systems. This is my personal desktop on the web.">
     <meta name="theme-color" content="#245edb">
     <link rel="icon" href="./img/computer_explorer-5.png">
-    <link rel="stylesheet" href="./css/style.css?v=4">
-    <script src="./scripts/desktop.js?v=5" defer></script>
+    <link rel="stylesheet" href="./css/style.css?v=5">
+    <script src="./scripts/desktop.js?v=6" defer></script>
 </head>
 <body>
 <div id="desktop-shell">
@@ -363,22 +363,23 @@
 </section>
 <section class="window" id="arcade" aria-labelledby="arcade-title" hidden>
     <header class="titlebar">
-        <h2 id="arcade-title"><img src="./img/arcade.svg" alt="">Arcade - KOF '98</h2>
+        <h2 id="arcade-title"><img src="./img/arcade.svg" alt="">Arcade</h2>
         <div class="window-controls">
             <button data-action="minimize" aria-label="Minimize Arcade">_</button>
             <button data-action="maximize" aria-label="Maximize Arcade">□</button>
             <button data-action="close" aria-label="Close Arcade">×</button>
         </div>
     </header>
+    <div class="addressbar"><label for="arcade-game">Game</label><select id="arcade-game"><option value="kof98">The King of Fighters '98</option><option value="sfza">Street Fighter Zero / Alpha</option></select></div>
     <div class="window-body arcade-body">
         <div class="arcade-cabinet">
-            <div class="arcade-marquee"><span>NEO GEO</span><h3>THE KING OF FIGHTERS <b>'98</b></h3><span>THE SLUGFEST</span></div>
-            <div class="arcade-screen"><iframe id="arcade-frame" title="KOF '98 emulator" allow="autoplay; fullscreen; gamepad" allowfullscreen></iframe></div>
-            <div class="arcade-controls"><p><kbd>↑ ↓ ← →</kbd> Move · <kbd>V</kbd> Coin · <kbd>Enter</kbd> Start</p><p><kbd>Z X A S</kbd> Action buttons · You can change controls in the game menu.</p></div>
+            <div class="arcade-marquee"><span>ARCADE CLASSICS</span><h3 id="arcade-game-title">The King of Fighters '98</h3><span>INSERT COIN · PRESS START</span></div>
+            <div class="arcade-screen"><iframe id="arcade-frame" title="Arcade emulator" allow="autoplay; fullscreen; gamepad"></iframe></div>
+            <div class="arcade-controls"><p><kbd>W S A D</kbd> Move · <kbd>V</kbd> Coin · <kbd>Enter</kbd> Start</p><p><span id="arcade-buttons">U: Light punch · I: Light kick · O: Heavy punch · J: Heavy kick</span></p></div>
         </div>
         <p class="arcade-help">The play button resumes a paused game. The Close button ends the game session.</p>
     </div>
-    <footer class="statusbar"><span>KOF '98 · Keyboard / Gamepad / Touch</span><span>EmulatorJS · FBNeo</span></footer>
+    <footer class="statusbar"><span>Keyboard / Gamepad / Touch</span><span>EmulatorJS</span></footer>
 </section>
 <section class="window" id="site" aria-labelledby="site-title" hidden>
     <header class="titlebar">

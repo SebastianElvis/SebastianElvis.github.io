@@ -150,7 +150,7 @@ body { overflow: visible; background: white; }
 #desktop-shell .arcade-marquee { text-align: center; padding: 4px 0 12px; }
 #desktop-shell .arcade-marquee > span { font-size: 10px; letter-spacing: 3px; }
 #desktop-shell .arcade-marquee h3 { margin: 4px 0; font: bold clamp(15px, 3vw, 24px)/1.2 Arial, sans-serif; font-style: italic; text-shadow: 2px 2px #591420; }
-#desktop-shell .arcade-marquee b { color: #ffd060; }
+#desktop-shell #arcade-game { flex: 1; min-width: 0; padding: 5px; font: inherit; }
 #desktop-shell .arcade-screen { aspect-ratio: 4 / 3; background: #111; border: 8px solid #17191d; border-radius: 8px; overflow: hidden; }
 #desktop-shell #arcade-frame { display: block; width: 100%; height: 100%; border: 0; }
 #desktop-shell .arcade-controls { margin-top: 10px; padding: 7px 10px; background: #e6e3d5; color: #25262c; border-radius: 3px; text-align: center; font-size: 11px; }
