@@ -30,7 +30,6 @@ body { margin: 0; background: var(--desktop) url(../img/xp-hills.jpg) center / c
 #desktop-shell #home { height: min(670px, calc(100% - 60px)); }
 #desktop-shell #workspace { position: absolute; inset: 0 0 36px; pointer-events: none; }
 #desktop-shell .window { position: absolute; left: max(100px, calc((100% - 740px) / 2)); top: 30px; width: min(740px, calc(100% - 128px)); height: min(570px, calc(100% - 60px)); min-width: min(300px, calc(100vw - 12px)); min-height: 160px; display: flex; flex-direction: column; padding: 3px; background: var(--silver); border: 1px solid #0055e5; border-radius: 8px 8px 0 0; box-shadow: inset 0 0 0 2px #1665ee, 2px 4px 8px #142b5460; pointer-events: auto; resize: both; overflow: hidden; max-width: 100%; max-height: 100%; }
-#desktop-shell #profile { width: 340px; height: min(430px, calc(100% - 60px)); left: max(100px, calc((100% - 340px) / 2)); }
 #desktop-shell #site { width: min(560px, calc(100% - 128px)); }
 #desktop-shell .window.maximized { inset: 3px !important; width: calc(100% - 6px) !important; height: calc(100% - 6px) !important; resize: none; }
 #desktop-shell .titlebar { flex: 0 0 auto; display: flex; align-items: center; gap: 8px; background: linear-gradient(#66a6ff, #0058ee 12%, #1675f6 48%, #0052d6 92%, #003cba); color: white; padding: 3px 4px; min-height: 28px; margin: -2px -2px 0; border-radius: 6px 6px 0 0; text-shadow: 1px 1px #003c87; cursor: move; touch-action: none; user-select: none; }
@@ -53,49 +52,29 @@ body { margin: 0; background: var(--desktop) url(../img/xp-hills.jpg) center / c
 #desktop-shell .searchbar output { min-width: 62px; font-size: 11px; }
 #desktop-shell .window-body { flex: 1; min-height: 0; background: white; margin: 0 2px; border: 1px solid #7f9db9; overflow: auto; overscroll-behavior: contain; scrollbar-width: none; }
 #desktop-shell .window-body::-webkit-scrollbar { display: none; }
-#desktop-shell .homepage { background: var(--paper); padding: 20px; }
-#desktop-shell .site-masthead { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding-bottom: 13px; border-bottom: 1px solid #8c9890; font-size: 11px; letter-spacing: 1.2px; }
-#desktop-shell .welcome-banner { padding: 18px 0; }
-#desktop-shell .eyebrow { font: 11px/1.5 'Courier New', monospace; letter-spacing: 1px; color: #405853; }
-#desktop-shell .welcome-banner h1 { font: bold clamp(26px, 2.8vw, 35px)/1.05 Georgia, serif; color: var(--navy); letter-spacing: -1.4px; margin: 12px 0 17px; }
-#desktop-shell .star { color: #8c4580; font-family: Arial, sans-serif; }
-#desktop-shell .welcome-banner p { margin: 5px 0; max-width: 440px; }
-#desktop-shell .banner-links { display: flex; align-items: center; flex-wrap: wrap; gap: 9px 20px; margin-top: 18px; font-size: 12px; }
-#desktop-shell .section-label { display: flex; justify-content: space-between; border-top: 1px dotted #819388; padding: 14px 0 10px; font-size: 11px; }
-#desktop-shell .folder-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-#desktop-shell .folder-grid button, #desktop-shell .folder-grid a { display: flex; align-items: center; gap: 10px; text-align: left; background: #f4f3e9; color: #222; padding: 12px; border: 1px solid #b2b7a9; text-decoration: none; box-shadow: none; }
-#desktop-shell .folder-grid img { width: 32px; height: 32px; object-fit: contain; image-rendering: auto; }
-#desktop-shell .folder-grid strong, #desktop-shell .folder-grid small { display: block; }
-#desktop-shell .folder-grid strong { color: var(--navy); font-size: 13px; }
-#desktop-shell .folder-grid small { font-size: 11px; margin-top: 2px; }
-#desktop-shell .folder-grid b { margin-left: auto; color: #5a6c60; }
-#desktop-shell .folder-grid button:hover, #desktop-shell .folder-grid a:hover { background: #e8eee3; }
-#desktop-shell .home-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding-top: 24px; }
-#desktop-shell .web-badges { display: flex; gap: 7px; flex-wrap: wrap; }
-#desktop-shell .badge { font: 10px/1.05 'Courier New', monospace; text-align: center; border: 2px outset #ddd; padding: 4px 8px; letter-spacing: .4px; }
-#desktop-shell .windows-badge { color: white; background: #15156d; }
-#desktop-shell .web-badge { color: #773475; background: white; border-color: #d699c4; }
-#desktop-shell .code-badge { color: #121212; background: #b8d4a6; }
+#desktop-shell .homepage { background: #fffef8; padding: 20px; }
+#desktop-shell .profile-heading { display: flex; align-items: center; gap: 20px; padding: 16px; border: 1px solid #adc8e9; border-radius: 5px; background: linear-gradient(110deg, #e0edff, #f8fbff); }
+#desktop-shell .avatar { display: block; width: 72px; height: 88px; object-fit: cover; border: 3px solid white; border-radius: 4px; box-shadow: 0 1px 4px #6083ae80; }
+#desktop-shell .eyebrow { color: #476a94; font: 10px/1.5 Tahoma, sans-serif; letter-spacing: 1.5px; }
+#desktop-shell .profile-heading h1 { margin: 3px 0; color: #164a94; font: bold 30px/1.2 Georgia, serif; }
+#desktop-shell .profile-heading p { margin: 4px 0; }
+#desktop-shell .profile-location { color: #586578; font-size: 11px; }
+#desktop-shell .home-layout { display: grid; grid-template-columns: minmax(0, 1fr) 178px; gap: 24px; margin-top: 20px; }
+#desktop-shell .biography { font: 14px/1.65 Arial, sans-serif; overflow-wrap: anywhere; }
+#desktop-shell .biography h2 { margin: 0; color: #164a94; font: bold 20px Georgia, serif; }
+#desktop-shell .biography p { margin: 12px 0; }
+#desktop-shell .contact-panel { align-self: start; padding: 12px; background: #f0f5fc; border: 1px solid #bdd1eb; border-radius: 4px; overflow-wrap: anywhere; font-size: 11px; }
+#desktop-shell .contact-panel h2 { margin: -12px -12px 12px; padding: 8px 12px; background: #d5e5fa; color: #164a94; font-size: 12px; }
+#desktop-shell .contact-panel p { line-height: 1.8; }
+#desktop-shell .contact-panel .raised { display: block; padding: 6px; }
+#desktop-shell .contact-links { display: grid; gap: 6px; border-top: 1px solid #c6d6e9; padding-top: 10px; }
+#desktop-shell .home-sections { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 18px; }
+#desktop-shell .home-sections button { padding: 5px 9px; font-size: 11px; }
+#desktop-shell .home-footer { display: flex; justify-content: space-between; gap: 12px; border-top: 1px solid #dae0e8; margin-top: 20px; padding-top: 12px; color: #60718a; font-size: 10px; }
 #desktop-shell .text-button { background: none; padding: 0; box-shadow: none; color: var(--navy); text-decoration: underline; font-size: 11px; }
 #desktop-shell .statusbar { display: flex; gap: 4px; padding: 3px 1px 0; font-size: 11px; flex-shrink: 0; }
 #desktop-shell .statusbar span { padding: 3px 6px; border: 1px solid #d4d0c8; }
 #desktop-shell .statusbar span:first-child { flex: 1; }
-#desktop-shell .compact .statusbar span:last-child { display: none; }
-#desktop-shell .profile { padding: 13px 11px; background: #ece9d8; }
-#desktop-shell .profile-heading { display: flex; align-items: center; gap: 12px; }
-#desktop-shell .avatar { width: 64px; height: 80px; object-fit: cover; border: 2px inset #ddd; }
-#desktop-shell .profile h3 { margin: 4px 0 0; font-size: 18px; }
-#desktop-shell .profile-heading p { margin: 2px 0; }
-#desktop-shell .profile .eyebrow { font-size: 10px; letter-spacing: .7px; }
-#desktop-shell .profile-tag { font-size: 11px; }
-#desktop-shell .profile-note { margin: 11px 0 6px; font-size: 12px; }
-#desktop-shell .profile-location { margin: 6px 0 10px; font-size: 11px; color: #454545; }
-#desktop-shell .profile-actions { display: flex; gap: 8px; }
-#desktop-shell .profile-actions a { flex: 1; padding: 5px 8px; font-size: 12px; }
-#desktop-shell details { border-top: 1px dotted #96968c; margin-top: 14px; padding-top: 10px; }
-#desktop-shell summary { cursor: pointer; color: var(--navy); font-size: 12px; }
-#desktop-shell details p { line-height: 1.65; }
-#desktop-shell .contact-links { display: flex; flex-wrap: wrap; gap: 8px 14px; }
 #desktop-shell .document { padding: 24px 30px 36px; font: 15px/1.65 Arial, sans-serif; overflow-wrap: anywhere; }
 #desktop-shell .document h2 { margin: 0 0 12px; font: bold 26px/1.2 Georgia, serif; color: var(--navy); }
 #desktop-shell .document h3 { margin: 28px 0 8px; font-size: 18px; color: #26394a; }
@@ -120,18 +99,20 @@ body { margin: 0; background: var(--desktop) url(../img/xp-hills.jpg) center / c
 #desktop-shell #tasks button[aria-pressed=true] { background: #1852b6; box-shadow: inset 1px 1px 3px #073486; }
 #desktop-shell #start-menu { position: fixed; left: 4px; bottom: 37px; width: min(380px, calc(100vw - 8px)); max-height: calc(100dvh - 52px); display: flex; flex-direction: column; background: #fff; padding: 0; border: 2px solid #1e61cc; border-radius: 8px 8px 0 0; box-shadow: 3px 4px 10px #12376566; z-index: 10001; overflow-y: auto; }
 #desktop-shell .start-rail { display: flex; align-items: center; gap: 12px; background: linear-gradient(#317fe3, #145dc8); color: white; font-size: 18px; font-weight: bold; text-shadow: 1px 1px #174179; padding: 12px; border-bottom: 2px solid #eca538; }
-#desktop-shell .start-links { display: grid; grid-auto-flow: column; grid-template-rows: repeat(4, 48px) auto; grid-template-columns: 1fr 1fr; padding-top: 6px; background: linear-gradient(90deg, white 50%, #d3e5fa 50%); }
-#desktop-shell .start-links strong { grid-area: 5 / 1 / 6 / 3; padding: 10px 14px; background: linear-gradient(#428bec, #1460ce); color: white; font-size: 12px; }
-#desktop-shell .start-links button { display: flex; align-items: center; width: 100%; background: none; box-shadow: none; gap: 12px; text-align: left; padding: 10px; }
-#desktop-shell .start-links button:hover, #desktop-shell .start-links button:focus-visible { background: var(--navy); color: white; }
-#desktop-shell .start-links img, #desktop-shell .start-rail img { width: 32px; height: 32px; object-fit: contain; }
+#desktop-shell .start-links { display: grid; grid-template-columns: 1fr 1fr; background: linear-gradient(90deg, white 50%, #d3e5fa 50%); }
+#desktop-shell #start-menu > strong { padding: 10px 14px; background: linear-gradient(#428bec, #1460ce); color: white; font-size: 12px; }
+#desktop-shell .start-links button, #desktop-shell .start-links a { display: flex; align-items: center; width: 100%; background: none; box-shadow: none; gap: 8px; text-align: left; padding: 5px 9px; min-height: 36px; color: #171717; text-decoration: none; font-size: 11px; }
+#desktop-shell .start-links :is(button, a):is(:hover, :focus-visible) { background: var(--navy); color: white; }
+#desktop-shell .start-links img, #desktop-shell .start-rail img { width: 26px; height: 26px; object-fit: contain; }
 @media (max-width: 640px) {
-#desktop-shell .window, #desktop-shell #profile, #desktop-shell #site { left: 6px !important; top: 8px !important; width: calc(100% - 12px) !important; height: calc(100% - 16px) !important; resize: none; }
+#desktop-shell .window, #desktop-shell #site { left: 6px !important; top: 8px !important; width: calc(100% - 12px) !important; height: calc(100% - 16px) !important; resize: none; }
 #desktop-shell .titlebar { cursor: default; touch-action: auto; }
 #desktop-shell .window-controls [data-action=maximize] { display: none; }
 #desktop-shell .homepage { padding: 17px; }
-#desktop-shell .folder-grid { grid-template-columns: 1fr; }
-#desktop-shell .welcome-banner h1 { font-size: 29px; }
+#desktop-shell .home-layout { grid-template-columns: 1fr; gap: 16px; }
+#desktop-shell .profile-heading { gap: 12px; padding: 12px; }
+#desktop-shell .profile-heading h1 { font-size: 25px; }
+#desktop-shell .contact-links { grid-template-columns: 1fr 1fr; }
 #desktop-shell .toolbar button, #desktop-shell .toolbar a { padding: 5px; font-size: 11px; gap: 4px; }
 #desktop-shell .toolbar .toolbar-logo, #desktop-shell #show-desktop, #desktop-shell .tray-mark { display: none; }
 #desktop-shell .system-tray { padding: 3px 5px; }
@@ -142,13 +123,13 @@ body { margin: 0; background: var(--desktop) url(../img/xp-hills.jpg) center / c
 }
 @media (pointer: coarse) {
 #desktop-shell .window-controls button { width: 34px; height: 34px; }
-#desktop-shell .start-links button { min-height: 44px; }
+#desktop-shell .start-links button, #desktop-shell .start-links a { min-height: 44px; }
 #desktop-shell #taskbar { height: 45px; }
 #desktop-shell #workspace { bottom: 45px; }
 #desktop-shell #start-menu { bottom: 46px; } }
 @media print {
 body { overflow: visible; background: white; }
-#desktop-shell #desktop-icons, #desktop-shell #taskbar, #desktop-shell #start-menu, #desktop-shell .window-controls, #desktop-shell .toolbar, #desktop-shell .addressbar, #desktop-shell .searchbar, #desktop-shell #home, #desktop-shell #site { display: none !important; }
+#desktop-shell #desktop-icons, #desktop-shell #taskbar, #desktop-shell #start-menu, #desktop-shell .window-controls, #desktop-shell .toolbar, #desktop-shell .addressbar, #desktop-shell .searchbar, #desktop-shell #site { display: none !important; }
 #desktop-shell #workspace { position: static; display: block; margin: 0; padding: 0; }
 #desktop-shell .window, #desktop-shell .window[hidden] { display: block !important; position: static !important; width: auto !important; height: auto !important; box-shadow: none; margin: 0 0 24px; max-height: none; }
 #desktop-shell .window-body { overflow: visible; border: 0; }

@@ -12,27 +12,26 @@
     <meta property="og:image" content="./img/favicon.png">
     <meta property="og:description" content="I build and study open systems. This is my personal desktop on the web.">
     <meta name="theme-color" content="#245edb">
-    <link rel="icon" href="./img/favicon.png">
-    <link rel="stylesheet" href="./css/style.css">
-    <script src="./scripts/desktop.js" defer></script>
+    <link rel="icon" href="./img/computer_explorer-5.png">
+    <link rel="stylesheet" href="./css/style.css?v=3">
+    <script src="./scripts/desktop.js?v=3" defer></script>
 </head>
 <body>
 <div id="desktop-shell">
 <a class="skip-link" href="#main-content">Skip to content</a>
 <nav id="desktop-icons" aria-label="Desktop shortcuts">
-<button class="desktop-icon" data-open="profile"><img src="./img/computer_explorer-5.png" alt=""><span>About Me</span></button>
 <button class="desktop-icon" data-open="home"><img src="./img/computer_explorer-5.png" alt=""><span>My Homepage</span></button>
 <button class="desktop-icon" data-open="research"><img src="./img/paper.png" alt=""><span>Research</span></button>
 <button class="desktop-icon" data-open="engineering"><img src="./img/help_book_computer-4.png" alt=""><span>Engineering</span></button>
 <button class="desktop-icon" data-open="resources"><img src="./img/internet_explorer.png" alt=""><span>Internet Links</span></button>
 <button class="desktop-icon" data-open="services"><img src="./img/world-4.png" alt=""><span>Services</span></button>
-<button class="desktop-icon" data-open="music"><img src="./img/notepad.png" alt=""><span>Winamp</span></button>
+<button class="desktop-icon" data-open="music"><img src="./img/winamp.png" alt=""><span>Winamp</span></button>
 <a class="desktop-icon" href="https://github.com/SebastianElvis/cv/raw/master/runchao-han-cv.pdf"><img src="./img/documents.png" alt=""><span>My CV</span></a>
 </nav>
 <main id="workspace" aria-label="Desktop windows">
 <section class="window" id="home" aria-labelledby="home-title" hidden>
     <header class="titlebar">
-        <h2 id="home-title"><img src="./img/internet_explorer.png" alt="">Runchao Han - Microsoft Internet Explorer</h2>
+        <h2 id="home-title"><img src="./img/computer_explorer-5.png" alt="">Runchao Han - Microsoft Internet Explorer</h2>
         <div class="window-controls">
             <button data-action="minimize" aria-label="Minimize Runchao Han - Microsoft Internet Explorer">_</button>
             <button data-action="maximize" aria-label="Maximize Runchao Han - Microsoft Internet Explorer">□</button>
@@ -48,42 +47,9 @@
 </nav>
 <div class="addressbar"><label for="home-address">Address</label><input id="home-address" value="https://runchao.rocks" readonly><span aria-hidden="true">↵</span></div>
 <div class="window-body homepage" id="main-content" tabindex="-1">
-    <div class="site-masthead"><strong>RUNCHAO HAN</strong><span>PERSONAL HOME PAGE</span></div>
-    <div class="welcome-banner">
-        <span class="eyebrow">RESEARCHER · ENGINEER · INTERNET RESIDENT</span>
-        <h1>Welcome to my corner<br>of the Internet <span class="star">✳</span></h1>
-        <p>I build and study open systems.</p>
-        <p>I work on Bitcoin, cryptography, and distributed systems.</p>
-        <div class="banner-links"><a href="https://babylonlabs.io/">I build at Babylon ↗</a><span>Go · Rust · Research</span></div>
-    </div>
-    <div class="section-label"><strong>You can start here.</strong><span>4 folders</span></div>
-    <div class="folder-grid">
-        <button data-open="research"><img src="./img/paper.png" alt=""><span><strong>Research</strong><small>Publications &amp; protocols</small></span><b aria-hidden="true">→</b></button>
-        <button data-open="engineering"><img src="./img/help_book_computer-4.png" alt=""><span><strong>Engineering</strong><small>Code &amp; open-source systems</small></span><b aria-hidden="true">→</b></button>
-        <a href="https://runchao.notion.site/df81be3821314e9b94b91b7768b8a2fe"><img src="./img/text_editor.png" alt=""><span><strong>My blog ↗</strong><small>Notes from my work</small></span><b aria-hidden="true">→</b></a>
-        <button data-open="resources"><img src="./img/world-4.png" alt=""><span><strong>Internet links</strong><small>Things worth reading</small></span><b aria-hidden="true">→</b></button>
-    </div>
-    <div class="home-footer"><div class="web-badges" aria-label="Site badges"><span class="badge windows-badge">WINDOWS<br><b>XP INSIDE</b></span><span class="badge web-badge">THE WEB IS<br><b>PERSONAL</b></span><span class="badge code-badge">BUILT WITH<br><b>HTML + CSS</b></span></div><button class="text-button" data-open="site">About this website</button></div>
-</div>
-    <footer class="statusbar"><span>Done</span><span>runchao.rocks</span></footer>
-</section>
-<section class="window compact" id="profile" aria-labelledby="profile-title" hidden>
-    <header class="titlebar">
-        <h2 id="profile-title"><img src="./img/computer_explorer-5.png" alt="">My profile</h2>
-        <div class="window-controls">
-            <button data-action="minimize" aria-label="Minimize My profile">_</button>
-            <button data-action="maximize" aria-label="Maximize My profile">□</button>
-            <button data-action="close" aria-label="Close My profile">×</button>
-        </div>
-    </header>
-    <div class="window-body profile">
-    <div class="profile-heading"><img class="avatar" src="./img/milady.avif" alt="Runchao's Milady avatar" width="72" height="88"><div><span class="eyebrow">USER INFORMATION</span><h3>Runchao Han</h3><p lang="zh-Hans">韩润超</p><span class="profile-tag">Researcher &amp; engineer</span></div></div>
-    <p class="profile-note">I work on open systems.<br>I keep a personal corner of the web.</p>
-    <p class="profile-location">Melbourne, Australia</p><div class="profile-actions"><a class="raised" href="mailto:me@runchao.rocks">Send email</a><a class="raised" href="https://github.com/SebastianElvis/cv/raw/master/runchao-han-cv.pdf">Read CV ↗</a></div>
-    <details><summary>Biography &amp; contact links</summary>
-
-                        <h2>Brief bio</h2>
-                        <p>
+    <header class="profile-heading"><a href="https://opensea.io/assets/ethereum/0x5af0d9827e0c53e4799bb226655a1de152a425a5/977"><img class="avatar" src="./img/milady.avif" alt="Runchao's Milady avatar" width="72" height="88"></a><div><span class="eyebrow">PERSONAL HOME PAGE</span><h1>Runchao Han</h1><p>Researcher &amp; engineer</p><p class="profile-location">Melbourne, Australia</p></div></header>
+    <div class="home-layout">
+        <article class="biography"><h2>Brief bio</h2><p>
                             I'm a researcher and engineer in Blockchain. <br /><br />
                             Currently, I'm working on <a href="https://babylonlabs.io/">Babylon</a>, a project
                             that envisions to bring the security and decentralisation of Bitcoin to the blockchain
@@ -95,15 +61,14 @@
                                 href="https://people.csiro.au/C/S/Shiping-Chen">Shiping Chen</a>), Msc at <a
                                 href="https://www.manchester.ac.uk/">The University of Manchester</a> (advisor: <a
                                 href="https://www.kotselidis.net/">Christos Kotselidis</a>), and BSc at <a
-                                href="http://bupt.edu.cn/">BUPT</a>. <br /><br />
-                            My name in Chinese is 韩润超.
+                                href="http://bupt.edu.cn/">BUPT</a>.
                         </p>
-
-        <p><a href="mailto:runchao@babylonlabs.io">runchao@babylonlabs.io</a><br><a href="mailto:me@runchao.rocks">me@runchao.rocks</a></p>
-        <div class="contact-links"><a href="https://github.com/SebastianElvis">GitHub</a><a href="https://scholar.google.com/citations?user=xbpDocQAAAAJ">Google Scholar</a><a href="https://dblp.org/pers/hd/h/Han:Runchao">DBLP</a><a href="https://www.linkedin.com/in/runchao-han">LinkedIn</a><a href="https://t.me/runchaohan">Telegram</a><a href="https://keybase.io/elvisage">Keybase</a><a href="./img/wechat-qrcode.jpeg">WeChat</a><a href="https://calendar.app.google/xHqBbaU4JD5RtzEDA">Calendar</a><a href="https://twitter.com/runchao_han">Twitter</a><a href="https://opensea.io/assets/ethereum/0x5af0d9827e0c53e4799bb226655a1de152a425a5/977">My avatar</a></div>
-    </details>
+        <nav class="home-sections" aria-label="My work"><button data-open="research">Research</button><button data-open="engineering">Engineering</button><button data-open="resources">Internet Links</button><button data-open="services">Services</button></nav></article>
+        <aside class="contact-panel"><h2>Contact &amp; links</h2><p><a href="mailto:runchao@babylonlabs.io">runchao@babylonlabs.io</a><br><a href="mailto:me@runchao.rocks">me@runchao.rocks</a></p><a class="raised" href="https://github.com/SebastianElvis/cv/raw/master/runchao-han-cv.pdf">Read CV ↗</a><div class="contact-links"><a href="https://github.com/SebastianElvis">GitHub</a><a href="https://scholar.google.com/citations?user=xbpDocQAAAAJ">Google Scholar</a><a href="https://dblp.org/pers/hd/h/Han:Runchao">DBLP</a><a href="https://www.linkedin.com/in/runchao-han">LinkedIn</a><a href="https://t.me/runchaohan">Telegram</a><a href="https://keybase.io/elvisage">Keybase</a><a href="./img/wechat-qrcode.jpeg">WeChat</a><a href="https://calendar.app.google/xHqBbaU4JD5RtzEDA">Calendar</a><a href="https://twitter.com/runchao_han">Twitter</a><a href="https://opensea.io/assets/ethereum/0x5af0d9827e0c53e4799bb226655a1de152a425a5/977">My avatar</a></div></aside>
+    </div>
+    <footer class="home-footer"><span>Windows XP · Personal edition</span><button class="text-button" data-open="site">About this website</button></footer>
 </div>
-    <footer class="statusbar"><span>Personal information</span><span>runchao.rocks</span></footer>
+    <footer class="statusbar"><span>Done</span><span>runchao.rocks</span></footer>
 </section>
 
 <section class="window" id="research" aria-labelledby="research-title" hidden>
@@ -500,21 +465,15 @@
             <button data-action="close" aria-label="Close About this website">×</button>
         </div>
     </header>
-    <div class="window-body document"><h1>About this website</h1><p>This site is my personal desktop on the web.</p><p>Windows XP provides the frame. Old profile windows, music software, and small web badges add personal details.</p><h2>You control the desktop.</h2><ul><li>You can open a window with one click.</li><li>You can drag a window by its title bar.</li><li>You can minimize a window to the taskbar.</li><li>You can double-click a title bar to maximize a window.</li><li>You can use Tab and Enter to reach each control.</li><li>You can press Escape to close the Start menu.</li></ul><p>The original site used <a href="https://github.com/mahbodnr/mahbodnr.github.io">mahbodnr's Windows-style homepage</a>.</p><p>This site uses HTML, CSS, and JavaScript. <a href="https://github.com/captbaritone/webamp">Webamp</a> provides the music player.</p><button id="reset-desktop">Reset desktop</button></div>
+    <div class="window-body document"><h1>About this website</h1><p>This site is my personal desktop on the web.</p><p>Windows XP provides the frame. The profile page and music player add personal details.</p><h2>You control the desktop.</h2><ul><li>You can open a window with one click.</li><li>You can drag a window by its title bar.</li><li>You can minimize a window to the taskbar.</li><li>You can double-click a title bar to maximize a window.</li><li>You can use Tab and Enter to reach each control.</li><li>You can press Escape to close the Start menu.</li></ul><p>The original site used <a href="https://github.com/mahbodnr/mahbodnr.github.io">mahbodnr's Windows-style homepage</a>.</p><p>This site uses HTML, CSS, and JavaScript. <a href="https://github.com/captbaritone/webamp">Webamp</a> provides the music player.</p><button id="reset-desktop">Reset desktop</button></div>
     <footer class="statusbar"><span>Help</span><span>runchao.rocks</span></footer>
 </section></main>
-<nav id="start-menu" aria-label="Start menu" hidden><div class="start-rail"><img src="./img/milady.avif" alt="">Runchao Han</div><div class="start-links"><strong>Windows XP · Personal edition</strong>
-<button data-open="home"><img src="./img/computer_explorer-5.png" alt="">My Homepage</button>
-<button data-open="research"><img src="./img/paper.png" alt="">Research</button>
-<button data-open="engineering"><img src="./img/help_book_computer-4.png" alt="">Engineering</button>
-<button data-open="resources"><img src="./img/internet_explorer.png" alt="">Internet Links</button>
-<button data-open="services"><img src="./img/world-4.png" alt="">Services</button>
-<button data-open="music"><img src="./img/notepad.png" alt="">Winamp</button><button data-open="profile"><img src="./img/computer_explorer-5.png" alt="">My profile</button><button data-open="site"><img src="./img/text_editor.png" alt="">About this website</button></div></nav>
+<nav id="start-menu" aria-label="Start menu" hidden><div class="start-rail"><img src="./img/milady.avif" alt="">Runchao Han</div><div class="start-links"><div class="start-apps"><button data-open="home"><img src="./img/computer_explorer-5.png" alt="">My Homepage</button><button data-open="research"><img src="./img/paper.png" alt="">Research</button><button data-open="engineering"><img src="./img/help_book_computer-4.png" alt="">Engineering</button><button data-open="resources"><img src="./img/internet_explorer.png" alt="">Internet Links</button><button data-open="services"><img src="./img/world-4.png" alt="">Services</button><button data-open="music"><img src="./img/winamp.png" alt="">Winamp</button><button data-open="site"><img src="./img/text_editor.png" alt="">About this website</button></div><div class="start-contacts"><a href="https://github.com/SebastianElvis/cv/raw/master/runchao-han-cv.pdf" target="_blank" rel="noopener"><img src="./img/documents.png" alt="">CV</a><a href="https://www.linkedin.com/in/runchao-han" target="_blank" rel="noopener"><img src="./img/linkedin.png" alt="">Linkedin</a><a href="https://github.com/SebastianElvis" target="_blank" rel="noopener"><img src="./img/github.png" alt="">GitHub</a><a href="https://dblp.org/pers/hd/h/Han:Runchao" target="_blank" rel="noopener"><img src="./img/dblp.png" alt="">DBLP</a><a href="https://scholar.google.com/citations?user=xbpDocQAAAAJ" target="_blank" rel="noopener"><img src="./img/scholar.png" alt="">Google Scholar</a><a href="https://t.me/runchaohan" target="_blank" rel="noopener"><img src="./img/telegram.png" alt="">Telegram</a><a href="https://twitter.com/runchao_han" target="_blank" rel="noopener"><img src="./img/twitter.png" alt="">Twitter</a><a href="https://calendar.app.google/xHqBbaU4JD5RtzEDA" target="_blank" rel="noopener"><img src="./img/calendar.png" alt="">Calendar</a><a href="./img/wechat-qrcode.jpeg" target="_blank" rel="noopener"><img src="./img/wechat.png" alt="">WeChat</a></div></div><strong>Windows XP · Personal edition</strong></nav>
 <footer id="taskbar"><button id="start-button" aria-expanded="false" aria-controls="start-menu"><img src="./img/windows-xp.svg" alt=""><b>Start</b></button><button id="show-desktop" title="Show desktop" aria-label="Show desktop"><img src="./img/computer_explorer-5.png" alt=""></button><nav id="tasks" aria-label="Open windows"></nav><div class="system-tray"><span class="tray-mark" aria-hidden="true">▣</span><time id="clock" aria-label="Local time"></time></div></footer>
 </div>
 <div id="music" aria-label="Winamp" hidden></div>
 <noscript><style>
-#desktop-shell #desktop-icons, #desktop-shell #taskbar, #desktop-shell #start-menu, #desktop-shell .window-controls, #desktop-shell .toolbar, #desktop-shell .folder-grid button, #desktop-shell .text-button, #desktop-shell .searchbar, #desktop-shell .addressbar button, #desktop-shell #reset-desktop {display:none!important}
+#desktop-shell #desktop-icons, #desktop-shell #taskbar, #desktop-shell #start-menu, #desktop-shell .window-controls, #desktop-shell .toolbar, #desktop-shell .home-sections, #desktop-shell .text-button, #desktop-shell .searchbar, #desktop-shell .addressbar button, #desktop-shell #reset-desktop {display:none!important}
 body {overflow:auto;height:auto}
 #desktop-shell #workspace {position:static;display:block;margin:0;padding:16px}
 #desktop-shell .window, #desktop-shell .window[hidden] {display:flex!important;position:relative;inset:auto!important;width:100%!important;height:auto!important;margin-bottom:24px;max-height:none}

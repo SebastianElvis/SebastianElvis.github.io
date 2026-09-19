@@ -33,7 +33,7 @@ function openWindow(id, moveFocus = true) {
     if (!taskButtons.has(id)) {
         const button = document.createElement('button');
         const icon = document.createElement('img');
-        icon.src = id === 'music' ? './img/notepad.png' : win.querySelector('.titlebar img').getAttribute('src');
+        icon.src = id === 'music' ? './img/winamp.png' : win.querySelector('.titlebar img').getAttribute('src');
         icon.alt = '';
         const label = document.createElement('span');
         label.textContent = id === 'music' ? 'Winamp' : id === 'home' ? 'My Homepage' : win.querySelector('h2').textContent;
@@ -126,7 +126,7 @@ document.addEventListener('keydown', event => {
     if (event.key === 'Escape' && !menu.hidden) setMenu(false, true);
     if (!menu.hidden && ['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) {
         event.preventDefault();
-        const buttons = [...menu.querySelectorAll('button')];
+        const buttons = [...menu.querySelectorAll('button, a[href]')];
         const index = buttons.indexOf(document.activeElement);
         const next = event.key === 'Home' ? 0 : event.key === 'End' ? buttons.length - 1 : (index + (event.key === 'ArrowDown' ? 1 : -1) + buttons.length) % buttons.length;
         buttons[next].focus();
