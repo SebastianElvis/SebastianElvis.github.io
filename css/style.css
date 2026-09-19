@@ -1,49 +1,49 @@
 :root {
     color-scheme: light;
-    --desktop: #008080;
-    --navy: #000080;
-    --silver: #c0c0c0;
+    --desktop: #3b7bd5;
+    --navy: #164a94;
+    --silver: #ece9d8;
     --paper: #fffef5;
-    --raised: inset 1px 1px #fff, inset -1px -1px #444, inset 2px 2px #dfdfdf, inset -2px -2px #808080;
-    --sunken: inset 1px 1px #808080, inset -1px -1px #fff, inset 2px 2px #222, inset -2px -2px #dfdfdf;
+    --raised: inset 0 0 0 1px #003c74, inset 0 2px 0 1px #fff, inset 0 -2px 0 1px #d6d0bd;
+    --sunken: inset 0 0 0 1px #7f9db9, inset 1px 2px 2px #ddd;
 }
 #desktop-shell * { box-sizing: border-box; }
-body { margin: 0; background: var(--desktop); color: #171717; font: 12px/1.4 Tahoma, Arial, sans-serif; overflow: hidden; height: 100dvh; }
-#desktop-shell button, #desktop-shell input { font: inherit; color: inherit; border-radius: 0; }
-#desktop-shell button, #desktop-shell .raised { border: 0; background: var(--silver); box-shadow: var(--raised); padding: 6px 12px; cursor: pointer; }
+body { margin: 0; background: var(--desktop) url(../img/xp-hills.jpg) center / cover no-repeat fixed; color: #171717; font: 12px/1.4 Tahoma, Arial, sans-serif; overflow: hidden; height: 100dvh; }
+#desktop-shell button, #desktop-shell input { font: inherit; color: inherit; border-radius: 3px; }
+#desktop-shell button, #desktop-shell .raised { border: 0; background: linear-gradient(#fff, #f0eddf); box-shadow: var(--raised); padding: 6px 12px; cursor: pointer; }
 #desktop-shell button:active, #desktop-shell .raised:active { box-shadow: var(--sunken); }
 #desktop-shell a { color: var(--navy); }
 #desktop-shell a:visited { color: #673a79; }
 #desktop-shell a:hover { text-decoration: none; }
 #desktop-shell a.raised { color: #171717; text-decoration: none; text-align: center; }
-#desktop-shell button:focus-visible, #desktop-shell a:focus-visible, #desktop-shell summary:focus-visible, #desktop-shell input:focus-visible { outline: 2px solid #c33c86; outline-offset: 2px; }
+#desktop-shell button:focus-visible, #desktop-shell a:focus-visible, #desktop-shell summary:focus-visible, #desktop-shell input:focus-visible { outline: 2px solid #e59700; outline-offset: 2px; }
 #desktop-shell [hidden] { display: none !important; }
 #desktop-shell .skip-link { position: fixed; top: -60px; left: 12px; z-index: 10000; background: white; padding: 10px 16px; }
 #desktop-shell .skip-link:focus { top: 8px; }
 #desktop-shell #desktop-icons { position: absolute; inset: 12px auto 44px 12px; display: grid; grid-auto-flow: column; grid-template-rows: repeat(auto-fill, 76px); grid-auto-columns: 76px; gap: 8px 14px; align-content: start; }
 #desktop-shell .desktop-icon { display: flex; flex-direction: column; align-items: center; gap: 6px; background: none; box-shadow: none; color: white; padding: 5px 2px; min-height: 66px; text-decoration: none; font-size: 11px; }
 #desktop-shell .desktop-icon:visited { color: white; }
-#desktop-shell .desktop-icon img { width: 32px; height: 32px; object-fit: contain; image-rendering: pixelated; }
-#desktop-shell .desktop-icon span { text-shadow: 1px 1px #005555; }
-#desktop-shell .desktop-icon:hover span, #desktop-shell .desktop-icon:focus-visible span { background: var(--navy); outline: 1px dotted white; }
+#desktop-shell .desktop-icon img { width: 32px; height: 32px; object-fit: contain; image-rendering: auto; }
+#desktop-shell .desktop-icon span { text-shadow: 1px 2px 2px #17375e; }
+#desktop-shell .desktop-icon:hover span, #desktop-shell .desktop-icon:focus-visible span { background: #316ac5; outline: 1px dotted white; }
 #desktop-shell .desktop-icon:active { box-shadow: none; }
 #desktop-shell #home { height: min(670px, calc(100% - 60px)); }
 #desktop-shell #workspace { position: absolute; inset: 0 0 36px; pointer-events: none; }
-#desktop-shell .window { position: absolute; left: max(100px, calc((100% - 740px) / 2)); top: 30px; width: min(740px, calc(100% - 128px)); height: min(570px, calc(100% - 60px)); min-width: min(300px, calc(100vw - 12px)); min-height: 160px; display: flex; flex-direction: column; padding: 3px; background: var(--silver); box-shadow: var(--raised), 3px 4px 0 #005b5b; pointer-events: auto; resize: both; overflow: hidden; max-width: 100%; max-height: 100%; }
+#desktop-shell .window { position: absolute; left: max(100px, calc((100% - 740px) / 2)); top: 30px; width: min(740px, calc(100% - 128px)); height: min(570px, calc(100% - 60px)); min-width: min(300px, calc(100vw - 12px)); min-height: 160px; display: flex; flex-direction: column; padding: 3px; background: var(--silver); border: 1px solid #0055e5; border-radius: 8px 8px 0 0; box-shadow: inset 0 0 0 2px #1665ee, 2px 4px 8px #142b5460; pointer-events: auto; resize: both; overflow: hidden; max-width: 100%; max-height: 100%; }
 #desktop-shell #profile { width: 340px; height: min(430px, calc(100% - 60px)); left: max(100px, calc((100% - 340px) / 2)); }
 #desktop-shell #site { width: min(560px, calc(100% - 128px)); }
 #desktop-shell .window.maximized { inset: 3px !important; width: calc(100% - 6px) !important; height: calc(100% - 6px) !important; resize: none; }
-#desktop-shell .titlebar { flex: 0 0 auto; display: flex; align-items: center; gap: 8px; background: linear-gradient(90deg, #000080, #1084d0); color: white; padding: 3px; min-height: 23px; cursor: move; touch-action: none; user-select: none; }
-#desktop-shell .window:not(.active) .titlebar { background: linear-gradient(90deg, #636363, #a6a6a6); }
-#desktop-shell .titlebar h2 { margin: 0; display: flex; align-items: center; gap: 6px; font-size: 12px; flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-#desktop-shell .titlebar img { width: 16px; height: 16px; object-fit: contain; image-rendering: pixelated; }
+#desktop-shell .titlebar { flex: 0 0 auto; display: flex; align-items: center; gap: 8px; background: linear-gradient(#66a6ff, #0058ee 12%, #1675f6 48%, #0052d6 92%, #003cba); color: white; padding: 3px 4px; min-height: 28px; margin: -2px -2px 0; border-radius: 6px 6px 0 0; text-shadow: 1px 1px #003c87; cursor: move; touch-action: none; user-select: none; }
+#desktop-shell .window:not(.active) .titlebar { background: linear-gradient(#a3c4f4, #6e9cde 15%, #88afe7 85%, #668bca); }
+#desktop-shell .titlebar h2 { margin: 0; display: flex; align-items: center; gap: 6px; font-size: 13px; flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+#desktop-shell .titlebar img { width: 16px; height: 16px; object-fit: contain; image-rendering: auto; }
 #desktop-shell .window-controls { display: flex; gap: 3px; }
-#desktop-shell .window-controls button { width: 17px; height: 17px; padding: 0; color: #111; font: bold 13px/16px Arial, sans-serif; }
-#desktop-shell .window-controls button:first-child { line-height: 12px; }
-#desktop-shell .toolbar { display: flex; align-items: center; gap: 3px; padding: 3px 4px; border-bottom: 1px solid #808080; box-shadow: 0 1px white; }
+#desktop-shell .window-controls button { width: 21px; height: 21px; padding: 0; color: white; border: 1px solid white; background: linear-gradient(135deg, #97c9ff, #2577ec 45%, #0755d8); box-shadow: inset 0 0 2px 1px #fff8; font: bold 17px/18px Arial, sans-serif; text-shadow: 1px 1px #003c87; }
+#desktop-shell .window-controls button:last-child { background: linear-gradient(135deg, #f4b59b, #dd593d 45%, #c53219); text-shadow: 1px 1px #81200f; }
+#desktop-shell .toolbar { display: flex; align-items: center; gap: 3px; padding: 3px 4px; border-bottom: 1px solid #d6d2c2; box-shadow: 0 1px white; }
 #desktop-shell .toolbar button, #desktop-shell .toolbar a { display: flex; align-items: center; gap: 6px; background: none; box-shadow: none; border: 1px solid transparent; padding: 5px 7px; text-decoration: none; color: #171717; font-size: 12px; }
-#desktop-shell .toolbar button:hover, #desktop-shell .toolbar a:hover { border-color: white #808080 #808080 white; }
-#desktop-shell .toolbar img { width: 18px; height: 18px; object-fit: contain; image-rendering: pixelated; }
+#desktop-shell .toolbar button:hover, #desktop-shell .toolbar a:hover { border-color: #cecec3; background: #fffaf0; }
+#desktop-shell .toolbar img { width: 18px; height: 18px; object-fit: contain; image-rendering: auto; }
 #desktop-shell .toolbar .toolbar-logo { margin-left: auto; width: 30px; height: 28px; }
 #desktop-shell .addressbar, #desktop-shell .searchbar { display: flex; align-items: center; gap: 9px; padding: 8px; flex-shrink: 0; font-size: 12px; }
 #desktop-shell .addressbar input, #desktop-shell .folder-path { flex: 1; min-width: 0; background: white; border: 0; box-shadow: var(--sunken); padding: 5px 8px; }
@@ -51,7 +51,7 @@ body { margin: 0; background: var(--desktop); color: #171717; font: 12px/1.4 Tah
 #desktop-shell .searchbar { padding-top: 2px; flex-wrap: wrap; }
 #desktop-shell .searchbar input { border: 0; box-shadow: var(--sunken); background: white; padding: 7px 8px; flex: 1; min-width: 120px; }
 #desktop-shell .searchbar output { min-width: 62px; font-size: 11px; }
-#desktop-shell .window-body { flex: 1; min-height: 0; background: white; margin: 0 2px; border: 2px inset #dfdfdf; overflow: auto; overscroll-behavior: contain; scrollbar-width: none; }
+#desktop-shell .window-body { flex: 1; min-height: 0; background: white; margin: 0 2px; border: 1px solid #7f9db9; overflow: auto; overscroll-behavior: contain; scrollbar-width: none; }
 #desktop-shell .window-body::-webkit-scrollbar { display: none; }
 #desktop-shell .homepage { background: var(--paper); padding: 20px; }
 #desktop-shell .site-masthead { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding-bottom: 13px; border-bottom: 1px solid #8c9890; font-size: 11px; letter-spacing: 1.2px; }
@@ -64,7 +64,7 @@ body { margin: 0; background: var(--desktop); color: #171717; font: 12px/1.4 Tah
 #desktop-shell .section-label { display: flex; justify-content: space-between; border-top: 1px dotted #819388; padding: 14px 0 10px; font-size: 11px; }
 #desktop-shell .folder-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 #desktop-shell .folder-grid button, #desktop-shell .folder-grid a { display: flex; align-items: center; gap: 10px; text-align: left; background: #f4f3e9; color: #222; padding: 12px; border: 1px solid #b2b7a9; text-decoration: none; box-shadow: none; }
-#desktop-shell .folder-grid img { width: 32px; height: 32px; object-fit: contain; image-rendering: pixelated; }
+#desktop-shell .folder-grid img { width: 32px; height: 32px; object-fit: contain; image-rendering: auto; }
 #desktop-shell .folder-grid strong, #desktop-shell .folder-grid small { display: block; }
 #desktop-shell .folder-grid strong { color: var(--navy); font-size: 13px; }
 #desktop-shell .folder-grid small { font-size: 11px; margin-top: 2px; }
@@ -78,10 +78,10 @@ body { margin: 0; background: var(--desktop); color: #171717; font: 12px/1.4 Tah
 #desktop-shell .code-badge { color: #121212; background: #b8d4a6; }
 #desktop-shell .text-button { background: none; padding: 0; box-shadow: none; color: var(--navy); text-decoration: underline; font-size: 11px; }
 #desktop-shell .statusbar { display: flex; gap: 4px; padding: 3px 1px 0; font-size: 11px; flex-shrink: 0; }
-#desktop-shell .statusbar span { padding: 3px 6px; border: 1px inset #ddd; }
+#desktop-shell .statusbar span { padding: 3px 6px; border: 1px solid #d4d0c8; }
 #desktop-shell .statusbar span:first-child { flex: 1; }
 #desktop-shell .compact .statusbar span:last-child { display: none; }
-#desktop-shell .profile { padding: 13px 11px; background: #efefdf; }
+#desktop-shell .profile { padding: 13px 11px; background: #ece9d8; }
 #desktop-shell .profile-heading { display: flex; align-items: center; gap: 12px; }
 #desktop-shell .avatar { width: 64px; height: 80px; object-fit: cover; border: 2px inset #ddd; }
 #desktop-shell .profile h3 { margin: 4px 0 0; font-size: 18px; }
@@ -106,25 +106,25 @@ body { margin: 0; background: var(--desktop); color: #171717; font: 12px/1.4 Tah
 #desktop-shell .document .author { color: #444; }
 #desktop-shell #research .document li { margin-bottom: 12px; padding-bottom: 17px; border-bottom: 1px solid #deded8; }
 #desktop-shell #no-papers { padding: 18px; background: #fffce5; }
-#desktop-shell #taskbar { position: fixed; bottom: 0; left: 0; right: 0; height: 36px; background: var(--silver); padding: 5px; display: flex; align-items: stretch; gap: 7px; box-shadow: inset 0 1px white, inset 0 2px #dfdfdf; z-index: 10000; }
-#desktop-shell #start-button { display: flex; align-items: center; gap: 5px; padding: 3px 7px; font-size: 13px; }
-#desktop-shell #start-button img { width: 19px; height: 19px; object-fit: contain; image-rendering: pixelated; }
-#desktop-shell #start-button[aria-expanded=true], #desktop-shell #tasks button[aria-pressed=true] { box-shadow: var(--sunken); background: #dedede; }
-#desktop-shell #show-desktop { padding: 4px 7px; margin-right: 1px; }
-#desktop-shell #show-desktop img { width: 21px; height: 21px; object-fit: contain; image-rendering: pixelated; }
-#desktop-shell #tasks { display: flex; align-items: stretch; gap: 5px; flex: 1; min-width: 0; overflow-x: auto; scrollbar-width: none; }
-#desktop-shell #tasks button { flex: 0 1 158px; min-width: 70px; display: flex; align-items: center; gap: 6px; padding: 4px 8px; font-size: 12px; }
+#desktop-shell #taskbar { position: fixed; bottom: 0; left: 0; right: 0; height: 36px; background: linear-gradient(#3b8cf8, #245fdb 12%, #245edb 85%, #1941ad); padding: 0; display: flex; align-items: stretch; gap: 7px; box-shadow: inset 0 1px #6eafff; z-index: 10000; }
+#desktop-shell #start-button { display: flex; align-items: center; gap: 6px; padding: 3px 18px 3px 10px; font: italic bold 20px Tahoma, sans-serif; text-transform: lowercase; color: white; text-shadow: 1px 2px #246226; background: linear-gradient(#80bd7c, #3d983a 15%, #328b2d 75%, #216521); border-radius: 0 14px 14px 0; box-shadow: inset 0 1px #b5d6a6, inset -3px 0 6px #194e26; }
+#desktop-shell #start-button img { width: 24px; height: 24px; object-fit: contain; image-rendering: auto; }
+#desktop-shell #start-button[aria-expanded=true] { background: linear-gradient(#216521, #3d983a); }
+#desktop-shell #show-desktop { padding: 4px; margin: 3px 0; background: none; box-shadow: none; border-right: 1px solid #1148bb; }
+#desktop-shell #show-desktop img { width: 21px; height: 21px; object-fit: contain; image-rendering: auto; }
+#desktop-shell #tasks { display: flex; align-items: stretch; gap: 3px; flex: 1; min-width: 0; padding: 3px 0; overflow-x: auto; scrollbar-width: none; }
+#desktop-shell #tasks button { flex: 0 1 158px; min-width: 70px; display: flex; align-items: center; gap: 6px; padding: 4px 8px; font-size: 12px; color: white; background: linear-gradient(#4b94fa, #397fed); box-shadow: inset 1px 1px #71a9fb, inset -1px -1px #1250c5; }
 #desktop-shell #tasks button span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-#desktop-shell #tasks img { width: 17px; height: 17px; object-fit: contain; image-rendering: pixelated; }
-#desktop-shell .system-tray { box-shadow: var(--sunken); padding: 5px 9px; display: flex; align-items: center; gap: 9px; font-size: 11px; white-space: nowrap; }
-#desktop-shell .tray-mark { color: #315d62; }
-#desktop-shell #start-menu { position: fixed; left: 4px; bottom: 37px; width: 270px; max-height: calc(100dvh - 52px); display: flex; background: var(--silver); padding: 4px; box-shadow: var(--raised); z-index: 10001; overflow-y: auto; }
-#desktop-shell .start-rail { writing-mode: vertical-rl; transform: rotate(180deg); background: linear-gradient(#000080, #1084d0); color: white; font-size: 23px; padding: 12px 4px; }
-#desktop-shell .start-links { flex: 1; padding: 2px; }
-#desktop-shell .start-links strong { display: block; padding: 9px 10px; border-bottom: 1px solid #8d8d8d; font-size: 12px; }
+#desktop-shell #tasks img { width: 17px; height: 17px; object-fit: contain; image-rendering: auto; }
+#desktop-shell .system-tray { background: linear-gradient(#19b7ee, #1299e7 20%, #0b8add); color: white; border-left: 1px solid #0959bd; box-shadow: inset 0 1px #74d3fa; padding: 5px 12px; display: flex; align-items: center; gap: 9px; font-size: 11px; white-space: nowrap; }
+#desktop-shell #tasks button[aria-pressed=true] { background: #1852b6; box-shadow: inset 1px 1px 3px #073486; }
+#desktop-shell #start-menu { position: fixed; left: 4px; bottom: 37px; width: min(380px, calc(100vw - 8px)); max-height: calc(100dvh - 52px); display: flex; flex-direction: column; background: #fff; padding: 0; border: 2px solid #1e61cc; border-radius: 8px 8px 0 0; box-shadow: 3px 4px 10px #12376566; z-index: 10001; overflow-y: auto; }
+#desktop-shell .start-rail { display: flex; align-items: center; gap: 12px; background: linear-gradient(#317fe3, #145dc8); color: white; font-size: 18px; font-weight: bold; text-shadow: 1px 1px #174179; padding: 12px; border-bottom: 2px solid #eca538; }
+#desktop-shell .start-links { display: grid; grid-auto-flow: column; grid-template-rows: repeat(4, 48px) auto; grid-template-columns: 1fr 1fr; padding-top: 6px; background: linear-gradient(90deg, white 50%, #d3e5fa 50%); }
+#desktop-shell .start-links strong { grid-area: 5 / 1 / 6 / 3; padding: 10px 14px; background: linear-gradient(#428bec, #1460ce); color: white; font-size: 12px; }
 #desktop-shell .start-links button { display: flex; align-items: center; width: 100%; background: none; box-shadow: none; gap: 12px; text-align: left; padding: 10px; }
 #desktop-shell .start-links button:hover, #desktop-shell .start-links button:focus-visible { background: var(--navy); color: white; }
-#desktop-shell .start-links img { width: 25px; height: 25px; object-fit: contain; image-rendering: pixelated; }
+#desktop-shell .start-links img, #desktop-shell .start-rail img { width: 32px; height: 32px; object-fit: contain; }
 @media (max-width: 640px) {
 #desktop-shell .window, #desktop-shell #profile, #desktop-shell #site { left: 6px !important; top: 8px !important; width: calc(100% - 12px) !important; height: calc(100% - 16px) !important; resize: none; }
 #desktop-shell .titlebar { cursor: default; touch-action: auto; }
