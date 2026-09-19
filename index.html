@@ -13,8 +13,8 @@
     <meta property="og:description" content="I build and study open systems. This is my personal desktop on the web.">
     <meta name="theme-color" content="#245edb">
     <link rel="icon" href="./img/computer_explorer-5.png">
-    <link rel="stylesheet" href="./css/style.css?v=3">
-    <script src="./scripts/desktop.js?v=4" defer></script>
+    <link rel="stylesheet" href="./css/style.css?v=4">
+    <script src="./scripts/desktop.js?v=5" defer></script>
 </head>
 <body>
 <div id="desktop-shell">
@@ -25,6 +25,7 @@
 <button class="desktop-icon" data-open="engineering"><img src="./img/help_book_computer-4.png" alt=""><span>Engineering</span></button>
 <button class="desktop-icon" data-open="resources"><img src="./img/internet_explorer.png" alt=""><span>Internet Links</span></button>
 <button class="desktop-icon" data-open="services"><img src="./img/world-4.png" alt=""><span>Services</span></button>
+<button class="desktop-icon" data-open="arcade"><img src="./img/arcade.svg" alt=""><span>Arcade</span></button>
 <button class="desktop-icon" data-open="music"><img src="./img/winamp.png" alt=""><span>Winamp</span></button>
 
 </nav>
@@ -360,6 +361,25 @@
     </div>
     <footer class="statusbar"><span>My Computer</span><span>runchao.rocks</span></footer>
 </section>
+<section class="window" id="arcade" aria-labelledby="arcade-title" hidden>
+    <header class="titlebar">
+        <h2 id="arcade-title"><img src="./img/arcade.svg" alt="">Arcade - KOF '98</h2>
+        <div class="window-controls">
+            <button data-action="minimize" aria-label="Minimize Arcade">_</button>
+            <button data-action="maximize" aria-label="Maximize Arcade">□</button>
+            <button data-action="close" aria-label="Close Arcade">×</button>
+        </div>
+    </header>
+    <div class="window-body arcade-body">
+        <div class="arcade-cabinet">
+            <div class="arcade-marquee"><span>NEO GEO</span><h3>THE KING OF FIGHTERS <b>'98</b></h3><span>THE SLUGFEST</span></div>
+            <div class="arcade-screen"><iframe id="arcade-frame" title="KOF '98 emulator" allow="autoplay; fullscreen; gamepad" allowfullscreen></iframe></div>
+            <div class="arcade-controls"><p><kbd>↑ ↓ ← →</kbd> Move · <kbd>V</kbd> Coin · <kbd>Enter</kbd> Start</p><p><kbd>Z X A S</kbd> Action buttons · You can change controls in the game menu.</p></div>
+        </div>
+        <p class="arcade-help">The play button resumes a paused game. The Close button ends the game session.</p>
+    </div>
+    <footer class="statusbar"><span>KOF '98 · Keyboard / Gamepad / Touch</span><span>EmulatorJS · FBNeo</span></footer>
+</section>
 <section class="window" id="site" aria-labelledby="site-title" hidden>
     <header class="titlebar">
         <h2 id="site-title"><img src="./img/text_editor.png" alt="">About this website</h2>
@@ -369,10 +389,10 @@
             <button data-action="close" aria-label="Close About this website">×</button>
         </div>
     </header>
-    <div class="window-body document"><h1>About this website</h1><p>This site is my personal desktop on the web.</p><p>Windows XP provides the frame. The profile page and music player add personal details.</p><h2>You control the desktop.</h2><ul><li>You can open a window with one click.</li><li>You can drag a window by its title bar.</li><li>You can minimize a window to the taskbar.</li><li>You can double-click a title bar to maximize a window.</li><li>You can use Tab and Enter to reach each control.</li><li>You can press Escape to close the Start menu.</li></ul><p>The original site used <a href="https://github.com/mahbodnr/mahbodnr.github.io">mahbodnr's Windows-style homepage</a>.</p><p>This site uses HTML, CSS, and JavaScript. <a href="https://github.com/captbaritone/webamp">Webamp</a> provides the music player.</p><button id="reset-desktop">Reset desktop</button></div>
+    <div class="window-body document"><h1>About this website</h1><p>This site is my personal desktop on the web.</p><p>Windows XP provides the frame. The profile page and music player add personal details.</p><h2>You control the desktop.</h2><ul><li>You can open a window with one click.</li><li>You can drag a window by its title bar.</li><li>You can minimize a window to the taskbar.</li><li>You can double-click a title bar to maximize a window.</li><li>You can use Tab and Enter to reach each control.</li><li>You can press Escape to close the Start menu.</li></ul><p>The original site used <a href="https://github.com/mahbodnr/mahbodnr.github.io">mahbodnr's Windows-style homepage</a>.</p><p>This site uses HTML, CSS, and JavaScript. <a href="https://github.com/captbaritone/webamp">Webamp</a> provides the music player. <a href="https://emulatorjs.org/">EmulatorJS</a> provides the arcade emulator.</p><button id="reset-desktop">Reset desktop</button></div>
     <footer class="statusbar"><span>Help</span><span>runchao.rocks</span></footer>
 </section></main>
-<nav id="start-menu" aria-label="Start menu" hidden><div class="start-rail"><img src="./img/milady.avif" alt="">Runchao Han</div><div class="start-links"><div class="start-apps"><button data-open="home"><img src="./img/computer_explorer-5.png" alt="">My Homepage</button><button data-open="research"><img src="./img/paper.png" alt="">Research</button><button data-open="engineering"><img src="./img/help_book_computer-4.png" alt="">Engineering</button><button data-open="resources"><img src="./img/internet_explorer.png" alt="">Internet Links</button><button data-open="services"><img src="./img/world-4.png" alt="">Services</button><button data-open="music"><img src="./img/winamp.png" alt="">Winamp</button><button data-open="site"><img src="./img/text_editor.png" alt="">About this website</button></div><div class="start-contacts"><a href="https://www.linkedin.com/in/runchao-han" target="_blank" rel="noopener"><img src="./img/linkedin.png" alt="">Linkedin</a><a href="https://github.com/SebastianElvis" target="_blank" rel="noopener"><img src="./img/github.png" alt="">GitHub</a><a href="https://dblp.org/pers/hd/h/Han:Runchao" target="_blank" rel="noopener"><img src="./img/dblp.png" alt="">DBLP</a><a href="https://scholar.google.com/citations?user=xbpDocQAAAAJ" target="_blank" rel="noopener"><img src="./img/scholar.png" alt="">Google Scholar</a><a href="https://t.me/runchaohan" target="_blank" rel="noopener"><img src="./img/telegram.png" alt="">Telegram</a><a href="https://twitter.com/runchao_han" target="_blank" rel="noopener"><img src="./img/twitter.png" alt="">Twitter</a><a href="https://calendar.app.google/xHqBbaU4JD5RtzEDA" target="_blank" rel="noopener"><img src="./img/calendar.png" alt="">Calendar</a><a href="./img/wechat-qrcode.jpeg" target="_blank" rel="noopener"><img src="./img/wechat.png" alt="">WeChat</a></div></div><strong>Windows XP · Personal edition</strong></nav>
+<nav id="start-menu" aria-label="Start menu" hidden><div class="start-rail"><img src="./img/milady.avif" alt="">Runchao Han</div><div class="start-links"><div class="start-apps"><button data-open="home"><img src="./img/computer_explorer-5.png" alt="">My Homepage</button><button data-open="research"><img src="./img/paper.png" alt="">Research</button><button data-open="engineering"><img src="./img/help_book_computer-4.png" alt="">Engineering</button><button data-open="resources"><img src="./img/internet_explorer.png" alt="">Internet Links</button><button data-open="services"><img src="./img/world-4.png" alt="">Services</button><button data-open="arcade"><img src="./img/arcade.svg" alt="">Arcade</button><button data-open="music"><img src="./img/winamp.png" alt="">Winamp</button><button data-open="site"><img src="./img/text_editor.png" alt="">About this website</button></div><div class="start-contacts"><a href="https://www.linkedin.com/in/runchao-han" target="_blank" rel="noopener"><img src="./img/linkedin.png" alt="">Linkedin</a><a href="https://github.com/SebastianElvis" target="_blank" rel="noopener"><img src="./img/github.png" alt="">GitHub</a><a href="https://dblp.org/pers/hd/h/Han:Runchao" target="_blank" rel="noopener"><img src="./img/dblp.png" alt="">DBLP</a><a href="https://scholar.google.com/citations?user=xbpDocQAAAAJ" target="_blank" rel="noopener"><img src="./img/scholar.png" alt="">Google Scholar</a><a href="https://t.me/runchaohan" target="_blank" rel="noopener"><img src="./img/telegram.png" alt="">Telegram</a><a href="https://twitter.com/runchao_han" target="_blank" rel="noopener"><img src="./img/twitter.png" alt="">Twitter</a><a href="https://calendar.app.google/xHqBbaU4JD5RtzEDA" target="_blank" rel="noopener"><img src="./img/calendar.png" alt="">Calendar</a><a href="./img/wechat-qrcode.jpeg" target="_blank" rel="noopener"><img src="./img/wechat.png" alt="">WeChat</a></div></div><strong>Windows XP · Personal edition</strong></nav>
 <footer id="taskbar"><button id="start-button" aria-expanded="false" aria-controls="start-menu"><img src="./img/windows-xp.svg" alt=""><b>Start</b></button><button id="show-desktop" title="Show desktop" aria-label="Show desktop"><img src="./img/computer_explorer-5.png" alt=""></button><nav id="tasks" aria-label="Open windows"></nav><div class="system-tray"><span class="tray-mark" aria-hidden="true">▣</span><time id="clock" aria-label="Local time"></time></div></footer>
 </div>
 <div id="music" aria-label="Winamp" hidden></div>

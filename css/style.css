@@ -143,3 +143,23 @@ body { overflow: visible; background: white; }
 
 #desktop-shell #tasks::-webkit-scrollbar { display: none; }
 @media (pointer: coarse) { #music { bottom: 45px; } }
+
+#desktop-shell #arcade { height: min(700px, calc(100% - 36px)); top: 18px; }
+#desktop-shell .arcade-body { background: #222631; padding: 14px; color: #fff5dd; }
+#desktop-shell .arcade-cabinet { max-width: 620px; margin: 0 auto; padding: 12px; border: 2px solid #ed5360; border-radius: 8px; background: #a71d2c; box-shadow: inset 0 0 0 4px #681521, 0 8px 18px #0005; }
+#desktop-shell .arcade-marquee { text-align: center; padding: 4px 0 12px; }
+#desktop-shell .arcade-marquee > span { font-size: 10px; letter-spacing: 3px; }
+#desktop-shell .arcade-marquee h3 { margin: 4px 0; font: bold clamp(15px, 3vw, 24px)/1.2 Arial, sans-serif; font-style: italic; text-shadow: 2px 2px #591420; }
+#desktop-shell .arcade-marquee b { color: #ffd060; }
+#desktop-shell .arcade-screen { aspect-ratio: 4 / 3; background: #111; border: 8px solid #17191d; border-radius: 8px; overflow: hidden; }
+#desktop-shell #arcade-frame { display: block; width: 100%; height: 100%; border: 0; }
+#desktop-shell .arcade-controls { margin-top: 10px; padding: 7px 10px; background: #e6e3d5; color: #25262c; border-radius: 3px; text-align: center; font-size: 11px; }
+#desktop-shell .arcade-controls p { margin: 4px 0; }
+#desktop-shell .arcade-controls kbd { font: bold 11px Tahoma, sans-serif; }
+#desktop-shell .arcade-help { max-width: 620px; margin: 12px auto 0; font-size: 11px; color: #ced4df; text-align: center; }
+@media (max-width: 640px) {
+    #desktop-shell .arcade-body { padding: 8px; }
+    #desktop-shell .arcade-cabinet { padding: 8px; }
+    #desktop-shell .arcade-screen { aspect-ratio: 3 / 4; border-width: 4px; }
+}
+@media print { #desktop-shell #arcade, #desktop-shell #arcade[hidden] { display: none !important; } }
