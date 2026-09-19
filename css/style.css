@@ -10,12 +10,11 @@
 #desktop-shell * { box-sizing: border-box; }
 body { margin: 0; background: var(--desktop) url(../img/xp-hills.jpg) center / cover no-repeat fixed; color: #171717; font: 12px/1.4 Tahoma, Arial, sans-serif; overflow: hidden; height: 100dvh; }
 #desktop-shell button, #desktop-shell input { font: inherit; color: inherit; border-radius: 3px; }
-#desktop-shell button, #desktop-shell .raised { border: 0; background: linear-gradient(#fff, #f0eddf); box-shadow: var(--raised); padding: 6px 12px; cursor: pointer; }
-#desktop-shell button:active, #desktop-shell .raised:active { box-shadow: var(--sunken); }
+#desktop-shell button { border: 0; background: linear-gradient(#fff, #f0eddf); box-shadow: var(--raised); padding: 6px 12px; cursor: pointer; }
+#desktop-shell button:active { box-shadow: var(--sunken); }
 #desktop-shell a { color: var(--navy); }
 #desktop-shell a:visited { color: #673a79; }
 #desktop-shell a:hover { text-decoration: none; }
-#desktop-shell a.raised { color: #171717; text-decoration: none; text-align: center; }
 #desktop-shell button:focus-visible, #desktop-shell a:focus-visible, #desktop-shell summary:focus-visible, #desktop-shell input:focus-visible { outline: 2px solid #e59700; outline-offset: 2px; }
 #desktop-shell [hidden] { display: none !important; }
 #desktop-shell .skip-link { position: fixed; top: -60px; left: 12px; z-index: 10000; background: white; padding: 10px 16px; }
@@ -66,7 +65,6 @@ body { margin: 0; background: var(--desktop) url(../img/xp-hills.jpg) center / c
 #desktop-shell .contact-panel { align-self: start; padding: 12px; background: #f0f5fc; border: 1px solid #bdd1eb; border-radius: 4px; overflow-wrap: anywhere; font-size: 11px; }
 #desktop-shell .contact-panel h2 { margin: -12px -12px 12px; padding: 8px 12px; background: #d5e5fa; color: #164a94; font-size: 12px; }
 #desktop-shell .contact-panel p { line-height: 1.8; }
-#desktop-shell .contact-panel .raised { display: block; padding: 6px; }
 #desktop-shell .contact-links { display: grid; gap: 6px; border-top: 1px solid #c6d6e9; padding-top: 10px; }
 #desktop-shell .home-sections { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 18px; }
 #desktop-shell .home-sections button { padding: 5px 9px; font-size: 11px; }

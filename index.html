@@ -14,7 +14,7 @@
     <meta name="theme-color" content="#245edb">
     <link rel="icon" href="./img/computer_explorer-5.png">
     <link rel="stylesheet" href="./css/style.css?v=3">
-    <script src="./scripts/desktop.js?v=3" defer></script>
+    <script src="./scripts/desktop.js?v=4" defer></script>
 </head>
 <body>
 <div id="desktop-shell">
@@ -26,7 +26,7 @@
 <button class="desktop-icon" data-open="resources"><img src="./img/internet_explorer.png" alt=""><span>Internet Links</span></button>
 <button class="desktop-icon" data-open="services"><img src="./img/world-4.png" alt=""><span>Services</span></button>
 <button class="desktop-icon" data-open="music"><img src="./img/winamp.png" alt=""><span>Winamp</span></button>
-<a class="desktop-icon" href="https://github.com/SebastianElvis/cv/raw/master/runchao-han-cv.pdf"><img src="./img/documents.png" alt=""><span>My CV</span></a>
+
 </nav>
 <main id="workspace" aria-label="Desktop windows">
 <section class="window" id="home" aria-labelledby="home-title" hidden>
@@ -50,10 +50,11 @@
     <header class="profile-heading"><a href="https://opensea.io/assets/ethereum/0x5af0d9827e0c53e4799bb226655a1de152a425a5/977"><img class="avatar" src="./img/milady.avif" alt="Runchao's Milady avatar" width="72" height="88"></a><div><span class="eyebrow">PERSONAL HOME PAGE</span><h1>Runchao Han</h1><p>Researcher &amp; engineer</p><p class="profile-location">Melbourne, Australia</p></div></header>
     <div class="home-layout">
         <article class="biography"><h2>Brief bio</h2><p>
-                            I'm a researcher and engineer in Blockchain. <br /><br />
-                            Currently, I'm working on <a href="https://babylonlabs.io/">Babylon</a>, a project
-                            that envisions to bring the security and decentralisation of Bitcoin to the blockchain
-                            ecosystem and more. <br /><br />
+                            I'm a researcher and engineer in blockchain. <br /><br />
+                            I joined <a href="https://babylonlabs.io/">Babylon</a> as a founding engineer in 2022.
+                            I helped drive the project through each pivot, from Bitcoin timestamping and staking
+                            to Trustless Bitcoin Vaults. My work spans protocol research, implementation, and launch. <br /><br />
+                            Recently, I started advocating AI adoption and actively researching AI. <br /><br />
                             Previously, I obtained my PhD at <a href="https://monash.edu">Monash University</a> and <a
                                 href="https://data61.csiro.au">CSIRO-Data61</a> (advisors: <a
                                 href="https://www.jiangshanyu.com/">Jiangshan Yu</a>, <a
@@ -64,7 +65,7 @@
                                 href="http://bupt.edu.cn/">BUPT</a>.
                         </p>
         <nav class="home-sections" aria-label="My work"><button data-open="research">Research</button><button data-open="engineering">Engineering</button><button data-open="resources">Internet Links</button><button data-open="services">Services</button></nav></article>
-        <aside class="contact-panel"><h2>Contact &amp; links</h2><p><a href="mailto:runchao@babylonlabs.io">runchao@babylonlabs.io</a><br><a href="mailto:me@runchao.rocks">me@runchao.rocks</a></p><a class="raised" href="https://github.com/SebastianElvis/cv/raw/master/runchao-han-cv.pdf">Read CV ↗</a><div class="contact-links"><a href="https://github.com/SebastianElvis">GitHub</a><a href="https://scholar.google.com/citations?user=xbpDocQAAAAJ">Google Scholar</a><a href="https://dblp.org/pers/hd/h/Han:Runchao">DBLP</a><a href="https://www.linkedin.com/in/runchao-han">LinkedIn</a><a href="https://t.me/runchaohan">Telegram</a><a href="https://keybase.io/elvisage">Keybase</a><a href="./img/wechat-qrcode.jpeg">WeChat</a><a href="https://calendar.app.google/xHqBbaU4JD5RtzEDA">Calendar</a><a href="https://twitter.com/runchao_han">Twitter</a><a href="https://opensea.io/assets/ethereum/0x5af0d9827e0c53e4799bb226655a1de152a425a5/977">My avatar</a></div></aside>
+        <aside class="contact-panel"><h2>Contact &amp; links</h2><p><a href="mailto:runchao@babylonlabs.io">runchao@babylonlabs.io</a><br><a href="mailto:me@runchao.rocks">me@runchao.rocks</a></p><div class="contact-links"><a href="https://github.com/SebastianElvis">GitHub</a><a href="https://scholar.google.com/citations?user=xbpDocQAAAAJ">Google Scholar</a><a href="https://dblp.org/pers/hd/h/Han:Runchao">DBLP</a><a href="https://www.linkedin.com/in/runchao-han">LinkedIn</a><a href="https://t.me/runchaohan">Telegram</a><a href="https://keybase.io/elvisage">Keybase</a><a href="./img/wechat-qrcode.jpeg">WeChat</a><a href="https://calendar.app.google/xHqBbaU4JD5RtzEDA">Calendar</a><a href="https://twitter.com/runchao_han">Twitter</a><a href="https://opensea.io/assets/ethereum/0x5af0d9827e0c53e4799bb226655a1de152a425a5/977">My avatar</a></div></aside>
     </div>
     <footer class="home-footer"><span>Windows XP · Personal edition</span><button class="text-button" data-open="site">About this website</button></footer>
 </div>
@@ -81,131 +82,43 @@
         </div>
     </header>
     <div class="addressbar"><span>Folder</span><span class="folder-path">My Computer / Research</span><button data-open="home">Home</button></div><div class="searchbar"><label for="paper-search">Find a paper</label><input id="paper-search" type="search" placeholder="Title, author, venue, or year" autocomplete="off"><output id="paper-count" aria-live="polite"></output></div><div class="window-body document"><h2>Research profile</h2>
-    <p>
-        I aim at improving scalability, security and privacy of <i>permissionless</i> blockchains
-        and
-        cryptocurrencies.<br />
-        My research mainly combines techniques from cryptography and distributed computing.<br />
-    </p>
-    <p>
-        <a href="https://scholar.google.com/citations?user=xbpDocQAAAAJ">[Google scholar]</a>
-        <a href="https://dblp.org/pers/hd/h/Han:Runchao">[DBLP]</a> <br />
-    </p>
-
-    <h3>Since Babylon</h3>
-    <p>
-        At Babylon, I have been focusing on designing and implementing the Babylon system. Nevertheless, I'm
-        still trying to do blockchain research at my spare time.<br />
-        My current research interest includes inventing new protocols atop Bitcoin, security sharing
-        protocols, and consensus protocols with new security properties.
-    </p>
+    <p>I study the scalability, security, and privacy of blockchains.
+        My work combines cryptography and distributed systems, with a focus on Bitcoin and consensus.
+        Recently, I started researching how AI agents and formal verification can help invent new protocols for cryptography and distributed computing.</p>
+    <p>You can find my full publication list on
+        <a href="https://scholar.google.com/citations?user=xbpDocQAAAAJ">Google Scholar</a> and
+        <a href="https://dblp.org/pid/217/8511.html">DBLP</a>.</p>
+    <h3>Selected publications</h3>
     <ul>
         <li>
-            <div class="title">Constant latency and finality for dynamically available DAG</div>
-            <div class="author">Hans Schmiedel, Runchao Han, Qiang Tang, Ron Steinfeld, and Jiangshan Yu
-            </div>
-            <div>The 46th IEEE Symposium on Security and Privacy <b>(SP 2025)</b></div>
-            <div>
-                <a href="https://arxiv.org/pdf/2305.07830.pdf">[Paper]</a>
-            </div>
-            </li>
-        <li><div class="title">Modeling Mobile Crash in Byzantine Consensus
-            </div>
-            <div class="author">Hans Schmiedel, Runchao Han, Qiang Tang, Ron Steinfeld, and Jiangshan Yu
-            </div>
-            <div>The 37th IEEE Computer Security Foundations Symposium <b>(CSF 2024)</b> </div>
-            <div>
-                <a href="https://eprint.iacr.org/2024/452">[Paper]</a>
-            </div>
-        </li>
-        <li>
-            <div class="title">Interchain Timestamping for Mesh Security</div>
-            <div class="author">Ertem Nusret Tas, Runchao Han, David Tse, Fisher Yu, and Kamilla
-                Nazirkhanova</div>
-            <div>ACM Conference on Computer and Communications Security <b>(CCS 2023)</b> </div>
-            <div>
-                <a href="https://arxiv.org/abs/2305.07830">[Paper]</a>
-            </div>
+            <div class="title">Trustless Bitcoin Vaults</div>
+            <div class="author">Lukas Aumayr, Xinshu Dong, Runchao Han, Srivatsan Sridhar, David Tse, and Nikhil Vanjani</div>
+            <div>IEEE Symposium on Security and Privacy <b>(S&amp;P 2027)</b> · To appear</div>
         </li>
         <li>
             <div class="title">EBFT: Simplifying BFT Consensus Through Egalitarianism</div>
-            <div class="author">Jianyu Niu*, Runchao Han*, Shengqi Liu, Fangyu Gai, Ivan Beschastnikh,
-                Yinqian Zhang, and Chen Feng</div>
-            <div>
-                <a href="https://arxiv.org/abs/2012.01636">[Paper]</a>
-                <a href="https://github.com/vechain/VIPs/blob/master/vips/VIP-220.md">[Variant used in
-                    VeChain]</a>
-            </div>
-        </li>
-    </ul>
-
-    <h3>At Monash</h3>
-    <p>
-        During my PhD, my research mainly focused on blockchain sharding protocols and their underlying
-        primitives, such as <a href="https://eprint.iacr.org/2020/943">shard allocation</a> and <a
-            href="https://eprint.iacr.org/2020/1033">decentralised randomness beacon</a>.<br />
-        I also have worked on some other topics such as <a
-            href="https://eprint.iacr.org/2019/896">cross-chain
-            communication</a>, <a href="https://eprint.iacr.org/2019/752">economic security of
-            blockchains</a>, <a href="https://eprint.iacr.org/2020/456">layer-2 protocols</a>, and
-        <a href="https://www.research.manchester.ac.uk/portal/files/85753741/paper.pdf">optimisation
-            of
-            Proof-of-Work mining</a>.
-    </p>
-    <ul>
-        <li>
-            <div class="title">Fair Delivery of Decentralised Randomness Beacon</div>
-            <div class="author">Runchao Han and Jiangshan Yu</div>
-            <div>The 27th International Conference on Financial Cryptography and Data Security
-                <b>(FC 2023)</b>
-            </div>
-            <div>
-                <a href="https://eprint.iacr.org/2023/103">[Paper]</a>
-            </div>
+            <div class="author">Jianyu Niu, Runchao Han, Hanzheng Lyu, Ivan Beschastnikh, Yinqian Zhang, and Chen Feng</div>
+            <div>IEEE Transactions on Dependable and Secure Computing <b>(TDSC 2026)</b></div>
+            <div><a href="https://doi.org/10.1109/TDSC.2026.3673924">[Journal version]</a>
+                <a href="https://github.com/vechain/VIPs/blob/master/vips/VIP-220.md">[Variant used in VeChain]</a></div>
         </li>
         <li>
-            <div class="title">Analysing and Improving Shard Allocation Protocols for Sharded
-                Blockchains</div>
-            <div class="author">Runchao Han, Jiangshan Yu, and Ren Zhang</div>
-            <div>The 4th ACM Conference on Advances in Financial Technologies <b>(AFT 2022)</b>
-            </div>
-            <div>
-                <a href="https://eprint.iacr.org/2020/943">[Paper]</a>
-                <a href="https://zkcapital.substack.com">[Selected as "Paper of the Week" (Issue
-                    #68) by ZK
-                    Capital]</a>
-            </div>
+            <div class="title">Constant latency and finality for dynamically available DAG</div>
+            <div class="author">Hans Schmiedel, Runchao Han, Qiang Tang, Ron Steinfeld, and Jiangshan Yu</div>
+            <div>IEEE Symposium on Security and Privacy <b>(S&amp;P 2025)</b></div>
+            <div><a href="https://eprint.iacr.org/2025/067.pdf">[Paper]</a></div>
         </li>
         <li>
-            <div class="title">On the optionality and fairness of Atomic Swaps</div>
-            <div class="author">Runchao Han, Haoyu Lin, and Jiangshan Yu</div>
-            <div>The First ACM Conference on Advances in Financial Technologies <b>(AFT 2019)</b>
-            </div>
-            <div>
-                <a href="https://eprint.iacr.org/2019/896">[Paper]</a>
-                <a
-                    href="https://docs.google.com/presentation/d/1cRytvse0g6yjdqrpOThVuFRgmaDqWHAUz3P26Sj7kC8/edit?usp=sharing">[Slides]</a>
-                <a href="https://github.com/DEX-ware/fair-atomic-swap">[Code]</a>
-                <a href="https://eips.ethereum.org/EIPS/eip-2266">[EIP-2266 standard]</a>
-                <a href="https://www.youtube.com/watch?v=wwWcfl9N65k">[Peep an EIP #23]</a>
-                <a
-                    href="https://cryptonews.com.au/preview/monash-university-researchers-developing-cryptocurrency-transaction-platform">[Report
-                    from CryptoNews]</a>
-                <a
-                    href="https://www.monash.edu/blockchain/news/to-realise-their-potential,-business-blockchains-must-learn-to-communicate">[Report
-                    from Monash University]</a>
-            </div>
+            <div class="title">Modeling Mobile Crash in Byzantine Consensus</div>
+            <div class="author">Hans Schmiedel, Runchao Han, Qiang Tang, Ron Steinfeld, and Jiangshan Yu</div>
+            <div>IEEE Computer Security Foundations Symposium <b>(CSF 2024)</b></div>
+            <div><a href="https://eprint.iacr.org/2024/452">[Paper]</a></div>
         </li>
         <li>
-            <div class="title">Evaluating Technical Approaches Toward A National Digital Ledger</div>
-            <div class="author">Carsten Rudolph, Jiangshan Yu, James Boorman, and Runchao Han</div>
-            <div>Technical report for the Ministry of Justice, Communication and Foreign Affairs of
-                Tuvalu
-            </div>
-            <div>
-                <a
-                    href="https://research.monash.edu/en/publications/evaluating-technical-approaches-toward-a-national-digital-ledger">[Link]</a>
-            </div>
+            <div class="title">Interchain Timestamping for Mesh Security</div>
+            <div class="author">Ertem Nusret Tas, Runchao Han, David Tse, Fisher Yu, and Kamilla Nazirkhanova</div>
+            <div>ACM Conference on Computer and Communications Security <b>(CCS 2023)</b></div>
+            <div><a href="https://arxiv.org/abs/2305.07830">[Paper]</a></div>
         </li>
     </ul><p id="no-papers" hidden>No papers match your search.</p></div>
     <footer class="statusbar"><span>My Computer</span><span>runchao.rocks</span></footer>
@@ -220,34 +133,32 @@
         </div>
     </header>
     <div class="addressbar"><span>Folder</span><span class="folder-path">My Computer / Engineering</span><button data-open="home">Home</button></div><div class="window-body document"><h2>Engineering profile</h2>
-    <p>
-        I work on designing and implementing systems that promote individual sovereignty and
-        freedom, especially
-        blockchains.<br />
-        I like both prototype systems based on research ideas, and make systems
-        production-ready.<br />
-        Currently, I am building the Babylon blockchain together with a group of fantastic
-        colleagues.<br />
-        I have been contributing to the design and implementation of various protocols,
-        including BTC timestamping, BTC staking, and more recently the entire stack for BTC staking
-        integration.<br />
-        I program mostly in Go and Rust.<br />
-    </p>
-    <p><a href="https://github.com/SebastianElvis">[Github]</a><br /></p>
-
+    <p>I build systems that support individual sovereignty and freedom.
+        I enjoy taking research ideas through prototypes to production. I program mostly in Go and Rust.</p>
+    <p>I joined Babylon as a founding engineer in 2022 and worked through each pivot with the team.
+        I helped take Bitcoin timestamping, staking, and chain integrations into production with Babylon Genesis.
+        For Trustless Bitcoin Vaults, I contributed to the protocol design, built the first proof of concept,
+        and helped deliver the testnet launch.</p>
+    <p>I advocate AI adoption and develop AI projects.
+        My work includes reusable AI skills and workflows, open-source research tools, and AI agent workspaces.</p>
+    <p><a href="https://github.com/SebastianElvis">[GitHub]</a></p>
     <h3>Selected repositories</h3>
     <ul>
-        <li><a href="https://github.com/babylonlabs-io/babylon">Babylon</a>: The Babylon full node,
-            providing
-            <a href="https://arxiv.org/pdf/2207.08392">BTC timestamping</a> and <a
-                href="https://docs.babylonlabs.io/papers/btc_staking_litepaper(EN).pdf">BTC staking</a>
-            protocols
-        </li>
-        <li><a href="https://github.com/babylonlabs-io/vigilante">Vigilante</a>: The relayer between
-            Babylon and Bitcoin
-        </li>
-        <li><a href="https://github.com/babylonlabs-io/babylon-contract">Babylon contracts</a>: The
-            CosmWasm smart contracts for BTC staking integration</li>
+        <li><strong>BTC staking infrastructure.</strong> <a href="https://github.com/babylonlabs-io/babylon">Babylon Genesis</a> and
+            <a href="https://github.com/babylonlabs-io/finality-provider">Finality Provider</a> bring Bitcoin security to proof-of-stake networks.
+            <a href="https://github.com/babylonlabs-io/vigilante">Vigilante</a> and
+            <a href="https://github.com/babylonlabs-io/btc-staker">BTC Staker</a> support Bitcoin staking and communication between Babylon and Bitcoin.</li>
+        <li><strong>BTC staking integration.</strong> <a href="https://github.com/babylonlabs-io/babylon-sdk">Babylon SDK</a> and contracts for
+            <a href="https://github.com/babylonlabs-io/cosmos-bsn-contracts">Cosmos chains</a> and
+            <a href="https://github.com/babylonlabs-io/rollup-bsn-contracts">rollups</a> connect other chains to Bitcoin security.</li>
+        <li><strong>Formal verification.</strong> <a href="https://github.com/Kriterion-cc/">Kriterion</a>'s <a href="https://github.com/Kriterion-cc/argomac-lean">argomac-lean</a> provides a Lean implementation and security proofs for <a href="https://eprint.iacr.org/2026/049">ArgoMAC</a>.</li>
+    </ul>
+    <h3>Personal projects</h3>
+    <ul>
+        <li><strong>AI research and reasoning.</strong> <a href="https://github.com/SebastianElvis/reaper">Reaper</a> takes a research question through investigation to a written paper.
+            <a href="https://github.com/SebastianElvis/senate">Senate</a> brings AI agents together for debate and collaborative decisions.</li>
+        <li><strong>AI agent workspaces.</strong> <a href="https://github.com/SebastianElvis/octopus">Octopus</a> lets developers direct AI coding agents on parallel tasks.
+            <a href="https://github.com/SebastianElvis/clawpier">ClawPier</a> helps users manage isolated AI agent environments.</li>
     </ul>
     <h3>Standard</h3>
     <ul>
@@ -446,14 +357,7 @@
                 software</a></li>
     </ul>
 
-    <h3>Some books</h3>
-    <ul>
-        <li><a href="./books/mao/index.html">Selected Works of Mao Tse-Tung</a> (Credit to <a
-                href="https://github.com/weiyinfu/MaoZeDongAnthology">this repo</a>) </li>
-        <li><a href="utils/bibi/?book=lky" data-bibi="embed">The Singapore Story: Memoirs of Lee Kuan
-                Yew</a></li>
-        <li><a href="https://remoteok.cn/">RemoteOK</a> (in Chinese)</li>
-    </ul></div>
+    </div>
     <footer class="statusbar"><span>My Computer</span><span>runchao.rocks</span></footer>
 </section>
 <section class="window" id="site" aria-labelledby="site-title" hidden>
@@ -468,7 +372,7 @@
     <div class="window-body document"><h1>About this website</h1><p>This site is my personal desktop on the web.</p><p>Windows XP provides the frame. The profile page and music player add personal details.</p><h2>You control the desktop.</h2><ul><li>You can open a window with one click.</li><li>You can drag a window by its title bar.</li><li>You can minimize a window to the taskbar.</li><li>You can double-click a title bar to maximize a window.</li><li>You can use Tab and Enter to reach each control.</li><li>You can press Escape to close the Start menu.</li></ul><p>The original site used <a href="https://github.com/mahbodnr/mahbodnr.github.io">mahbodnr's Windows-style homepage</a>.</p><p>This site uses HTML, CSS, and JavaScript. <a href="https://github.com/captbaritone/webamp">Webamp</a> provides the music player.</p><button id="reset-desktop">Reset desktop</button></div>
     <footer class="statusbar"><span>Help</span><span>runchao.rocks</span></footer>
 </section></main>
-<nav id="start-menu" aria-label="Start menu" hidden><div class="start-rail"><img src="./img/milady.avif" alt="">Runchao Han</div><div class="start-links"><div class="start-apps"><button data-open="home"><img src="./img/computer_explorer-5.png" alt="">My Homepage</button><button data-open="research"><img src="./img/paper.png" alt="">Research</button><button data-open="engineering"><img src="./img/help_book_computer-4.png" alt="">Engineering</button><button data-open="resources"><img src="./img/internet_explorer.png" alt="">Internet Links</button><button data-open="services"><img src="./img/world-4.png" alt="">Services</button><button data-open="music"><img src="./img/winamp.png" alt="">Winamp</button><button data-open="site"><img src="./img/text_editor.png" alt="">About this website</button></div><div class="start-contacts"><a href="https://github.com/SebastianElvis/cv/raw/master/runchao-han-cv.pdf" target="_blank" rel="noopener"><img src="./img/documents.png" alt="">CV</a><a href="https://www.linkedin.com/in/runchao-han" target="_blank" rel="noopener"><img src="./img/linkedin.png" alt="">Linkedin</a><a href="https://github.com/SebastianElvis" target="_blank" rel="noopener"><img src="./img/github.png" alt="">GitHub</a><a href="https://dblp.org/pers/hd/h/Han:Runchao" target="_blank" rel="noopener"><img src="./img/dblp.png" alt="">DBLP</a><a href="https://scholar.google.com/citations?user=xbpDocQAAAAJ" target="_blank" rel="noopener"><img src="./img/scholar.png" alt="">Google Scholar</a><a href="https://t.me/runchaohan" target="_blank" rel="noopener"><img src="./img/telegram.png" alt="">Telegram</a><a href="https://twitter.com/runchao_han" target="_blank" rel="noopener"><img src="./img/twitter.png" alt="">Twitter</a><a href="https://calendar.app.google/xHqBbaU4JD5RtzEDA" target="_blank" rel="noopener"><img src="./img/calendar.png" alt="">Calendar</a><a href="./img/wechat-qrcode.jpeg" target="_blank" rel="noopener"><img src="./img/wechat.png" alt="">WeChat</a></div></div><strong>Windows XP · Personal edition</strong></nav>
+<nav id="start-menu" aria-label="Start menu" hidden><div class="start-rail"><img src="./img/milady.avif" alt="">Runchao Han</div><div class="start-links"><div class="start-apps"><button data-open="home"><img src="./img/computer_explorer-5.png" alt="">My Homepage</button><button data-open="research"><img src="./img/paper.png" alt="">Research</button><button data-open="engineering"><img src="./img/help_book_computer-4.png" alt="">Engineering</button><button data-open="resources"><img src="./img/internet_explorer.png" alt="">Internet Links</button><button data-open="services"><img src="./img/world-4.png" alt="">Services</button><button data-open="music"><img src="./img/winamp.png" alt="">Winamp</button><button data-open="site"><img src="./img/text_editor.png" alt="">About this website</button></div><div class="start-contacts"><a href="https://www.linkedin.com/in/runchao-han" target="_blank" rel="noopener"><img src="./img/linkedin.png" alt="">Linkedin</a><a href="https://github.com/SebastianElvis" target="_blank" rel="noopener"><img src="./img/github.png" alt="">GitHub</a><a href="https://dblp.org/pers/hd/h/Han:Runchao" target="_blank" rel="noopener"><img src="./img/dblp.png" alt="">DBLP</a><a href="https://scholar.google.com/citations?user=xbpDocQAAAAJ" target="_blank" rel="noopener"><img src="./img/scholar.png" alt="">Google Scholar</a><a href="https://t.me/runchaohan" target="_blank" rel="noopener"><img src="./img/telegram.png" alt="">Telegram</a><a href="https://twitter.com/runchao_han" target="_blank" rel="noopener"><img src="./img/twitter.png" alt="">Twitter</a><a href="https://calendar.app.google/xHqBbaU4JD5RtzEDA" target="_blank" rel="noopener"><img src="./img/calendar.png" alt="">Calendar</a><a href="./img/wechat-qrcode.jpeg" target="_blank" rel="noopener"><img src="./img/wechat.png" alt="">WeChat</a></div></div><strong>Windows XP · Personal edition</strong></nav>
 <footer id="taskbar"><button id="start-button" aria-expanded="false" aria-controls="start-menu"><img src="./img/windows-xp.svg" alt=""><b>Start</b></button><button id="show-desktop" title="Show desktop" aria-label="Show desktop"><img src="./img/computer_explorer-5.png" alt=""></button><nav id="tasks" aria-label="Open windows"></nav><div class="system-tray"><span class="tray-mark" aria-hidden="true">▣</span><time id="clock" aria-label="Local time"></time></div></footer>
 </div>
 <div id="music" aria-label="Winamp" hidden></div>

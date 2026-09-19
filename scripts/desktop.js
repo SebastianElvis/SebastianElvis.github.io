@@ -179,14 +179,16 @@ async function loadPlayer() {
         });
         if (music.hidden) return;
         if (!Webamp.browserIsSupported()) throw new Error('This browser does not support Webamp.');
+        const doubled = music.clientWidth >= 566 && music.clientHeight >= 480;
         const instance = new Webamp({
             initialTracks: [],
             zIndex: 1,
             enableHotkeys: false,
+            enableDoubleSizeMode: doubled,
             windowLayout: {
                 main: { position: { top: 0, left: 0 } },
-                equalizer: { position: { top: 116, left: 0 }, closed: true },
-                playlist: { position: { top: 116, left: 0 } }
+                equalizer: { position: { top: doubled ? 232 : 116, left: 0 }, closed: true },
+                playlist: { position: { top: doubled ? 232 : 116, left: 0 }, size: { extraWidth: doubled ? 11 : 0, extraHeight: doubled ? 4 : 0 } }
             }
         });
         instance.onClose(() => hideWindow(music, true));
