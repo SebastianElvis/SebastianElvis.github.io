@@ -1,942 +1,145 @@
-body {
-    background: #008080;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    user-select: none;
-    font-weight: 300;
-    -webkit-font-smoothing: none;
-    -moz-osx-font-smoothing: grayscale;
-    overflow: hidden;
-}
-
-h2 {
-    margin: 0;
-}
-
-#start-bar {
-    background: #c0c0c0;
-    height: 2.5rem;
-    position: absolute;
-    bottom: 0;
-    width: calc(100% - 1rem);
-    display: flex;
-    padding: 0.5rem;
-    z-index: 999999999;
-    justify-content: space-between;
-    box-shadow: 0 -2px #fffdfc, 0 -4px #cce9eb;
-}
-
-#all-windows {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 10;
-    pointer-events: none;
-    height: 100%;
-}
-
-#all-windows>div {
-    pointer-events: all;
-}
-
-#all-windows>div {
-    display: none;
-}
-
-#start-menu {
-    bottom: 3.75rem;
-    position: absolute;
-    background: #c0c0c0;
-    left: 0.25rem;
-    width: 24rem;
-    min-height: 3rem;
-    display: none;
-}
-
-#start-button-input:checked~#start-bar>#start-menu {
-    display: block;
-}
-
-#start-menu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-#start-menu ul li label {
-    height: 4rem;
-    float: left;
-    cursor: pointer;
-    padding: 0 0.5rem 0 0.5rem;
-    margin: 0 2.5rem;
-    display: flex;
-    align-items: center;
-    position: relative;
-    cursor: pointer;
-    box-sizing: border-box;
-    width: calc(100% - 3rem);
-}
-
-#start-menu>ul>li label:before {
-    width: 10px;
-    background: black;
-    content: '';
-    height: 1px;
-    position: absolute;
-    bottom: 20px;
-    left: 3rem;
-}
-
-#start-menu>ul>li label:first-of-type:before {
-    width: 14px;
-}
-
-
-#start-menu>ul>li label:hover:before {
-    background: white;
-}
-
-#start-menu ul li.line label {
-    box-shadow: 0 2px #808280, 0 4px white;
-}
-
-.line {
-    box-shadow: 0 2px #808280, 0 4px white;
-}
-
-#start-menu ul li img {
-    width: 2rem;
-    height: auto;
-    margin: 0 1rem 0 0;
-}
-
-#start-menu ul li a {
-    color: inherit;
-}
-
-#start-menu ul li label:hover {
-    background: #0c1b98;
-    color: white;
-    box-shadow: -8px 0 #0c1b98, 8px 0 #0c1b98;
-}
-
-.windows-box-shadow,
-.content>label {
-    box-shadow: -2px -2px #e0dede, -2px 0 #e0dede, 0 -2px #e0dede, -4px -4px white, -4px 0 white, 0 -4px white, 2px 2px #818181, 0 2px #818181, 2px 0 #818181, 2px -2px #e0dede, -2px 2px #818181, -4px 2px white, -4px 4px black, 4px 4px black, 4px 0 black, 0 4px black, 2px -4px white, 4px -4px black;
-}
-
-.inverse-windows-box-shadow,
-.content>label:active {
-    box-shadow: -2px -2px #818181, -2px 0 #818181, 0 -2px #818181, -4px -4px black, -4px 0 black, 0 -4px black, 2px 2px #e0dede, 0 2px #e0dede, 2px 0 #e0dede, 2px -2px #818181, -2px 2px #e0dede, -4px 2px black, -4px 4px white, 4px 4px white, 4px 0 white, 0 4px white, 2px -4px black, 4px -4px white;
-}
-
-#start-button {
-    min-width: 104px;
-    background-image: url(../img/start_button.png);
-    width: 6.5rem;
-    background-size: auto 80%;
-    background-repeat: no-repeat;
-    background-position: 0.25rem;
-    cursor: pointer;
-    height: 2.25rem;
-}
-
-#time-options {
-    box-shadow: 0 2px white, 0 -2px #7d7d7d, -2px -2px #7d7d7d, 2px 2px white, -2px 2px #7d7d7d, 2px -2px white;
-    width: 5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#time-options:after {
-    content: url(../img/task-scheduler-16x16.png) ' 00:00';
-}
-
-#start-button:active {
-    box-shadow: -2px -2px #818181, -2px 0 #818181, 0 -2px #818181, -4px -4px black, -4px 0 black, 0 -4px black, 2px 2px #e0dede, 0 2px #e0dede, 2px 0 #e0dede, 2px -2px #818181, -2px 2px #e0dede, -4px 2px black, -4px 4px white, 4px 4px white, 4px 0 white, 0 4px white, 2px -4px black, 4px -4px white;
-}
-
-label {
-    display: block;
-}
-
-[type="checkbox"],
-[type="radio"] {
-    display: none;
-}
-
-#start-button-input:checked~#start-menu {
-    display: block;
-}
-
-#windows-start-menu-blue {
-    color: white;
-    font-weight: 900;
-    position: absolute;
-    transform: rotateZ(-90deg);
-    width: 20rem;
-    font-size: 1.25rem;
-    font-family: "Arial Black", sans-serif;
-    background: #011590;
-    left: 0;
-    transform-origin: 0 0;
-    top: 20rem;
-    box-sizing: border-box;
-    padding: 0.125rem 0.75rem;
-}
-
-#windows-start-menu-blue span {
-    font-weight: 100;
-    font-family: "Arial", sans-serif;
-}
-
-.programs label:after {
-    content: '';
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent transparent transparent black;
-    position: absolute;
-    top: 1.5rem;
-    right: 0.25rem;
-}
-
-.programs label:hover:after {
-    border-color: transparent transparent transparent white;
-}
-
-#desktop {
-    position: absolute;
-    top: 0;
-    padding: 0.5rem;
-    flex-wrap: wrap;
-    width: auto;
-    height: calc(100% - 3.75rem);
-    left: 0;
-    justify-content: flex-start;
-    align-items: flex-start;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-}
-
-.desktop-item {
-    color: white;
-    text-align: center;
-    cursor: pointer;
-    align-items: center;
-    border: 1px solid transparent;
-    flex-direction: column;
-    max-width: 10vh;
-    width: 75rem;
-    justify-content: center;
-    min-height: 6.25rem;
-    margin: 0 0 2vh 0;
-    padding: 0.1rem 0;
-}
-
-.desktop-item .icon {
-    display: block;
-}
-
-.desktop-item img {
-    width: 7vh;
-    margin: 0 0 0.75rem 0;
-}
-
-a.desktop-item {
-    text-decoration: none;
-}
-
-.desktop-item .text {
-    display: inline;
-    margin: 0.5rem 0;
-    text-align: center;
-    font-size: 1.5vh;
-}
-
-.desktop-item:active .text {
-    background: #005959;
-}
-
-
-.window {
-    background: #b9b9b9;
-    margin: 0.5rem;
-    margin-top: -5rem;
-    z-index: 10;
-    resize: both;
-    overflow: hidden;
-    position: relative;
-    width: 20rem;
-    height: 21rem;
-}
-
-.window.ie {
-    width: 45%;
-    min-width: 35%;
-    left: 50vw;
-    margin-top: 0;
-    position: absolute;
-    top: 28vh;
-    height: 60%;
-    min-height: 20%;
-}
-
-.window.help {
-    width: 80%;
-    left: 10vw;
-    margin-top: 0;
-    position: absolute;
-    top: 5vh;
-    height: 75vh;
-    min-height: 75vh;
-    min-width: 50%;
-    max-height: 95vh;
-}
-
-
-.window.notepad {
-    width: 70%;
-    min-width: 60%;
-    left: 20vw;
-    margin-top: 0;
-    position: absolute;
-    top: 10vh;
-    height: 70%;
-    min-height: 20rem;
-}
-
-.window.trash {
-    width: 75vw;
-    min-width: 71vw;
-    left: 25vw;
-    margin-top: 0;
-    position: absolute;
-    top: 20vh;
-    height: 65%;
-    min-height: 20rem;
-}
-
-.window.documents {
-    width: 65%;
-    min-width: 50%;
-    left: 25vw;
-    margin-top: 0;
-    position: absolute;
-    top: 2vh;
-    height: 80vh;
-    min-height: 20rem;
-}
-
-.window.services {
-    width: 50%;
-    min-width: 60%;
-    left: 20vw;
-    margin-top: 0;
-    position: relative;
-    top: 10vh;
-    height: 70%;
-    min-height: 20rem;
-}
-
-.window.resource {
-    width: 50%;
-    min-width: 60%;
-    left: 20vw;
-    margin-top: 0;
-    position: relative;
-    top: 10vh;
-    height: 70%;
-    min-height: 20rem;
-}
-
-.window .header {
-    background: linear-gradient(90deg, #000b7c, #377cc6);
-    color: white;
-    padding: 0.25rem;
-}
-
-.window-content {
-    padding: 0.5rem;
-}
-
-
-.select-box {
-    background: white;
-    margin: 1rem;
-    padding-bottom: 3rem;
-}
-
-.select-box label {
-    padding: 0.25rem;
-}
-
-
-.ok-cancel {
-    text-align: right;
-    float: left;
-    width: calc(100% - 2rem);
-    margin: 1rem;
-}
-
-.margin-input {
-    margin: 0.5rem 1rem;
-    width: calc(100% - 2rem);
-}
-
-.ok-cancel>label {
-    display: inline-block;
-    margin: 0 0 0 0.5rem;
-    padding: 0.25rem;
-    cursor: pointer;
-    min-width: 4rem;
-    text-align: center;
-}
-
-.ok-cancel>label:active {
-    box-shadow: -2px -2px #818181, -2px 0 #818181, 0 -2px #818181, -4px -4px black, -4px 0 black, 0 -4px black, 2px 2px #e0dede, 0 2px #e0dede, 2px 0 #e0dede, 2px -2px #818181, -2px 2px #e0dede, -4px 2px black, -4px 4px white, 4px 4px white, 4px 0 white, 0 4px white, 2px -4px black, 4px -4px white;
-}
-
-input[type="text"],
-input[type="password"] {
-    border: none;
-}
-
-input[type="text"]:focus,
-input[type="password"]:focus {
-    outline: none;
-}
-
-input[type="submit"],
-.submit-label {
-    background: #b9b9b9;
-    font-weight: 400;
-    border: none;
-}
-
-#zark-muckerberg:checked~#zark-muckerberg-label,
-#donald-trump:checked~#donald-trump-label,
-#spiderman:checked~#spiderman-label {
-    background: #0c1b98;
-    color: white;
-}
-
-iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    border: none;
-    height: 100%;
-}
-
-.content {
-    position: relative;
-    float: left;
-    width: 100%;
-    height: 100%;
-}
-
-.options {
-    display: flex;
-    padding: 0.5rem 0.5rem 0.5rem 1.25rem;
-    position: relative;
-}
-
-.options:before,
-#items:before {
-    content: '';
-    width: 2px;
-    height: calc(100% - 1rem);
-    position: absolute;
-    background: #f2f2f2;
-    box-shadow: 1px 1px 0 #818181;
-    left: 0.5rem;
-    top: 0.5rem;
-}
-
-#items:before {
-    top: 0;
-    height: calc(100% - 2px);
-}
-
-.options>div {
-    padding: 0 1rem 0 0;
-    opacity: 0.5;
-}
-
-.options.padding {
-    padding: 0.75rem 0.5rem 0.5rem 1.25rem;
-}
-
-.options.padding>input {
-    width: 100%;
-    padding: 0.25rem;
-    box-sizing: border-box;
-}
-
-.options .item.float-right {
-    position: absolute;
-    top: 0;
-    right: -1rem;
-    opacity: 1;
-}
-
-.header-buttons {
-    position: absolute;
-    display: flex;
-    top: 0.3rem;
-    z-index: 9999;
-    right: 0.3rem;
-    cursor: pointer;
-}
-
-.header-buttons>label {
-    background: #c0c0c0;
-    width: 1rem;
-    height: 1rem;
-    font-family: "Arial Black", sans-serif;
-    box-sizing: border-box;
-    font-size: 0.75rem;
-    position: relative;
-    color: black;
-    line-height: 1rem;
-    margin: 0 0 0 0.55rem;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    justify-content: center;
-}
-
-.header-buttons>label.maximize:after,
-.header-buttons>label.maximize:before {
-    content: '';
-    width: 0.3rem;
-    border: 2px solid black;
-    border-top: 3px solid black;
-    background: #c0c0c0;
-    height: 0.25rem;
-    top: 5px;
-    position: absolute;
-    left: 1px;
-    z-index: 2;
-}
-
-.header-buttons>label.maximize:before {
-    top: 1px;
-    left: 5px;
-    z-index: 1;
-    width: 0.3rem;
-}
-
-.header-buttons>label.minimize:before {
-    content: '';
-    background: black;
-    width: 7px;
-    position: relative;
-    top: 3px;
-    height: 3px;
-}
-
-.header-buttons>label:active {
-    box-shadow: -2px -2px #818181, -2px 0 #818181, 0 -2px #818181, -4px -4px black, -4px 0 black, 0 -4px black, 2px 2px #e0dede, 0 2px #e0dede, 2px 0 #e0dede, 2px -2px #818181, -2px 2px #e0dede, -4px 2px black, -4px 4px white, 4px 4px white, 4px 0 white, 0 4px white, 2px -4px black, 4px -4px white;
-}
-
-#start-button-items {
-    display: flex;
-    width: calc(100% - 4rem);
-}
-
-#items {
-    margin: 0 0 0 1rem;
-    padding: 0 0 0 2rem;
-    display: flex;
-    overflow: hidden;
-    padding: 4px 0 0 2rem;
-    position: relative;
-    position: relative;
-    top: -3px;
-    height: calc(100% + -1px);
-}
-
-
-#items>label {
-    height: calc(100% - 4px);
-    display: flex;
-    width: 10.5rem;
-    align-items: center;
-    cursor: pointer;
-    display: none;
-    box-sizing: border-box;
-    margin: 0 1rem 0 0;
-    font-weight: 600;
-    padding: 0 0.5rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-#items>label span {
-    display: block;
-    overflow: hidden;
-    min-width: 2rem;
-    text-overflow: ellipsis;
-}
-
-.file {
-    cursor: pointer;
-    margin: 0 1rem 0 0;
-    text-align: center;
-    width: 6rem;
-}
-
-.file .image {
-    display: block;
-    width: 100%;
-    text-align: center;
-    margin: 0 0 1rem 0;
-}
-
-.file .text {
-    word-break: break-all;
-    padding: 2px;
-}
-
-#windows-11:checked~.windows-11 .text,
-#macos:checked~.macos .text,
-#itunes:checked~.itunes .text,
-#secret-codes:checked~.secret-codes .text,
-#diary:checked~.diary .text {
-    background: #000a7c;
-    color: white;
-}
-
-#items>label:active {
-    box-shadow: -2px -2px #818181, -2px 0 #818181, 0 -2px #818181, -4px -4px black, -4px 0 black, 0 -4px black, 2px 2px #e0dede, 0 2px #e0dede, 2px 0 #e0dede, 2px -2px #818181, -2px 2px #e0dede, -4px 2px black, -4px 4px white, 4px 4px white, 4px 0 white, 0 4px white, 2px -4px black, 4px -4px white;
-}
-
-#items>label img {
-    width: 1.75rem;
-    padding: 0 0.5rem 0 0;
-}
-
-textarea {
-    width: 100%;
-    position: relative;
-    padding: 1.5rem;
-    box-sizing: border-box;
-    top: 2px;
-    height: 100%;
-    border: none;
-    appearance: none;
-}
-
-textarea:focus {
-    outline: none;
-}
-
-.content.white {
-    background: white;
-    padding: 0rem;
-    box-sizing: border-box;
-    display: flex;
-    margin-top: 2px;
-    overflow: hidden;
-}
-
-.content.white-scroll {
-    background: white;
-    padding: 1rem;
-    box-sizing: border-box;
-    margin-top: 2px;
-    overflow: scroll;
-}
-
-
-#windows-ie-input:checked~#all-windows .ie,
-#research-input:checked~#all-windows .notepad,
-#engineering-input:checked~#all-windows .trash,
-#services-input:checked~#all-windows .services,
-#resource-input:checked~#all-windows .resource,
-#windows-documents-input:checked~#all-windows .documents,
-#aboutme-input:checked~#all-windows .help {
-    display: block;
-}
-
-#windows-ie-input:checked~#start-bar .ie-tab,
-#research-input:checked~#start-bar .notepad-tab,
-#engineering-input:checked~#start-bar .trash-tab,
-#services-input:checked~#start-bar .services-tab,
-#resource-input:checked~#start-bar .resource-tab,
-#windows-documents-input:checked~#start-bar .documents-tab,
-#aboutme-input:checked~#start-bar .help-tab {
-    display: flex;
-}
-
-#windows-ie-input-min:checked~#all-windows .ie,
-#research-input-min:checked~#all-windows .notepad,
-#engineering-input-min:checked~#all-windows .trash,
-#services-input-min:checked~#all-windows .services,
-#resource-input-min:checked~#all-windows .resource,
-#windows-documents-input-min:checked~#all-windows .documents,
-#aboutme-input-min:checked~#all-windows .help {
-    display: none;
-}
-
-#windows-ie-input:checked~#start-bar .ie-tab,
-#research-input:checked~#start-bar .notepad-tab,
-#engineering-input:checked~#start-bar .trash-tab,
-#services-input:checked~#start-bar .services-tab,
-#resource-input:checked~#start-bar .resource-tab,
-#windows-documents-input:checked~#start-bar .documents-tab,
-#aboutme-input:checked~#start-bar .help-tab {
-    box-shadow: -2px -2px #818181, -2px 0 #818181, 0 -2px #818181, -4px -4px black, -4px 0 black, 0 -4px black, 2px 2px #e0dede, 0 2px #e0dede, 2px 0 #e0dede, 2px -2px #818181, -2px 2px #e0dede, -4px 2px black, -4px 4px white, 4px 4px white, 4px 0 white, 0 4px white, 2px -4px black, 4px -4px white;
-}
-
-#windows-ie-input-min:checked~#start-bar .ie-tab,
-#research-input-min:checked~#start-bar .notepad-tab,
-#engineering-input-min:checked~#start-bar .trash-tab,
-#services-input-min:checked~#start-bar .services-tab,
-#resource-input-min:checked~#start-bar .resource-tab,
-#windows-documents-input-min:checked~#start-bar .documents-tab,
-#aboutme-input-min:checked~#start-bar .help-tab {
-    box-shadow: -2px -2px #e0dede, -2px 0 #e0dede, 0 -2px #e0dede, -4px -4px white, -4px 0 white, 0 -4px white, 2px 2px #818181, 0 2px #818181, 2px 0 #818181, 2px -2px #e0dede, -2px 2px #818181, -4px 2px white, -4px 4px black, 4px 4px black, 4px 0 black, 0 4px black, 2px -4px white, 4px -4px black;
-}
-
-#windows-ie-input-on-top:checked~#all-windows .ie,
-#research-input-on-top:checked~#all-windows .notepad,
-#engineering-input-on-top:checked~#all-windows .trash,
-#services-input-on-top:checked~#all-windows .services,
-#resource-input-on-top:checked~#all-windows .resource,
-#windows-documents-input-on-top:checked~#all-windows .documents,
-#aboutme-input-on-top:checked~#all-windows .help {
-    z-index: 20;
-}
-
-.hard-show {
-    display: block !important;
-}
-
-
-@keyframes show {
-    0% {
-        opacity: 0;
-        pointer-events: none;
-    }
-
-    100% {
-        opacity: 1;
-        pointer-events: all;
-    }
-}
-
-#background {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-}
-
-.programs {
-    position: relative;
-}
-
-#start-bar .programs>ul {
-    display: none;
-    position: absolute;
-    top: 12.5rem;
-    left: calc(100% - 6px);
-    background: silver;
-    list-style: none;
-    padding: none;
-    margin: 0;
-}
-
-.programs>ul label:after,
-.programs>ul label:before {
-    display: none;
-}
-
-#start-menu .programs ul img {
-    width: 1rem;
-    margin: 0 0.5rem 0 0;
-}
-
-#start-menu .programs ul label {
-    margin: 0;
-    width: 100%;
-    padding: 0;
-    height: 3rem;
-    padding: 0.5rem;
-    width: 14rem;
-}
-
-#start-bar .programs:hover>ul {
-    display: block;
-}
-
-#start-menu .programs ul li label:hover {
-    box-shadow: none;
-}
-
-.tab-box {
-    min-width: 15%;
-}
-
-.tab-header {
-    box-shadow: -2px -2px #e0dede, -2px 0 #e0dede, 0 -2px #e0dede, -4px 0 white, 0 -4px white, 2px 0 #818181, 2px -2px #818181, 4px 0 black;
-    float: left;
-    padding: 0.25rem;
-}
-
-.tab-box img {
-    width: 1rem;
-    float: left;
-    padding: 0 0.25rem 1rem 0;
-}
-
-.tab-box .box {
-    width: 100%;
-    background: white;
-    float: left;
-    border: 2px inset;
-    padding: 0;
-    position: relative;
-    left: -4px;
-    list-style: none;
-    margin: 0;
-}
-
-.tab-box .box label {
-    padding: 0.25rem;
-    box-sizing: border-box;
-    cursor: pointer;
-    width: 100%;
-    float: left;
-}
-
-.help .content {
-    background: white;
-    width: 250%;
-    border: 2px inset;
-    margin: 0 0 0 1rem;
-    min-height: 60vh;
-    overflow: scroll;
-    max-height: 70vh;
-    top: 1.6rem;
-}
-
-
-.help .tab-box-content {
-    display: flex;
-    margin: 1rem;
-}
-
-.tab-box-content .content>div {
-    display: none;
-}
-
-.tab-box-content #topic-1:checked~.content .topic-1-content,
-.tab-box-content #topic-2:checked~.content .topic-2-content,
-.tab-box-content #topic-3:checked~.content .topic-3-content,
-.tab-box-content #topic-4:checked~.content .topic-4-content {
-    display: block;
-}
-
-.tab-box-content #topic-1:checked~.tab-box ul label[for="topic-1"],
-.tab-box-content #topic-2:checked~.tab-box ul label[for="topic-2"],
-.tab-box-content #topic-3:checked~.tab-box ul label[for="topic-3"],
-.tab-box-content #topic-4:checked~.tab-box ul label[for="topic-4"] {
-    background: #000a7c;
-    color: white;
-}
-
-
-
-.tab-box-content .content>div {
-    padding: 1rem;
-    box-sizing: border-box;
-}
-
-.about-me {
-    font-family: "Open Sans", "Source Sans Pro";
-}
-
-.about-me strong {
-    font-weight: 500;
-}
-
-.about-me h3 {
-    margin-bottom: -1rem;
-}
-
-.stars {
-    font-size: 12px;
-    /* margin-top: -1.25rem; */
-}
-
-.research {
-    font-family: "Open Sans", "Source Sans Pro";
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 10px;
-}
-
-.research {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    max-width: 800px;
-}
-
-.research img {
-    width: 25%;
-    height: auto;
-    margin-right: 20px;
-}
-
-.research h2 {
-    font-size: 16px;
-    margin-bottom: 10px;
-}
-
-.research p {
-    font-family: "Open Sans", "Helvetica Neue", Helvetica;
-    font-weight: 300;
-    line-height: 23px;
-    color: #515151;
-    margin-bottom: 25px;
-}
-
-.research .date {
-    font-size: 16px;
-    line-height: 0;
-    opacity: 1;
-    margin: 0;
-    color: black;
-    /* font-weight: bold; */
-}
-
-.research a {
-    color: #0000FF;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-hr {
-    display: block;
-    border-style: inset;
-    border-width: 0.2px;
-    margin: 1.5rem;
-    align-self: stretch;
-    text-align: center;
-    width: 70%;
-    margin-left: 15%;
-    border-color: rgba(0, 0, 0, 0.1);
-}
+:root {
+    color-scheme: light;
+    --desktop: #3b7bd5;
+    --navy: #164a94;
+    --silver: #ece9d8;
+    --paper: #fffef5;
+    --raised: inset 0 0 0 1px #003c74, inset 0 2px 0 1px #fff, inset 0 -2px 0 1px #d6d0bd;
+    --sunken: inset 0 0 0 1px #7f9db9, inset 1px 2px 2px #ddd;
+}
+#desktop-shell * { box-sizing: border-box; }
+body { margin: 0; background: var(--desktop) url(../img/xp-hills.jpg) center / cover no-repeat fixed; color: #171717; font: 12px/1.4 Tahoma, Arial, sans-serif; overflow: hidden; height: 100dvh; }
+#desktop-shell button, #desktop-shell input { font: inherit; color: inherit; border-radius: 3px; }
+#desktop-shell button { border: 0; background: linear-gradient(#fff, #f0eddf); box-shadow: var(--raised); padding: 6px 12px; cursor: pointer; }
+#desktop-shell button:active { box-shadow: var(--sunken); }
+#desktop-shell a { color: var(--navy); }
+#desktop-shell a:visited { color: #673a79; }
+#desktop-shell a:hover { text-decoration: none; }
+#desktop-shell button:focus-visible, #desktop-shell a:focus-visible, #desktop-shell summary:focus-visible, #desktop-shell input:focus-visible { outline: 2px solid #e59700; outline-offset: 2px; }
+#desktop-shell [hidden] { display: none !important; }
+#desktop-shell .skip-link { position: fixed; top: -60px; left: 12px; z-index: 10000; background: white; padding: 10px 16px; }
+#desktop-shell .skip-link:focus { top: 8px; }
+#desktop-shell #desktop-icons { position: absolute; inset: 12px auto 44px 12px; display: grid; grid-auto-flow: column; grid-template-rows: repeat(auto-fill, 76px); grid-auto-columns: 76px; gap: 8px 14px; align-content: start; }
+#desktop-shell .desktop-icon { display: flex; flex-direction: column; align-items: center; gap: 6px; background: none; box-shadow: none; color: white; padding: 5px 2px; min-height: 66px; text-decoration: none; font-size: 11px; }
+#desktop-shell .desktop-icon:visited { color: white; }
+#desktop-shell .desktop-icon img { width: 32px; height: 32px; object-fit: contain; image-rendering: auto; }
+#desktop-shell .desktop-icon span { text-shadow: 1px 2px 2px #17375e; }
+#desktop-shell .desktop-icon:hover span, #desktop-shell .desktop-icon:focus-visible span { background: #316ac5; outline: 1px dotted white; }
+#desktop-shell .desktop-icon:active { box-shadow: none; }
+#desktop-shell #home { height: min(670px, calc(100% - 60px)); }
+#desktop-shell #workspace { position: absolute; inset: 0 0 36px; pointer-events: none; }
+#desktop-shell .window { position: absolute; left: max(100px, calc((100% - 740px) / 2)); top: 30px; width: min(740px, calc(100% - 128px)); height: min(570px, calc(100% - 60px)); min-width: min(300px, calc(100vw - 12px)); min-height: 160px; display: flex; flex-direction: column; padding: 3px; background: var(--silver); border: 1px solid #0055e5; border-radius: 8px 8px 0 0; box-shadow: inset 0 0 0 2px #1665ee, 2px 4px 8px #142b5460; pointer-events: auto; resize: both; overflow: hidden; max-width: 100%; max-height: 100%; }
+#desktop-shell #site { width: min(560px, calc(100% - 128px)); }
+#desktop-shell .window.maximized { inset: 3px !important; width: calc(100% - 6px) !important; height: calc(100% - 6px) !important; resize: none; }
+#desktop-shell .titlebar { flex: 0 0 auto; display: flex; align-items: center; gap: 8px; background: linear-gradient(#66a6ff, #0058ee 12%, #1675f6 48%, #0052d6 92%, #003cba); color: white; padding: 3px 4px; min-height: 28px; margin: -2px -2px 0; border-radius: 6px 6px 0 0; text-shadow: 1px 1px #003c87; cursor: move; touch-action: none; user-select: none; }
+#desktop-shell .window:not(.active) .titlebar { background: linear-gradient(#a3c4f4, #6e9cde 15%, #88afe7 85%, #668bca); }
+#desktop-shell .titlebar h2 { margin: 0; display: flex; align-items: center; gap: 6px; font-size: 13px; flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+#desktop-shell .titlebar img { width: 16px; height: 16px; object-fit: contain; image-rendering: auto; }
+#desktop-shell .window-controls { display: flex; gap: 3px; }
+#desktop-shell .window-controls button { width: 21px; height: 21px; padding: 0; color: white; border: 1px solid white; background: linear-gradient(135deg, #97c9ff, #2577ec 45%, #0755d8); box-shadow: inset 0 0 2px 1px #fff8; font: bold 17px/18px Arial, sans-serif; text-shadow: 1px 1px #003c87; }
+#desktop-shell .window-controls button:last-child { background: linear-gradient(135deg, #f4b59b, #dd593d 45%, #c53219); text-shadow: 1px 1px #81200f; }
+#desktop-shell .toolbar { display: flex; align-items: center; gap: 3px; padding: 3px 4px; border-bottom: 1px solid #d6d2c2; box-shadow: 0 1px white; }
+#desktop-shell .toolbar button, #desktop-shell .toolbar a { display: flex; align-items: center; gap: 6px; background: none; box-shadow: none; border: 1px solid transparent; padding: 5px 7px; text-decoration: none; color: #171717; font-size: 12px; }
+#desktop-shell .toolbar button:hover, #desktop-shell .toolbar a:hover { border-color: #cecec3; background: #fffaf0; }
+#desktop-shell .toolbar img { width: 18px; height: 18px; object-fit: contain; image-rendering: auto; }
+#desktop-shell .toolbar .toolbar-logo { margin-left: auto; width: 30px; height: 28px; }
+#desktop-shell .addressbar, #desktop-shell .searchbar { display: flex; align-items: center; gap: 9px; padding: 8px; flex-shrink: 0; font-size: 12px; }
+#desktop-shell .addressbar input, #desktop-shell .folder-path { flex: 1; min-width: 0; background: white; border: 0; box-shadow: var(--sunken); padding: 5px 8px; }
+#desktop-shell .addressbar button { padding: 4px 10px; }
+#desktop-shell .searchbar { padding-top: 2px; flex-wrap: wrap; }
+#desktop-shell .searchbar input { border: 0; box-shadow: var(--sunken); background: white; padding: 7px 8px; flex: 1; min-width: 120px; }
+#desktop-shell .searchbar output { min-width: 62px; font-size: 11px; }
+#desktop-shell .window-body { flex: 1; min-height: 0; background: white; margin: 0 2px; border: 1px solid #7f9db9; overflow: auto; overscroll-behavior: contain; scrollbar-width: none; }
+#desktop-shell .window-body::-webkit-scrollbar { display: none; }
+#desktop-shell .homepage { background: #fffef8; padding: 20px; }
+#desktop-shell .profile-heading { display: flex; align-items: center; gap: 20px; padding: 16px; border: 1px solid #adc8e9; border-radius: 5px; background: linear-gradient(110deg, #e0edff, #f8fbff); }
+#desktop-shell .avatar { display: block; width: 72px; height: 88px; object-fit: cover; border: 3px solid white; border-radius: 4px; box-shadow: 0 1px 4px #6083ae80; }
+#desktop-shell .eyebrow { color: #476a94; font: 10px/1.5 Tahoma, sans-serif; letter-spacing: 1.5px; }
+#desktop-shell .profile-heading h1 { margin: 3px 0; color: #164a94; font: bold 30px/1.2 Georgia, serif; }
+#desktop-shell .profile-heading p { margin: 4px 0; }
+#desktop-shell .profile-location { color: #586578; font-size: 11px; }
+#desktop-shell .home-layout { display: grid; grid-template-columns: minmax(0, 1fr) 178px; gap: 24px; margin-top: 20px; }
+#desktop-shell .biography { font: 14px/1.65 Arial, sans-serif; overflow-wrap: anywhere; }
+#desktop-shell .biography h2 { margin: 0; color: #164a94; font: bold 20px Georgia, serif; }
+#desktop-shell .biography p { margin: 12px 0; }
+#desktop-shell .contact-panel { align-self: start; padding: 12px; background: #f0f5fc; border: 1px solid #bdd1eb; border-radius: 4px; overflow-wrap: anywhere; font-size: 11px; }
+#desktop-shell .contact-panel h2 { margin: -12px -12px 12px; padding: 8px 12px; background: #d5e5fa; color: #164a94; font-size: 12px; }
+#desktop-shell .contact-panel p { line-height: 1.8; }
+#desktop-shell .contact-links { display: grid; gap: 6px; border-top: 1px solid #c6d6e9; padding-top: 10px; }
+#desktop-shell .home-sections { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 18px; }
+#desktop-shell .home-sections button { padding: 5px 9px; font-size: 11px; }
+#desktop-shell .home-footer { display: flex; justify-content: space-between; gap: 12px; border-top: 1px solid #dae0e8; margin-top: 20px; padding-top: 12px; color: #60718a; font-size: 10px; }
+#desktop-shell .text-button { background: none; padding: 0; box-shadow: none; color: var(--navy); text-decoration: underline; font-size: 11px; }
+#desktop-shell .statusbar { display: flex; gap: 4px; padding: 3px 1px 0; font-size: 11px; flex-shrink: 0; }
+#desktop-shell .statusbar span { padding: 3px 6px; border: 1px solid #d4d0c8; }
+#desktop-shell .statusbar span:first-child { flex: 1; }
+#desktop-shell .document { padding: 24px 30px 36px; font: 15px/1.65 Arial, sans-serif; overflow-wrap: anywhere; }
+#desktop-shell .document h2 { margin: 0 0 12px; font: bold 26px/1.2 Georgia, serif; color: var(--navy); }
+#desktop-shell .document h3 { margin: 28px 0 8px; font-size: 18px; color: #26394a; }
+#desktop-shell .document p { margin: 10px 0 17px; max-width: 75ch; }
+#desktop-shell .document ul { margin: 10px 0 25px; padding-left: 23px; }
+#desktop-shell .document li { padding: 8px 0; }
+#desktop-shell .document .title { font-weight: bold; color: #132d61; }
+#desktop-shell .document .author { color: #444; }
+#desktop-shell #research .document li { margin-bottom: 12px; padding-bottom: 17px; border-bottom: 1px solid #deded8; }
+#desktop-shell #no-papers { padding: 18px; background: #fffce5; }
+#desktop-shell #taskbar { position: fixed; bottom: 0; left: 0; right: 0; height: 36px; background: linear-gradient(#3b8cf8, #245fdb 12%, #245edb 85%, #1941ad); padding: 0; display: flex; align-items: stretch; gap: 7px; box-shadow: inset 0 1px #6eafff; z-index: 10000; }
+#desktop-shell #start-button { display: flex; align-items: center; gap: 6px; padding: 3px 18px 3px 10px; font: italic bold 20px Tahoma, sans-serif; text-transform: lowercase; color: white; text-shadow: 1px 2px #246226; background: linear-gradient(#80bd7c, #3d983a 15%, #328b2d 75%, #216521); border-radius: 0 14px 14px 0; box-shadow: inset 0 1px #b5d6a6, inset -3px 0 6px #194e26; }
+#desktop-shell #start-button img { width: 24px; height: 24px; object-fit: contain; image-rendering: auto; }
+#desktop-shell #start-button[aria-expanded=true] { background: linear-gradient(#216521, #3d983a); }
+#desktop-shell #show-desktop { padding: 4px; margin: 3px 0; background: none; box-shadow: none; border-right: 1px solid #1148bb; }
+#desktop-shell #show-desktop img { width: 21px; height: 21px; object-fit: contain; image-rendering: auto; }
+#desktop-shell #tasks { display: flex; align-items: stretch; gap: 3px; flex: 1; min-width: 0; padding: 3px 0; overflow-x: auto; scrollbar-width: none; }
+#desktop-shell #tasks button { flex: 0 1 158px; min-width: 70px; display: flex; align-items: center; gap: 6px; padding: 4px 8px; font-size: 12px; color: white; background: linear-gradient(#4b94fa, #397fed); box-shadow: inset 1px 1px #71a9fb, inset -1px -1px #1250c5; }
+#desktop-shell #tasks button span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#desktop-shell #tasks img { width: 17px; height: 17px; object-fit: contain; image-rendering: auto; }
+#desktop-shell .system-tray { background: linear-gradient(#19b7ee, #1299e7 20%, #0b8add); color: white; border-left: 1px solid #0959bd; box-shadow: inset 0 1px #74d3fa; padding: 5px 12px; display: flex; align-items: center; gap: 9px; font-size: 11px; white-space: nowrap; }
+#desktop-shell #tasks button[aria-pressed=true] { background: #1852b6; box-shadow: inset 1px 1px 3px #073486; }
+#desktop-shell #start-menu { position: fixed; left: 4px; bottom: 37px; width: min(380px, calc(100vw - 8px)); max-height: calc(100dvh - 52px); display: flex; flex-direction: column; background: #fff; padding: 0; border: 2px solid #1e61cc; border-radius: 8px 8px 0 0; box-shadow: 3px 4px 10px #12376566; z-index: 10001; overflow-y: auto; }
+#desktop-shell .start-rail { display: flex; align-items: center; gap: 12px; background: linear-gradient(#317fe3, #145dc8); color: white; font-size: 18px; font-weight: bold; text-shadow: 1px 1px #174179; padding: 12px; border-bottom: 2px solid #eca538; }
+#desktop-shell .start-links { display: grid; grid-template-columns: 1fr 1fr; background: linear-gradient(90deg, white 50%, #d3e5fa 50%); }
+#desktop-shell #start-menu > strong { padding: 10px 14px; background: linear-gradient(#428bec, #1460ce); color: white; font-size: 12px; }
+#desktop-shell .start-links button, #desktop-shell .start-links a { display: flex; align-items: center; width: 100%; background: none; box-shadow: none; gap: 8px; text-align: left; padding: 5px 9px; min-height: 36px; color: #171717; text-decoration: none; font-size: 11px; }
+#desktop-shell .start-links :is(button, a):is(:hover, :focus-visible) { background: var(--navy); color: white; }
+#desktop-shell .start-links img, #desktop-shell .start-rail img { width: 26px; height: 26px; object-fit: contain; }
+@media (max-width: 640px) {
+#desktop-shell .window, #desktop-shell #site { left: 6px !important; top: 8px !important; width: calc(100% - 12px) !important; height: calc(100% - 16px) !important; resize: none; }
+#desktop-shell .titlebar { cursor: default; touch-action: auto; }
+#desktop-shell .window-controls [data-action=maximize] { display: none; }
+#desktop-shell .homepage { padding: 17px; }
+#desktop-shell .home-layout { grid-template-columns: 1fr; gap: 16px; }
+#desktop-shell .profile-heading { gap: 12px; padding: 12px; }
+#desktop-shell .profile-heading h1 { font-size: 25px; }
+#desktop-shell .contact-links { grid-template-columns: 1fr 1fr; }
+#desktop-shell .toolbar button, #desktop-shell .toolbar a { padding: 5px; font-size: 11px; gap: 4px; }
+#desktop-shell .toolbar .toolbar-logo, #desktop-shell #show-desktop, #desktop-shell .tray-mark { display: none; }
+#desktop-shell .system-tray { padding: 3px 5px; }
+#desktop-shell #tasks button { min-width: 42px; padding: 3px; }
+#desktop-shell #tasks button img { display: none; }
+#desktop-shell .statusbar span:last-child { display: none; }
+#desktop-shell .document { padding: 20px; }
+}
+@media (pointer: coarse) {
+#desktop-shell .window-controls button { width: 34px; height: 34px; }
+#desktop-shell .start-links button, #desktop-shell .start-links a { min-height: 44px; }
+#desktop-shell #taskbar { height: 45px; }
+#desktop-shell #workspace { bottom: 45px; }
+#desktop-shell #start-menu { bottom: 46px; } }
+@media print {
+body { overflow: visible; background: white; }
+#desktop-shell #desktop-icons, #desktop-shell #taskbar, #desktop-shell #start-menu, #desktop-shell .window-controls, #desktop-shell .toolbar, #desktop-shell .addressbar, #desktop-shell .searchbar, #desktop-shell #site { display: none !important; }
+#desktop-shell #workspace { position: static; display: block; margin: 0; padding: 0; }
+#desktop-shell .window, #desktop-shell .window[hidden] { display: block !important; position: static !important; width: auto !important; height: auto !important; box-shadow: none; margin: 0 0 24px; max-height: none; }
+#desktop-shell .window-body { overflow: visible; border: 0; }
+#desktop-shell .titlebar { color: black; background: white; } }
+
+#music { position: fixed; inset: 0 0 36px; pointer-events: none; }
+#music[hidden] { display: none !important; }
+#music #webamp { pointer-events: none; }
+#music #webamp .window, #music #webamp .context-menu { pointer-events: auto; }
+#player-message { position: absolute; left: 50%; top: 40%; transform: translate(-50%, -50%); padding: 16px; background: silver; color: black; box-shadow: var(--raised); pointer-events: auto; max-width: 280px; }
+#player-message button { margin-top: 10px; }
+@media print { #music { display: none !important; } }
+
+#desktop-shell #tasks::-webkit-scrollbar { display: none; }
+@media (pointer: coarse) { #music { bottom: 45px; } }

@@ -1,0 +1,4 @@
+The built-in image_gen tool generated xp-hills.jpg.
+The following text is the final prompt.
+
+Use case: photorealistic-natural. The asset is a desktop wallpaper for a Windows XP themed personal website. The image shows a broad, smooth green grass hill under a vivid blue sky. A few soft white cumulus clouds cross the upper sky. The hill has a gentle asymmetric crest and fine natural grass texture. The landscape has no trees, roads, buildings, people, text, logos, or interface elements. The image uses bright clear midday light and the optimistic colors of early 2000s computer wallpapers. The scene is an original landscape photograph composition. The image has a wide 16:9 format. The left sky stays simple so desktop icon labels remain readable.
