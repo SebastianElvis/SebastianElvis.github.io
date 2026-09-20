@@ -1,5 +1,8 @@
 const windows = [...document.querySelectorAll('#workspace .window')];
 const music = document.getElementById('music');
+const arcade = document.getElementById('arcade');
+const arcadeFrame = document.getElementById('arcade-frame');
+const arcadeGame = document.getElementById('arcade-game');
 const apps = [...windows, music];
 const workspace = document.getElementById('workspace');
 const tasks = document.getElementById('tasks');
@@ -13,6 +16,7 @@ let player;
 let playerLoading;
 
 function focusWindow(win, moveFocus = false) {
+    if (win !== arcade) arcadeFrame.contentWindow?.pauseGame?.();
     apps.forEach(item => item.classList.toggle('active', item === win));
     win.style.zIndex = ++layer;
     taskButtons.forEach((button, id) => button.setAttribute('aria-pressed', String(id === win.id && !win.hidden)));
@@ -50,9 +54,14 @@ function openWindow(id, moveFocus = true) {
     focusWindow(win, moveFocus);
     if (id === 'music') loadPlayer();
     else keepInBounds(win);
+    if (id === 'arcade' && !arcadeFrame.hasAttribute('src')) arcadeFrame.src = './arcade/?game=' + arcadeGame.value;
 }
 
 function hideWindow(win, close = false) {
+    if (win === arcade) {
+        arcadeFrame.contentWindow?.pauseGame?.();
+        if (close) arcadeFrame.removeAttribute('src');
+    }
     win.hidden = true;
     win.classList.remove('active');
     taskButtons.get(win.id)?.setAttribute('aria-pressed', 'false');
@@ -133,6 +142,7 @@ document.addEventListener('keydown', event => {
     }
 });
 document.getElementById('show-desktop').addEventListener('click', () => {
+    arcadeFrame.contentWindow?.pauseGame?.();
     const visible = apps.filter(win => !win.hidden);
     if (visible.length) {
         desktopHidden = visible;
@@ -144,6 +154,7 @@ document.getElementById('show-desktop').addEventListener('click', () => {
     }
 });
 document.getElementById('reset-desktop').addEventListener('click', () => {
+    arcadeFrame.removeAttribute('src');
     player?.close();
     apps.forEach(win => { win.hidden = true; win.style.cssText = ''; win.classList.remove('maximized', 'active'); });
     windows.forEach(win => {
@@ -158,6 +169,15 @@ document.getElementById('reset-desktop').addEventListener('click', () => {
 });
 if (['#true', '#false'].includes(location.hash)) history.replaceState(null, '', location.pathname + location.search);
 addEventListener('resize', () => windows.forEach(keepInBounds));
+addEventListener('blur', () => {
+    if (document.activeElement === arcadeFrame && !arcade.hidden) focusWindow(arcade);
+});
+arcadeGame.addEventListener('change', () => {
+    arcadeFrame.contentWindow?.pauseGame?.();
+    document.getElementById('arcade-game-title').textContent = arcadeGame.selectedOptions[0].textContent;
+    document.getElementById('arcade-buttons').textContent = arcadeGame.value === 'kof98' ? 'U: Light punch · I: Light kick · O: Heavy punch · J: Heavy kick' : 'U / I / O: Light / Medium / Heavy punch · J / K / L: Light / Medium / Heavy kick';
+    arcadeFrame.src = './arcade/?game=' + arcadeGame.value;
+});
 const boundsObserver = new ResizeObserver(entries => entries.forEach(entry => keepInBounds(entry.target)));
 windows.forEach(win => boundsObserver.observe(win));
 
