@@ -68,7 +68,11 @@ body { margin: 0; background: var(--desktop) url(../img/xp-hills.jpg) center / c
 #desktop-shell .contact-links { display: grid; gap: 6px; border-top: 1px solid #c6d6e9; padding-top: 10px; }
 #desktop-shell .home-sections { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 18px; }
 #desktop-shell .home-sections button { padding: 5px 9px; font-size: 11px; }
-#desktop-shell .home-footer { display: flex; justify-content: space-between; gap: 12px; border-top: 1px solid #dae0e8; margin-top: 20px; padding-top: 12px; color: #60718a; font-size: 10px; }
+#desktop-shell .home-footer { display: flex; align-items: center; flex-wrap: wrap; justify-content: space-between; gap: 12px; border-top: 1px solid #dae0e8; margin-top: 20px; padding-top: 12px; color: #60718a; font-size: 10px; }
+#desktop-shell .game-link { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 3px; background: linear-gradient(#fff, #f0eddf); box-shadow: var(--raised); color: #171717; text-decoration: none; font-size: 11px; }
+#desktop-shell .game-link:hover { background: linear-gradient(#fff, #e3ecfa); }
+#desktop-shell .game-link:active { box-shadow: var(--sunken); }
+#desktop-shell .game-link img { width: 20px; height: 20px; object-fit: contain; }
 #desktop-shell .text-button { background: none; padding: 0; box-shadow: none; color: var(--navy); text-decoration: underline; font-size: 11px; }
 #desktop-shell .statusbar { display: flex; gap: 4px; padding: 3px 1px 0; font-size: 11px; flex-shrink: 0; }
 #desktop-shell .statusbar span { padding: 3px 6px; border: 1px solid #d4d0c8; }
@@ -163,3 +167,40 @@ body { overflow: visible; background: white; }
     #desktop-shell .arcade-screen { aspect-ratio: 3 / 4; border-width: 4px; }
 }
 @media print { #desktop-shell #arcade, #desktop-shell #arcade[hidden] { display: none !important; } }
+
+body.destroy-rasterized :is(#desktop-shell, #music), body.destroy-rasterized :is(#desktop-shell, #music) * { visibility: hidden !important; }
+body.destroy-playing { overflow: hidden; }
+#destroy-game { position: fixed; inset: 0; z-index: 2147483647; font: 11px/1.4 Tahoma, Arial, sans-serif; color: #171717; }
+#destroy-game > canvas { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; cursor: none; outline: none; }
+#destroy-game .destroy-panel, #destroy-game .destroy-secret { position: absolute; top: 10px; right: 10px; width: 332px; max-height: calc(100% - 20px); overflow-y: auto; max-width: calc(100% - 20px); background: #ece9d8; border: 2px solid #0055e5; border-radius: 7px 7px 0 0; box-shadow: 2px 4px 8px #142b5460; }
+#destroy-game .destroy-secret { top: 52%; left: 50%; right: auto; transform: translate(-50%, -50%); }
+#destroy-game .destroy-secret h2 { font-size: 19px; color: #164a94; margin: 8px 0; }
+#destroy-game [hidden] { display: none !important; }
+#destroy-game .destroy-title { display: flex; align-items: center; justify-content: space-between; padding: 3px 4px 3px 8px; color: white; background: linear-gradient(#66a6ff, #0058ee 15%, #1675f6 48%, #0052d6); border-radius: 4px 4px 0 0; text-shadow: 1px 1px #003c87; }
+#destroy-game .destroy-title strong { font-size: 12px; }
+#destroy-game button { font: inherit; color: #171717; padding: 4px 7px; border: 0; border-radius: 3px; background: linear-gradient(#fff, #f0eddf); box-shadow: var(--raised); cursor: pointer; }
+#destroy-game button:active, #destroy-game button[aria-pressed=true], #destroy-game button.held { background: #d9e6f7; box-shadow: var(--sunken); }
+#destroy-game button:focus-visible, #destroy-game summary:focus-visible { outline: 2px solid #e59700; outline-offset: 2px; }
+#destroy-game .destroy-title button { width: 21px; height: 21px; padding: 0; border: 1px solid white; color: white; background: linear-gradient(135deg, #f4b59b, #dd593d 45%, #c53219); font: bold 17px/18px Arial, sans-serif; }
+#destroy-game .destroy-body { padding: 8px; }
+#destroy-game .destroy-status, #destroy-game .destroy-actions { display: flex; align-items: center; justify-content: space-between; gap: 5px; }
+#destroy-game progress { width: 100%; height: 12px; margin: 5px 0; accent-color: #3baa36; }
+#destroy-game .destroy-weapons { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 7px; }
+#destroy-game kbd { font: bold 10px Tahoma, sans-serif; color: #164a94; }
+#destroy-game details { margin: 5px 0 9px; }
+#destroy-game summary { cursor: pointer; color: #164a94; font-weight: bold; }
+#destroy-game .destroy-help-title { margin: 5px 0; font-size: 12px; color: #164a94; }
+#destroy-controls { margin: 0; padding: 3px 8px; background: #fffef5; border: 1px solid #aca899; }
+#destroy-controls > div { display: grid; grid-template-columns: 100px 1fr; align-items: center; gap: 8px; padding: 6px 0; }
+#destroy-controls > div + div { border-top: 1px solid #e8e5d7; }
+#destroy-controls kbd { display: inline-block; min-width: 24px; padding: 3px; text-align: center; font-size: 14px; border: 1px solid #aca899; border-radius: 3px; background: #f5f4eb; box-shadow: 0 2px 0 #aca899; }
+#destroy-controls dt { font-weight: bold; }
+#destroy-controls dd { margin: 1px 0 0; color: #45566a; }
+#destroy-game p { margin: 5px 0 0; }
+#destroy-game .destroy-flight-hint { position: absolute; top: 0; left: 0; width: 166px; box-sizing: border-box; padding: 6px 8px; background: #ffffe1; border: 1px solid #716f64; border-radius: 3px; box-shadow: 1px 2px 3px #0003; pointer-events: none; }
+#destroy-game [data-message] { color: #4b5c6d; font-size: 10px; }
+#destroy-game .destroy-touch { display: none; position: absolute; bottom: 50px; left: 10px; right: 10px; justify-content: center; gap: 8px; }
+#destroy-game .destroy-touch button { min-width: 46px; min-height: 44px; touch-action: none; user-select: none; }
+@media (pointer: coarse) { #destroy-game .destroy-touch { display: flex; } #destroy-game .destroy-actions button { min-height: 36px; } }
+@media (max-width: 640px) { #destroy-game .destroy-panel { top: 5px; right: 5px; max-width: calc(100% - 10px); } }
+@media print { #destroy-game { display: none !important; } body.destroy-rasterized :is(#desktop-shell, #music), body.destroy-rasterized :is(#desktop-shell, #music) * { visibility: visible !important; } }
