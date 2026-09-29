@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <defs>
+    <radialGradient id="mine" cx="32%" cy="25%" r="75%">
+      <stop stop-color="#8796a6"/>
+      <stop offset=".45" stop-color="#354250"/>
+      <stop offset="1" stop-color="#080c12"/>
+    </radialGradient>
+    <linearGradient id="tile" x2="0" y2="1">
+      <stop stop-color="#fff"/>
+      <stop offset="1" stop-color="#a1abb6"/>
+    </linearGradient>
+  </defs>
+  <path d="M5 10 22 7l8 15-17 8L2 23Z" fill="url(#tile)" stroke="#617389"/>
+  <path d="m6 17 20-4M8 26l18-7M12 9l9 17M20 8l8 16" fill="none" stroke="#758494"/>
+  <path d="m14 2 4 0 1 7 4-5 3 3-5 5 8 1v4l-8 1 5 5-3 3-5-6-1 9h-4l-1-9-5 5-3-3 6-5-9-1v-4l9-1-5-5 3-3 5 6Z" fill="#18222d" stroke="#d5e2ee" stroke-width=".6" stroke-linejoin="round"/>
+  <circle cx="15" cy="15" r="9" fill="url(#mine)" stroke="#0c1520"/>
+  <ellipse cx="12" cy="11" rx="3" ry="2" fill="#e8f4ff" opacity=".85" transform="rotate(-35 12 11)"/>
+</svg>
