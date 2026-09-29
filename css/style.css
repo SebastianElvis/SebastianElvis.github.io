@@ -19,7 +19,8 @@ body { margin: 0; background: var(--desktop) url(../img/xp-hills.jpg) center / c
 #desktop-shell [hidden] { display: none !important; }
 #desktop-shell .skip-link { position: fixed; top: -60px; left: 12px; z-index: 10000; background: white; padding: 10px 16px; }
 #desktop-shell .skip-link:focus { top: 8px; }
-#desktop-shell #desktop-icons { position: absolute; inset: 12px auto 44px 12px; display: grid; grid-auto-flow: column; grid-template-rows: repeat(auto-fill, 76px); grid-auto-columns: 76px; gap: 8px 14px; align-content: start; }
+#desktop-shell #desktop-icons { position: absolute; inset: 12px auto 44px 12px; display: flex; gap: 22px; overflow-y: auto; align-items: flex-start; }
+#desktop-shell .desktop-column { display: grid; width: 76px; flex: 0 0 76px; grid-auto-rows: 76px; gap: 8px; }
 #desktop-shell .desktop-icon { display: flex; flex-direction: column; align-items: center; gap: 6px; background: none; box-shadow: none; color: white; padding: 5px 2px; min-height: 66px; text-decoration: none; font-size: 11px; }
 #desktop-shell .desktop-icon:visited { color: white; }
 #desktop-shell .desktop-icon img { width: 32px; height: 32px; object-fit: contain; image-rendering: auto; }
@@ -88,7 +89,7 @@ body { margin: 0; background: var(--desktop) url(../img/xp-hills.jpg) center / c
 #desktop-shell #research .document li { margin-bottom: 12px; padding-bottom: 17px; border-bottom: 1px solid #deded8; }
 #desktop-shell #no-papers { padding: 18px; background: #fffce5; }
 #desktop-shell #taskbar { position: fixed; bottom: 0; left: 0; right: 0; height: 36px; background: linear-gradient(#3b8cf8, #245fdb 12%, #245edb 85%, #1941ad); padding: 0; display: flex; align-items: stretch; gap: 7px; box-shadow: inset 0 1px #6eafff; z-index: 10000; }
-#desktop-shell #start-button { display: flex; align-items: center; gap: 6px; padding: 3px 18px 3px 10px; font: italic bold 20px Tahoma, sans-serif; text-transform: lowercase; color: white; text-shadow: 1px 2px #246226; background: linear-gradient(#80bd7c, #3d983a 15%, #328b2d 75%, #216521); border-radius: 0 14px 14px 0; box-shadow: inset 0 1px #b5d6a6, inset -3px 0 6px #194e26; }
+#desktop-shell #start-button { display: flex; align-items: center; gap: 6px; padding: 3px 18px 3px 10px; font: italic bold 20px Tahoma, sans-serif; text-transform: lowercase; color: white; text-shadow: 1px 2px #246226; background: linear-gradient(#80bd7c, #3d983a 15%, #328b2d 75%, #216521); border-radius: 0 14px 14px 0; box-shadow: none; }
 #desktop-shell #start-button img { width: 24px; height: 24px; object-fit: contain; image-rendering: auto; }
 #desktop-shell #start-button[aria-expanded=true] { background: linear-gradient(#216521, #3d983a); }
 #desktop-shell #show-desktop { padding: 4px; margin: 3px 0; background: none; box-shadow: none; border-right: 1px solid #1148bb; }
@@ -103,9 +104,14 @@ body { margin: 0; background: var(--desktop) url(../img/xp-hills.jpg) center / c
 #desktop-shell .start-rail { display: flex; align-items: center; gap: 12px; background: linear-gradient(#317fe3, #145dc8); color: white; font-size: 18px; font-weight: bold; text-shadow: 1px 1px #174179; padding: 12px; border-bottom: 2px solid #eca538; }
 #desktop-shell .start-links { display: grid; grid-template-columns: 1fr 1fr; background: linear-gradient(90deg, white 50%, #d3e5fa 50%); }
 #desktop-shell #start-menu > strong { padding: 10px 14px; background: linear-gradient(#428bec, #1460ce); color: white; font-size: 12px; }
-#desktop-shell .start-links button, #desktop-shell .start-links a { display: flex; align-items: center; width: 100%; background: none; box-shadow: none; gap: 8px; text-align: left; padding: 5px 9px; min-height: 36px; color: #171717; text-decoration: none; font-size: 11px; }
-#desktop-shell .start-links :is(button, a):is(:hover, :focus-visible) { background: var(--navy); color: white; }
+#desktop-shell .start-links button, #desktop-shell .start-links a, #desktop-shell .start-links summary { display: flex; align-items: center; width: 100%; background: none; box-shadow: none; gap: 8px; text-align: left; padding: 5px 9px; min-height: 36px; color: #171717; text-decoration: none; font-size: 11px; }
+#desktop-shell .start-links :is(button, a, summary):is(:hover, :focus-visible) { background: var(--navy); color: white; }
 #desktop-shell .start-links img, #desktop-shell .start-rail img { width: 26px; height: 26px; object-fit: contain; }
+#desktop-shell #start-fun summary { cursor: pointer; list-style: none; }
+#desktop-shell #start-fun summary::-webkit-details-marker { display: none; }
+#desktop-shell #start-fun summary::after { content: "▸"; margin-left: auto; }
+#desktop-shell #start-fun[open] summary::after { content: "▾"; }
+#desktop-shell .fun-apps { margin-left: 12px; border-left: 1px solid #c1cee2; }
 @media (max-width: 640px) {
 #desktop-shell .window, #desktop-shell #site { left: 6px !important; top: 8px !important; width: calc(100% - 12px) !important; height: calc(100% - 16px) !important; resize: none; }
 #desktop-shell .titlebar { cursor: default; touch-action: auto; }
@@ -125,7 +131,7 @@ body { margin: 0; background: var(--desktop) url(../img/xp-hills.jpg) center / c
 }
 @media (pointer: coarse) {
 #desktop-shell .window-controls button { width: 34px; height: 34px; }
-#desktop-shell .start-links button, #desktop-shell .start-links a { min-height: 44px; }
+#desktop-shell .start-links button, #desktop-shell .start-links a, #desktop-shell .start-links summary { min-height: 44px; }
 #desktop-shell #taskbar { height: 45px; }
 #desktop-shell #workspace { bottom: 45px; }
 #desktop-shell #start-menu { bottom: 46px; } }
@@ -204,3 +210,20 @@ body.destroy-playing { overflow: hidden; }
 @media (pointer: coarse) { #destroy-game .destroy-touch { display: flex; } #destroy-game .destroy-actions button { min-height: 36px; } }
 @media (max-width: 640px) { #destroy-game .destroy-panel { top: 5px; right: 5px; max-width: calc(100% - 10px); } }
 @media print { #destroy-game { display: none !important; } body.destroy-rasterized :is(#desktop-shell, #music), body.destroy-rasterized :is(#desktop-shell, #music) * { visibility: visible !important; } }
+
+body.gravity-playing #music, body.gravity-playing :is(#desktop-shell, #music) *:not(#taskbar, #taskbar *) { visibility: hidden !important; }
+#gravity-game { position: fixed; inset: 0; z-index: 2147483647; font: 12px/1.4 Tahoma, Arial, sans-serif; }
+#gravity-game canvas { width: 100%; height: 100%; touch-action: none; cursor: grab; }
+#gravity-game canvas.grabbing { cursor: grabbing; }
+#gravity-game .gravity-panel { position: absolute; top: 10px; right: 10px; width: 350px; max-width: calc(100% - 20px); background: #ece9d8; border: 2px solid #0055e5; border-radius: 7px 7px 0 0; box-shadow: 2px 4px 8px #142b5460; }
+#gravity-game header { padding: 5px 8px; color: white; font-weight: bold; background: linear-gradient(#66a6ff, #0058ee 15%, #1675f6 48%, #0052d6); border-radius: 4px 4px 0 0; }
+#gravity-game .gravity-panel > div { padding: 8px; }
+#gravity-game p { margin: 0 0 8px; }
+#gravity-game nav { display: flex; flex-wrap: wrap; gap: 6px; }
+#gravity-game button { font: inherit; color: #171717; border: 0; border-radius: 3px; padding: 7px 9px; background: linear-gradient(#fff, #f0eddf); box-shadow: var(--raised); cursor: pointer; }
+#gravity-game button:disabled { opacity: .5; cursor: wait; }
+#gravity-game button:active { box-shadow: var(--sunken); }
+#gravity-game button:focus-visible { outline: 2px solid #a56300; outline-offset: 2px; }
+#gravity-game [data-status] { margin: 8px 0 0; font-size: 11px; color: #45566a; }
+@media (pointer: coarse) { #gravity-game button { min-height: 44px; } }
+@media print { #gravity-game { display: none !important; } body.gravity-playing :is(#desktop-shell, #music), body.gravity-playing :is(#desktop-shell, #music) * { visibility: visible !important; } }

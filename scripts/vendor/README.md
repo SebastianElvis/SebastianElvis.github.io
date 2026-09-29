@@ -9,3 +9,8 @@ The game loads this library when a visitor starts the game.
 The library renders the visible page for pixel damage and fragments.
 The package comes from https://registry.npmjs.org/html2canvas/-/html2canvas-1.4.1.tgz.
 The file `html2canvas-LICENSE` contains the upstream MIT license.
+
+Desktop gravity uses [Matter.js](https://github.com/liabru/matter-js) 0.20.0.
+The mode loads this library when a visitor starts gravity.
+The package comes from https://registry.npmjs.org/matter-js/-/matter-js-0.20.0.tgz.
+The file `matter-LICENSE` contains the upstream MIT license.

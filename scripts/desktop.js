@@ -135,7 +135,7 @@ document.addEventListener('keydown', event => {
     if (event.key === 'Escape' && !menu.hidden) setMenu(false, true);
     if (!menu.hidden && ['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) {
         event.preventDefault();
-        const buttons = [...menu.querySelectorAll('button, a[href]')];
+        const buttons = [...menu.querySelectorAll('button, a[href], summary')].filter(item => !item.closest('details:not([open])') || item.tagName === 'SUMMARY');
         const index = buttons.indexOf(document.activeElement);
         const next = event.key === 'Home' ? 0 : event.key === 'End' ? buttons.length - 1 : (index + (event.key === 'ArrowDown' ? 1 : -1) + buttons.length) % buttons.length;
         buttons[next].focus();
