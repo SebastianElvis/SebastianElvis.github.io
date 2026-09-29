@@ -119,7 +119,7 @@
     }
 
     function measureMaterials() {
-        const materials = [], bannerSelector = '.titlebar, .toolbar, .addressbar, .profile-heading, .statusbar, .home-footer, #taskbar';
+        const materials = [], componentSelector = '#workspace .window-body :is(h1, h2, h3, p, li)', bannerSelector = '.titlebar, .toolbar, .addressbar, .searchbar, .profile-heading, .statusbar, .home-footer, #taskbar';
         const visible = (element, rect) => {
             let left = Math.max(0, rect.left), top = Math.max(0, rect.top), right = Math.min(innerWidth, rect.right), bottom = Math.min(innerHeight, rect.bottom);
             for (let parent = element.parentElement; parent && parent !== document.body; parent = parent.parentElement) {
@@ -132,17 +132,19 @@
             if (!hit || !(element.contains(hit) || hit.contains(element))) return null;
             return { x: Math.floor(left), y: Math.floor(top), w: Math.ceil(right) - Math.floor(left), h: Math.ceil(bottom) - Math.floor(top) };
         };
-        for (const [selector, kind] of [[bannerSelector, 'banner'], ['#desktop-shell img, #music img', 'glass']]) {
+        for (const [selector, kind] of [[componentSelector, 'panel'], [bannerSelector, 'banner'], ['#desktop-shell img, #music img', 'glass']]) {
             document.querySelectorAll(selector).forEach(element => {
+                if (kind === 'panel' && element.parentElement.closest(componentSelector + ', ' + bannerSelector)) return;
                 const rect = visible(element, element.getBoundingClientRect());
-                if (rect && (kind !== 'glass' || rect.w >= 24 && rect.h >= 24)) materials.push({ ...rect, kind });
+                if (!rect || kind === 'glass' && (rect.w < 24 || rect.h < 24)) return;
+                materials.push({ ...rect, kind });
             });
         }
         const walker = document.createTreeWalker(shell, NodeFilter.SHOW_TEXT), range = document.createRange();
         let node;
         while ((node = walker.nextNode()) && materials.length < 2200) {
             const element = node.parentElement;
-            if (element.closest(bannerSelector + ', script, style, [hidden]') || !element.getClientRects().length) continue;
+            if (element.closest(bannerSelector + ', ' + componentSelector + ', script, style, [hidden]') || !element.getClientRects().length) continue;
             for (let i = 0; i < node.length && materials.length < 2200; i++) {
                 if (!node.textContent[i].trim()) continue;
                 range.setStart(node, i); range.setEnd(node, i + 1);
